@@ -29,7 +29,7 @@ public:
 
     vector<Shop> &getShops() { return shops; }
 
-    static ClothingVenue GetClothingVenue() { return clothingVenue; } //获得唯一对象的方法
+    static ClothingVenue getClothingVenue() { return clothingVenue; } //获得唯一对象的方法
 
     static void initialize();//初始化唯一对象的手段
 
@@ -48,7 +48,7 @@ public:
 
     vector<Shop> &getShops() { return shops; }
 
-    static SnacksVenue GetSnackVenue() { return snacksVenue; }
+    static SnacksVenue getSnackVenue() { return snacksVenue; }
 
     static void initialize();
 
@@ -65,7 +65,7 @@ public:
 
     vector<Shop> &getShops() { return shops; }
 
-    static ElectronicVenue GetElectronicVenue() { return electronicVenue; }
+    static ElectronicVenue getElectronicVenue() { return electronicVenue; }
 
     static void initialize();
 
@@ -82,7 +82,7 @@ public:
 
     vector<Shop> &getShops() { return shops; }
 
-    static FruitsVenue GetFruitsVenue() { return fruitsVenue; }
+    static FruitsVenue getFruitsVenue() { return fruitsVenue; }
 
     static void initialize();
 
