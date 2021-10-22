@@ -17,6 +17,6 @@ private:
     Goods* goods;
     Customer* customer;
     OrderState orderState;//订单状态,初始化为待支付
-    string date;//订单的最新时间(?)
+    time_t date;//订单的最新时间(?)
 
 };
