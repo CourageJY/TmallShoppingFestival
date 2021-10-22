@@ -19,7 +19,7 @@ class Shop;
 
 class Coupon {
 public:
-    //构造函数默认优惠券使用时间是一个月 2592000天
+    //构造函数默认优惠券使用时间是一个月（30天） 2592000秒
     Coupon(Customer *c, Shop *s) : customer(c), shop(s), couponState(unused) {
         time_t lt = time(nullptr);
         outDate = lt + 2592000;
@@ -42,7 +42,7 @@ public:
 
     time_t getOutDate() const { return outDate; }
 
-private:
+protected:
     Customer *customer;
     Shop *shop;
     CouponState couponState;
