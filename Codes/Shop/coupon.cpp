@@ -3,7 +3,7 @@
 void Coupon::checkOverdue() {
     time_t now = time(0);
     if (now > getOutDate()) setCouponState(overdue);
-    cout<<"很遗憾，您本张优惠券过期了"<<'\n';
+    cout << "很遗憾，您本张优惠券过期了" << '\n';
 }
 
 
@@ -27,6 +27,6 @@ double FullReduceCoupon::saleMethod(double x) {
 void FullReduceCoupon::changeStateToUsed() {
     setCouponState(used);
     cout << "您成功使用了本张满减优惠券" << '\n';
-    cout << "本优惠券为满" << getStandard() << "减" <<getReduction()<<"！\n";
+    cout << "本优惠券为满" << getStandard() << "减" << getReduction() << "！\n";
     cout << "期待您的下次使用" << '\n';
 }
