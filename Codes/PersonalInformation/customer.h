@@ -17,10 +17,17 @@ public:
                  cout<<"You create a new customer successfully!\n";
              }
     void viewBasicInformation();
+    //查看对应状态的orders
     void checkOrders();
     void showCoupons();
+    //从当前未支付订单中取出一个进行支付
+    //若金额不足则返回false
     bool payOrder();
-    ~Customer(){}
+    string getName(){return name;}
+    double& getMoney(){return money;}
+    ShoppingCart& getShoppingCart(){return shoppingCart;}
+    vector<Order>& getOrders(){return orders;}
+    vector<Coupon>& getCoupons(){return coupons;}
 
 private:
     string name;

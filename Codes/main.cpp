@@ -5,6 +5,6 @@
 int main(){
     time_t t=time(0);
     char* dt=ctime(&t);
-    cout<<dt;
+    cout<<dt<<'\n';
     return 0;
 }
