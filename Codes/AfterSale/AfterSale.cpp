@@ -1,0 +1,1 @@
+#include"../Shop/goods.h"

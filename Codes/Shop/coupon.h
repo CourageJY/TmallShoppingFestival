@@ -1,10 +1,8 @@
 #pragma once
-
 #include<iostream>
 #include<string>
 #include<vector>
 #include<ctime>
-
 using namespace std;
 
 enum CouponState {

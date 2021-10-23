@@ -1,4 +1,6 @@
-#include "../Shop/coupon.h"
+#include "coupon.h"
+#include "../PersonalInformation/customer.h"
+#include "../Shop/shop.h"
 
 void Coupon::checkOverdue() {
     time_t now = time(0);

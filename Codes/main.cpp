@@ -1,5 +1,13 @@
 #include"Order/order.h"
-//#include"ShoppingCart/shoppingCart.cpp"
+#include"PersonalInformation/customer.h"
+#include"AfterSale/AfterSale.h"
+#include"Order/order.h"
+#include"PersonalInformation/Comment.h"
+#include"Shop/coupon.h"
+#include"Shop/goods.h"
+#include"Shop/shop.h"
+#include"ShoppingCart/shoppingCart.h"
+#include"Venue/venue.h"
 #include<iostream>
 #include<ctime>
 #include<map>

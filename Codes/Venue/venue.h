@@ -38,7 +38,6 @@ private:
 
     static ClothingVenue clothingVenue;//静态变量定义唯一对象
 
-
     vector<Shop> shops;//分会场中应该有一些商家
 };
 

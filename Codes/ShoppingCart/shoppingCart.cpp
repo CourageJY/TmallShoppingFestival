@@ -1,6 +1,5 @@
-#include "../ShoppingCart/shoppingCart.h"
+#include "shoppingCart.h"
 #include "../PersonalInformation/customer.h"
-#include "../Shop/goods.h"
 #include"../Order/order.h"
 
 void ShoppingCart::addGoods(Goods gd){

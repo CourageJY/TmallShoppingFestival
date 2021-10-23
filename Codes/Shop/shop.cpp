@@ -1,10 +1,12 @@
 #include"shop.h"
-#include"customer.h"
-void showinformation()
-{
+#include"../PersonalInformation/customer.h"
+#include"../PersonalInformation/Comment.h"
+using namespace std;
+
+void showinformation(){
     
 }
-bool getCoupons(Customer* cm)
-{
+
+bool getCoupons(Customer* cm){
 
 }

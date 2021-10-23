@@ -1,8 +1,10 @@
 #pragma once
 #include<map>
-
+#include<string>
+#include"../Shop/goods.h"
 using namespace std;
 
+//预声明
 class Customer;
 
 class ShoppingCart{
