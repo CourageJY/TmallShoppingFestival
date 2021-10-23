@@ -1,21 +1,13 @@
+#pragma once
 #include<string>
 #include"../PersonalInformation/customer.h"
 
 class Order;//预声明
-
-class Comment{
-public:
-
-private:
-    string content;
-    Customer* customer;
-};
-
 class AfterSale{
 public:
+    void repair();
+    void exchange();
 
 private:
-    Order* order;
-    Comment comment;
-
+    Goods* goods;
 };
