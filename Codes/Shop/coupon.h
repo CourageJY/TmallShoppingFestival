@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include<iostream>
 #include<string>
 #include<vector>
@@ -36,7 +36,7 @@ public:
 
     CouponState getCouponState() { return couponState; }
 
-    CouponState setCouponState(CouponState cs) { couponState = cs; }
+    void setCouponState(CouponState cs) { couponState = cs; }
 
     time_t getOutDate() const { return outDate; }
 

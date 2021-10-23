@@ -1,4 +1,4 @@
-#include"customer.h"
+﻿#include"customer.h"
 
 void Customer::viewBasicInformation(){
     cout<<"以下是您的基本信息：\n";
