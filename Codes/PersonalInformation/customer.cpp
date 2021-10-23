@@ -69,7 +69,7 @@ bool Customer::payOrder(){
             return true;
         }
         else{
-            cout<<"支付失败！金额不足或订单处于待支付状态！\n";
+            cout<<"支付失败！金额不足或订单未处于待支付状态！\n";
             return false;
         }
     }

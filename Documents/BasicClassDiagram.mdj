@@ -1870,7 +1870,6 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 512,
-											"top": 32,
 											"height": 13
 										},
 										{
@@ -1881,7 +1880,7 @@
 											},
 											"font": "Arial;13;3",
 											"left": 589,
-											"top": 599,
+											"top": 583,
 											"width": 219.958984375,
 											"height": 13,
 											"text": "Coupon"
@@ -1895,7 +1894,6 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 512,
-											"top": 32,
 											"width": 105.16162109375,
 											"height": 13,
 											"text": "(from BasicClass)"
@@ -1909,14 +1907,13 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 512,
-											"top": 32,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 584,
-									"top": 592,
+									"top": 576,
 									"width": 229.958984375,
 									"height": 25,
 									"stereotypeLabel": {
@@ -1953,7 +1950,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 589,
-											"top": 622,
+											"top": 606,
 											"width": 219.958984375,
 											"height": 13,
 											"text": "#customer: Customer*",
@@ -1970,7 +1967,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 589,
-											"top": 637,
+											"top": 621,
 											"width": 219.958984375,
 											"height": 13,
 											"text": "#shop: Shop*",
@@ -1987,7 +1984,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 589,
-											"top": 652,
+											"top": 636,
 											"width": 219.958984375,
 											"height": 13,
 											"text": "#couponState: CouponState(enum)",
@@ -2004,7 +2001,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 589,
-											"top": 667,
+											"top": 651,
 											"width": 219.958984375,
 											"height": 13,
 											"text": "#outDate: time_t",
@@ -2013,7 +2010,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 584,
-									"top": 617,
+									"top": 601,
 									"width": 229.958984375,
 									"height": 68
 								},
@@ -2038,7 +2035,7 @@
 											},
 											"font": "Arial;13;2",
 											"left": 589,
-											"top": 690,
+											"top": 674,
 											"width": 219.958984375,
 											"height": 13,
 											"text": "+saleMethod(double x): double",
@@ -2055,7 +2052,7 @@
 											},
 											"font": "Arial;13;2",
 											"left": 589,
-											"top": 705,
+											"top": 689,
 											"width": 219.958984375,
 											"height": 13,
 											"text": "+changeStateToUsed()",
@@ -2072,7 +2069,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 589,
-											"top": 720,
+											"top": 704,
 											"width": 219.958984375,
 											"height": 13,
 											"text": "+checkOverdue()",
@@ -2081,7 +2078,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 584,
-									"top": 685,
+									"top": 669,
 									"width": 229.958984375,
 									"height": 53
 								},
@@ -2097,7 +2094,6 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 256,
-									"top": 16,
 									"width": 10,
 									"height": 10
 								},
@@ -2113,7 +2109,6 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 256,
-									"top": 16,
 									"width": 10,
 									"height": 10
 								}
@@ -2121,7 +2116,7 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 584,
-							"top": 592,
+							"top": 576,
 							"width": 229.958984375,
 							"height": 146,
 							"nameCompartment": {
@@ -2181,7 +2176,7 @@
 											"font": "Arial;13;1",
 											"left": 1005,
 											"top": 791,
-											"width": 151,
+											"width": 157.73291015625,
 											"height": 13,
 											"text": "ClothingVenue"
 										},
@@ -2216,7 +2211,7 @@
 									"font": "Arial;13;0",
 									"left": 1000,
 									"top": 784,
-									"width": 161,
+									"width": 167.73291015625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF8ohhg7cuXj/M="
@@ -2253,7 +2248,7 @@
 											"font": "Arial;13;0",
 											"left": 1005,
 											"top": 814,
-											"width": 151,
+											"width": 157.73291015625,
 											"height": 13,
 											"text": "-shops: Shop",
 											"horizontalAlignment": 0
@@ -2270,7 +2265,7 @@
 											"font": "Arial;13;0",
 											"left": 1005,
 											"top": 829,
-											"width": 151,
+											"width": 157.73291015625,
 											"height": 13,
 											"underline": true,
 											"text": "-fruitsVenue: FruitsVenue",
@@ -2280,7 +2275,7 @@
 									"font": "Arial;13;0",
 									"left": 1000,
 									"top": 809,
-									"width": 161,
+									"width": 167.73291015625,
 									"height": 38
 								},
 								{
@@ -2305,7 +2300,7 @@
 											"font": "Arial;13;0",
 											"left": 1005,
 											"top": 852,
-											"width": 151,
+											"width": 157.73291015625,
 											"height": 13,
 											"text": "+showBasicInformation()",
 											"horizontalAlignment": 0
@@ -2323,7 +2318,7 @@
 											"font": "Arial;13;0",
 											"left": 997,
 											"top": 852,
-											"width": 243.90869140625,
+											"width": 266.01123046875,
 											"height": 13,
 											"text": "+static ClothingVenue GetClothingVenue()",
 											"horizontalAlignment": 0
@@ -2340,7 +2335,7 @@
 											"font": "Arial;13;0",
 											"left": 1005,
 											"top": 867,
-											"width": 151,
+											"width": 157.73291015625,
 											"height": 13,
 											"underline": true,
 											"text": "+getClothingVenue()",
@@ -2358,7 +2353,7 @@
 											"font": "Arial;13;0",
 											"left": 1005,
 											"top": 882,
-											"width": 151,
+											"width": 157.73291015625,
 											"height": 13,
 											"underline": true,
 											"text": "+initialize()",
@@ -2368,7 +2363,7 @@
 									"font": "Arial;13;0",
 									"left": 1000,
 									"top": 847,
-									"width": 161,
+									"width": 167.73291015625,
 									"height": 53
 								},
 								{
@@ -2408,7 +2403,7 @@
 							"containerChangeable": true,
 							"left": 1000,
 							"top": 784,
-							"width": 161,
+							"width": 167.73291015625,
 							"height": 116,
 							"nameCompartment": {
 								"$ref": "AAAAAAF8ohhg7cuWEhQ="
@@ -2467,7 +2462,7 @@
 											"font": "Arial;13;1",
 											"left": 1189,
 											"top": 791,
-											"width": 158.6533203125,
+											"width": 162.83642578125,
 											"height": 13,
 											"text": "SnacksVenue"
 										},
@@ -2502,7 +2497,7 @@
 									"font": "Arial;13;0",
 									"left": 1184,
 									"top": 784,
-									"width": 168.6533203125,
+									"width": 172.83642578125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF8ohmIocvItIU="
@@ -2539,7 +2534,7 @@
 											"font": "Arial;13;0",
 											"left": 1189,
 											"top": 814,
-											"width": 158.6533203125,
+											"width": 162.83642578125,
 											"height": 13,
 											"text": "-shops: Shop",
 											"horizontalAlignment": 0
@@ -2556,7 +2551,7 @@
 											"font": "Arial;13;0",
 											"left": 1189,
 											"top": 829,
-											"width": 158.6533203125,
+											"width": 162.83642578125,
 											"height": 13,
 											"underline": true,
 											"text": "-snackVenue: SnackVenue",
@@ -2566,7 +2561,7 @@
 									"font": "Arial;13;0",
 									"left": 1184,
 									"top": 809,
-									"width": 168.6533203125,
+									"width": 172.83642578125,
 									"height": 38
 								},
 								{
@@ -2591,7 +2586,7 @@
 											"font": "Arial;13;0",
 											"left": 1189,
 											"top": 852,
-											"width": 158.6533203125,
+											"width": 162.83642578125,
 											"height": 13,
 											"text": "+showBasicInformation()",
 											"horizontalAlignment": 0
@@ -2608,7 +2603,7 @@
 											"font": "Arial;13;0",
 											"left": 1189,
 											"top": 867,
-											"width": 158.6533203125,
+											"width": 162.83642578125,
 											"height": 13,
 											"underline": true,
 											"text": "+getSnackVenue()",
@@ -2626,7 +2621,7 @@
 											"font": "Arial;13;0",
 											"left": 1189,
 											"top": 882,
-											"width": 158.6533203125,
+											"width": 162.83642578125,
 											"height": 13,
 											"underline": true,
 											"text": "+initialize()",
@@ -2636,7 +2631,7 @@
 									"font": "Arial;13;0",
 									"left": 1184,
 									"top": 847,
-									"width": 168.6533203125,
+									"width": 172.83642578125,
 									"height": 53
 								},
 								{
@@ -2676,7 +2671,7 @@
 							"containerChangeable": true,
 							"left": 1184,
 							"top": 784,
-							"width": 168.6533203125,
+							"width": 172.83642578125,
 							"height": 116,
 							"nameCompartment": {
 								"$ref": "AAAAAAF8ohmIocvH1Ys="
@@ -2735,7 +2730,7 @@
 											"font": "Arial;13;1",
 											"left": 1373,
 											"top": 791,
-											"width": 201.27783203125,
+											"width": 217.1025390625,
 											"height": 13,
 											"text": "ElectronicVenue"
 										},
@@ -2770,7 +2765,7 @@
 									"font": "Arial;13;0",
 									"left": 1368,
 									"top": 784,
-									"width": 211.27783203125,
+									"width": 227.1025390625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF8ohoSPcvzc9s="
@@ -2807,7 +2802,7 @@
 											"font": "Arial;13;0",
 											"left": 1373,
 											"top": 814,
-											"width": 201.27783203125,
+											"width": 217.1025390625,
 											"height": 13,
 											"text": "-shops: Shop",
 											"horizontalAlignment": 0
@@ -2824,7 +2819,7 @@
 											"font": "Arial;13;0",
 											"left": 1373,
 											"top": 829,
-											"width": 201.27783203125,
+											"width": 217.1025390625,
 											"height": 13,
 											"underline": true,
 											"text": "+electronicVenue: ElectronicVenue",
@@ -2834,7 +2829,7 @@
 									"font": "Arial;13;0",
 									"left": 1368,
 									"top": 809,
-									"width": 211.27783203125,
+									"width": 227.1025390625,
 									"height": 38
 								},
 								{
@@ -2859,7 +2854,7 @@
 											"font": "Arial;13;0",
 											"left": 1373,
 											"top": 852,
-											"width": 201.27783203125,
+											"width": 217.1025390625,
 											"height": 13,
 											"text": "+showBasicInformation()",
 											"horizontalAlignment": 0
@@ -2876,7 +2871,7 @@
 											"font": "Arial;13;0",
 											"left": 1373,
 											"top": 867,
-											"width": 201.27783203125,
+											"width": 217.1025390625,
 											"height": 13,
 											"underline": true,
 											"text": "+getElectronicVenue()",
@@ -2894,7 +2889,7 @@
 											"font": "Arial;13;0",
 											"left": 1373,
 											"top": 882,
-											"width": 201.27783203125,
+											"width": 217.1025390625,
 											"height": 13,
 											"underline": true,
 											"text": "+initialize()",
@@ -2904,7 +2899,7 @@
 									"font": "Arial;13;0",
 									"left": 1368,
 									"top": 847,
-									"width": 211.27783203125,
+									"width": 227.1025390625,
 									"height": 53
 								},
 								{
@@ -2944,7 +2939,7 @@
 							"containerChangeable": true,
 							"left": 1368,
 							"top": 784,
-							"width": 211.27783203125,
+							"width": 227.1025390625,
 							"height": 116,
 							"nameCompartment": {
 								"$ref": "AAAAAAF8ohoSPcvycOs="
@@ -3003,7 +2998,7 @@
 											"font": "Arial;13;1",
 											"left": 1597,
 											"top": 791,
-											"width": 155.72705078125,
+											"width": 161.7509765625,
 											"height": 13,
 											"text": "FruitsVenue"
 										},
@@ -3038,7 +3033,7 @@
 									"font": "Arial;13;0",
 									"left": 1592,
 									"top": 784,
-									"width": 165.72705078125,
+									"width": 171.7509765625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF8ohsPPMwfFs8="
@@ -3075,7 +3070,7 @@
 											"font": "Arial;13;0",
 											"left": 1597,
 											"top": 814,
-											"width": 155.72705078125,
+											"width": 161.7509765625,
 											"height": 13,
 											"text": "-shops: Shop",
 											"horizontalAlignment": 0
@@ -3092,7 +3087,7 @@
 											"font": "Arial;13;0",
 											"left": 1597,
 											"top": 829,
-											"width": 155.72705078125,
+											"width": 161.7509765625,
 											"height": 13,
 											"underline": true,
 											"text": "+fruitsVenue: FruitsVenue",
@@ -3102,7 +3097,7 @@
 									"font": "Arial;13;0",
 									"left": 1592,
 									"top": 809,
-									"width": 165.72705078125,
+									"width": 171.7509765625,
 									"height": 38
 								},
 								{
@@ -3127,7 +3122,7 @@
 											"font": "Arial;13;0",
 											"left": 1597,
 											"top": 852,
-											"width": 155.72705078125,
+											"width": 161.7509765625,
 											"height": 13,
 											"text": "+showBasicInformation()",
 											"horizontalAlignment": 0
@@ -3144,7 +3139,7 @@
 											"font": "Arial;13;0",
 											"left": 1597,
 											"top": 867,
-											"width": 155.72705078125,
+											"width": 161.7509765625,
 											"height": 13,
 											"underline": true,
 											"text": "+getFruitsVenue()",
@@ -3162,7 +3157,7 @@
 											"font": "Arial;13;0",
 											"left": 1597,
 											"top": 882,
-											"width": 155.72705078125,
+											"width": 161.7509765625,
 											"height": 13,
 											"underline": true,
 											"text": "+initialize()",
@@ -3172,7 +3167,7 @@
 									"font": "Arial;13;0",
 									"left": 1592,
 									"top": 847,
-									"width": 165.72705078125,
+									"width": 171.7509765625,
 									"height": 53
 								},
 								{
@@ -3212,7 +3207,7 @@
 							"containerChangeable": true,
 							"left": 1592,
 							"top": 784,
-							"width": 165.72705078125,
+							"width": 171.7509765625,
 							"height": 116,
 							"nameCompartment": {
 								"$ref": "AAAAAAF8ohsPPMweYBA="
@@ -4434,7 +4429,7 @@
 							"tail": {
 								"$ref": "AAAAAAF8oi429NZp5WU="
 							},
-							"points": "576:784;576:760;680:760;680:737",
+							"points": "576:784;576:760;680:760;680:721",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF8oi6SJtd2zaw="
@@ -4527,7 +4522,7 @@
 							"tail": {
 								"$ref": "AAAAAAF8oi3ELtYJfVo="
 							},
-							"points": "808:784;808:760;680:760;680:737",
+							"points": "808:784;808:760;680:760;680:721",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF8oi6cLteloOE="
@@ -7532,7 +7527,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 729,
-									"top": 560,
+									"top": 544,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -7553,7 +7548,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 715,
-									"top": 557,
+									"top": 541,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -7574,7 +7569,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 756,
-									"top": 564,
+									"top": 548,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -7683,7 +7678,7 @@
 							"tail": {
 								"$ref": "AAAAAAF8mVok08tgZzA="
 							},
-							"points": "744:592;744:288;992:288",
+							"points": "744:576;744:288;992:288",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF8pc7h0y30dBY="
