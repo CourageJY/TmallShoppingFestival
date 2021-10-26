@@ -1,4 +1,23 @@
 #include "SearchEngine.h"
+
+vector<Goods> SearchAdaptor::getAllGoods(){
+    vector<Shop> clothingshops = ClothingVenue::getClothingVenue().getShops();
+    vector<Shop> snackshops = SnacksVenue::getSnackVenue().getShops();
+    vector<Shop> electronicshops = ElectronicVenue::getElectronicVenue().getShops();
+    vector<Shop> fruitshops = FruitsVenue::getFruitsVenue().getShops();
+    vector<Shop> shops;
+    vector<Goods> matchedgoods; //匹配的商品
+    shops.insert(shops.end(), clothingshops.begin(), clothingshops.end());
+    shops.insert(shops.end(), snackshops.begin(), electronicshops.end());
+    shops.insert(shops.end(), electronicshops.begin(), electronicshops.end());
+    shops.insert(shops.end(), fruitshops.begin(), fruitshops.end());
+    for(vector<Shop>::iterator iter = shops.begin();iter != shops.end();iter++)
+    {
+        //TODO
+        //遍历商店中的商品并进行字符串匹配
+    }
+}
+
 Goods* SearchEngine::searchGoods(){
     string productName("");
     cout << endl;
@@ -38,21 +57,7 @@ void SearchEngine::showHistory(){
 }
 
 Goods* SearchEngine::search(string name){
-    vector<Shop> clothingshops = ClothingVenue::getClothingVenue().getShops();
-    vector<Shop> snackshops = SnacksVenue::getSnackVenue().getShops();
-    vector<Shop> electronicshops = ElectronicVenue::getElectronicVenue().getShops();
-    vector<Shop> fruitshops = FruitsVenue::getFruitsVenue().getShops();
-    vector<Shop> shops;
-    vector<Goods> matchedgoods; //匹配的商品
-    shops.insert(shops.end(), clothingshops.begin(), clothingshops.end());
-    shops.insert(shops.end(), snackshops.begin(), electronicshops.end());
-    shops.insert(shops.end(), electronicshops.begin(), electronicshops.end());
-    shops.insert(shops.end(), fruitshops.begin(), fruitshops.end());
-    for(vector<Shop>::iterator iter = shops.begin();iter != shops.end();iter++)
-    {
-        //TODO
-        //遍历商店中的商品并进行字符串匹配
-    }
+
 }
 
 

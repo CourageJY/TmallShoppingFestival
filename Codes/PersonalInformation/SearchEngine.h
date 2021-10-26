@@ -20,3 +20,9 @@ private:
     vector<string> history;         //搜索历史
     Goods *search(string name);     //实现搜索
 };
+
+//SearchAdaptor类用于适配不同的搜索方法
+class SearchAdaptor:public Shop{
+public:
+    vector<Goods>  getAllGoods();   //将已有的搜索函数转变成所需要的函数
+};
