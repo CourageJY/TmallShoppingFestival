@@ -5,12 +5,12 @@ void Customer::viewBasicInformation(){
     cout<<"姓名："<<name<<'\n';
     cout<<"电话号码："<<tel<<'\n';
     cout<<"居住地址："<<addr<<'\n';
-    cout<<"性别"<<(gender==male?"男":"女")<<'\n';
+    cout<<"性别："<<(gender==male?"男":"女")<<'\n';
     cout<<"您剩余的金额为："<<money<<'\n';
 }
 
 void Customer::checkOrders(){
-    cout<<"请输入您想查看的订单类型（1/2/3）：1为待支付，2为已支付，3为支付失败\n";
+    cout<<"请输入您想查看的订单类型（1/2/3）：1为待支付，2为已支付，3为已取消\n";
     int x;
     cin>>x;
     vector<Order> vec;
@@ -28,7 +28,7 @@ void Customer::checkOrders(){
     string str;
     if(x==1)str="待支付";
     else if(x==2)str="已支付";
-    else str="支付失败";
+    else str="已取消";
     cout<<"您查看的"+str+"订单共"<<vec.size()<<"个，分别为:\n";
     int i=1;
     for(auto v:vec){

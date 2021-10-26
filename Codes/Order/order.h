@@ -5,7 +5,7 @@
 #include"../Shop/goods.h"
 using namespace std;
 
-enum OrderState {unpaid,paid,error};//待支付、已支付、失败的订单
+enum OrderState {unpaid,paid,error};//待支付、已支付、已取消的订单
 
 //预声明
 class Customer;

@@ -16,7 +16,7 @@ void Order::showOrder(){
     string str;
     if(orderState==unpaid)str="待支付";
     else if(orderState==paid)str="已支付";
-    else str="已失败";
+    else str="已取消";
     cout<<"订单拥有者:"<<customer->getName()<<'\n';
     cout<<"状态："<<str<<'\n';
     cout<<"该订单的商品为：\n";
