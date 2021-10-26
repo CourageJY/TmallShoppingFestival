@@ -20,6 +20,10 @@ void DiscountCoupon::changeStateToUsed() {
     cout << "期待您的下次使用" << '\n';
 }
 
+DiscountCoupon* DiscountCoupon::clone(){
+    DiscountCoupon *clone = new DiscountCoupon(customer, shop, discount);
+    return clone;
+}
 
 double FullReduceCoupon::saleMethod(double x) {
     double result = (x < standard) ? x : x - reduction;
@@ -31,4 +35,9 @@ void FullReduceCoupon::changeStateToUsed() {
     cout << "您成功使用了本张满减优惠券" << '\n';
     cout << "本优惠券为满" << getStandard() << "减" << getReduction() << "！\n";
     cout << "期待您的下次使用" << '\n';
+}
+
+FullReduceCoupon* FullReduceCoupon::clone(){
+    FullReduceCoupon *clone = new FullReduceCoupon(customer, shop, standard, reduction);
+    return clone;
 }

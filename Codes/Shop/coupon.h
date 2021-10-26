@@ -60,6 +60,8 @@ public:
 
     double getDiscount() const { return discount; }
 
+    DiscountCoupon *clone();    //实现原型模式的克隆
+
 private:
     double discount;
 };
@@ -77,6 +79,8 @@ public:
     double getStandard() const { return standard; }
 
     double getReduction() const { return reduction; }
+
+    FullReduceCoupon *clone();  //实现原型模式的克隆
 
 private:
     double standard;
