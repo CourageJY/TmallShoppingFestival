@@ -5,6 +5,7 @@
 #include"../ShoppingCart/shoppingCart.h"
 #include"../Order/order.h"
 #include"../Shop/coupon.h"
+#include <Mediator/mediator.h>
 using namespace std;
 
 enum Gender {male,female};//性别的枚举变量
@@ -26,8 +27,9 @@ public:
     //从当前未支付订单中取出一个进行支付
     //若金额不足则返回false
     bool payOrder();
-    //
-    void writeCommment();
+    
+    //用户调用中介者类来发送评价，不需要调用店铺
+    void writeCommment(Mediator med, Comment com) { med.sendComment(&com); }
 
     string getName(){return name;}
 
