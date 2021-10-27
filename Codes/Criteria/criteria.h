@@ -2,7 +2,7 @@
 #include <map>
 #include "../Shop/shop.h"
 
-//������
+//过滤器
 class Criteria
 {
 public:
@@ -16,7 +16,7 @@ private:
 
 };
 
-//&&������
+//&&过滤器
 class AndCriteria :public Criteria {
 public:
 	AndCriteria(Criteria c1, Criteria c2) :criteria(c1), otherCriteria(c2) {}
@@ -28,7 +28,7 @@ private:
 	Criteria otherCriteria;
 };
 
-//�۸������
+//价格过滤器
 class PriceCriteria :public Criteria {
 public:
 	PriceCriteria(double lp,double up):lowerPrice(lp), upperPrice(up) {}
@@ -41,7 +41,7 @@ private:
 
 };
 
-//Ʒ�ƹ�����
+//品牌过滤器
 class BrandCriteria :public Criteria {
 public:
 	BrandCriteria(string sb) :standardBrand(sb) {}

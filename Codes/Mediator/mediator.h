@@ -4,7 +4,7 @@
 #include "../Shop/shop.h"
 using namespace std;
 
-//�������н��������������ۣ��û�����Ҫ���õ���
+//用户通过调用中介者向店铺发送评价，不需要显式调用店铺
 class Mediator
 {
 public:
