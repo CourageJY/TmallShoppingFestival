@@ -10,7 +10,7 @@ class MainVenue {
 public:
     MainVenue() = default;
 
-    void showBasicInformation();
+    virtual void showBasicInformation();
 
     void findShops(string name);
 
@@ -27,7 +27,7 @@ private:
 //各个分会场只会存在一个且不会被继承 设计为单例模式
 class ClothingVenue : public MainVenue {
 public:
-    void showBasicInformation();
+    void showBasicInformation() override;
 
     vector<Shop> &getShops() { return shops; }
 
@@ -58,7 +58,7 @@ private:
 
 class SnacksVenue : public MainVenue {
 public:
-    void showBasicInformation();
+    void showBasicInformation() override;
 
     vector<Shop>& getShops() { return shops; }
 
@@ -87,7 +87,7 @@ private:
 
 class ElectronicVenue : public MainVenue {
 public:
-    void showBasicInformation();
+    void showBasicInformation() override;
 
     vector<Shop>& getShops() { return shops; }
 
@@ -117,7 +117,7 @@ private:
 
 class FruitsVenue : public MainVenue {
 public:
-    void showBasicInformation();
+    void showBasicInformation() override;
 
     vector<Shop>& getShops() { return shops; }
 
