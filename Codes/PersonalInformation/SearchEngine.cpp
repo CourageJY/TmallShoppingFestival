@@ -11,11 +11,13 @@ vector<Goods> SearchAdaptor::getAllGoods(){
     shops.insert(shops.end(), snackshops.begin(), electronicshops.end());
     shops.insert(shops.end(), electronicshops.begin(), electronicshops.end());
     shops.insert(shops.end(), fruitshops.begin(), fruitshops.end());
-    for(vector<Shop>::iterator iter = shops.begin();iter != shops.end();iter++)
-    {
-        //TODO
-        //遍历商店中的商品并进行字符串匹配
+    for(vector<Shop>::iterator iter = shops.begin();iter != shops.end();iter++){
+        map<Goods,int> goods = iter->getGoods();
+        for(map<Goods,int>::iterator mapiter=goods.begin();mapiter!=goods.end();mapiter++){     //遍历每个商店的商品，并加入到总商品中
+            matchedgoods.push_back(mapiter->first);
+        }
     }
+    return matchedgoods;
 }
 
 Goods* SearchEngine::searchGoods(){

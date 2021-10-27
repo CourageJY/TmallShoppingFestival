@@ -1,9 +1,8 @@
 #pragma once
 #include <map>
-#include "../SoftwareDesignPattern/Shop/shop.h"
-//"../Shop/shop.h"
+#include "../Shop/shop.h"
 
-//¹ıÂËÆ÷
+//è¿‡æ»¤å™¨
 class Criteria
 {
 public:
@@ -17,7 +16,7 @@ private:
 
 };
 
-//&&¹ıÂËÆ÷
+//&&è¿‡æ»¤å™¨
 class AndCriteria :public Criteria {
 public:
 	AndCriteria(Criteria c1, Criteria c2) :criteria(c1), otherCriteria(c2) {}
@@ -29,7 +28,7 @@ private:
 	Criteria otherCriteria;
 };
 
-//¼Û¸ñ¹ıÂËÆ÷
+//ä»·æ ¼è¿‡æ»¤å™¨
 class PriceCriteria :public Criteria {
 public:
 	PriceCriteria(double lp,double up):lowerPrice(lp), upperPrice(up) {}
@@ -42,7 +41,7 @@ private:
 
 };
 
-//Æ·ÅÆ¹ıÂËÆ÷
+//å“ç‰Œè¿‡æ»¤å™¨
 class BrandCriteria :public Criteria {
 public:
 	BrandCriteria(string sb) :standardBrand(sb) {}

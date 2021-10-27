@@ -1,10 +1,10 @@
 #pragma once
 #include <string>
-#include <PersonalInformation/Comment.h>
-#include <Shop/shop.h>
+#include "../PersonalInformation/Comment.h"
+#include "../Shop/shop.h"
 using namespace std;
 
-//µêÆÌÓÃÖĞ½éÕßÀàÀ´½ÓÊÕÆÀ¼Û£¬ÓÃ»§²»ĞèÒªµ÷ÓÃµêÆÌ
+//ç”¨æˆ·é€šè¿‡è°ƒç”¨ä¸­ä»‹è€…å‘åº—é“ºå‘é€è¯„ä»·ï¼Œä¸éœ€è¦æ˜¾å¼è°ƒç”¨åº—é“º
 class Mediator
 {
 public:

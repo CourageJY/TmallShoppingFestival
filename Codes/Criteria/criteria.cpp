@@ -1,28 +1,28 @@
 #include "../Criteria/criteria.h"
 
-//Êä³öÉ¸Ñ¡½á¹û
+//è¾“å‡ºç­›é€‰ç»“æœ
 void Criteria::printGoods(map<Goods, int> goods) {
 	if (goods.size() == 0) {
-		cout << "Ã»ÓĞÂú×ãÉ¸Ñ¡Ìõ¼şµÄÉÌÆ·£¡" << endl << endl;
+		cout << "æ²¡æœ‰æ»¡è¶³ç­›é€‰æ¡ä»¶çš„å•†å“ï¼" << endl << endl;
 		return;
 	}
 
-	cout << "Âú×ãÉ¸Ñ¡Ìõ¼şµÄÉÌÆ·ÈçÏÂ£º" << endl;
+	cout << "æ»¡è¶³ç­›é€‰æ¡ä»¶çš„å•†å“å¦‚ä¸‹ï¼š" << endl;
 	for (map<Goods, int>::iterator iter = goods.begin(); iter != goods.end(); iter++) {
-		cout << "ÉÌÆ·Ãû³Æ£º" << iter->first.getName() << endl;
-		cout << "ÉÌÆ·¼Û¸ñ£º" << iter->first.getPrice() << "Ôª" << endl;
-		//cout << "ÉÌÆ·±£ÖÊÆÚ£º" << iter->first.getOutDate() << endl;
-		cout << "ÉÌÆ·¿â´æ£º" << iter->second << endl << endl;
+		cout << "å•†å“åç§°ï¼š" << iter->first.getName() << endl;
+		cout << "å•†å“ä»·æ ¼ï¼š" << iter->first.getPrice() << "å…ƒ" << endl;
+		//cout << "å•†å“ä¿è´¨æœŸï¼š" << iter->first.getOutDate() << endl;
+		cout << "å•†å“åº“å­˜ï¼š" << iter->second << endl << endl;
 	}
 }
 
-//&&¹ıÂËÆ÷£º·µ»ØÂú×ãËùÓĞÌõ¼şµÄÉÌÆ·
+//&&è¿‡æ»¤å™¨ï¼šè¿”å›æ»¡è¶³æ‰€æœ‰æ¡ä»¶çš„å•†å“
 map<Goods, int> AndCriteria::filterGoods(map<Goods, int> goods){
 	map<Goods, int> selectedGoods = criteria.filterGoods(goods);
 	return otherCriteria.filterGoods(selectedGoods);
 }
 
-//¼Û¸ñ¹ıÂËÆ÷£º·µ»ØÖ¸¶¨¼Û¸ñÇø¼äµÄÉÌÆ·
+//ä»·æ ¼è¿‡æ»¤å™¨ï¼šè¿”å›æŒ‡å®šä»·æ ¼åŒºé—´çš„å•†å“
 map<Goods, int> PriceCriteria::filterGoods(map<Goods, int> goods)
 {
 	map<Goods, int> selectedGoods;
@@ -33,7 +33,7 @@ map<Goods, int> PriceCriteria::filterGoods(map<Goods, int> goods)
 	return selectedGoods;
 }
 
-//Æ·ÅÆ¹ıÂËÆ÷£º·µ»ØÖ¸¶¨Æ·ÅÆµÄÉÌÆ·
+//å“ç‰Œè¿‡æ»¤å™¨ï¼šè¿”å›æŒ‡å®šå“ç‰Œçš„å•†å“
 map<Goods, int> BrandCriteria::filterGoods(map<Goods, int> goods)
 {
 	map<Goods, int> selectedGoods;
