@@ -31,18 +31,7 @@ public:
 
     vector<Shop> &getShops() { return shops; }
 
-    void addShop(Shop shop) { this->shops.push_back(shop); }
-
-    //获取会场所有店铺的商品
-    map<Goods, int> getGoods();
-
-    //获取会场指定店铺的商品
-    map<Goods, int> getGoods(string name);
-
-    //设置指定店铺的所有商品属性
-    void setGoods(string name, vector<string> names, vector<double> prices, vector<time_t> times);
-
-    static ClothingVenue& getInstance() {
+    static ClothingVenue &getInstance() {
         static ClothingVenue instance;
         return instance;
 
@@ -60,20 +49,9 @@ class SnacksVenue : public MainVenue {
 public:
     void showBasicInformation() override;
 
-    vector<Shop>& getShops() { return shops; }
+    vector<Shop> &getShops() { return shops; }
 
-    void addShop(Shop shop) { this->shops.push_back(shop); }
-
-    //获取会场所有店铺的商品
-    map<Goods, int> getGoods();
-
-    //获取会场指定店铺的商品
-    map<Goods, int> getGoods(string name);
-
-    //设置指定店铺的所有商品属性
-    void setGoods(string name, vector<string> names, vector<double> prices, vector<time_t> times);
-
-    static SnacksVenue& getInstance() {
+    static SnacksVenue &getInstance() {
         static SnacksVenue instance;
         return instance;
 
@@ -89,20 +67,9 @@ class ElectronicVenue : public MainVenue {
 public:
     void showBasicInformation() override;
 
-    vector<Shop>& getShops() { return shops; }
+    vector<Shop> &getShops() { return shops; }
 
-    void addShop(Shop shop) { this->shops.push_back(shop); }
-
-    //获取会场所有店铺的商品
-    map<Goods, int> getGoods();
-
-    //获取会场指定店铺的商品
-    map<Goods, int> getGoods(string name);
-
-    //设置指定店铺的所有商品属性
-    void setGoods(string name, vector<string> names, vector<double> prices, vector<time_t> times);
-
-    static ElectronicVenue& getInstance() {
+    static ElectronicVenue &getInstance() {
         static ElectronicVenue instance;
         return instance;
 
@@ -119,20 +86,9 @@ class FruitsVenue : public MainVenue {
 public:
     void showBasicInformation() override;
 
-    vector<Shop>& getShops() { return shops; }
+    vector<Shop> &getShops() { return shops; }
 
-    void addShop(Shop shop) { this->shops.push_back(shop); }
-
-    //获取会场所有店铺的商品
-    map<Goods, int> getGoods();
-
-    //获取会场指定店铺的商品
-    map<Goods, int> getGoods(string name);
-
-    //设置指定店铺的所有商品属性
-    void setGoods(string name, vector<string> names, vector<double> prices, vector<time_t> times);
-
-    static FruitsVenue& getInstance() {
+    static FruitsVenue &getInstance() {
         static FruitsVenue instance;
         return instance;
 

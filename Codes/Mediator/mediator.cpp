@@ -1,2 +1,0 @@
-#include "../Mediator/mediator.h"
-

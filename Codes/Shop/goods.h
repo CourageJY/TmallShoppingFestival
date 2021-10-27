@@ -11,20 +11,16 @@ class Shop;
 
 class Goods{//商品
 public:
-    Goods(string na, double pr, Shop* sh) :name(na), price(pr), outDate(time(0) + 12 * month),
-        shop(sh), comment(Comment(this, nullptr)) {}
-
+    Goods(string na,double pr,Shop* sh):name(na),price(pr),outDate(time(0)+12*month),
+          shop(sh),comment(Comment(this,nullptr)){}
+    
     string getName()const{return name;}
 
     double getPrice()const{return price;}
 
-    time_t getOutDate()const{return outDate;}
+    time_t getOutDate(){return outDate;}
 
     Comment& getComment(){return comment;}
-
-    Shop* getShop()const { return shop; }
-
-    void setGoods(string na, double pr, time_t time);
 
     //定义一种大小规则，为map服务
     bool operator<(const Goods& gd)const{
