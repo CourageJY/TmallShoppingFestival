@@ -1,7 +1,6 @@
 #pragma once
 #include <map>
-#include "../SoftwareDesignPattern/Shop/shop.h"
-//"../Shop/shop.h"
+#include "../Shop/shop.h"
 
 //������
 class Criteria

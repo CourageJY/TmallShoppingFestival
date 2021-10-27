@@ -1,5 +1,4 @@
 ﻿#include "venue.h"
-#include <Criteria/criteria.h>
 
 void MainVenue::findShops(string name) {
 
