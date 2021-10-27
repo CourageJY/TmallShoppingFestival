@@ -6,6 +6,24 @@
 
 using namespace std;
 
+class ClothingVenue;
+
+class SnacksVenue;
+
+class ElectronicVenue;
+
+class FruitsVenue;
+
+//定义访问者的接口
+class ParallelVenue{
+public:
+    virtual void visit(ClothingVenue clothingVenue);
+    virtual void visit(SnacksVenue snackVenue);
+    virtual void visit(ElectronicVenue electronicvenue);
+    virtual void visit(FruitsVenue fruitsVenue);
+};
+
+
 class MainVenue {
 public:
     MainVenue() = default;
@@ -161,14 +179,7 @@ private:
     vector<Shop> shops;
 };
 
-//定义访问者的接口
-class ParallelVenue{
-public:
-    virtual void visit(ClothingVenue clothingVenue);
-    virtual void visit(SnacksVenue snackVenue);
-    virtual void visit(ElectronicVenue electronicvenue);
-    virtual void visit(FruitsVenue fruitsVenue);
-};
+
 
 //创建实现了上述类的实体访问者
 class ParallerVenueDisplay:ParallelVenue {
