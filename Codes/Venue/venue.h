@@ -12,6 +12,8 @@ public:
 
     virtual void showBasicInformation();
 
+    static void showInfromation();
+
     void findShops(string name);
 
     ~MainVenue() {
@@ -20,6 +22,8 @@ public:
 
     vector<MainVenue> &getVenues() { return venues; }
 
+    //实现访问者模式，四大分会场都通过accept函数访问主会场，但执行不同的操作
+    virtual void accept(ParallelVenue parallelVenue);      
 private:
     vector<MainVenue> venues;
 };
@@ -45,8 +49,11 @@ public:
     static ClothingVenue& getInstance() {
         static ClothingVenue instance;
         return instance;
-
     }
+
+    void accept(ParallelVenue parallerVenue){
+        parallerVenue.visit(*this);
+    } 
 
 private:
     ClothingVenue() {
@@ -79,6 +86,10 @@ public:
 
     }
 
+    void accept(ParallelVenue parallerVenue){
+        parallerVenue.visit(*this);
+    }
+
 private:
     SnacksVenue() = default;
 
@@ -107,7 +118,10 @@ public:
         return instance;
 
     }
-
+        
+    void accept(ParallelVenue parallerVenue){
+        parallerVenue.visit(*this);
+    }
 
 private:
     ElectronicVenue() = default;
@@ -138,8 +152,37 @@ public:
 
     }
 
+    void accept(ParallelVenue parallerVenue){
+        parallerVenue.visit(*this);
+    }
 private:
     FruitsVenue() = default;
 
     vector<Shop> shops;
+};
+
+//定义访问者的接口
+class ParallelVenue{
+public:
+    virtual void visit(ClothingVenue clothingVenue);
+    virtual void visit(SnacksVenue snackVenue);
+    virtual void visit(ElectronicVenue electronicvenue);
+    virtual void visit(FruitsVenue fruitsVenue);
+};
+
+//创建实现了上述类的实体访问者
+class ParallerVenueDisplay:ParallelVenue {
+public:
+    void visit(ClothingVenue clothingVenue){
+        cout<<"你现在所在的位置是————服装会场"<<endl;
+    }
+    void visit(SnacksVenue snackVenue){
+        cout<<"你现在所在的位置是————小吃会场"<<endl;
+    } 
+    void visit(ElectronicVenue electronicvenue){
+        cout<<"你现在所在的位置是————电器会场"<<endl;
+    } 
+    void visit(FruitsVenue fruitsVenue){
+        cout<<"你现在所在的位置是————蔬果会场"<<endl;
+    }
 };
