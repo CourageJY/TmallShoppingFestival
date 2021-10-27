@@ -22,7 +22,19 @@ private:
 };
 
 //SearchAdaptor类用于适配不同的搜索方法
-class SearchAdaptor:public Shop{
+class SearchAdaptor{
 public:
+    SearchAdaptor(){
+        vector<Shop> clothingshops = ClothingVenue::getInstance().getShops();
+        vector<Shop> snackshops = SnacksVenue::getInstance().getShops();
+        vector<Shop> electronicshops = ElectronicVenue::getInstance().getShops();
+        vector<Shop> fruitshops = FruitsVenue::getInstance().getShops();
+        shops.insert(shops.end(), clothingshops.begin(), clothingshops.end());
+        shops.insert(shops.end(), snackshops.begin(), electronicshops.end());
+        shops.insert(shops.end(), electronicshops.begin(), electronicshops.end());
+        shops.insert(shops.end(), fruitshops.begin(), fruitshops.end());
+    };
     vector<Goods>  getAllGoods();   //将已有的搜索函数转变成所需要的函数
+private:
+    vector<Shop> shops;  //所有的商店
 };

@@ -1,16 +1,7 @@
 #include "SearchEngine.h"
 
 vector<Goods> SearchAdaptor::getAllGoods(){
-    vector<Shop> clothingshops = ClothingVenue::getInstance().getShops();
-    vector<Shop> snackshops = SnacksVenue::getInstance().getShops();
-    vector<Shop> electronicshops = ElectronicVenue::getInstance().getShops();
-    vector<Shop> fruitshops = FruitsVenue::getInstance().getShops();
-    vector<Shop> shops;
     vector<Goods> matchedgoods; //匹配的商品
-    shops.insert(shops.end(), clothingshops.begin(), clothingshops.end());
-    shops.insert(shops.end(), snackshops.begin(), electronicshops.end());
-    shops.insert(shops.end(), electronicshops.begin(), electronicshops.end());
-    shops.insert(shops.end(), fruitshops.begin(), fruitshops.end());
     for(vector<Shop>::iterator iter = shops.begin();iter != shops.end();iter++){
         map<Goods,int> goods = iter->getGoods();
         for(map<Goods,int>::iterator mapiter=goods.begin();mapiter!=goods.end();mapiter++){     //遍历每个商店的商品，并加入到总商品中
