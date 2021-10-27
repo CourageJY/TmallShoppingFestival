@@ -3,7 +3,7 @@
 #include "../SoftwareDesignPattern/Shop/shop.h"
 //"../Shop/shop.h"
 
-//¹ýÂËÆ÷
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 class Criteria
 {
 public:
@@ -17,7 +17,7 @@ private:
 
 };
 
-//&&¹ýÂËÆ÷
+//&&ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 class AndCriteria :public Criteria {
 public:
 	AndCriteria(Criteria c1, Criteria c2) :criteria(c1), otherCriteria(c2) {}
@@ -29,7 +29,7 @@ private:
 	Criteria otherCriteria;
 };
 
-//¼Û¸ñ¹ýÂËÆ÷
+//ï¿½Û¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 class PriceCriteria :public Criteria {
 public:
 	PriceCriteria(double lp,double up):lowerPrice(lp), upperPrice(up) {}
@@ -42,7 +42,7 @@ private:
 
 };
 
-//Æ·ÅÆ¹ýÂËÆ÷
+//Æ·ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½
 class BrandCriteria :public Criteria {
 public:
 	BrandCriteria(string sb) :standardBrand(sb) {}
