@@ -13,30 +13,18 @@ void ClothingVenue::showBasicInformation() {
 
 }
 
-void ClothingVenue::initialize() {
-
-}
 
 void SnacksVenue::showBasicInformation() {
 
 }
 
-void SnacksVenue::initialize() {
-
-}
 
 void ElectronicVenue::showBasicInformation() {
 
 }
 
-void ElectronicVenue::initialize() {
-
-}
 
 void FruitsVenue::showBasicInformation() {
 
 }
 
-void FruitsVenue::initialize() {
-
-}

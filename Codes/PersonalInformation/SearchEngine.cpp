@@ -1,10 +1,10 @@
 #include "SearchEngine.h"
 
 vector<Goods> SearchAdaptor::getAllGoods(){
-    vector<Shop> clothingshops = ClothingVenue::getClothingVenue().getShops();
-    vector<Shop> snackshops = SnacksVenue::getSnackVenue().getShops();
-    vector<Shop> electronicshops = ElectronicVenue::getElectronicVenue().getShops();
-    vector<Shop> fruitshops = FruitsVenue::getFruitsVenue().getShops();
+    vector<Shop> clothingshops = ClothingVenue::getInstance().getShops();
+    vector<Shop> snackshops = SnacksVenue::getInstance().getShops();
+    vector<Shop> electronicshops = ElectronicVenue::getInstance().getShops();
+    vector<Shop> fruitshops = FruitsVenue::getInstance().getShops();
     vector<Shop> shops;
     vector<Goods> matchedgoods; //匹配的商品
     shops.insert(shops.end(), clothingshops.begin(), clothingshops.end());

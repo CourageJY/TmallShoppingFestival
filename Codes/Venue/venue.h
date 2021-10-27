@@ -14,7 +14,9 @@ public:
 
     void findShops(string name);
 
-    ~MainVenue() = default;
+    ~MainVenue() {
+        cout << "destructor called!" << endl;
+    }
 
     vector<MainVenue> &getVenues() { return venues; }
 
@@ -29,14 +31,16 @@ public:
 
     vector<Shop> &getShops() { return shops; }
 
-    static ClothingVenue getClothingVenue() { return clothingVenue; } //获得唯一对象的方法
+    static ClothingVenue &getInstance() {
+        static ClothingVenue instance;
+        return instance;
 
-    static void initialize();//初始化唯一对象的手段
+    }
 
 private:
-    ClothingVenue() = default;//单例模式要将构造函数私有
-
-    static ClothingVenue clothingVenue;//静态变量定义唯一对象
+    ClothingVenue() {
+        cout << "constructor called!" << endl;
+    }//单例模式要将构造函数私有
 
     vector<Shop> shops;//分会场中应该有一些商家
 };
@@ -47,14 +51,15 @@ public:
 
     vector<Shop> &getShops() { return shops; }
 
-    static SnacksVenue getSnackVenue() { return snacksVenue; }
+    static SnacksVenue &getInstance() {
+        static SnacksVenue instance;
+        return instance;
 
-    static void initialize();
+    }
 
 private:
     SnacksVenue() = default;
 
-    static SnacksVenue snacksVenue;
     vector<Shop> shops;
 };
 
@@ -64,14 +69,16 @@ public:
 
     vector<Shop> &getShops() { return shops; }
 
-    static ElectronicVenue getElectronicVenue() { return electronicVenue; }
+    static ElectronicVenue &getInstance() {
+        static ElectronicVenue instance;
+        return instance;
 
-    static void initialize();
+    }
+
 
 private:
     ElectronicVenue() = default;
 
-    static ElectronicVenue electronicVenue;
     vector<Shop> shops;
 };
 
@@ -81,13 +88,14 @@ public:
 
     vector<Shop> &getShops() { return shops; }
 
-    static FruitsVenue getFruitsVenue() { return fruitsVenue; }
+    static FruitsVenue &getInstance() {
+        static FruitsVenue instance;
+        return instance;
 
-    static void initialize();
+    }
 
 private:
     FruitsVenue() = default;
 
-    static FruitsVenue fruitsVenue;
     vector<Shop> shops;
 };
