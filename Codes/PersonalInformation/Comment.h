@@ -16,6 +16,8 @@ public:
     //获得评论内容
     string getContent(){return content;}
 
+    Customer* getCustomer() { return customer; }
+
 private:
     Goods* goods;
     string content;//初始为空，需用成员函数写入
