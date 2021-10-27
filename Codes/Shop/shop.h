@@ -4,6 +4,7 @@
 #include<string>
 #include"../Shop/coupon.h"
 #include"../Shop/goods.h"
+#include"commentList.h"
 using namespace std;
 
 //预声明
@@ -52,5 +53,5 @@ private:
     map<Goods,int> goods;//map类型
     vector<Coupon> coupons;
     vector<Comment*> comments;//关于该店铺商品评论的集合
-
+    goodsListIterator goodslistiterator;//迭代器模式的需要
 };

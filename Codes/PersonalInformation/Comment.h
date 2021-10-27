@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include<string>
+#include"../AfterSale/makeComment.h"
 using namespace std;
 
 //预声明
@@ -12,6 +13,12 @@ public:
 
     //默认会覆盖之前的内容
     void writeContent(string str){content=str;}
+
+    string priceComment();
+
+    string logisticsComment();
+
+    string serviceComment();
 
     //获得评论内容
     string getContent(){return content;}
