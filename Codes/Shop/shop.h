@@ -1,19 +1,20 @@
 ﻿#pragma once
-#include<map>
-#include<vector>
-#include<string>
-#include"../Shop/coupon.h"
-#include"../Shop/goods.h"
-#include"commentList.h"
+#include <map>
+#include <string>
+#include <vector>
+
+#include "../Shop/coupon.h"
+#include "../Shop/goods.h"
+#include "commentList.h"
 using namespace std;
 
 //预声明
 class Customer;
 class Comment;
 
-class Shop{
-public:
-    Shop(string na,string bd):name(na),brand(bd){}
+class Shop {
+   public:
+    Shop(string na, string bd) : name(na), brand(bd) {}
 
     //返回店铺名
     string getName() { return this->name; }
@@ -25,9 +26,10 @@ public:
     void showInformation();
 
     //顾客通过此方法可获得优惠券
-    bool getCoupons(Customer* cm);
+    //函数为纯虚函数，将Shop类变为抽象类，以便实现模板模式
+    virtual bool getCoupons(Customer* cm) = 0;
 
-    vector<Comment*>& getComments(){return comments;}
+    vector<Comment*>& getComments() { return comments; }
 
     //店铺收到评价
     void receiverComment(Comment* com) { this->comments.push_back(com); }
@@ -36,7 +38,8 @@ public:
     void addGoods(Goods goods, int stock);
 
     //统一设置商品属性
-    void setGoods(vector<string> names, vector<double> prices, vector<time_t> times);
+    void setGoods(vector<string> names, vector<double> prices,
+                  vector<time_t> times);
 
     //返回店铺所有商品
     map<Goods, int> getGoods() { return goods; }
@@ -47,11 +50,22 @@ public:
     //显示店铺评价
     void showComments();
 
-private:
+   private:
     string name;
     string brand;
-    map<Goods,int> goods;//map类型
+    map<Goods, int> goods;  // map类型
     vector<Coupon> coupons;
-    vector<Comment*> comments;//关于该店铺商品评论的集合
-    goodsListIterator goodslistiterator;//迭代器模式的需要
+    vector<Comment*> comments;            //关于该店铺商品评论的集合
+    goodsListIterator goodslistiterator;  //迭代器模式的需要
 };
+
+/*******************
+ * 编辑历史：
+ * 将获得优惠券的函数更改为纯虚函数，将shop变为抽象类，以便体现模板模式
+
+
+
+
+
+
+********************/
