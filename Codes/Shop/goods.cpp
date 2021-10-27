@@ -9,9 +9,9 @@ void Goods::setGoods(string na, double pr, time_t ti){
 }
 
 void Goods::attach(ShoppingCart* sc){
-	m_observer.push_back(sc);
+	this->m_observer.push_back(sc);
 }
 
 void Goods::detach(ShoppingCart* sc){
-	m_observer.erase(remove(m_observer.begin(),m_observer.end(),sc),m_observer.end());
+	this->m_observer.erase(remove(this->m_observer.begin(),this->m_observer.end(),sc),this->m_observer.end());
 }

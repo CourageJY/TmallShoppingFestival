@@ -50,5 +50,5 @@ private:
     time_t outDate;//过期时间,默认为创建商品后的一年时间
     Shop* shop;
     Comment comment;//每个商品对应着有一条评论
-
+    vector<ShoppingCart*> m_observer;//Observers列表
 };
