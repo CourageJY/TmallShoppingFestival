@@ -25,6 +25,9 @@ public:
 
     map<Goods,int>& getGoodsMap(){return goods;}
 
+    //Observer同步更新
+    void update(Goods*);
+
 private:
     Customer* customer;
     map<Goods,int> goods;//为一个map的key-value映射表，初始为空

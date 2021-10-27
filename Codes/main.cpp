@@ -14,7 +14,7 @@
 #include<map>
 
 void testSingleton();
-
+void testDecorator();
 
 int main() {
     //以下注释为将时间增加一个月的代码，供参考，2592000是30天对应的秒

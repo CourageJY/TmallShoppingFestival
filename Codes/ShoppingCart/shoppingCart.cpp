@@ -8,6 +8,9 @@ void ShoppingCart::addGoods(Goods gd){
     }
     else{
         goods.insert(map<Goods, int>::value_type(gd, 1));
+
+        //将购物车绑定为商品的Observer
+        gd.attach(this);
     }
 }
 
@@ -16,6 +19,9 @@ bool ShoppingCart::removeGoods(Goods gd){
         goods[gd]--;
         if (goods[gd] == 0){
             goods.erase(gd);
+            
+            //将购物车从商品的Observer列表中删除
+            gd.detach(this);
         }
         return true;
     }
@@ -69,4 +75,18 @@ bool ShoppingCart::generateOrder(map<Goods,int> gds){
     }
     this->customer->getOrders().push_back(*newOd);
     return true;
+}
+
+void ShoppingCart::update(Goods* gd){
+    //当商品对象被删除时，同步清除购物车里的商品
+    cout<<"Observer模式：观察者更新！"<<endl;
+    removeGoods(*gd);
+}
+
+//注意！在这里实现了Goods类的通知Observer的方法
+void Goods::notify(){
+	for(auto iter:m_observer){
+		//头文件问题所致
+		iter->update(this);
+	}
 }
