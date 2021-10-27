@@ -5,7 +5,7 @@
 #include"../ShoppingCart/shoppingCart.h"
 #include"../Order/order.h"
 #include"../Shop/coupon.h"
-#include <Mediator/mediator.h>
+#include"../Mediator/mediator.h"
 using namespace std;
 
 enum Gender {male,female};//性别的枚举变量
@@ -21,7 +21,7 @@ public:
     void viewBasicInformation();
 
     //查看对应状态的orders
-    void checkOrders();
+    void check();
     //
     void showCoupons();
     //从当前未支付订单中取出一个进行支付

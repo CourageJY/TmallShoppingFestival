@@ -43,5 +43,4 @@ private:
     time_t date;//订单的最新时间
     Coupon* coupon;//与此订单关联的优惠券
     double sum;//该订单的总金额
-
 };

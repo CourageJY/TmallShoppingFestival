@@ -1,5 +1,5 @@
 ﻿#include"customer.h"
-
+#include"../Order/orderstate.h"
 void Customer::viewBasicInformation(){
     cout<<"以下是您的基本信息：\n";
     cout<<"姓名："<<name<<'\n';
@@ -9,33 +9,16 @@ void Customer::viewBasicInformation(){
     cout<<"您剩余的金额为："<<money<<'\n';
 }
 
-void Customer::checkOrders(){
+void Customer::check(){
     cout<<"请输入您想查看的订单类型（1/2/3）：1为待支付，2为已支付，3为已取消\n";
-    int x;
-    cin>>x;
-    vector<Order> vec;
-    if(x<1||x>3){
-        cout<<"抱歉，您的输入不符合要求\n";
-        return;
+    int ordertype;
+    cin>>ordertype;
+    while(ordertype<1||ordertype>3){
+        cout<<"抱歉，您的输入不符合要求，请重新输入：";
+        cin>>ordertype;
     }
-    else{
-        for(auto od:orders){
-            if(od.getState()==(x-1)){//获取对应状态的order
-                vec.push_back(od);
-            }
-        }
-    }
-    string str;
-    if(x==1)str="待支付";
-    else if(x==2)str="已支付";
-    else str="已取消";
-    cout<<"您查看的"+str+"订单共"<<vec.size()<<"个，分别为:\n";
-    int i=1;
-    for(auto v:vec){
-        cout<<i<<'\n';
-        v.showOrder();
-        i++;
-    }
+    checkOrder* ck=new checkOrder(ordertype,this);
+    ck->showinformation();
 }
 
 void Customer::showCoupons(){
