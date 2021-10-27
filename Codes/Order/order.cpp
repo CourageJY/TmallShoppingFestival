@@ -1,12 +1,18 @@
 ﻿#include"order.h"
 #include"../PersonalInformation/customer.h"
 #include"../Shop/goods.h"
+#include"../PersonalInformation/payment.h"
 
 bool Order::pay(){
+    int paymethod;
     if(orderState!=unpaid){
         cout<<"error! 此订单不为待支付状态\n";
         return false;
     }
+    cout<<"请选择支付方式，1为微信支付，2为支付宝支付，3为银联支付：";
+    cin>>paymethod;
+    paymentContext* p=new paymentContext(paymethod);
+    p->outputinformation();
     cout<<"OK! 您已成功支付了该订单\n";
     orderState=paid;
     return true;
