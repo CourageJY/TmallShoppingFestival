@@ -39,7 +39,7 @@ class Shop {
 
     //统一设置商品属性
     void setGoods(vector<string> names, vector<double> prices,
-                  vector<time_t> times);
+                  vector<int> months);
 
     //返回店铺所有商品
     map<Goods, int> getGoods() { return goods; }

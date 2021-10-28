@@ -66,7 +66,7 @@ public:
     map<Goods, int> getGoods(string name);
 
     //设置指定店铺的所有商品属性
-    void setGoods(string name, vector<string> names, vector<double> prices, vector<time_t> times);
+    void setGoods(string name, vector<string> names, vector<double> prices, vector<int> months);
 
     static ClothingVenue &getInstance() {
         static ClothingVenue instance;
@@ -100,7 +100,7 @@ public:
     map<Goods, int> getGoods(string name);
 
     //设置指定店铺的所有商品属性
-    void setGoods(string name, vector<string> names, vector<double> prices, vector<time_t> times);
+    void setGoods(string name, vector<string> names, vector<double> prices, vector<int> months);
 
     static SnacksVenue &getInstance() {
         static SnacksVenue instance;
@@ -133,7 +133,7 @@ public:
     map<Goods, int> getGoods(string name);
 
     //设置指定店铺的所有商品属性
-    void setGoods(string name, vector<string> names, vector<double> prices, vector<time_t> times);
+    void setGoods(string name, vector<string> names, vector<double> prices, vector<int> months);
 
     static ElectronicVenue &getInstance() {
         static ElectronicVenue instance;
@@ -166,7 +166,7 @@ public:
     map<Goods, int> getGoods(string name);
 
     //设置指定店铺的所有商品属性
-    void setGoods(string name, vector<string> names, vector<double> prices, vector<time_t> times);
+    void setGoods(string name, vector<string> names, vector<double> prices, vector<int> months);
 
     static FruitsVenue &getInstance() {
         static FruitsVenue instance;
