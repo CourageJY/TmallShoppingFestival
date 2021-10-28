@@ -114,12 +114,46 @@ map<Goods, int> FruitsVenue::getGoods(string name) {
 
 
 void MainVenue::showBasicInformation() {
-
     cout << "本次天猫购物节主会场有以下分会场：" << '\n';
     cout << "1. 服装会场" << '\n';
     cout << "2. 零食会场" << '\n';
     cout << "3. 电子会场" << '\n';
     cout << "4. 水果会场" << '\n';
+}
+
+void MainVenue::showInformation() {
+    cout << "本次天猫购物节主会场有以下分会场：" << '\n';
+    cout << "1. 服装会场" << '\n';
+    cout << "2. 零食会场" << '\n';
+    cout << "3. 电子会场" << '\n';
+    cout << "4. 水果会场" << '\n';
+    string s("");
+    while (s == "")
+    {
+        cout<<"请选择你想去的会场(1-4)：";
+        cin >> s;
+        if (s.length() != 1)
+            continue;
+        if (s[0]<='0'||s[0]>'4')
+            continue;
+        int no = s[0]-'0';
+        switch (no)
+        {
+        case 1:
+            ClothingVenue::showInformation();
+            return;
+        case 2:
+            SnacksVenue::showInformation();
+            return;
+        case 3:
+            ElectronicVenue::showInformation();
+            return;
+        case 4:
+            FruitsVenue::showInformation();
+            return;
+        }
+    }
+    return;
 }
 
 //显示分会场的所有商品
