@@ -11,7 +11,7 @@ void Criteria::printGoods(map<Goods, int> goods) {
 	for (map<Goods, int>::iterator iter = goods.begin(); iter != goods.end(); iter++) {
 		cout << "商品名称：" << iter->first.getName() << endl;
 		cout << "商品价格：" << iter->first.getPrice() << "元" << endl;
-		//cout << "商品保质期：" << iter->first.getOutDate() << endl;
+		cout << "保质期至：" << iter->first.getOutDate() << endl;
 		cout << "商品库存：" << iter->second << endl << endl;
 	}
 }

@@ -3,54 +3,57 @@
 #include<windows.h>
 //选择支付方式，结合简单工厂模式和策略模式
 //抽象支付类
-class payment{
+class Payment{
     public:
-    virtual void paymethod()=0;
+    virtual void payMethod()=0;
 };
 //微信支付类
-class Wechatpayment:public payment{
+class WechatPayment:public Payment{
     public:
-    void paymethod(){
+    void payMethod(){
         cout<<"您已选择微信支付！";
         Sleep(1000);
     }
 };
 //支付宝支付类
-class Alipaypayment:public payment{
+class AliPayment:public Payment{
     public:
-    void paymethod(){
+    void payMethod(){
         cout<<"您已选择支付宝支付！";
         Sleep(1000);
     }
 };
 //银联支付类
-class Unionpayment:public payment{
+class UnionPayment:public Payment{
     public:
-    void paymethod(){
+    void payMethod(){
         cout<<"您已选择银联支付！";
         Sleep(1000);
     }
 };
 //
-class paymentContext{
+class PaymentContext{
     private:
-    payment* py;
+    Payment* py;
     public:
-    paymentContext(int method){
+    PaymentContext(int method){
         switch (method)
         {
         case 1:
-            py=new Wechatpayment;
+            py=new WechatPayment;
             break;
         case 2:
-            py=new Alipaypayment;
+            py=new AliPayment;
+            break;
         case 3:
-            py=new Unionpayment;
+            py=new UnionPayment;
+            break;
         default:
+            py=NULL;
             break;
         }
     }
-    void outputinformation(){
-        py->paymethod();
+    void outPutInformation(){
+        py->payMethod();
     }
 };

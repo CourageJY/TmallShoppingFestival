@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include<ctime>
 #include<string>
+#include<vector>
 #include"../PersonalInformation/Comment.h"
 using namespace std;
 
@@ -22,13 +23,17 @@ public:
 
     double getPrice()const{return price;}
 
-    time_t getOutDate()const{return outDate;}
+    string getOutDate()const{
+        char s[32];
+        strftime(s, sizeof(s), "%Y-%m-%d", localtime(&outDate));
+        return string(s);
+    }
 
     Comment& getComment(){return comment;}
 
     Shop* getShop()const { return shop; }
 
-    void setGoods(string na, double pr, time_t time);
+    void setGoods(string na, double pr, int mons);
 
     //定义一种大小规则，为map服务
     bool operator<(const Goods& gd)const{
@@ -50,5 +55,5 @@ private:
     time_t outDate;//过期时间,默认为创建商品后的一年时间
     Shop* shop;
     Comment comment;//每个商品对应着有一条评论
-
+    vector<ShoppingCart*> m_observer;//Observers列表
 };

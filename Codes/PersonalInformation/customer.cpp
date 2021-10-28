@@ -1,5 +1,6 @@
 ﻿#include"customer.h"
-#include"../Order/orderstate.h"
+#include"../Order/orderState.h"
+#include "../Order/checkOrder.h"
 void Customer::viewBasicInformation(){
     cout<<"以下是您的基本信息：\n";
     cout<<"姓名："<<name<<'\n';
@@ -11,14 +12,14 @@ void Customer::viewBasicInformation(){
 
 void Customer::check(){
     cout<<"请输入您想查看的订单类型（1/2/3）：1为待支付，2为已支付，3为已取消\n";
-    int ordertype;
-    cin>>ordertype;
-    while(ordertype<1||ordertype>3){
+    int orderType;
+    cin>>orderType;
+    while(orderType<1||orderType>3){
         cout<<"抱歉，您的输入不符合要求，请重新输入：";
-        cin>>ordertype;
+        cin>>orderType;
     }
-    checkOrder* ck=new checkOrder(ordertype,this);
-    ck->showinformation();
+    checkOrder* ck=new checkOrder(orderType,this);
+    ck->showInformation();
 }
 
 void Customer::showCoupons(){

@@ -13,6 +13,7 @@ public:
     SearchEngine(){};
     void searchGoods();            //搜索功能
     void roolBack();               //返回到上一个搜索结果
+
     void emptyHistory() { history.empty(); };   
     void showHistory();
 

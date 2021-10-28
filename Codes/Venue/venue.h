@@ -15,11 +15,14 @@ class ElectronicVenue;
 class FruitsVenue;
 
 //定义访问者的接口
-class ParallelVenue{
+class ParallelVenue {
 public:
     virtual void visit(ClothingVenue clothingVenue);
+
     virtual void visit(SnacksVenue snackVenue);
-    virtual void visit(ElectronicVenue electronicvenue);
+
+    virtual void visit(ElectronicVenue electronicVenue);
+
     virtual void visit(FruitsVenue fruitsVenue);
 };
 
@@ -30,7 +33,7 @@ public:
 
     virtual void showBasicInformation();
 
-    static void showInfromation();
+    static void showInformation();
 
     void findShops(string name);
 
@@ -41,7 +44,8 @@ public:
     vector<MainVenue> &getVenues() { return venues; }
 
     //实现访问者模式，四大分会场都通过accept函数访问主会场，但执行不同的操作
-    virtual void accept(ParallelVenue parallelVenue);      
+    virtual void accept(ParallelVenue parallelVenue) = 0;
+
 private:
     vector<MainVenue> venues;
 };
@@ -53,7 +57,7 @@ public:
 
     vector<Shop> &getShops() { return shops; }
 
-    void addShop(Shop shop) { this->shops.push_back(shop); }
+    void addShop(const Shop& shop) { this->shops.push_back(shop); }
 
     //获取会场所有店铺的商品
     map<Goods, int> getGoods();
@@ -62,16 +66,16 @@ public:
     map<Goods, int> getGoods(string name);
 
     //设置指定店铺的所有商品属性
-    void setGoods(string name, vector<string> names, vector<double> prices, vector<time_t> times);
+    void setGoods(string name, vector<string> names, vector<double> prices, vector<int> months);
 
-    static ClothingVenue& getInstance() {
+    static ClothingVenue &getInstance() {
         static ClothingVenue instance;
         return instance;
     }
 
-    void accept(ParallelVenue parallerVenue){
-        parallerVenue.visit(*this);
-    } 
+    void accept(ParallelVenue parallelVenue) override {
+        parallelVenue.visit(*this);
+    }
 
 private:
     ClothingVenue() {
@@ -85,9 +89,9 @@ class SnacksVenue : public MainVenue {
 public:
     void showBasicInformation() override;
 
-    vector<Shop>& getShops() { return shops; }
+    vector<Shop> &getShops() { return shops; }
 
-    void addShop(Shop shop) { this->shops.push_back(shop); }
+    void addShop(const Shop& shop) { this->shops.push_back(shop); }
 
     //获取会场所有店铺的商品
     map<Goods, int> getGoods();
@@ -96,16 +100,16 @@ public:
     map<Goods, int> getGoods(string name);
 
     //设置指定店铺的所有商品属性
-    void setGoods(string name, vector<string> names, vector<double> prices, vector<time_t> times);
+    void setGoods(string name, vector<string> names, vector<double> prices, vector<int> months);
 
-    static SnacksVenue& getInstance() {
+    static SnacksVenue &getInstance() {
         static SnacksVenue instance;
         return instance;
 
     }
 
-    void accept(ParallelVenue parallerVenue){
-        parallerVenue.visit(*this);
+    void accept(ParallelVenue parallelVenue) override {
+        parallelVenue.visit(*this);
     }
 
 private:
@@ -118,9 +122,9 @@ class ElectronicVenue : public MainVenue {
 public:
     void showBasicInformation() override;
 
-    vector<Shop>& getShops() { return shops; }
+    vector<Shop> &getShops() { return shops; }
 
-    void addShop(Shop shop) { this->shops.push_back(shop); }
+    void addShop(const Shop& shop) { this->shops.push_back(shop); }
 
     //获取会场所有店铺的商品
     map<Goods, int> getGoods();
@@ -129,16 +133,16 @@ public:
     map<Goods, int> getGoods(string name);
 
     //设置指定店铺的所有商品属性
-    void setGoods(string name, vector<string> names, vector<double> prices, vector<time_t> times);
+    void setGoods(string name, vector<string> names, vector<double> prices, vector<int> months);
 
-    static ElectronicVenue& getInstance() {
+    static ElectronicVenue &getInstance() {
         static ElectronicVenue instance;
         return instance;
 
     }
-        
-    void accept(ParallelVenue parallerVenue){
-        parallerVenue.visit(*this);
+
+    void accept(ParallelVenue parallelVenue) override {
+        parallelVenue.visit(*this);
     }
 
 private:
@@ -151,9 +155,9 @@ class FruitsVenue : public MainVenue {
 public:
     void showBasicInformation() override;
 
-    vector<Shop>& getShops() { return shops; }
+    vector<Shop> &getShops() { return shops; }
 
-    void addShop(Shop shop) { this->shops.push_back(shop); }
+    void addShop(const Shop& shop) { this->shops.push_back(shop); }
 
     //获取会场所有店铺的商品
     map<Goods, int> getGoods();
@@ -162,17 +166,18 @@ public:
     map<Goods, int> getGoods(string name);
 
     //设置指定店铺的所有商品属性
-    void setGoods(string name, vector<string> names, vector<double> prices, vector<time_t> times);
+    void setGoods(string name, vector<string> names, vector<double> prices, vector<int> months);
 
-    static FruitsVenue& getInstance() {
+    static FruitsVenue &getInstance() {
         static FruitsVenue instance;
         return instance;
 
     }
 
-    void accept(ParallelVenue parallerVenue){
-        parallerVenue.visit(*this);
+    void accept(ParallelVenue parallelVenue) override {
+        parallelVenue.visit(*this);
     }
+
 private:
     FruitsVenue() = default;
 
@@ -180,20 +185,22 @@ private:
 };
 
 
-
 //创建实现了上述类的实体访问者
-class ParallerVenueDisplay:ParallelVenue {
+class ParallelVenueDisplay : ParallelVenue {
 public:
-    void visit(ClothingVenue clothingVenue){
-        cout<<"你现在所在的位置是————服装会场"<<endl;
+    void visit(ClothingVenue clothingVenue) override {
+        cout << "你现在所在的位置是————服装会场" << endl;
     }
-    void visit(SnacksVenue snackVenue){
-        cout<<"你现在所在的位置是————小吃会场"<<endl;
-    } 
-    void visit(ElectronicVenue electronicvenue){
-        cout<<"你现在所在的位置是————电器会场"<<endl;
-    } 
-    void visit(FruitsVenue fruitsVenue){
-        cout<<"你现在所在的位置是————蔬果会场"<<endl;
+
+    void visit(SnacksVenue snackVenue) override {
+        cout << "你现在所在的位置是————小吃会场" << endl;
+    }
+
+    void visit(ElectronicVenue electronicVenue) override {
+        cout << "你现在所在的位置是————电器会场" << endl;
+    }
+
+    void visit(FruitsVenue fruitsVenue) override {
+        cout << "你现在所在的位置是————蔬果会场" << endl;
     }
 };
