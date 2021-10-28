@@ -12,7 +12,7 @@ class SearchEngine{
 public:
     SearchEngine(){};
     Goods* searchGoods();            //搜索功能
-    Goods *roolBack();               //返回到上一个搜索结果
+    Goods *rollBack();               //返回到上一个搜索结果
     void emptyHistory() { history.empty(); };   
     void showHistory();
 
