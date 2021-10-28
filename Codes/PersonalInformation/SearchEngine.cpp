@@ -18,7 +18,7 @@ Goods* SearchEngine::searchGoods(){
     while (productName==""){
         cin >> productName;
         if (productName=="0"){
-            return roolBack();
+            return rollBack();
         }
         if (productName=="1"){
             emptyHistory();
@@ -32,7 +32,7 @@ Goods* SearchEngine::searchGoods(){
     return search(productName);
 }
 
-Goods* SearchEngine::roolBack(){
+Goods* SearchEngine::rollBack(){
     if (!history.empty()){
         string s;
         history.pop_back();
