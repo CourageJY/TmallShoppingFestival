@@ -11,14 +11,14 @@ using namespace std;
 class SearchEngine{
 public:
     SearchEngine(){};
-    Goods* searchGoods();            //搜索功能
-    Goods *roolBack();               //返回到上一个搜索结果
+    void searchGoods();            //搜索功能
+    void roolBack();               //返回到上一个搜索结果
     void emptyHistory() { history.empty(); };   
     void showHistory();
 
 private:
     vector<string> history;         //搜索历史
-    Goods *search(string name);     //实现搜索
+    void search(string name);     //实现搜索
 };
 
 //SearchAdaptor类用于适配不同的搜索方法

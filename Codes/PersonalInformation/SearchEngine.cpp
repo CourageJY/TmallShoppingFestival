@@ -11,34 +11,42 @@ vector<Goods> SearchAdaptor::getAllGoods(){
     return matchedgoods;
 }
 
-Goods* SearchEngine::searchGoods(){
+void SearchEngine::searchGoods(){
     string productName("");
-    cout << endl;
-    cout << "请输入商品名(输入0返回上一次搜索结果,输入1删除所有历史记录):";
     while (productName==""){
+        cout << endl <<"请输入商品名(输入0返回上一次搜索结果,输入1删除所有历史记录,输入2显示历史记录，输入3返回):";
         cin >> productName;
         if (productName=="0"){
-            return roolBack();
+            roolBack();
+            continue;
         }
         if (productName=="1"){
             emptyHistory();
-            return 0;
+            continue;
+        }
+        if (productName=="2"){
+            showHistory();
+            continue;
+        }
+        if (productName=="3"){
+            return;
         }
         if (productName.length()==1){
             cout << "至少输入两个字符" << endl;
+            continue;
         }
+        break;
     }
     history.push_back(productName);
-    return search(productName);
+    search(productName);
 }
 
-Goods* SearchEngine::roolBack(){
+void SearchEngine::roolBack(){
     if (!history.empty()){
         string s;
         history.pop_back();
-        return search(s);
+        search(s);
     }
-    return NULL;
 }
 
 void SearchEngine::showHistory(){
@@ -49,8 +57,29 @@ void SearchEngine::showHistory(){
     cout << endl;
 }
 
-Goods* SearchEngine::search(string name){
-
+void SearchEngine::search(string name){
+    SearchAdaptor adaptor;
+    vector<Goods> allGoods = adaptor.getAllGoods();
+    vector<Goods> matchedGoods;
+    for (vector<Goods>::iterator iter = allGoods.begin();iter!= allGoods.end();iter++){
+        string goodsName = iter->getName();
+        if (goodsName.find(name)>=0)
+        {
+            matchedGoods.push_back(*iter);
+        }
+    }
+    
+    if (matchedGoods.size()==0){
+        cout<<"抱歉，没有搜索到商品"<<endl;
+        
+        return;
+    }
+    int i=0;
+    cout<<"no name/tprice/tshop"<<endl;
+    for (vector<Goods>::iterator iter = matchedGoods.begin();iter!= matchedGoods.end();iter++){
+        i++;
+        cout<<i<<" :"<<iter->getName()<<"/t"<<iter->getPrice()<<"/t"<<iter->getShop()<<endl;
+    }
 }
 
 
