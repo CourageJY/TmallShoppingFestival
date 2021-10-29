@@ -1,6 +1,6 @@
 #include "orderState.h"
 #include "checkOrder.h"
-void errorState::showOrderInformation(checkOrder* ck)
+void errorState::showOrderInformation(checkOrder* ck) //显示所有已取消订单的信息
 {
     vector<Order> vec;
     vector<Order> orders=ck->getCustomer()->getOrders();
@@ -25,7 +25,7 @@ void errorState::showOrderInformation(checkOrder* ck)
     }
 }
 
-void paidState::showOrderInformation(checkOrder* ck)
+void paidState::showOrderInformation(checkOrder* ck)  //显示所有已支付订单的信息
 {
     vector<Order> vec;
     vector<Order> orders=ck->getCustomer()->getOrders();
@@ -48,7 +48,7 @@ void paidState::showOrderInformation(checkOrder* ck)
         ck->setState(new paidState);ck->showInformation();
     }
 }
-void unpaidState::showOrderInformation(checkOrder* ck)
+void unpaidState::showOrderInformation(checkOrder* ck)  //显示所有未支付订单的信息
 {
     vector<Order> vec;
     vector<Order> orders=ck->getCustomer()->getOrders();

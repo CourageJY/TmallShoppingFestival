@@ -32,7 +32,8 @@ public:
     void writeCommment(Mediator med, Comment com) { med.sendComment(&com); }
 
     string getName(){return name;}
-
+    string getTel(){return tel;}
+    string getAddress(){return addr;}
     double& getMoney(){return money;}
 
     ShoppingCart& getShoppingCart(){return shoppingCart;}
