@@ -1,63 +1,48 @@
 ﻿#pragma once
 
-#include<vector>
-#include<iostream>
+#include <iostream>
+#include <vector>
+
 #include "../Shop/shop.h"
 
 using namespace std;
 
 class ClothingVenue;
-
 class SnacksVenue;
-
 class ElectronicVenue;
-
 class FruitsVenue;
 
 //定义访问者的接口
 class ParallelVenue {
-public:
+   public:
     virtual void visit(ClothingVenue clothingVenue);
-
     virtual void visit(SnacksVenue snackVenue);
-
     virtual void visit(ElectronicVenue electronicVenue);
-
     virtual void visit(FruitsVenue fruitsVenue);
 };
 
-
 class MainVenue {
-public:
+   public:
     MainVenue() = default;
-
     virtual void showBasicInformation();
-
     static void showInformation();
-
     void findShops(string name);
-
-    ~MainVenue() {
-        cout << "destructor called!" << endl;
-    }
-
-    vector<MainVenue> &getVenues() { return venues; }
+    ~MainVenue() { cout << "destructor called!" << endl; }
+    vector<MainVenue>& getVenues() { return venues; }
 
     //实现访问者模式，四大分会场都通过accept函数访问主会场，但执行不同的操作
     virtual void accept(ParallelVenue parallelVenue) = 0;
 
-private:
+   private:
     vector<MainVenue> venues;
 };
 
 //各个分会场只会存在一个且不会被继承 设计为单例模式
 class ClothingVenue : public MainVenue {
-public:
+   public:
     void showBasicInformation() override;
-
-    vector<Shop> &getShops() { return shops; }
-
     void addShop(const Shop& shop) { this->shops.push_back(shop); }
+    vector<Shop>& getShops() { return shops; }
 
     //获取会场所有店铺的商品
     map<Goods, int> getGoods();
@@ -66,9 +51,10 @@ public:
     map<Goods, int> getGoods(string name);
 
     //设置指定店铺的所有商品属性
-    void setGoods(string name, vector<string> names, vector<double> prices, vector<int> months);
+    void setGoods(string name, vector<string> names, vector<double> prices,
+                  vector<int> months);
 
-    static ClothingVenue &getInstance() {
+    static ClothingVenue& getInstance() {
         static ClothingVenue instance;
         return instance;
     }
@@ -77,21 +63,25 @@ public:
         parallelVenue.visit(*this);
     }
 
-private:
+    //责任链模式：在分会场中搜索商店，若搜索不到则交由下一会场处理
+    void setNext(SnacksVenue* next) { this->next = next; }
+
+    SnacksVenue* getNext() { return this->next; }
+
+   private:
     ClothingVenue() {
         cout << "constructor called!" << endl;
-    }//单例模式要将构造函数私有
+    }  //单例模式要将构造函数私有
 
-    vector<Shop> shops;//分会场中应该有一些商家
+    vector<Shop> shops;  //分会场中应该有一些商家
+    SnacksVenue* next;
 };
 
 class SnacksVenue : public MainVenue {
-public:
+   public:
     void showBasicInformation() override;
-
-    vector<Shop> &getShops() { return shops; }
-
     void addShop(const Shop& shop) { this->shops.push_back(shop); }
+    vector<Shop>& getShops() { return shops; }
 
     //获取会场所有店铺的商品
     map<Goods, int> getGoods();
@@ -100,31 +90,34 @@ public:
     map<Goods, int> getGoods(string name);
 
     //设置指定店铺的所有商品属性
-    void setGoods(string name, vector<string> names, vector<double> prices, vector<int> months);
+    void setGoods(string name, vector<string> names, vector<double> prices,
+                  vector<int> months);
 
-    static SnacksVenue &getInstance() {
+    static SnacksVenue& getInstance() {
         static SnacksVenue instance;
         return instance;
-
     }
 
     void accept(ParallelVenue parallelVenue) override {
         parallelVenue.visit(*this);
     }
 
-private:
-    SnacksVenue() = default;
+    //责任链模式：在分会场中搜索商店，若搜索不到则交由下一会场处理
+    void setNext(ElectronicVenue* next) { this->next = next; }
 
+    ElectronicVenue* getNext() { return this->next; }
+
+   private:
+    SnacksVenue() = default;
     vector<Shop> shops;
+    ElectronicVenue* next;
 };
 
 class ElectronicVenue : public MainVenue {
-public:
+   public:
     void showBasicInformation() override;
-
-    vector<Shop> &getShops() { return shops; }
-
     void addShop(const Shop& shop) { this->shops.push_back(shop); }
+    vector<Shop>& getShops() { return shops; }
 
     //获取会场所有店铺的商品
     map<Goods, int> getGoods();
@@ -133,31 +126,34 @@ public:
     map<Goods, int> getGoods(string name);
 
     //设置指定店铺的所有商品属性
-    void setGoods(string name, vector<string> names, vector<double> prices, vector<int> months);
+    void setGoods(string name, vector<string> names, vector<double> prices,
+                  vector<int> months);
 
-    static ElectronicVenue &getInstance() {
+    static ElectronicVenue& getInstance() {
         static ElectronicVenue instance;
         return instance;
-
     }
 
     void accept(ParallelVenue parallelVenue) override {
         parallelVenue.visit(*this);
     }
 
-private:
-    ElectronicVenue() = default;
+    //责任链模式：在分会场中搜索商店，若搜索不到则交由下一会场处理
+    void setNext(FruitsVenue* next) { this->next = next; }
 
+    FruitsVenue* getNext() { return this->next; }
+
+   private:
+    ElectronicVenue() = default;
     vector<Shop> shops;
+    FruitsVenue* next;
 };
 
 class FruitsVenue : public MainVenue {
-public:
+   public:
     void showBasicInformation() override;
-
-    vector<Shop> &getShops() { return shops; }
-
     void addShop(const Shop& shop) { this->shops.push_back(shop); }
+    vector<Shop>& getShops() { return shops; }
 
     //获取会场所有店铺的商品
     map<Goods, int> getGoods();
@@ -166,28 +162,32 @@ public:
     map<Goods, int> getGoods(string name);
 
     //设置指定店铺的所有商品属性
-    void setGoods(string name, vector<string> names, vector<double> prices, vector<int> months);
+    void setGoods(string name, vector<string> names, vector<double> prices,
+                  vector<int> months);
 
-    static FruitsVenue &getInstance() {
+    static FruitsVenue& getInstance() {
         static FruitsVenue instance;
         return instance;
-
     }
 
     void accept(ParallelVenue parallelVenue) override {
         parallelVenue.visit(*this);
     }
 
-private:
+    //责任链模式：在分会场中搜索商店，若搜索不到则交由下一会场处理
+    void setNext(ClothingVenue* next) { this->next = next; }
+
+    ClothingVenue* getNext() { return this->next; }
+
+   private:
     FruitsVenue() = default;
-
     vector<Shop> shops;
+    ClothingVenue* next;
 };
-
 
 //创建实现了上述类的实体访问者
 class ParallelVenueDisplay : ParallelVenue {
-public:
+   public:
     void visit(ClothingVenue clothingVenue) override {
         cout << "你现在所在的位置是————服装会场" << endl;
     }
