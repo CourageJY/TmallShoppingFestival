@@ -18,7 +18,7 @@ public:
     void getGoodsInformation(Customer* c);
 };
 
-//退货子操作三，用户商品容器
+//退货子操作三，退货信息展示
 class OutputInformation {
 public:
     void getOutputInformation();

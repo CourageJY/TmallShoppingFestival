@@ -20,7 +20,7 @@ void errorState::showOrderInformation(checkOrder* ck) //显示所有已取消订
         }
     }
     else{
-        //ck->setState(new );
+        //ck->setState();
         ck->showInformation();
     }
 }
@@ -45,7 +45,7 @@ void paidState::showOrderInformation(checkOrder* ck)  //显示所有已支付订
         }
     }
     else{
-        ck->setState(new paidState);ck->showInformation();
+        ck->setState(new errorState);ck->showInformation();
     }
 }
 void unpaidState::showOrderInformation(checkOrder* ck)  //显示所有未支付订单的信息

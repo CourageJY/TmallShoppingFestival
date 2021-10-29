@@ -9,7 +9,7 @@ private:
     int orderType;
     Customer* customer;
 public:
-    checkOrder(int o,Customer* c):orderType(o),customer(c),current(NULL){}
+    checkOrder(int o,Customer* c):orderType(o),customer(c),current(new unpaidState){}
 
     //设置当前状态对象，用于状态的转换
     void setState(orderState* o);
