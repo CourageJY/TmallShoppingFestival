@@ -31,12 +31,12 @@ void Shop::setGoods(vector<string> names, vector<double> prices,
 }
 
 void Shop::showGoods() {
-    cout << this->name << "有以下商品：" << endl << endl;
+    cout << this->name << "has: " << endl << endl;
     for (auto&& i : this->goods) {
-        cout << "商品名称：" << i.first.getName() << endl;
-        cout << "商品价格：" << i.first.getPrice() << "元" << endl;
-        cout << "保质期至：" << i.first.getOutDate() << endl;
-        cout << "商品库存：" << i.second << endl << endl;
+        cout << "name: " << i.first.getName() << endl;
+        cout << "price: " << i.first.getPrice() << "yuan" << endl;
+        cout << "time: " << i.first.getOutDate() << endl;
+        cout << "storage: " << i.second << endl << endl;
     }
     cout << "-------------------------------------------" << endl << endl;
 }
