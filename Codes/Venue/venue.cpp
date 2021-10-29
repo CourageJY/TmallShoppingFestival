@@ -115,6 +115,7 @@ map<Goods, int> FruitsVenue::getGoods(string name) {
 
 void MainVenue::showBasicInformation() {
     cout << "本次天猫购物节主会场有以下分会场：" << '\n';
+
     cout << "1. 服装会场" << '\n';
     cout << "2. 零食会场" << '\n';
     cout << "3. 电子会场" << '\n';

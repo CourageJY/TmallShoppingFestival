@@ -13,13 +13,13 @@ class ElectronicVenue;
 class FruitsVenue;
 
 //定义访问者的接口
-class ParallelVenue {
-   public:
-    virtual void visit(ClothingVenue clothingVenue);
-    virtual void visit(SnacksVenue snackVenue);
-    virtual void visit(ElectronicVenue electronicVenue);
-    virtual void visit(FruitsVenue fruitsVenue);
-};
+//class ParallelVenue {
+//   public:
+//    virtual void visit(ClothingVenue *clothingVenue);
+//    virtual void visit(SnacksVenue *snackVenue);
+//    virtual void visit(ElectronicVenue *electronicVenue);
+//    virtual void visit(FruitsVenue *fruitsVenue);
+//};
 
 class MainVenue {
    public:
@@ -31,7 +31,7 @@ class MainVenue {
     vector<MainVenue>& getVenues() { return venues; }
 
     //实现访问者模式，四大分会场都通过accept函数访问主会场，但执行不同的操作
-    virtual void accept(ParallelVenue parallelVenue) = 0;
+//   virtual void accept(ParallelVenue parallelVenue);
 
    private:
     vector<MainVenue> venues;
@@ -59,9 +59,9 @@ class ClothingVenue : public MainVenue {
         return instance;
     }
 
-    void accept(ParallelVenue parallelVenue) override {
-        parallelVenue.visit(*this);
-    }
+//   void accept(ParallelVenue parallelVenue) override {
+//        parallelVenue.visit(this);
+//    }
 
     //责任链模式：在分会场中搜索商店，若搜索不到则交由下一会场处理
     void setNext(SnacksVenue* next) { this->next = next; }
@@ -98,9 +98,9 @@ class SnacksVenue : public MainVenue {
         return instance;
     }
 
-    void accept(ParallelVenue parallelVenue) override {
-        parallelVenue.visit(*this);
-    }
+//    void accept(ParallelVenue parallelVenue) override {
+//        parallelVenue.visit(this);
+//    }
 
     //责任链模式：在分会场中搜索商店，若搜索不到则交由下一会场处理
     void setNext(ElectronicVenue* next) { this->next = next; }
@@ -134,9 +134,9 @@ class ElectronicVenue : public MainVenue {
         return instance;
     }
 
-    void accept(ParallelVenue parallelVenue) override {
-        parallelVenue.visit(*this);
-    }
+//    void accept(ParallelVenue parallelVenue) override {
+//        parallelVenue.visit(this);
+//    }
 
     //责任链模式：在分会场中搜索商店，若搜索不到则交由下一会场处理
     void setNext(FruitsVenue* next) { this->next = next; }
@@ -170,9 +170,9 @@ class FruitsVenue : public MainVenue {
         return instance;
     }
 
-    void accept(ParallelVenue parallelVenue) override {
-        parallelVenue.visit(*this);
-    }
+//    void accept(ParallelVenue parallelVenue) override {
+//        parallelVenue.visit(this);
+//    }
 
     //责任链模式：在分会场中搜索商店，若搜索不到则交由下一会场处理
     void setNext(ClothingVenue* next) { this->next = next; }
@@ -186,21 +186,21 @@ class FruitsVenue : public MainVenue {
 };
 
 //创建实现了上述类的实体访问者
-class ParallelVenueDisplay : ParallelVenue {
-   public:
-    void visit(ClothingVenue clothingVenue) override {
-        cout << "你现在所在的位置是————服装会场" << endl;
-    }
-
-    void visit(SnacksVenue snackVenue) override {
-        cout << "你现在所在的位置是————小吃会场" << endl;
-    }
-
-    void visit(ElectronicVenue electronicVenue) override {
-        cout << "你现在所在的位置是————电器会场" << endl;
-    }
-
-    void visit(FruitsVenue fruitsVenue) override {
-        cout << "你现在所在的位置是————蔬果会场" << endl;
-    }
-};
+//class ParallelVenueDisplay : ParallelVenue {
+//   public:
+//    void visit(ClothingVenue clothingVenue){
+//        cout << "你现在所在的位置是————服装会场" << endl;
+//    }
+//
+//    void visit(SnacksVenue snackVenue){
+//        cout << "你现在所在的位置是————小吃会场" << endl;
+//    }
+//
+//    void visit(ElectronicVenue electronicVenue) {
+//        cout << "你现在所在的位置是————电器会场" << endl;
+//    }
+//
+//    void visit(FruitsVenue fruitsVenue){
+//        cout << "你现在所在的位置是————蔬果会场" << endl;
+//    }
+//};

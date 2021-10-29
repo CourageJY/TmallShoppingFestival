@@ -27,7 +27,7 @@ class Shop {
 
     //顾客通过此方法可获得优惠券
     //函数为纯虚函数，将Shop类变为抽象类，以便实现模板模式
-    virtual bool getCoupons(Customer* cm) = 0;
+//    virtual bool getCoupons(Customer* cm) = 0;
 
     vector<Comment*>& getComments() { return comments; }
 

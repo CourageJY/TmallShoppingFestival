@@ -5,7 +5,7 @@ using namespace std;
 //表达式类
 class Expression{
 public:
-    virtual bool interpret(string context);  //翻译功能用虚函数实现
+    virtual bool interpret(string context) = 0;  //翻译功能用虚函数实现
 };
 
 //实体表达式类

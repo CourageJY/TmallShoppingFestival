@@ -49,7 +49,7 @@ class PaymentContext{
             py=new UnionPayment;
             break;
         default:
-            py=NULL;
+            py=nullptr;
             break;
         }
     }
