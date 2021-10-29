@@ -7,11 +7,11 @@ using namespace std;
 
 class Iterator{
 
-    Comment* first();
+    virtual Comment* first()=0;
 
-    Comment* next();
+    virtual Comment* next()=0;
 
-    virtual bool hasNext();
+    virtual bool hasNext()=0;
 };
 
 // class Aggregate{
@@ -24,9 +24,7 @@ private:
     vector<Comment*> commentsList;
     vector<Comment*>::iterator it;
 public:
-    goodsListIterator(){
-        commentsList.clear();
-    }
+    goodsListIterator(){}
     goodsListIterator(vector<Comment*> commentslist){
         commentsList=commentslist;
     }

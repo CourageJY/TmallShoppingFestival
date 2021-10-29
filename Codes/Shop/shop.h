@@ -15,8 +15,7 @@ class Comment;
 class Shop {
    public:
 
-    //Shop(string na, string bd) : name(na), brand(bd) {};
-    Shop(){};
+    Shop(string na, string bd) : name(na), brand(bd) {};
 
     //返回店铺名
     string getName() { return this->name; };

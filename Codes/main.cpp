@@ -37,18 +37,29 @@ int main() {
 
 //用于测试单例模式的接口
 //    testSingleton();
+
     Customer c("cnm", "134560", "14", male, 1222.4);
 
     cout<<"str"<<endl;
-    string s = "sss";
-    string b = "bbb";
-    Shop fruit_1();
-    fruit_1.setName(s);
-    /*
-    fruit_1.setName(s);
-    Goods Apple("apple", 5, &fruit_1);
-    fruit_1.addGoods(Apple, 10);
-*/
+    Shop fruit_1("快乐的水果店", "Happy");
+    fruit_1.addGoods(Goods("apple", 5, &fruit_1), 10);
+    fruit_1.addGoods(Goods("banana", 25, &fruit_1), 10);
+
+    Shop fruit_2("悲伤的水果店", "Sad");
+    fruit_2.addGoods(Goods("pear", 10, &fruit_2), 10);
+    fruit_2.addGoods(Goods("orange", 30, &fruit_2), 10);
+
+    Shop fruit_3("无聊的水果店", "Boring");
+    fruit_3.addGoods(Goods("mango", 15, &fruit_3), 10);
+    fruit_3.addGoods(Goods("grape", 35, &fruit_3), 10);
+
+
+    FruitsVenue& fruitInstance = FruitsVenue::getInstance();
+    fruitInstance.addShop(fruit_1);
+    fruitInstance.addShop(fruit_2);
+    fruitInstance.addShop(fruit_3);
+
+    fruitInstance.showBasicInformation();
 
 }
 
