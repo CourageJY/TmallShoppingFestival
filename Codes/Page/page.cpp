@@ -53,6 +53,46 @@ void Page::show() {
     }
 }
 
+//设置页面
+void OriginPage::setPage(Page* pageN) {
+    this->page = pageN;
+}
+
+//读取页面
+Page* OriginPage::getPage(Page* pageN) {
+    return page;
+}
+
+//存储到备忘录
+Memento* OriginPage::savePage() {
+    return new Memento(page);
+}
+
+//从备忘录获取页面
+void OriginPage::getPageMemento(Memento memento) {
+    this->page = memento.getPage();
+}
+
+//构造函数
+Memento::Memento(Page* pageN) {
+    this->page = pageN;
+}
+
+//获取备忘录中存储的页面
+Page* Memento::getPage() {
+    return this->page;
+}
+
+//加一条备忘录
+void CareTaker::addMeme(Memento memento) {
+    mementos.push_back(memento);
+}
+
+//获取第i条备忘录
+Memento CareTaker::getMeme(int i) {
+    return mementos[i];
+}
+
 //这是一个测试函数，可以放到main.cpp中进行测试
 void testPage() {
     //定义页面类

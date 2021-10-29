@@ -75,3 +75,49 @@ private:
     //页面是否结束
     bool end;
 };
+
+//页面备忘录类
+class Memento {
+public:
+    //构造函数
+    Memento(Page*);
+
+    //获取备忘录中存储的页面
+    Page* getPage();
+private:
+    //备忘录存储的页面
+    Page* page;
+};
+
+//维护类
+class CareTaker {
+public:
+    //加一条备忘录
+    void addMeme(Memento);
+    
+    //获取第i条备忘录
+    Memento getMeme(int);
+private:
+    //备忘录列表
+    vector<Memento> mementos;
+};
+
+//页面备忘录创建类
+class OriginPage {
+public:
+    //设置页面
+    void setPage(Page*);
+
+    //读取页面
+    Page* getPage(Page*);
+
+    //存储到备忘录
+    Memento* savePage();
+
+    //从备忘录获取页面
+    void getPageMemento(Memento);
+private:
+    //页面
+    Page* page;
+};
+
