@@ -2,9 +2,15 @@
 
 vector<Goods> SearchAdaptor::getAllGoods(){
     vector<Goods> matchedgoods; //匹配的商品
-    for(vector<Shop>::iterator iter = shops.begin();iter != shops.end();iter++){
+    for(auto && i : shops){
+        auto goods = i.getGoods();
+        for(auto && j : goods){//遍历每个商店的商品，并加入到总商品中
+            matchedgoods.push_back(j.first);
+        }
+    }
+    for(auto iter = shops.begin();iter != shops.end();iter++){
         map<Goods,int> goods = iter->getGoods();
-        for(map<Goods,int>::iterator mapiter=goods.begin();mapiter!=goods.end();mapiter++){     //遍历每个商店的商品，并加入到总商品中
+        for(auto mapiter=goods.begin();mapiter!=goods.end();mapiter++){     //遍历每个商店的商品，并加入到总商品中
             matchedgoods.push_back(mapiter->first);
         }
     }
@@ -51,7 +57,8 @@ void SearchEngine::roolBack(){
 
 void SearchEngine::showHistory(){
     cout << "搜索历史：" << endl;
-    for(vector<string>::iterator iter = history.begin();iter != history.end();iter++){
+
+    for(auto iter = history.begin();iter != history.end();iter++){
         cout << "1." << *iter << endl;
     }
     cout << endl;
@@ -59,16 +66,17 @@ void SearchEngine::showHistory(){
 
 void SearchEngine::search(string name){
     SearchAdaptor adaptor;
+    /*
     vector<Goods> allGoods = adaptor.getAllGoods();
     vector<Goods> matchedGoods;
-    for (vector<Goods>::iterator iter = allGoods.begin();iter!= allGoods.end();iter++){
+    for (auto iter = allGoods.begin();iter!= allGoods.end();iter++){
         string goodsName = iter->getName();
         if (goodsName.find(name)>=0)
         {
             matchedGoods.push_back(*iter);
         }
     }
-    
+
     if (matchedGoods.size()==0){
         cout<<"抱歉，没有搜索到商品"<<endl;
         
@@ -76,10 +84,11 @@ void SearchEngine::search(string name){
     }
     int i=0;
     cout<<"no name/tprice/tshop"<<endl;
-    for (vector<Goods>::iterator iter = matchedGoods.begin();iter!= matchedGoods.end();iter++){
+    for (auto iter = matchedGoods.begin();iter!= matchedGoods.end();iter++){
         i++;
         cout<<i<<" :"<<iter->getName()<<"/t"<<iter->getPrice()<<"/t"<<iter->getShop()<<endl;
     }
+     */
 }
 
 

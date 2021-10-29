@@ -37,7 +37,19 @@ int main() {
 
 //用于测试单例模式的接口
 //    testSingleton();
-    return 0;
+    Customer c("cnm", "134560", "14", male, 1222.4);
+
+    cout<<"str"<<endl;
+    string s = "sss";
+    string b = "bbb";
+    Shop fruit_1();
+    fruit_1.setName(s);
+    /*
+    fruit_1.setName(s);
+    Goods Apple("apple", 5, &fruit_1);
+    fruit_1.addGoods(Apple, 10);
+*/
+
 }
 
 void testDecorator() {//测试装饰器模式

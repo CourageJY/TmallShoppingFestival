@@ -13,9 +13,10 @@ enum Gender {male,female};//性别的枚举变量
 class Customer{//顾客（买家）的基本类
 public:
     Customer(string nm,string tel,string ar,Gender g,
-             double me,ShoppingCart s):name(nm),tel(tel),addr(ar),
-             gender(g),money(me),shoppingCart(s){
+             double me):name(nm),tel(tel),addr(ar),
+             gender(g),money(me){
                  cout<<"You create a new customer successfully!\n";
+                 shoppingCart = new ShoppingCart(this);
              }
 
     void viewBasicInformation();
@@ -36,7 +37,7 @@ public:
     string getAddress(){return addr;}
     double& getMoney(){return money;}
 
-    ShoppingCart& getShoppingCart(){return shoppingCart;}
+    ShoppingCart* getShoppingCart(){return shoppingCart;}
 
     vector<Order>& getOrders(){return orders;}
 
@@ -48,7 +49,7 @@ private:
     string addr;
     Gender gender;
     double money;
-    ShoppingCart shoppingCart;
+    ShoppingCart* shoppingCart;
     vector<Order> orders;//初始为空
     vector<Coupon> coupons;//初始为空
 
