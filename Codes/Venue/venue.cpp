@@ -160,24 +160,24 @@ void MainVenue::showInformation() {
 //显示分会场的所有商品
 void ClothingVenue::showBasicInformation() {
     cout << "服装会场有以下店铺及商品：" << '\n';
-    for (vector<Shop>::iterator iter = this->shops.begin(); iter != this->shops.end(); iter++)
-        iter->showGoods();
+    for(auto && i : this->shops)
+        i.showGoods();
 }
 
 void SnacksVenue::showBasicInformation() {
     cout << "零食会场有以下店铺及商品：" << '\n';
-    for (vector<Shop>::iterator iter = this->shops.begin(); iter != this->shops.end(); iter++)
-        iter->showGoods();
+    for(auto && i : this->shops)
+        i.showGoods();
 }
 
 void ElectronicVenue::showBasicInformation() {
     cout << "电子会场有以下店铺及商品：" << '\n';
-    for (vector<Shop>::iterator iter = this->shops.begin(); iter != this->shops.end(); iter++)
-        iter->showGoods();
+    for(auto && i : this->shops)
+        i.showGoods();
 }
 
 void FruitsVenue::showBasicInformation() {
     cout << "水果会场有以下店铺及商品：" << '\n';
-    for (vector<Shop>::iterator iter = this->shops.begin(); iter != this->shops.end(); iter++)
-        iter->showGoods();
+    for(auto && i : this->shops)
+        i.showGoods();
 }
