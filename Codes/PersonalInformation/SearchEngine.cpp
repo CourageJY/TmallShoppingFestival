@@ -20,7 +20,7 @@ vector<Goods> SearchAdaptor::getAllGoods(){
 void SearchEngine::searchGoods(){
     string productName("");
     while (productName==""){
-        cout << endl <<"请输入商品名(输入0返回上一次搜索结果,输入1删除所有历史记录,输入2显示历史记录，输入3返回):";
+        //cout << endl <<"请输入商品名(输入0返回上一次搜索结果,输入1删除所有历史记录,输入2显示历史记录，输入3返回):";
         cin >> productName;
         if (productName=="0"){
             roolBack();
@@ -41,6 +41,7 @@ void SearchEngine::searchGoods(){
             cout << "至少输入两个字符" << endl;
             continue;
         }
+        search(productName);
         break;
     }
     history.push_back(productName);
@@ -66,7 +67,6 @@ void SearchEngine::showHistory(){
 
 void SearchEngine::search(string name){
     SearchAdaptor adaptor;
-    /*
     vector<Goods> allGoods = adaptor.getAllGoods();
     vector<Goods> matchedGoods;
     for (auto iter = allGoods.begin();iter!= allGoods.end();iter++){
@@ -83,12 +83,11 @@ void SearchEngine::search(string name){
         return;
     }
     int i=0;
-    cout<<"no name/tprice/tshop"<<endl;
-    for (auto iter = matchedGoods.begin();iter!= matchedGoods.end();iter++){
+    cout<<"no name\tprice\tshop"<<endl;
+    for(auto && j : matchedGoods){
         i++;
-        cout<<i<<" :"<<iter->getName()<<"/t"<<iter->getPrice()<<"/t"<<iter->getShop()<<endl;
+        cout<<i<<" :"<<j.getName()<<"\t"<<j.getPrice()<<"\t"<<j.getShop()->getName()<<endl;
     }
-     */
 }
 
 
