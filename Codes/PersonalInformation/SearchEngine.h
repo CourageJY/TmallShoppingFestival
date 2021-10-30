@@ -31,12 +31,17 @@ public:
         auto& snackshops = SnacksVenue::getInstance().getShops();
         auto& electronicshops = ElectronicVenue::getInstance().getShops();
         auto& fruitshops = FruitsVenue::getInstance().getShops();
+        vector<int> l = {1,2,3};
+        vector<int> ll = {};
+        for (auto && i : l){
+            ll.push_back(i);
+        }
         /*
         shops.insert(shops.end(), clothingshops.begin(), clothingshops.end());
         shops.insert(shops.end(), snackshops.begin(), electronicshops.end());
         shops.insert(shops.end(), electronicshops.begin(), electronicshops.end());
-         */
         shops.insert(shops.end(), fruitshops.begin(), fruitshops.end());
+         */
     };
     vector<Goods>  getAllGoods();   //将已有的搜索函数转变成所需要的函数
 private:

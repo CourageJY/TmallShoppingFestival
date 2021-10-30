@@ -7,7 +7,6 @@
 #include"Shop/goods.h"
 #include"Shop/shop.h"
 #include"ShoppingCart/shoppingCart.h"
-#include"PersonalInformation/SearchEngine.h"
 #include"Venue/venue.h"
 #include"Order/balance.h"
 #include"Shop/clothingAbstractFactory.h"
@@ -42,31 +41,27 @@ int main() {
 
     // Customer c("cnm", "134560", "14", male, 1222.4);
 
-    // Shop fruit_1("hhhhhhh", "Happy");
-    // fruit_1.addGoods(Goods("apple", 5, &fruit_1), 10);
-    // fruit_1.addGoods(Goods("banana", 25, &fruit_1), 10);
+    cout<<"str"<<endl;
+    Shop fruit_1("快乐的水果店", "Happy");
+    fruit_1.addGoods(Goods("apple", 5, &fruit_1), 10);
+    fruit_1.addGoods(Goods("banana", 25, &fruit_1), 10);
 
-    // Shop fruit_2("ssssss", "Sad");
-    // fruit_2.addGoods(Goods("pear", 10, &fruit_2), 10);
-    // fruit_2.addGoods(Goods("orange", 30, &fruit_2), 10);
+    Shop fruit_2("悲伤的水果店", "Sad");
+    fruit_2.addGoods(Goods("pear", 10, &fruit_2), 10);
+    fruit_2.addGoods(Goods("orange", 30, &fruit_2), 10);
 
-    // Shop fruit_3("bbbbbb", "Boring");
-    // fruit_3.addGoods(Goods("mango", 15, &fruit_3), 10);
-    // fruit_3.addGoods(Goods("grape", 35, &fruit_3), 10);
-
-
-    // FruitsVenue& fruitInstance = FruitsVenue::getInstance();
-    // fruitInstance.addShop(fruit_1);
-    // fruitInstance.showBasicInformation();
+    Shop fruit_3("无聊的水果店", "Boring");
+    fruit_3.addGoods(Goods("mango", 15, &fruit_3), 10);
+    fruit_3.addGoods(Goods("grape", 35, &fruit_3), 10);
 
 
-    // FruitsVenue& fruitInstance1 = FruitsVenue::getInstance();
-    // fruitInstance1.addShop(fruit_3);
-    // fruitInstance1.showBasicInformation();
+    FruitsVenue& fruitInstance = FruitsVenue::getInstance();
+    fruitInstance.addShop(fruit_1);
+    fruitInstance.addShop(fruit_2);
+    fruitInstance.addShop(fruit_3);
 
-    // MainVenue venue;
-    // SearchEngine s;
-    // s.searchGoods();
+    fruitInstance.showBasicInformation();
+
 }
 
 void testDecorator() {//测试装饰器模式
@@ -94,7 +89,6 @@ void testDecorator() {//测试装饰器模式
 
 void testSingleton() {//测试单例模式的接口
     ClothingVenue &instance = ClothingVenue::getInstance();
-<<<<<<< HEAD
 }
 
 //抽象工厂方法的测试接口，用于为服装商店添加商品
@@ -140,6 +134,4 @@ void testFacade(Customer* c){
 }
 void testState(Customer* c){
     c->check();
-=======
->>>>>>> parent of 76db81f (新增了工厂、外观、状态模式的类图及测试接口)
 }
