@@ -1,6 +1,5 @@
 ﻿#include"order.h"
 #include"../PersonalInformation/customer.h"
-#include"../Shop/goods.h"
 #include"payment.h"
 
 bool Order::pay(){
