@@ -94,6 +94,7 @@ void testDecorator() {//测试装饰器模式
 
 void testSingleton() {//测试单例模式的接口
     ClothingVenue &instance = ClothingVenue::getInstance();
+<<<<<<< HEAD
 }
 
 //抽象工厂方法的测试接口，用于为服装商店添加商品
@@ -139,4 +140,6 @@ void testFacade(Customer* c){
 }
 void testState(Customer* c){
     c->check();
+=======
+>>>>>>> parent of 76db81f (新增了工厂、外观、状态模式的类图及测试接口)
 }

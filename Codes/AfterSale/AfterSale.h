@@ -27,9 +27,8 @@ public:
 //外观售后类
 class AfterSale {
 public:
-    AfterSale(Customer* c):
-            subOperation1(new UserInformation),subOperation2(new GoodsInformation),subOperation3(new OutputInformation),
-            customer(c){}
+    AfterSale(UserInformation* s1,GoodsInformation* s2,OutputInformation* s3,Customer* c):
+            subOperation1(s1),subOperation2(s2),subOperation3(s3),customer(c){}
     //退货接口方法
     void returned();
     Customer* getCustomer(){return customer;}
