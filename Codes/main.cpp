@@ -94,3 +94,15 @@ void testDecorator() {//测试装饰器模式
 void testSingleton() {//测试单例模式的接口
     ClothingVenue &instance = ClothingVenue::getInstance();
 }
+//测试工厂模式的接口
+void testFactory(Customer* c){
+    c->payOrder();
+}
+//测试外观模式的接口
+void testFacade(Customer* c){
+    AfterSale afterSale(c);
+    afterSale.returned();
+}
+void testState(Customer* c){
+    c->check();
+}
