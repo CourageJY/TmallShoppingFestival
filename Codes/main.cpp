@@ -32,7 +32,7 @@ void testNullObject();
 void testProxy();
 
 int main() {
-    //设计模式接口测试
+//设计模式接口测试
 //    testSingleton();
 //    testDecorator();
 //    testAbstractFactory();
@@ -40,35 +40,39 @@ int main() {
 //    testNullObject();
 //    testProxy();
 
-//    Customer c("cnm", "134560", "14", male, 1222.4);
-//
-//    Shop fruit_1("hhhhhhh", "Happy");
-//    fruit_1.addGoods(Goods("apple", 5, &fruit_1), 10);
-//    fruit_1.addGoods(Goods("banana", 25, &fruit_1), 10);
-//
-//    Shop fruit_2("ssssss", "Sad");
-//    fruit_2.addGoods(Goods("pear", 10, &fruit_2), 10);
-//    fruit_2.addGoods(Goods("orange", 30, &fruit_2), 10);
-//
-//    Shop fruit_3("bbbbbb", "Boring");
-//    fruit_3.addGoods(Goods("mango", 15, &fruit_3), 10);
-//    fruit_3.addGoods(Goods("grape", 35, &fruit_3), 10);
-//
-//    FruitsVenue& fruitInstance = FruitsVenue::getInstance();
-//    fruitInstance.addShop(fruit_1);
-//    fruitInstance.showBasicInformation();
-//
-//    FruitsVenue& fruitInstance1 = FruitsVenue::getInstance();
-//    fruitInstance1.addShop(fruit_3);
-//    fruitInstance1.showBasicInformation();
-//
-//    MainVenue venue;
-//    SearchEngine s;
-//    s.searchGoods();
-//
-//
-//    system("pause");
+    cout<<"中文\n";
 
+/*
+    Customer c("cnm", "134560", "14", male, 1222.4);
+
+    Shop fruit_1("hhhhhhh", "Happy");
+    fruit_1.addGoods(Goods("apple", 5, &fruit_1), 10);
+    fruit_1.addGoods(Goods("banana", 25, &fruit_1), 10);
+
+    Shop fruit_2("ssssss", "Sad");
+    fruit_2.addGoods(Goods("pear", 10, &fruit_2), 10);
+    fruit_2.addGoods(Goods("orange", 30, &fruit_2), 10);
+
+    Shop fruit_3("bbbbbb", "Boring");
+    fruit_3.addGoods(Goods("mango", 15, &fruit_3), 10);
+    fruit_3.addGoods(Goods("grape", 35, &fruit_3), 10);
+
+    FruitsVenue& fruitInstance = FruitsVenue::getInstance();
+    fruitInstance.addShop(fruit_1);
+    fruitInstance.showBasicInformation();
+
+    FruitsVenue& fruitInstance1 = FruitsVenue::getInstance();
+    fruitInstance1.addShop(fruit_3);
+    fruitInstance1.showBasicInformation();
+
+    MainVenue venue;
+    SearchEngine s;
+    s.searchGoods();
+
+
+    system("pause");
+
+*/
     return 0;
 }
 
@@ -124,13 +128,13 @@ void testState(Customer* c) { c->check(); }
 //测试享元模式的接口（coded by jy）
 void testFlyWeight() {
     //测试共享属性
-    Shop applePhone("苹果手机专卖店", "APPLE");
-    Shop macShop("苹果电脑专卖店", "APPLE");
-    Shop huiWeiShop("华为自营店", "HUAWEI");
+    Shop applePhone("store of apple phone", "APPLE");
+    Shop macShop("store of mac", "APPLE");
+    Shop huiWeiShop("HuaWei's store", "HUAWEI");
     //测试非共享属性
-    Address ad_1("中国", "上海");
-    Address ad_2("美国", "纽约");
-    macShop.getBrand()->showAddress(ad_1);
+    Address ad_1("China", "ShangHai");
+    Address ad_2("America", "NewYork");
+    dynamic_cast<SharedBrand*>(macShop.getBrand())->showAddress(ad_1);
     //applePhone.getBrand()->showAddress(ad_2);
     //Brand* b=new SharedBrand;
     //b->showAddress(ad_1);

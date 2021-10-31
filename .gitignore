@@ -1,6 +1,5 @@
 main.exe
 .vscode
-CMakeLists.txt
 .idea
 cmake-build-debug
 CMakeFiles

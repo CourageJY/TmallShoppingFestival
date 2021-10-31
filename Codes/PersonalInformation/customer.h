@@ -35,7 +35,7 @@ public:
     }
 
     void viewBasicInformation() override{
-        cout<<"You are logging as a tourist, "
+        cout<<"You login as a tourist, "
               "you only have permission to visit.\n";
     }
 };
