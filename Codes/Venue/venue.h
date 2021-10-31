@@ -2,8 +2,8 @@
 
 #include <iostream>
 #include <vector>
-#include "../tools.cpp"
 #include "../Shop/shop.h"
+//#include "../tools.h"
 
 using namespace std;
 

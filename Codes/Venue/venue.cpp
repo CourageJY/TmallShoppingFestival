@@ -1,4 +1,5 @@
 #include "venue.h"
+#include "../tools.h"//需在.cpp中包含tools.h
 
 void MainVenue::findShops(string name) {
 
@@ -130,29 +131,23 @@ void MainVenue::showInformation() {
     cout << "3. 电子会场" << '\n';
     cout << "4. 水果会场" << '\n';
     string s("");
-    while (s == "")
-    {
+    while (s == ""){
         string info("请选择你想去的会场(1-4, 0退出，5进入购物车，6查看个人信息)：");
-        int no = getnum(info,6);
-        switch (no)
-        {
+        int no= getNum(info,6);
+        switch (no){
         case 0:
             return;
         case 1:
-            ClothingVenue& clothingInstance = ClothingVenue::getInstance();
-            clothingInstance.showBasicInformation();
+            ClothingVenue::getInstance().showBasicInformation();
             return;
         case 2:
-            SnacksVenue& snacksInstance = SnacksVenue::getInstance();
-            snacksInstance.showBasicInformation();
+            SnacksVenue::getInstance().showBasicInformation();
             return;
         case 3:
-            ElectronicVenue& electronicInstance = ElectronicVenue::getInstance();
-            electronicInstance.showBasicInformation();
+            ElectronicVenue::getInstance().showBasicInformation();
             return;
         case 4:
-            FruitsVenue& fruitInstance = FruitsVenue::getInstance();
-            fruitInstance.showBasicInformation();
+            FruitsVenue::getInstance().showBasicInformation();
             return;
         case 5:
             return;

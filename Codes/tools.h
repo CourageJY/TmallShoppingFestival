@@ -1,8 +1,11 @@
 #pragma once
+//#ifndef _TOOL_H_
+//#define _TOOL_H_
 #include <iostream>
 
 using namespace std;
-int getnum(string info,int range){
+
+int getNum(string info,int range){
     string s;
     while(1){
         cout<<info;
@@ -15,3 +18,5 @@ int getnum(string info,int range){
     }
     return -1;
 }
+
+//#endif
