@@ -23,7 +23,7 @@ void SearchEngine::searchGoods(){
         //cout << endl <<"请输入商品名(输入0返回上一次搜索结果,输入1删除所有历史记录,输入2显示历史记录，输入3返回):";
         cin >> productName;
         if (productName=="0"){
-            roolBack();
+            rollBack();
             continue;
         }
         if (productName=="1"){
@@ -48,7 +48,7 @@ void SearchEngine::searchGoods(){
     search(productName);
 }
 
-void SearchEngine::roolBack(){
+void SearchEngine::rollBack(){
     if (!history.empty()){
         string s;
         history.pop_back();
