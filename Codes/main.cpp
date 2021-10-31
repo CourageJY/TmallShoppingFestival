@@ -22,6 +22,7 @@ void testDecorator();
 void testAbstractFactory();
 void testFlyWeight();
 void testNullObject();
+void testProxy();
 
 int main() {
     //设计模式接口测试
@@ -30,7 +31,7 @@ int main() {
 //    testAbstractFactory();
 //    testFlyWeight();
 //    testNullObject();
-
+//    testProxy();
 
     Customer c("cnm", "134560", "14", male, 1222.4);
 
@@ -64,7 +65,8 @@ int main() {
     return 0;
 }
 
-void testSingleton() {  //测试单例模式的接口
+//测试单例模式的接口
+void testSingleton() {
     ClothingVenue& instance = ClothingVenue::getInstance();
 }
 
@@ -130,7 +132,7 @@ void testFlyWeight() {
 //测试空对象模式（coded by jy）
 void testNullObject(){
     //实体
-    Customer customer("CourageJ","123","china",male,1000);
+    Customer customer("CourageJ","123","China",male,1000);
     customer.viewBasicInformation();
     //空对象
     NullCustomer tourist;
@@ -140,7 +142,17 @@ void testNullObject(){
     //dynamic_cast<Customer*>(cm)->viewBasicInformation();//动态类型转换
 };
 
-
+//测试代理模式的接口（coded by Lky）
+void testProxy(){
+    Customer customer("NoMirror","456","China",male,2000);
+    ProxyPatternCustomer *proxyPatternCustomer = new ProxyCustomer("testProfile.jpg");
+    proxyPatternCustomer->giveRealCustomer(&customer);
+    // The profile will be loaded from disk
+    proxyPatternCustomer->viewBasicInformation();
+    cout << "\n";
+    // The profile does not need to be loaded from disk
+    proxyPatternCustomer->viewBasicInformation();
+}
 
 //欢迎登录界面
 void welcome(){

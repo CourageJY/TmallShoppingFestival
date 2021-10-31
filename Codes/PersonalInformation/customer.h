@@ -34,12 +34,22 @@ public:
     }
 
     void viewBasicInformation() override{
-        cout<<"You are logining as a tourist, "
+        cout<<"You are logging as a tourist, "
               "you only have permission to visit.\n";
     }
 };
 
-class Customer:public AbstractCustomer{//顾客（买家）的基本类
+//以下为代理模式的父类ProxyPatternCustomer
+class ProxyPatternCustomer
+{
+public:
+
+    virtual void viewBasicInformation() = 0;
+    virtual void giveRealCustomer(Customer *customer);
+
+};
+
+class Customer: public AbstractCustomer, public ProxyPatternCustomer{//顾客（买家）的基本类
 public:
     Customer(string nm,string tel,string ar,Gender g,
              double me):name(nm),tel(tel),addr(ar),
@@ -49,6 +59,10 @@ public:
                  shoppingCart = new ShoppingCart(this);
              }
 
+    void addProfile(string &profileName){
+        this->profile =profileName;
+        loadFromDisk(profileName);
+    }
     void viewBasicInformation() override;
 
     //查看对应状态的orders
@@ -58,7 +72,7 @@ public:
     //从当前未支付订单中取出一个进行支付
     //若金额不足则返回false
     bool payOrder();
-    
+
     //用户调用中介者类来发送评价，不需要调用店铺
     void writeCommment(Mediator med, Comment com) { med.sendComment(&com); }
 
@@ -74,6 +88,7 @@ public:
     vector<Coupon>& getCoupons(){return coupons;}
 
 private:
+    string profile;//头像（为了使用代理模式）
     string name;
     string tel;
     string addr;
@@ -82,5 +97,37 @@ private:
     ShoppingCart* shoppingCart;
     vector<Order> orders;//初始为空
     vector<Coupon> coupons;//初始为空
+    void loadFromDisk(string& profileName)
+    {
+        std::cout << "Loading " + profileName << endl;
+    }
 
+};
+
+//以下为顾客的代理类,针对顾客的头像属性profile进行了代理
+class ProxyCustomer : public ProxyPatternCustomer
+{
+
+public:
+    ProxyCustomer(string profileName)
+    {
+        this->profile = profileName;
+    }
+
+    void giveRealCustomer(Customer *customer) override{
+        realImage = customer;
+        realImage->addProfile(profile);
+    }
+    void viewBasicInformation() override
+    {
+        if (realImage == nullptr) {
+            cout <<"Warning! Please give a target for ProxyCustomer";
+        }
+            realImage->viewBasicInformation();
+
+    }
+
+private:
+    string profile;//头像（为了使用代理模式）
+    Customer *realImage = nullptr;
 };

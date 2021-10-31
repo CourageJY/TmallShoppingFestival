@@ -13,6 +13,7 @@ void Customer::viewBasicInformation(){
     cout<<"tel: "<<tel<<'\n';
     cout<<"address: "<<addr<<'\n';
     cout<<"gender: "<<(gender==male?"male":"female")<<'\n';
+    cout<<"profile: " + profile<<'\n';
     cout<<"your current money is: "<<money<<"\n\n";
 }
 
@@ -63,4 +64,8 @@ bool Customer::payOrder(){
             return false;
         }
     }
+}
+
+void ProxyPatternCustomer::giveRealCustomer(Customer *customer) {
+    cout<<"使用了父类的给予指针函数，调用错误"<<endl;
 }
