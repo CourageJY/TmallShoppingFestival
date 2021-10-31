@@ -2,12 +2,18 @@
 #include"../Order/orderState.h"
 #include "../Order/checkOrder.h"
 void Customer::viewBasicInformation(){
-    cout<<"以下是您的基本信息：\n";
-    cout<<"姓名："<<name<<'\n';
-    cout<<"电话号码："<<tel<<'\n';
-    cout<<"居住地址："<<addr<<'\n';
-    cout<<"性别："<<(gender==male?"男":"女")<<'\n';
-    cout<<"您剩余的金额为："<<money<<'\n';
+//    cout<<"以下是您的基本信息：\n";
+//    cout<<"姓名："<<name<<'\n';
+//    cout<<"电话号码："<<tel<<'\n';
+//    cout<<"居住地址："<<addr<<'\n';
+//    cout<<"性别："<<(gender==male?"男":"女")<<'\n';
+//    cout<<"您剩余的金额为："<<money<<'\n';
+    cout<<"It's your basic Information:\n";
+    cout<<"name: "<<name<<'\n';
+    cout<<"tel: "<<tel<<'\n';
+    cout<<"address: "<<addr<<'\n';
+    cout<<"gender: "<<(gender==male?"male":"female")<<'\n';
+    cout<<"your current money is: "<<money<<"\n\n";
 }
 
 void Customer::check(){

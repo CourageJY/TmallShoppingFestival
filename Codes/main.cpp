@@ -20,36 +20,16 @@ void testSingleton();
 void testDecorator();
 void testAbstractFactory();
 void testFlyWeight();
+void testNullObject();
 
 int main() {
-    //以下注释为将时间增加一个月的代码，供参考，2592000是30天对应的秒
-//    time_t time1 = time(0);
-//
-//    time_t time2 = time1 + 2592000;
-//
-//    char *dt1 = ctime(&time1);
-//    cout << dt1 << '\n';
-//    char *dt2 = ctime(&time2);
-//    cout << dt2 << '\n';
-
-/*
-    map<string, int> m;
-    map<string, int>::iterator it;
-    for (it = m.begin(); it != m.end(); it++) {
-
-    }
-*/
-
-////测试抽象工厂
-//    testAbstractFactory();
-//    ClothingVenue& clothingVenue=ClothingVenue::getInstance();
-//    clothingVenue.showBasicInformation();
-
-//    //测试享元模式
-//    testFlyWeight();
-
-//用于测试单例模式的接口
+    //设计模式接口测试
 //    testSingleton();
+//    testDecorator();
+//    testAbstractFactory();
+//    testFlyWeight();
+//    testNullObject();
+
 
     Customer c("cnm", "134560", "14", male, 1222.4);
 
@@ -79,9 +59,9 @@ int main() {
     SearchEngine s;
     s.searchGoods();
 
-    cout<<"不要有中文乱码呀！！1\n";
 
     system("pause");
+
     return 0;
 }
 
@@ -153,3 +133,26 @@ void testFlyWeight(){
     //Brand* b=new SharedBrand;
     //b->showAddress(ad_1);
 }
+
+//测试空对象模式（coded by jy）
+void testNullObject(){
+    //实体
+    Customer customer("CourageJ","123","china",male,1000);
+    customer.viewBasicInformation();
+    //空对象
+    NullCustomer tourist;
+    tourist.viewBasicInformation();
+
+    //AbstractCustomer* cm=new Customer("CourageJ","123","china",male,1000);
+    //dynamic_cast<Customer*>(cm)->viewBasicInformation();//动态类型转换
+};
+
+//以下注释为将时间增加一个月的代码，供参考，2592000是30天对应的秒
+//time_t time1 = time(0);
+//
+//time_t time2 = time1 + 2592000;
+//
+//char *dt1 = ctime(&time1);
+//cout << dt1 << '\n';
+//char *dt2 = ctime(&time2);
+//cout << dt2 << '\n';
