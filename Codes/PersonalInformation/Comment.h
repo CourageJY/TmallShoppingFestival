@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include<string>
 #include"../AfterSale/makeComment.h"
 using namespace std;

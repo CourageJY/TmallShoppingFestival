@@ -1,4 +1,4 @@
-﻿#include"customer.h"
+#include"customer.h"
 #include"../Order/orderState.h"
 #include "../Order/checkOrder.h"
 void Customer::viewBasicInformation(){

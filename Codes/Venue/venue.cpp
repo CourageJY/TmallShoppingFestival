@@ -1,4 +1,4 @@
-﻿#include "venue.h"
+#include "venue.h"
 
 void MainVenue::findShops(string name) {
 

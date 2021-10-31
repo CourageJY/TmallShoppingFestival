@@ -3,3 +3,17 @@ main.exe
 CMakeLists.txt
 .idea
 cmake-build-debug
+CMakeFiles
+build
+CMakeCache.txt
+cmake_install.cmake
+ALL_BUILD.vcxproj.filters
+ALL_BUILD.vcxproj
+TmallShoppingFestival.sln
+TmallShoppingFestival.vcxproj
+TmallShoppingFestival.vcxproj.filters
+ZERO_CHECK.vcxproj
+ZERO_CHECK.vcxproj.filters
+Codes/codes.sln
+Codes/codes.vcxproj.filters
+Codes/codes.vcxproj

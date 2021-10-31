@@ -1,4 +1,4 @@
-﻿#include "coupon.h"
+#include "coupon.h"
 #include "../PersonalInformation/customer.h"
 #include "../Shop/shop.h"
 

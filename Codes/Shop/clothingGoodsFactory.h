@@ -12,8 +12,6 @@ class ClothingGoods:public Goods{
 public:
     ClothingGoods(string na, double pr, Shop* sh):Goods(na,pr,sh){}
 
-    void showInfo();
-
 };
 
 //外套
@@ -21,7 +19,7 @@ class Coats:public ClothingGoods{
 public:
     Coats(string na, double pr, Shop* sh):ClothingGoods(na,pr,sh){}
 
-    virtual void showInfo(){};
+    virtual void showInfo(){cout<<"???\n";};
 
 };
 
@@ -30,7 +28,7 @@ class Pants:public ClothingGoods{
 public:
     Pants(string na, double pr, Shop* sh):ClothingGoods(na,pr,sh){}
 
-    virtual void showInfo(){};
+    virtual void showInfo(){cout<<"???\n";};
 
 };
 
@@ -39,7 +37,7 @@ class AntaPants:public Pants{
 public:
     AntaPants(string na, double pr, Shop* sh):Pants(na,pr,sh){}
 
-    virtual void showInfo(){
+    void showInfo() override{
         cout<<"这是一条安踏的裤子\n";
     };
 
@@ -51,7 +49,7 @@ public:
     AdidasPants(string na, double pr, Shop* sh):Pants(na,pr,sh){
     };
 
-    virtual void showInfo(){
+    void showInfo() override{
         cout<<"这是一条阿迪达斯的裤子\n";
     };
 
@@ -62,7 +60,7 @@ class AntaCoats:public Coats{
 public:
     AntaCoats(string na, double pr, Shop* sh):Coats(na,pr,sh){}
 
-    void showInfo(){
+    void showInfo() override{
         cout<<"这是一件安踏的外套\n";
     };
 
@@ -73,7 +71,7 @@ class AdidasCoats:public Coats{
 public:
     AdidasCoats(string na, double pr, Shop* sh):Coats(na,pr,sh){}
 
-    void showInfo(){
+    void showInfo() override{
         cout<<"这是一件阿迪达斯的外套\n";
     };
 
@@ -95,11 +93,11 @@ public:
 //安踏产品的生产工厂
 class AntaFactory:public ClothingGoodsFactory{
 public:
-    virtual Pants getPants(string na, double pr, Shop* sh){
+    Pants getPants(string na, double pr, Shop* sh) override{
         return *(new AntaPants(na,pr,sh));//测试
     }
 
-    virtual Coats getCoats(string na, double pr, Shop* sh){
+    Coats getCoats(string na, double pr, Shop* sh) override{
         return *(new AntaCoats(na,pr,sh));
     }
 

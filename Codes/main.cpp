@@ -1,22 +1,25 @@
 #include"Order/order.h"
-#include"PersonalInformation/customer.h"
-#include"AfterSale/AfterSale.h"
 #include"Order/order.h"
+#include"Order/balance.h"
+#include"AfterSale/AfterSale.h"
+#include"PersonalInformation/customer.h"
 #include"PersonalInformation/Comment.h"
+#include"PersonalInformation/SearchEngine.h"
+#include"Shop/brand.h"
+#include"Shop/clothingGoodsFactory.h"
 #include"Shop/coupon.h"
 #include"Shop/goods.h"
 #include"Shop/shop.h"
 #include"ShoppingCart/shoppingCart.h"
-#include"PersonalInformation/SearchEngine.h"
 #include"Venue/venue.h"
-#include"Order/balance.h"
-#include"Shop/clothingAbstractFactory.h"
 #include<iostream>
 #include<ctime>
 #include<map>
 
 void testSingleton();
 void testDecorator();
+void testAbstractFactory();
+void testFlyWeight();
 
 int main() {
     //以下注释为将时间增加一个月的代码，供参考，2592000是30天对应的秒
@@ -36,6 +39,14 @@ int main() {
 
     }
 */
+
+////测试抽象工厂
+//    testAbstractFactory();
+//    ClothingVenue& clothingVenue=ClothingVenue::getInstance();
+//    clothingVenue.showBasicInformation();
+
+//    //测试享元模式
+//    testFlyWeight();
 
 //用于测试单例模式的接口
 //    testSingleton();
@@ -67,6 +78,11 @@ int main() {
     MainVenue venue;
     SearchEngine s;
     s.searchGoods();
+
+    cout<<"不要有中文乱码呀！！1\n";
+
+    system("pause");
+    return 0;
 }
 
 void testDecorator() {//测试装饰器模式
@@ -97,9 +113,7 @@ void testSingleton() {//测试单例模式的接口
 }
 
 //抽象工厂方法的测试接口，用于为服装商店添加商品
-void addClothingShop(){//coded by jy
-    //获取服装会差单例
-    ClothingVenue& clothingVenue=ClothingVenue::getInstance();
+void testAbstractFactory(){//coded by jy
     //新建安踏服装店
     Shop antaShop("安踏服装店","安踏");
     //利用安踏工厂生产安踏商品
@@ -110,7 +124,7 @@ void addClothingShop(){//coded by jy
     antaShop.addGoods(antaCoats,10);
     antaShop.addGoods(antaPants,20);
 
-    
+
     //新建阿迪服装店
     Shop adidasShop("阿迪达斯服装店","阿迪达斯");
     //利用阿迪工厂生产安踏商品
@@ -121,11 +135,18 @@ void addClothingShop(){//coded by jy
     adidasShop.addGoods(antaCoats,5);
     adidasShop.addGoods(antaPants,10);
 
+
+    //获取服装会差单例
+    ClothingVenue& clothingVenue=ClothingVenue::getInstance();
+    //在服装会场中添加商店
+    clothingVenue.addShop(antaShop);
+    clothingVenue.addShop(adidasShop);
+
     //test output
-    antaShop.showInformation();
-    adidasShop.showInformation();
-    antaCoats.showInfo();
-    adidasCoats.showInfo();
+//    antaShop.showInformation();
+//    adidasShop.showInformation();
+      antaCoats.showInfo();
+      adidasCoats.showInfo();
 }
 
 //测试工厂模式的接口
@@ -139,4 +160,19 @@ void testFacade(Customer* c){
 }
 void testState(Customer* c){
     c->check();
+}
+
+//测试享元模式的接口（coded by jy）
+void testFlyWeight(){
+    //测试共享属性
+    Shop applePhone("苹果手机专卖店","APPLE");
+    Shop macShop("苹果电脑专卖店","APPLE");
+    Shop huiWeiShop("华为自营店","HUAWEI");
+    //测试非共享属性
+    Address ad_1("中国","上海");
+    Address ad_2("美国","纽约");
+    macShop.getBrand()->showAddress(ad_1);
+    //applePhone.getBrand()->showAddress(ad_2);
+    //Brand* b=new SharedBrand;
+    //b->showAddress(ad_1);
 }

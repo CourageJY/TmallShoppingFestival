@@ -1,6 +1,7 @@
 #pragma once
 #include <map>
 #include "../Shop/shop.h"
+#include "../Shop/brand.h"
 
 //过滤器
 class Criteria
@@ -44,11 +45,11 @@ private:
 //品牌过滤器
 class BrandCriteria :public Criteria {
 public:
-	BrandCriteria(string sb) :standardBrand(sb) {}
+	BrandCriteria(Brand* sb) :standardBrand(sb) {}
 
 	map<Goods, int> filterGoods(map<Goods, int> goods);
 
 private:
-	string standardBrand;
+	Brand* standardBrand;
 
 };

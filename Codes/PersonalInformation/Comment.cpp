@@ -1,4 +1,4 @@
-﻿#include"Comment.h"
+#include"Comment.h"
 #include"iostream"
 #include"../AfterSale/makeComment.h"
 
