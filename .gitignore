@@ -4,7 +4,6 @@ main.exe
 cmake-build-debug
 CMakeFiles
 build
-CMakeCache.txt
 cmake_install.cmake
 ALL_BUILD.vcxproj.filters
 ALL_BUILD.vcxproj
