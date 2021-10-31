@@ -1,8 +1,8 @@
-#pragma once
+﻿#pragma once
 
 #include <iostream>
 #include <vector>
-
+#include "../tools.cpp"
 #include "../Shop/shop.h"
 
 using namespace std;

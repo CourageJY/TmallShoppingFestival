@@ -123,6 +123,7 @@ void MainVenue::showBasicInformation() {
 }
 
 void MainVenue::showInformation() {
+
     cout << "本次天猫购物节主会场有以下分会场：" << '\n';
     cout << "1. 服装会场" << '\n';
     cout << "2. 零食会场" << '\n';
@@ -131,26 +132,31 @@ void MainVenue::showInformation() {
     string s("");
     while (s == "")
     {
-        cout<<"请选择你想去的会场(1-4)：";
-        cin >> s;
-        if (s.length() != 1)
-            continue;
-        if (s[0]<='0'||s[0]>'4')
-            continue;
-        int no = s[0]-'0';
+        string info("请选择你想去的会场(1-4, 0退出，5进入购物车，6查看个人信息)：");
+        int no = getnum(info,6);
         switch (no)
         {
+        case 0:
+            return;
         case 1:
-            ClothingVenue::showInformation();
+            ClothingVenue& clothingInstance = ClothingVenue::getInstance();
+            clothingInstance.showBasicInformation();
             return;
         case 2:
-            SnacksVenue::showInformation();
+            SnacksVenue& snacksInstance = SnacksVenue::getInstance();
+            snacksInstance.showBasicInformation();
             return;
         case 3:
-            ElectronicVenue::showInformation();
+            ElectronicVenue& electronicInstance = ElectronicVenue::getInstance();
+            electronicInstance.showBasicInformation();
             return;
         case 4:
-            FruitsVenue::showInformation();
+            FruitsVenue& fruitInstance = FruitsVenue::getInstance();
+            fruitInstance.showBasicInformation();
+            return;
+        case 5:
+            return;
+        case 6:
             return;
         }
     }
@@ -159,9 +165,21 @@ void MainVenue::showInformation() {
 
 //显示分会场的所有商品
 void ClothingVenue::showBasicInformation() {
+    int count=0;
     cout << "服装会场有以下店铺及商品：" << '\n';
-    for(auto && i : this->shops)
+    for(auto && i : this->shops){
         i.showGoods();
+        count++;
+    }
+    while (1)
+    {
+        cout<<"请选择你要去的商店:(1-"<<count<<",0返回)";
+        int num;
+        cin>> num;
+    }
+    
+
+
 }
 
 void SnacksVenue::showBasicInformation() {
