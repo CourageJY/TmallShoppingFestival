@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <map>
 #include <string>
 #include <utility>
@@ -6,7 +6,6 @@
 
 #include "../Shop/coupon.h"
 #include "../Shop/goods.h"
-#include "commentList.h"
 #include "brand.h"
 using namespace std;
 
@@ -65,7 +64,6 @@ public:
     map<Goods, int> goods;  // map类型
     vector<Coupon> coupons;
     vector<Comment*> comments;            //关于该店铺商品评论的集合
-    goodsListIterator goodslistiterator;  //迭代器模式的需要
 
 };
 
