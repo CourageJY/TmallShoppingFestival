@@ -105,7 +105,7 @@ void testAbstractFactory() {  // coded by jy
     adidasCoats.showInfo();
 }
 
-//测试工厂模式的接口
+//测试简单工厂模式和策略模式的接口
 void testFactory(Customer* c) { c->payOrder(); }
 //测试外观模式的接口
 void testFacade(Customer* c) {
