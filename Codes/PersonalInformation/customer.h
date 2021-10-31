@@ -2,6 +2,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include <windows.h>
 #include"../ShoppingCart/shoppingCart.h"
 #include"../Order/order.h"
 #include"../Shop/coupon.h"
@@ -59,9 +60,11 @@ public:
                  shoppingCart = new ShoppingCart(this);
              }
 
+    void profileLoading(string &profileName){
+        this->profile = profileName+" loading......";
+    }
     void addProfile(string &profileName){
-        this->profile =profileName;
-        loadFromDisk(profileName);
+        this->profile = profileName;
     }
     void viewBasicInformation() override;
 
@@ -80,6 +83,7 @@ public:
     string getTel(){return tel;}
     string getAddress(){return addr;}
     double& getMoney(){return money;}
+    string getProfile(){return profile;}
 
     ShoppingCart* getShoppingCart(){return shoppingCart;}
 
@@ -97,11 +101,6 @@ private:
     ShoppingCart* shoppingCart;
     vector<Order> orders;//初始为空
     vector<Coupon> coupons;//初始为空
-    void loadFromDisk(string& profileName)
-    {
-        std::cout << "Loading " + profileName << endl;
-    }
-
 };
 
 //以下为顾客的代理类,针对顾客的头像属性profile进行了代理
@@ -116,15 +115,24 @@ public:
 
     void giveRealCustomer(Customer *customer) override{
         realImage = customer;
-        realImage->addProfile(profile);
     }
     void viewBasicInformation() override
     {
-        if (realImage == nullptr) {
-            cout <<"Warning! Please give a target for ProxyCustomer";
-        }
+        if (realImage->getProfile().empty()) {
+            realImage->profileLoading(profile);
             realImage->viewBasicInformation();
-
+            realImage->addProfile(profile);
+            Sleep(800);
+            cout << "profile loading,please waiting!" << endl;
+            Sleep(1000);
+            cout << "profile loading,please waiting!" << endl;
+            Sleep(1000);
+            cout << "loading will finish!" << endl;
+            Sleep(1000);
+            cout << endl;
+        }
+        else cout << "The image does not need to be loaded from disk!";
+        realImage->viewBasicInformation();
     }
 
 private:

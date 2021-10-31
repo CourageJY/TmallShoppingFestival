@@ -150,7 +150,7 @@ void testProxy(){
     // The profile will be loaded from disk
     proxyPatternCustomer->viewBasicInformation();
     cout << "\n";
-    // The profile does not need to be loaded from disk
+    cout << "The profile has initialized ,does not need to be loaded from disk" << endl;
     proxyPatternCustomer->viewBasicInformation();
 }
 
