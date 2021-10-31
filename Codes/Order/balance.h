@@ -38,13 +38,27 @@ public:
     virtual double cost();
 };
 
-class ConcreteDecorator : public Decorator{//具体装饰类
+class ConcreteDecoratorA : public Decorator{//具体装饰类A,采用减免政策
 public:
-    ConcreteDecorator(Balance* blc):Decorator(blc){cout<<"构造具体装饰器类。"<<endl;}
+    ConcreteDecoratorA(Balance* blc,double st,double rd):Decorator(blc),stdd(st),rdct(rd){cout<<"构造具体装饰器A类。"<<endl;}
     
-    ~ConcreteDecorator(){cout<<"析构具体装饰器类。"<<endl;}
+    ~ConcreteDecoratorA(){cout<<"析构具体装饰器A类。"<<endl;}
 
     double cost();
 private:
+    double stdd;
+    double rdct;
+    double discount(double db);//addedBehavior
+};
+
+class ConcreteDecoratorB : public Decorator{//具体装饰类B，采用打折政策
+public:
+    ConcreteDecoratorB(Balance* blc,double dc):Decorator(blc),dsct(dc){cout<<"构造具体装饰器B类。"<<endl;}
+    
+    ~ConcreteDecoratorB(){cout<<"析构具体装饰器B类。"<<endl;}
+
+    double cost();
+private:
+    double dsct;
     double discount(double db);//addedBehavior
 };

@@ -9,7 +9,6 @@
 #include"ShoppingCart/shoppingCart.h"
 #include"PersonalInformation/SearchEngine.h"
 #include"Venue/venue.h"
-#include"Order/balance.h"
 #include"Shop/clothingAbstractFactory.h"
 #include<iostream>
 #include<ctime>
@@ -69,7 +68,7 @@ int main() {
     s.searchGoods();
 }
 
-void testDecorator() {//测试装饰器模式
+/* void testDecorator() {//测试装饰器模式
     //此处调用订单对象提供接口返回原始金额，现假设为10.00元
     double sum = 10.00;
 
@@ -90,7 +89,7 @@ void testDecorator() {//测试装饰器模式
     delete decorated;
 
     system("pause");
-}
+} */
 
 void testSingleton() {//测试单例模式的接口
     ClothingVenue &instance = ClothingVenue::getInstance();

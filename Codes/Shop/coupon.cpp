@@ -10,7 +10,10 @@ void Coupon::checkOverdue() {
 
 
 double DiscountCoupon::saleMethod(double x) {
-    return (x * discount);
+    //使用装饰器模式，对原始金额进行打折，返回打折后的金额
+    Balance* origin = new ConcreteBalance(x);
+    Balance* decorated = new ConcreteDecoratorB(origin,this->discount);
+    return (decorated->cost());
 }
 
 void DiscountCoupon::changeStateToUsed() {
@@ -26,8 +29,10 @@ DiscountCoupon* DiscountCoupon::clone(){
 }
 
 double FullReduceCoupon::saleMethod(double x) {
-    double result = (x < standard) ? x : x - reduction;
-    return result;
+    //使用装饰器模式，对原始金额进行减免，返回减免后的金额
+    Balance* origin = new ConcreteBalance(x);
+    Balance* decorated = new ConcreteDecoratorA(origin,this->standard,this->reduction);
+    return (decorated->cost());
 }
 
 void FullReduceCoupon::changeStateToUsed() {
