@@ -154,16 +154,3 @@ void welcome(){
     }
     cout<<"登录成功！"<<endl;
 }
-
-//以下注释为将时间增加一个月的代码，供参考，2592000是30天对应的秒
-//time_t time1 = time(0);
-//
-//time_t time2 = time1 + 2592000;
-//
-//char *dt1 = ctime(&time1);
-//cout << dt1 << '\n';
-//char *dt2 = ctime(&time2);
-//cout << dt2 << '\n';
-    // applePhone.getBrand()->showAddress(ad_2);
-    // Brand* b=new SharedBrand;
-    // b->showAddress(ad_1);
