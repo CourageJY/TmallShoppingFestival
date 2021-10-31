@@ -15,6 +15,7 @@
 #include "Shop/shop.h"
 #include "ShoppingCart/shoppingCart.h"
 #include "Venue/venue.h"
+#include "User/user.h"
 
 void testSingleton();
 void testDecorator();
@@ -144,4 +145,17 @@ void testFlyWeight() {
     // applePhone.getBrand()->showAddress(ad_2);
     // Brand* b=new SharedBrand;
     // b->showAddress(ad_1);
+}
+
+//欢迎登录界面
+void welcome(){
+    string userName;   //输入的用户名
+    cout<<"欢迎来到天猫购物节！"<<endl;
+    cout<<"请先登录，输入用户名：";
+    cin>>userName;
+    while(!(setUsers()->interpret(userName))){  //如果输入的用户名不合法，则重新输入
+        cout<<"用户名错误，请重新输入：";
+        cin>>userName;
+    }
+    cout<<"登录成功！"<<endl;
 }
