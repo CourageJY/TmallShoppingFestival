@@ -19,34 +19,29 @@ class Iterator{
 //     Iterator getIterator();
 // };
 
-class goodsListIterator:public Iterator{
+class commentsListIterator:public Iterator{
 private:
     vector<Comment*> commentsList;
-    vector<Comment*>::iterator it;
+    int index;
 public:
-    goodsListIterator(){}
-    goodsListIterator(vector<Comment*> commentslist){
+    commentsListIterator(){}
+    commentsListIterator(vector<Comment*> commentslist){
         commentsList=commentslist;
     }
     Comment* first(){
         if(!commentsList.empty()){
-            it=commentsList.begin();
             return commentsList[0];
         }
+        else 
+            return nullptr;
     }
     Comment* next(){
         if(hasNext()){
-            return *(++it);
+            return commentsList[++index];
         }
     }
     bool hasNext(){
-        if(it==commentsList.end()||it==commentsList.end()--||it==commentsList.end()-2){
-            return false;
-        }
-        return true;
-    }
-    void addComments(Comment* comment){
-        commentsList.push_back(comment);
+        return index<commentsList.size()-1;
     }
 
 };
