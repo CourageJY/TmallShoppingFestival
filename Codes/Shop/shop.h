@@ -51,6 +51,9 @@ class Shop {
     //显示店铺评价
     void showComments();
 
+    //下架商品，为实现Observer模式添加的功能
+    void pullOffGoods(Goods gd);
+
    private:
     string name;
     string brand;
@@ -63,7 +66,7 @@ class Shop {
 /*******************
  * 编辑历史：
  * 将获得优惠券的函数更改为纯虚函数，将shop变为抽象类，以便体现模板模式
-
+ * 添加下架商品方法pullOffGoods(Goods gd)，当商品被下架时通知所有购物车中含有该商品的购物车，以实现观察者模式
 
 
 

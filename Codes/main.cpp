@@ -15,7 +15,6 @@
 #include<map>
 
 void testSingleton();
-void testDecorator();
 
 int main() {
     //以下注释为将时间增加一个月的代码，供参考，2592000是30天对应的秒
@@ -67,29 +66,6 @@ int main() {
     SearchEngine s;
     s.searchGoods();
 }
-
-/* void testDecorator() {//测试装饰器模式
-    //此处调用订单对象提供接口返回原始金额，现假设为10.00元
-    double sum = 10.00;
-
-    //用获取的原始金额初始化内容对象
-    Balance *origin = new ConcreteBalance(sum);
-    cout << origin->cost() << endl;
-
-    Balance *decorated = NULL;//装饰后的对象
-
-    //一层包装，八折
-    decorated = new ConcreteDecorator(origin);
-    cout << decorated->cost() << endl;
-
-    //二层包装，六四折
-    decorated = new ConcreteDecorator(decorated);
-    cout << decorated->cost() << endl;
-
-    delete decorated;
-
-    system("pause");
-} */
 
 void testSingleton() {//测试单例模式的接口
     ClothingVenue &instance = ClothingVenue::getInstance();

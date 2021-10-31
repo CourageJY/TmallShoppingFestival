@@ -127,9 +127,9 @@ bool ShoppingCart::generateOrder(map<Goods,int> gds){
 }
 
 void ShoppingCart::update(Goods* gd){
-    //当商品对象被删除时，同步清除购物车里的商品
-    cout<<"Observer模式：观察者更新！"<<endl;
+    //当商品对象被删除时，同步清除购物车里的对应商品，并打印通知
     removeGoods(*gd);
+    cout<<"Observers updated: Some goods in the shopping-cart have been pulled off by the shops！"<<endl;
 }
 
 //注意！在这里实现了Goods类的通知Observer的方法
