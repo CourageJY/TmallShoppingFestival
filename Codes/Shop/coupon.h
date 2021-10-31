@@ -3,6 +3,7 @@
 #include<string>
 #include<vector>
 #include<ctime>
+#include "../Order/balance.h"
 using namespace std;
 
 enum CouponState {

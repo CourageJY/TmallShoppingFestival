@@ -76,3 +76,16 @@ void Shop::showInformation() {
         }
     }
 }
+
+void Shop::pullOffGoods(Goods gd){
+    if(goods.count(gd)){
+        //通知所有加入了该商品的的购物车
+        gd.notify();
+
+        //从上架商品map中删除该商品
+        goods.erase(gd);
+
+        cout<<"商品已下架！"<<endl;
+    }else
+        cout<<"商品不存在！"<<endl;
+}

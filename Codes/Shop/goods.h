@@ -16,8 +16,7 @@ public:
     Goods(string na, double pr, Shop* sh) :name(na), price(pr), outDate(time(0) + 12 * month),
         shop(sh), comment(Comment(this, nullptr)) {}
 
-    //商品下架（即对象析构）时，通知所有Observers
-    ~Goods(){notify();}
+    ~Goods(){}
 
     string getName()const{return name;}
 
