@@ -13,7 +13,7 @@ class Coupon;
 
 class Order{
 public:
-    Order(Customer* c):customer(c),orderState(unpaid){}
+    Order(Customer* c):customer(c),orderState(unpaid),sum(0){}
 
     //输出有关订单支付的信息，若订单状态为待支付则返回true
     bool pay();
@@ -34,7 +34,7 @@ public:
 
     Coupon* getCoupon(){return coupon;}
 
-    double getSum(){return sum;}
+    double& getSum(){return sum;}
 
 private:
     vector<Goods> goods;//该订单包含的商品列表，初始为空

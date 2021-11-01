@@ -9,7 +9,7 @@ bool CartData::add(Goods gd, int num) {
         return true;
     }
     else{
-        goods.insert(map<Goods, int>::value_type(gd, 1));
+        goods.insert(map<Goods, int>::value_type(gd, num));
         return false;
     }
 }
@@ -113,13 +113,14 @@ bool ShoppingCart::generateOrder(map<Goods,int> gds){
         goodsData->remove(it->first);
     }
     for(it=gds.begin();it!=gds.end();it++){//从店铺中减去对应商品
-
+        it->first.getShop()->getGoods()[it->first]-=gds[it->first];
     }
     //新建订单并将其加入到customer的order容器中
     Order* newOd=new Order(this->customer);
     for(it=gds.begin();it!=gds.end();it++){
         for(int i=0;i<it->second;i++){
             newOd->getGoods().push_back(it->first);
+            newOd->getSum()+=it->first.getPrice();
         }
     }
     this->customer->getOrders().push_back(*newOd);

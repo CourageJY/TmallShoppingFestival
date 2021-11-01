@@ -1,20 +1,22 @@
 #include"customer.h"
 #include"../Order/orderState.h"
 #include "../Order/checkOrder.h"
+
 void Customer::viewBasicInformation(){
-//    cout<<"以下是您的基本信息：\n";
-//    cout<<"姓名："<<name<<'\n';
-//    cout<<"电话号码："<<tel<<'\n';
-//    cout<<"居住地址："<<addr<<'\n';
-//    cout<<"性别："<<(gender==male?"男":"女")<<'\n';
-//    cout<<"您剩余的金额为："<<money<<'\n';
-    cout<<"It's your basic Information:\n";
-    cout<<"name: "<<name<<'\n';
-    cout<<"tel: "<<tel<<'\n';
-    cout<<"address: "<<addr<<'\n';
-    cout<<"gender: "<<(gender==male?"male":"female")<<'\n';
-    cout<<"profile: " + profile<<'\n';
-    cout<<"your current money is: "<<money<<"\n\n";
+    cout<<"以下是您的基本信息：\n";
+    cout<<"姓名："<<name<<'\n';
+    cout<<"电话号码："<<tel<<'\n';
+    cout<<"居住地址："<<addr<<'\n';
+    cout<<"性别："<<(gender==male?"男":"女")<<'\n';
+    cout<<"您剩余的金额为："<<money<<'\n';
+    cout<<"--------------------------\n";
+//    cout<<"It's your basic Information:\n";
+//    cout<<"name: "<<name<<'\n';
+//    cout<<"tel: "<<tel<<'\n';
+//    cout<<"address: "<<addr<<'\n';
+//    cout<<"gender: "<<(gender==male?"male":"female")<<'\n';
+//    cout<<"profile: " + profile<<'\n';
+//    cout<<"your current money is: "<<money<<"\n\n";
 }
 
 void Customer::check(){
@@ -34,17 +36,17 @@ void Customer::showCoupons(){
 }
 
 bool Customer::payOrder(){
-    vector<Order*>vec;
+    vector<Order>vec;
     for(auto od:orders){
         if(od.getState()==unpaid){
-            vec.push_back(&od);
+            vec.push_back(od);
         }
     }
     cout<<"当前您未支付的订单共"<<vec.size()<<"个，分别为：\n";
     int i=1;
     for(auto v:vec){
         cout<<i<<'\n';
-        v->showOrder();
+        v.showOrder();
         i++;
     }
     cout<<"请选择您想要操作的订单id(1~"<<vec.size()<<")\n";
@@ -55,8 +57,8 @@ bool Customer::payOrder(){
         return false;
     }
     else{
-        if( money>=vec[x-1]->getSum()&&vec[x-1]->pay()){
-            money-=vec[x-1]->getSum();
+        if( money>=vec[x-1].getSum()&&vec[x-1].pay()){
+            money-=vec[x-1].getSum();
             return true;
         }
         else{

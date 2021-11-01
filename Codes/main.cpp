@@ -30,6 +30,7 @@ void testAbstractFactory();
 void testFlyWeight();
 void testNullObject();
 void testProxy();
+void testFactory();
 void initial();
 
 int main() {
@@ -40,33 +41,11 @@ int main() {
 //    testFlyWeight();
 //    testNullObject();
 //    testProxy();
-
-    cout<<"中文\n";
-    Customer c("cnm", "134560", "14", male, 1222.4);
-    Shop fruit_2("ssssss", "Sad");
-
-//    fruit_2.addGoods(Goods("pear", 10, &fruit_2), 10);
-//    fruit_2.addGoods(Goods("orange", 30, &fruit_2), 10);
-//    fruit_2.showGoods();
-    Goods gd("pear", 10, &fruit_2);
-    for(int i=0;i<3;i++){
-        //c.getShoppingCart()->addGoods(Goods("pear", 10, &fruit_2))
-        c.getShoppingCart()->addGoods(gd);
-    }
-    fruit_2.addGoods(gd,3);
-    c.getShoppingCart()->showAllGoods();
-    c.getShoppingCart()->generateOrder(c.getShoppingCart()->getGoodsMap());
-    c.check();
-    
+//    testFactory();
 
     initial();
 
     Customer* c = new Customer("cnm", "134560", "14", male, 1222.4);
-
-    
-
-   
-
     MainVenue venue;
     venue.showInformation(c);
 
@@ -88,7 +67,7 @@ void initial()
     fruit_3.addGoods(Goods("mango", 15, &fruit_3), 10);
     fruit_3.addGoods(Goods("grape", 35, &fruit_3), 10);
 
-     FruitsVenue& fruitInstance = FruitsVenue::getInstance();
+    FruitsVenue& fruitInstance = FruitsVenue::getInstance();
     fruitInstance.addShop(fruit_1);
     fruitInstance.addShop(fruit_2);
     fruitInstance.addShop(fruit_3);
@@ -168,7 +147,21 @@ void testAbstractFactory() {  // coded by jy
 }
 
 //测试简单工厂模式和策略模式的接口
-void testFactory(Customer* c) { c->payOrder(); }
+void testFactory() {
+    Customer *customer=new Customer("Admin","123456789","CN",male,2000.00);
+    Shop fruit_1("hhhhhhh", "Happy");
+    Goods g1("apple", 5, &fruit_1);
+    Goods g2("apple", 5, &fruit_1);
+    fruit_1.addGoods(g1,10);
+    fruit_1.addGoods(g2,10);
+    ShoppingCart* s=customer->getShoppingCart();
+    s->addGoods(g1,2);s->addGoods(g2,2);
+    s->showAllGoods();
+    s->generateOrder(s->getGoodsMap());
+    customer->payOrder();
+    customer->viewBasicInformation();
+}
+
 //测试外观模式的接口
 void testFacade(Customer* c) {
     AfterSale afterSale(c);
