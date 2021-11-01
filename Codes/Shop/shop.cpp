@@ -70,7 +70,7 @@ void Shop::showComments() {
 }
 
 //暂定为展示店铺信息，与店铺交互
-void Shop::showInformation(Customer* customer) {
+void Shop::showInformation() {
     cout << "-------------------------------------------" << endl;
     cout << "欢迎光临" << this->name << "，请选择您的操作：" << endl << endl;
     cout << "1、浏览商品" << endl;
