@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include<map>
 #include<string>
 #include"../Shop/goods.h"
@@ -27,9 +27,9 @@ private:
 
 class ShoppingCart{
 public:
-    ShoppingCart(Customer* c,){
+    ShoppingCart(Customer* c){
+        goodsData = new CartData;
         this->customer = c;
-        this->goodsData =new
     }
     void addGoods(Goods gd);
     bool removeGoods(Goods gd);
@@ -46,5 +46,5 @@ public:
 
 private:
     CartData* goodsData;//为一个map的key-value映射表，初始为空
-    Customer* customer;
+    Customer *customer;
 };

@@ -31,9 +31,9 @@ void Page::execute() {
         cin >> cmd;
         //找到匹配命令执行
         for (int i = 0; i < cmds.size(); i++) {
-            if (cmds[i]->prompt == cmd) {
+            if (cmds[i]->getPrompt() == cmd) {
                 cmds[i]->execute();
-                if (cmds[i]->prompt == string("back")) {
+                if (cmds[i]->getPrompt() == string("back")) {
                     end = true;
                 }
             }
@@ -49,7 +49,7 @@ void Page::show() {
     //打印命令列表
     cout << "命令列表" << endl;
     for (int i = 0; i < cmds.size(); i++) {
-        cout << i + 1 << "." << cmds[i]->prompt << " : " << cmds[i]->descrip << endl;
+        cout << i + 1 << "." << cmds[i]->getPrompt() << " : " << cmds[i]->getDescrip() << endl;
     }
 }
 
@@ -105,10 +105,8 @@ void testPage() {
     Command* backCmd = new SimpleCommand<Back>(&backRcvr, &Back::Action);
 
     //初始化命令
-    addCmd->prompt = "addGoods";
-    addCmd->descrip = "将商品加入购物车";
-    backCmd->prompt = "back";
-    backCmd->descrip = "返回上一级页面";
+    addCmd->set("addGoods", "将商品加入购物车");
+    backCmd->set("back", "返回上一级页面");
     //初始化页面的命令列表
     home->cmds.push_back(search);
     home->cmds.push_back(addCmd);
