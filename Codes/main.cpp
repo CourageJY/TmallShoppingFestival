@@ -41,8 +41,8 @@ int main() {
 //    testProxy();
 
     cout<<"中文\n";
+    
 
-/*
     Customer c("cnm", "134560", "14", male, 1222.4);
 
     Shop fruit_1("hhhhhhh", "Happy");
@@ -59,20 +59,14 @@ int main() {
 
     FruitsVenue& fruitInstance = FruitsVenue::getInstance();
     fruitInstance.addShop(fruit_1);
-    fruitInstance.showBasicInformation();
 
     FruitsVenue& fruitInstance1 = FruitsVenue::getInstance();
     fruitInstance1.addShop(fruit_3);
-    fruitInstance1.showBasicInformation();
 
     MainVenue venue;
-    SearchEngine s;
-    s.searchGoods();
-
+    venue.showInformation();
 
     system("pause");
-
-*/
     return 0;
 }
 
