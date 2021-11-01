@@ -30,6 +30,7 @@ void testAbstractFactory();
 void testFlyWeight();
 void testNullObject();
 void testProxy();
+void testFactory();
 
 int main() {
 //设计模式接口测试
@@ -150,7 +151,21 @@ void testAbstractFactory() {  // coded by jy
 }
 
 //测试简单工厂模式和策略模式的接口
-void testFactory(Customer* c) { c->payOrder(); }
+void testFactory() {
+    Customer customer("cnm", "134560", "14", male, 1222.4);
+
+    Shop fruit_1("hhhhhhh", "Happy");
+    Goods g1("apple", 5, &fruit_1);
+    Goods g2("banana", 25, &fruit_1);
+    fruit_1.addGoods(g1,10);
+    fruit_1.addGoods(g2, 10);
+
+    CartData c
+    ShoppingCart* s=c.getShoppingCart();
+
+    s->setGoodsNum(g1,2);s->setGoodsNum(g2,2);
+
+}
 //测试外观模式的接口
 void testFacade(Customer* c) {
     AfterSale afterSale(c);
