@@ -44,14 +44,14 @@ int main() {
     cout<<"中文\n";
     initial();
 
-    Customer c("cnm", "134560", "14", male, 1222.4);
+    Customer* c = new Customer("cnm", "134560", "14", male, 1222.4);
 
     
 
    
 
     MainVenue venue;
-    venue.showInformation();
+    venue.showInformation(c);
 
     system("pause");
     return 0;

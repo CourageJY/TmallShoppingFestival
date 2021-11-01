@@ -19,8 +19,8 @@ vector<Goods> SearchAdaptor::getAllGoods(){
 
 void SearchEngine::searchGoods(){
     string productName("");
-    while (productName==""){
-        //cout << endl <<"请输入商品名(输入0返回上一次搜索结果,输入1删除所有历史记录,输入2显示历史记录，输入3返回):";
+    while (1){
+        cout << endl <<"请输入商品名(输入0返回上一次搜索结果,输入1删除所有历史记录,输入2显示历史记录，输入3返回):";
         cin >> productName;
         if (productName=="0"){
             rollBack();
@@ -42,10 +42,10 @@ void SearchEngine::searchGoods(){
             continue;
         }
         search(productName);
-        break;
+        history.push_back(productName);
+        return;
     }
-    history.push_back(productName);
-    search(productName);
+    return;
 }
 
 void SearchEngine::rollBack(){

@@ -13,6 +13,7 @@ using namespace std;
 enum Gender {male,female};//性别的枚举变量
 enum LoginState{entity,tourist};//登录状态：实体 or 游客
 
+
 class AbstractCustomer{
 public:
     AbstractCustomer()=default;
@@ -59,6 +60,7 @@ public:
                  this->state=entity;//为实体顾客
                  cout<<"You create a new customer successfully!\n";
                  shoppingCart = new ShoppingCart(this);
+                 searchEngine = new SearchEngine();
              }
 
     void profileLoading(string &profileName){
@@ -92,6 +94,8 @@ public:
 
     vector<Coupon>& getCoupons(){return coupons;}
 
+    SearchEngine* getSearchEngine(){return searchEngine;};
+
 private:
     string profile;//头像（为了使用代理模式）
     string name;
@@ -102,7 +106,7 @@ private:
     ShoppingCart* shoppingCart;
     vector<Order> orders;//初始为空
     vector<Coupon> coupons;//初始为空
-    SearchEngine searchEngine;
+    SearchEngine* searchEngine;
 };
 
 //以下为顾客的代理类,针对顾客的头像属性profile进行了代理
