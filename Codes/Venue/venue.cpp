@@ -170,7 +170,7 @@ void ClothingVenue::showBasicInformation() {
         string info;
         info="请选择你要去的商店:(1-";
         info+=to_string(count);
-        info+="0，返回)";
+        info+="，0返回)";
         int no = getNum(info,count);
         if (no==0){
             MainVenue mainvenue;

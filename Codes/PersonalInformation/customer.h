@@ -7,6 +7,7 @@
 #include"../Order/order.h"
 #include"../Shop/coupon.h"
 #include"../Mediator/mediator.h"
+#include"SearchEngine.h"
 using namespace std;
 
 enum Gender {male,female};//性别的枚举变量
@@ -101,6 +102,7 @@ private:
     ShoppingCart* shoppingCart;
     vector<Order> orders;//初始为空
     vector<Coupon> coupons;//初始为空
+    SearchEngine searchEngine;
 };
 
 //以下为顾客的代理类,针对顾客的头像属性profile进行了代理

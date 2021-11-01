@@ -30,6 +30,7 @@ void testAbstractFactory();
 void testFlyWeight();
 void testNullObject();
 void testProxy();
+void initial();
 
 int main() {
 //设计模式接口测试
@@ -41,10 +42,23 @@ int main() {
 //    testProxy();
 
     cout<<"中文\n";
-    
+    initial();
 
     Customer c("cnm", "134560", "14", male, 1222.4);
 
+    
+
+   
+
+    MainVenue venue;
+    venue.showInformation();
+
+    system("pause");
+    return 0;
+}
+
+void initial()
+{
     Shop fruit_1("hhhhhhh", "Happy");
     fruit_1.addGoods(Goods("apple", 5, &fruit_1), 10);
     fruit_1.addGoods(Goods("banana", 25, &fruit_1), 10);
@@ -57,17 +71,10 @@ int main() {
     fruit_3.addGoods(Goods("mango", 15, &fruit_3), 10);
     fruit_3.addGoods(Goods("grape", 35, &fruit_3), 10);
 
-    FruitsVenue& fruitInstance = FruitsVenue::getInstance();
+     FruitsVenue& fruitInstance = FruitsVenue::getInstance();
     fruitInstance.addShop(fruit_1);
-
-    FruitsVenue& fruitInstance1 = FruitsVenue::getInstance();
-    fruitInstance1.addShop(fruit_3);
-
-    MainVenue venue;
-    venue.showInformation();
-
-    system("pause");
-    return 0;
+    fruitInstance.addShop(fruit_2);
+    fruitInstance.addShop(fruit_3);
 }
 
 //测试单例模式的接口
