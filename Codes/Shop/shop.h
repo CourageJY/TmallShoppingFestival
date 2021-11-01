@@ -13,7 +13,6 @@ using namespace std;
 //预声明
 class Customer;
 class Comment;
-
 class Shop {
 public:
 
@@ -23,13 +22,15 @@ public:
     };
 
     //返回店铺名
-    string& getName() { return this->name; };
+    string& getName() {
+         return this->name; 
+         };
 
     //返回店铺品牌
     Brand* getBrand() { return this->brand; };
 
     //输出关于店铺的一些信息
-    void showInformation();
+    void showInformation(Customer* customer);
 
     //顾客通过此方法可获得优惠券
     //函数为纯虚函数，将Shop类变为抽象类，以便实现模板模式
