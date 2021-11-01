@@ -5,7 +5,7 @@
 //添加商品数据
 bool CartData::add(Goods gd, int num) {
     if (goods.count(gd)){ //判断是否已有该商品
-        goods[gd]++;
+        goods[gd] += num;
         return true;
     }
     else{
