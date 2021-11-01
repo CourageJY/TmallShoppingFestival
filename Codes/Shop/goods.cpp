@@ -5,7 +5,7 @@
 void Goods::setGoods(string na, double pr, int mons){
 	this->name = na;
 	this->price = pr;
-	this->outDate = mons == NULL? time(0) + month * 12 : time(0) + month * mons;
+	this->outDate = mons == 0? time(0) + month * 12 : time(0) + month * mons;
 }
 
 void Goods::attach(ShoppingCart* sc){

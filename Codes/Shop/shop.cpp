@@ -25,7 +25,7 @@ void Shop::setGoods(vector<string> names, vector<double> prices,
         //由于map无法修改key值，所以移除旧的key-value，添加新的key-value
         this->goods.erase(tempGoods);
         tempGoods.setGoods(names[i], prices[i],
-                           months.size() == 0 ? NULL : months[i]);
+                           months.size() == 0 ? 0 : months[i]);
         this->goods.insert(pair<Goods, int>(tempGoods, tempStock));
     }
 }
