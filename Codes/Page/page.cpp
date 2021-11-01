@@ -10,6 +10,22 @@ Command::Command() {
     cout << "命令{" << prompt << "}创建成功,命令说明:" << descrip << endl;
 }
 
+//设置命令的参数
+void Command::set(string p, string d) {
+    prompt = p;
+    descrip = d;
+}
+
+//获取命令提示符
+string Command::getPrompt() {
+    return prompt;
+}
+
+//获取命令描述
+string Command::getDescrip() {
+    return descrip;
+}
+
 //页面构造函数
 Page::Page(const char* p, const char* d) {
     end = false;
