@@ -69,6 +69,20 @@ void Shop::showComments() {
     cout << "-------------------------------------------" << endl << endl;
 }
 
+//显示店铺优惠券，内容待定
+void Shop::showCoupons() {
+    cout << this->name << "has: " << endl << endl;
+    if(this->coupons.size() == 0){
+        cout << "" << endl;
+        return;
+    }
+    
+    for (auto&& i : this->coupons) {
+        
+    }
+    cout << "-------------------------------------------" << endl << endl;
+}
+
 //暂定为展示店铺信息，与店铺交互
 void Shop::showInformation() {
     cout << "-------------------------------------------" << endl;

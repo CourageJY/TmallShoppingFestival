@@ -4,7 +4,7 @@
 
 #include "AfterSale/AfterSale.h"
 #include"AfterSale//makeComment.h"
-#include"Criteria//criteria.h"
+#include"Filter/filter.h"
 #include"Mediator/mediator.h"
 #include "Order/balance.h"
 #include"Order/checkOrder.h"
@@ -31,6 +31,7 @@ void testFlyWeight();
 void testNullObject();
 void testProxy();
 void initial();
+void testFilter();
 
 int main() {
 //设计模式接口测试
@@ -43,6 +44,9 @@ int main() {
 
     cout<<"中文\n";
     initial();
+
+    testFilter();
+    system("pause");
 
     Customer* c = new Customer("cnm", "134560", "14", male, 1222.4);
 
@@ -197,6 +201,13 @@ void testProxy(){
     cout << "\n";
     cout << "The profile has initialized ,does not need to be loaded from disk" << endl;
     proxyPatternCustomer->viewBasicInformation();
+}
+
+//测试过滤器模式的接口（coded by ry）
+void testFilter(){
+    PriceFilter p(0,20);
+    FruitsVenue& fruitInstance = FruitsVenue::getInstance();
+    p.printGoods(p.filterGoods(fruitInstance.getGoods()));
 }
 
 //欢迎登录界面
