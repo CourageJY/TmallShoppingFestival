@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include<map>
 #include<string>
 #include"../Shop/goods.h"
@@ -28,6 +28,7 @@ private:
 class ShoppingCart{
 public:
     ShoppingCart(Customer* c){
+        goodsData = new CartData;
         this->customer = c;
     }
     void addGoods(Goods gd);
