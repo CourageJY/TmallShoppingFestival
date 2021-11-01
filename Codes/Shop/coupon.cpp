@@ -1,4 +1,4 @@
-#include "coupon.h"
+﻿#include "coupon.h"
 #include "../PersonalInformation/customer.h"
 #include "../Shop/shop.h"
 
@@ -13,7 +13,12 @@ double DiscountCoupon::saleMethod(double x) {
     //使用装饰器模式，对原始金额进行打折，返回打折后的金额
     Balance* origin = new ConcreteBalance(x);
     Balance* decorated = new ConcreteDecoratorB(origin,this->discount);
-    return (decorated->cost());
+
+    //保存结果，释放空间
+    double result = decorated->cost();
+    delete decorated;
+
+    return result;
 }
 
 void DiscountCoupon::changeStateToUsed() {
@@ -32,7 +37,12 @@ double FullReduceCoupon::saleMethod(double x) {
     //使用装饰器模式，对原始金额进行减免，返回减免后的金额
     Balance* origin = new ConcreteBalance(x);
     Balance* decorated = new ConcreteDecoratorA(origin,this->standard,this->reduction);
-    return (decorated->cost());
+
+    //保存结果，释放空间
+    double result = decorated->cost();
+    delete decorated;
+
+    return result;
 }
 
 void FullReduceCoupon::changeStateToUsed() {
