@@ -5,43 +5,59 @@
 
 using namespace std;
 
-class Iterator{
+class Iterator {
 
-    virtual Comment* first()=0;
+public:
+    virtual Comment* first() = 0;
 
-    virtual Comment* next()=0;
+    virtual Comment* next() = 0;
 
-    virtual bool hasNext()=0;
+    virtual bool hasNext() = 0;
 };
 
-// class Aggregate{
 
-//     Iterator getIterator();
-// };
-
-class commentsListIterator:public Iterator{
+class commentsListIterator :public Iterator {
 private:
     vector<Comment*> commentsList;
     int index;
 public:
-    commentsListIterator(){}
-    commentsListIterator(vector<Comment*> commentslist){
-        commentsList=commentslist;
+    commentsListIterator() {}
+    commentsListIterator(vector<Comment*> commentslist) {
+        commentsList = commentslist;
     }
-    Comment* first(){
-        if(!commentsList.empty()){
+    Comment* first() {
+        if (!commentsList.empty()) {
             return commentsList[0];
         }
-        else 
+        else
             return nullptr;
     }
-    Comment* next(){
-        if(hasNext()){
+    Comment* next() {
+        if (hasNext()) {
             return commentsList[++index];
         }
     }
-    bool hasNext(){
-        return index<commentsList.size()-1;
+    bool hasNext() {
+        return index < commentsList.size() - 1;
     }
 
+};
+
+class Aggregate {
+
+public:
+    virtual void add(Comment* cm) = 0;
+    virtual commentsListIterator* getIterator()=0;
+};
+class ConcreteAggregate :public Aggregate {
+private:
+    vector<Comment*> commentsList;
+public:
+    void add(Comment* cm) {
+        commentsList.push_back(cm);
+    }
+    commentsListIterator* getIterator() {
+        commentsListIterator* cmlt= new commentsListIterator(commentsList);
+        return cmlt;
+    }
 };
