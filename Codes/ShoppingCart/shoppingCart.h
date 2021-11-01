@@ -28,8 +28,8 @@ private:
 class ShoppingCart{
 public:
     ShoppingCart(Customer* c){
-        goodsData = new CartData;
         this->customer = c;
+        goodsData = new CartData;
     }
     void addGoods(Goods gd);
     bool removeGoods(Goods gd);

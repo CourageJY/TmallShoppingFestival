@@ -12,12 +12,14 @@ void GoodsInformation::getGoodsInformation(Customer* c){
     vector<Order>::iterator x;
     vector<Goods>::iterator y;
     for (x=c->getOrders().begin();x!=c->getOrders().end();x++){
-        for (y=x->getGoods().begin();y!=x->getGoods().end();y++){
-            if (y->getName()==goodsName){
-                cout<<"当前商品基本信息如下:"<<endl;
-                cout<<"名称:"<<y->getName();
-                cout<<"价格:"<<y->getPrice();
-                cout<<"所属商店:"<<y->getShop();
+        if (x->getState()==paid){
+            for (y=x->getGoods().begin();y!=x->getGoods().end();y++){
+                if (y->getName()==goodsName){
+                    cout<<"当前商品基本信息如下:"<<endl;
+                    cout<<"名称:"<<y->getName();
+                    cout<<"价格:"<<y->getPrice();
+                    cout<<"所属商店:"<<y->getShop();
+                }
             }
         }
     }
