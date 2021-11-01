@@ -30,6 +30,9 @@ void testAbstractFactory();
 void testFlyWeight();
 void testNullObject();
 void testProxy();
+void testFactory();
+void testState();
+void testFacade();
 void initial();
 
 int main() {
@@ -42,17 +45,17 @@ int main() {
 //    testProxy();
 
     cout<<"中文\n";
+    testFactory();
     initial();
 
     Customer c("cnm", "134560", "14", male, 1222.4);
 
-    
+
 
    
 
     MainVenue venue;
     venue.showInformation();
-
     system("pause");
     return 0;
 }
@@ -151,13 +154,25 @@ void testAbstractFactory() {  // coded by jy
 }
 
 //测试简单工厂模式和策略模式的接口
-void testFactory(Customer* c) { c->payOrder(); }
-//测试外观模式的接口
-void testFacade(Customer* c) {
-    AfterSale afterSale(c);
-    afterSale.returned();
+void testFactory() {
+    Customer *customer=new Customer("Admin","123456789","CN",male,2000.00);
+    Shop fruit_1("hhhhhhh", "Happy");
+    Goods g1("apple", 5, &fruit_1);
+    Goods g2("apple", 5, &fruit_1);
+    fruit_1.addGoods(g1,10);
+    fruit_1.addGoods(g2,10);
+    ShoppingCart* s=customer->getShoppingCart();
+    s->addGoods(g1,2);s->addGoods(g2,2);
+    s->generateOrder(s->getGoodsMap());
+    customer->payOrder();
 }
-void testState(Customer* c) { c->check(); }
+//测试外观模式的接口
+void testFacade() {
+    //AfterSale afterSale(c);
+    //afterSale.returned();
+}
+void testState() { //->check();
+}
 
 //测试享元模式的接口（coded by jy）
 void testFlyWeight() {
