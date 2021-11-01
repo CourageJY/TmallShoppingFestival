@@ -30,18 +30,18 @@ public:
     typedef void (Receiver::* Action)();
 
     SimpleCommand(Receiver* r, Action a) :
-        _receiver(r), _action(a) { }
+        receiver(r), action(a) { }
 
     virtual void execute();
 private:
-    Action _action;
-    Receiver* _receiver;
+    Action action;
+    Receiver* receiver;
 };
 
 //简单命令模板类的执行函数方法
 template <class Receiver>
 void SimpleCommand<Receiver>::execute() {
-    (_receiver->*_action)();
+    (receiver->*action)();
 }
 
 //定义具体的请求类
