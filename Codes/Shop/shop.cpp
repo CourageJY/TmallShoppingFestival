@@ -32,6 +32,11 @@ void Shop::setGoods(vector<string> names, vector<double> prices,
 
 void Shop::showGoods() {
     cout << this->name << "has: " << endl << endl;
+    if(this->goods.size() == 0){
+        cout << "" << endl;
+        return;
+    }
+    
     for (auto&& i : this->goods) {
         cout << "name: " << i.first.getName() << endl;
         cout << "price: " << i.first.getPrice() << "yuan" << endl;
@@ -43,6 +48,11 @@ void Shop::showGoods() {
 
 void Shop::showComments() {
     cout << "本店评价：" << endl << endl;
+    if(this->comments.size() == 0){
+        cout << "" << endl;
+        return;
+    }
+
     for (auto&& i : this->comments) {
         cout << "    " << i->getCustomer()->getName() << "：" << i->getContent()
              << endl
