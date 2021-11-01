@@ -4,7 +4,9 @@
 #include <vector>
 #include "../Shop/shop.h"
 #include <string>
+
 //#include "../tools.h"
+
 
 using namespace std;
 
@@ -12,7 +14,7 @@ class ClothingVenue;
 class SnacksVenue;
 class ElectronicVenue;
 class FruitsVenue;
-
+class Customer;
 //定义访问者的接口
 //class ParallelVenue {
 //   public:
@@ -25,8 +27,8 @@ class FruitsVenue;
 class MainVenue {
    public:
     MainVenue() = default;
-    virtual void showBasicInformation();
-    static void showInformation();
+    virtual void showBasicInformation(Customer* customer);
+    static void showInformation(Customer* customer);
     void findShops(string name);
     ~MainVenue() { cout << "destructor called!" << endl; }
     vector<MainVenue>& getVenues() { return venues; }
@@ -41,7 +43,7 @@ class MainVenue {
 //各个分会场只会存在一个且不会被继承 设计为单例模式
 class ClothingVenue : public MainVenue {
    public:
-    void showBasicInformation() override;
+    void showBasicInformation(Customer* customer) override;
     void addShop(const Shop& shop) { this->shops.push_back(shop); }
     vector<Shop>& getShops() { return shops; }
 
@@ -80,7 +82,7 @@ class ClothingVenue : public MainVenue {
 
 class SnacksVenue : public MainVenue {
    public:
-    void showBasicInformation() override;
+    void showBasicInformation(Customer* customer) override;
     void addShop(const Shop& shop) { this->shops.push_back(shop); }
     vector<Shop>& getShops() { return shops; }
 
@@ -116,7 +118,7 @@ class SnacksVenue : public MainVenue {
 
 class ElectronicVenue : public MainVenue {
    public:
-    void showBasicInformation() override;
+    void showBasicInformation(Customer* customer) override;
     void addShop(const Shop& shop) { this->shops.push_back(shop); }
     vector<Shop>& getShops() { return shops; }
 
@@ -152,7 +154,7 @@ class ElectronicVenue : public MainVenue {
 
 class FruitsVenue : public MainVenue {
    public:
-    void showBasicInformation() override;
+    void showBasicInformation(Customer* customer) override;
     void addShop(const Shop& shop) { this->shops.push_back(shop); }
     vector<Shop>& getShops() { return shops; }
 
