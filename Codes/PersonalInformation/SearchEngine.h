@@ -5,13 +5,15 @@
 #include<map>
 #include"../Shop/goods.h"
 #include"../Venue/venue.h"
+
 using namespace std;
 
+class Customer;
 //SearchEngine用于实现命令模式，将搜素功能封装成一个实体类
 //一个SearchEngine和一个用户绑定
 class SearchEngine{
 public:
-    SearchEngine(){};
+    SearchEngine(Customer* c){this->customer = c;};
     void searchGoods();            //搜索功能
     void rollBack();               //返回到上一个搜索结果
 
@@ -19,6 +21,7 @@ public:
     void showHistory();
 
 private:
+    Customer* customer;
     vector<string> history;         //搜索历史
     void search(string name);     //实现搜索
 };

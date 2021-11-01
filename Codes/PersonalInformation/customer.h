@@ -60,7 +60,7 @@ public:
                  this->state=entity;//为实体顾客
                  cout<<"You create a new customer successfully!\n";
                  shoppingCart = new ShoppingCart(this);
-                 searchEngine = new SearchEngine();
+                 searchEngine = new SearchEngine(this);
              }
 
     void profileLoading(string &profileName){

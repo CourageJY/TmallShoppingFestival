@@ -1,5 +1,19 @@
 #include "SearchEngine.h"
 
+int getNum2(string info,int range){
+    string s;
+    while(1){
+        cout<<info;
+        cin>>s;
+        if (s.length()!=1)
+            continue;
+        int no = s[0]-'0';
+        if (no>=0&&no<=range)
+            return no;
+    }
+    return -1;
+}
+
 vector<Goods> SearchAdaptor::getAllGoods(){
     vector<Goods> matchedgoods; //匹配的商品
     for(auto && i : shops){
@@ -20,7 +34,7 @@ vector<Goods> SearchAdaptor::getAllGoods(){
 void SearchEngine::searchGoods(){
     string productName("");
     while (1){
-        cout << endl <<"请输入商品名(输入0返回上一次搜索结果,输入1删除所有历史记录,输入2显示历史记录，输入3返回):";
+        cout << endl <<"请输入商品名(0返回上一次搜索结果,1删除所有历史记录,2显示历史记录，3返回):";
         cin >> productName;
         if (productName=="0"){
             rollBack();
@@ -71,7 +85,7 @@ void SearchEngine::search(string name){
     vector<Goods> matchedGoods;
     for (auto iter = allGoods.begin();iter!= allGoods.end();iter++){
         string goodsName = iter->getName();
-        if (goodsName.find(name)>=0)
+        if (goodsName.find(name)!=goodsName.npos)
         {
             matchedGoods.push_back(*iter);
         }
@@ -79,14 +93,20 @@ void SearchEngine::search(string name){
 
     if (matchedGoods.size()==0){
         cout<<"抱歉，没有搜索到商品"<<endl;
-        
+        searchGoods();
         return;
     }
     int i=0;
-    cout<<"no name\tprice\tshop"<<endl;
-    for(auto && j : matchedGoods){
+    cout<<"no name\t\tprice\tshop"<<endl;
+    for(auto iter = matchedGoods.begin();iter!=matchedGoods.end();iter++){
         i++;
-        cout<<i<<" :"<<j.getName()<<"\t"<<j.getPrice()<<"\t"<<j.getShop()->getName()<<endl;
+        cout<<i<<" :"<<iter->getName()<<"\t"<<iter->getPrice()<<"\t"<<iter->getShop()->getName()<<endl;
+    }
+    cout<<"------------------"<<endl;
+    string info = "请选择操作(0返回，1-n跳转至对应商铺)";
+    int no = getNum2(info,i);
+    if (no>0){
+        matchedGoods[no-1].getShop()->showInformation(customer);
     }
 }
 
