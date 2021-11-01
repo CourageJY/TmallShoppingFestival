@@ -30,6 +30,7 @@ void testAbstractFactory();
 void testFlyWeight();
 void testNullObject();
 void testProxy();
+void initial();
 
 int main() {
 //设计模式接口测试
@@ -58,39 +59,34 @@ int main() {
     c.check();
     
 
+    initial();
 
-/*
-    Customer c("cnm", "134560", "14", male, 1222.4);
-
-    Shop fruit_1("hhhhhhh", "Happy");
-    fruit_1.addGoods(Goods("apple", 5, &fruit_1), 10);
-    fruit_1.addGoods(Goods("banana", 25, &fruit_1), 10);
-
-    Shop fruit_2("ssssss", "Sad");
-    fruit_2.addGoods(Goods("pear", 10, &fruit_2), 10);
-    fruit_2.addGoods(Goods("orange", 30, &fruit_2), 10);
-
-    Shop fruit_3("bbbbbb", "Boring");
-    fruit_3.addGoods(Goods("mango", 15, &fruit_3), 10);
-    fruit_3.addGoods(Goods("grape", 35, &fruit_3), 10);
-
-    FruitsVenue& fruitInstance = FruitsVenue::getInstance();
-    fruitInstance.addShop(fruit_1);
-    fruitInstance.showBasicInformation();
-
-    FruitsVenue& fruitInstance1 = FruitsVenue::getInstance();
-    fruitInstance1.addShop(fruit_3);
-    fruitInstance1.showBasicInformation();
-
+    Customer* c = new Customer("cnm", "134560", "14", male, 1222.4);
     MainVenue venue;
-    SearchEngine s;
-    s.searchGoods();
-
+    venue.showInformation(c);
 
     system("pause");
-
-*/
     return 0;
+}
+
+void initial()
+{
+    Shop* fruit_1 = new Shop("hhhhhhh", "Happy");
+    fruit_1->addGoods(Goods("apple", 5, fruit_1), 10);
+    fruit_1->addGoods(Goods("banana", 25, fruit_1), 10);
+
+    Shop* fruit_2 = new Shop("ssssss", "Sad");
+    fruit_2->addGoods(Goods("pear", 10, fruit_2), 10);
+    fruit_2->addGoods(Goods("orange", 30, fruit_2), 10);
+
+    Shop* fruit_3 = new Shop("bbbbbb", "Boring");
+    fruit_3->addGoods(Goods("mango", 15, fruit_3), 10);
+    fruit_3->addGoods(Goods("grape", 35, fruit_3), 10);
+
+    FruitsVenue& fruitInstance = FruitsVenue::getInstance();
+    fruitInstance.addShop(*fruit_1);
+    fruitInstance.addShop(*fruit_2);
+    fruitInstance.addShop(*fruit_3);
 }
 
 //测试单例模式的接口

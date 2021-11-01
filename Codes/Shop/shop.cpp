@@ -25,13 +25,18 @@ void Shop::setGoods(vector<string> names, vector<double> prices,
         //由于map无法修改key值，所以移除旧的key-value，添加新的key-value
         this->goods.erase(tempGoods);
         tempGoods.setGoods(names[i], prices[i],
-                           months.size() == 0 ? NULL : months[i]);
+                           months.size() == 0 ? 0 : months[i]);
         this->goods.insert(pair<Goods, int>(tempGoods, tempStock));
     }
 }
 
 void Shop::showGoods() {
     cout << this->name << "has: " << endl << endl;
+    if(this->goods.size() == 0){
+        cout << "" << endl;
+        return;
+    }
+    
     for (auto&& i : this->goods) {
         cout << "name: " << i.first.getName() << endl;
         cout << "price: " << i.first.getPrice() << "yuan" << endl;
@@ -43,6 +48,11 @@ void Shop::showGoods() {
 
 void Shop::showComments() {
     cout << "本店评价：" << endl << endl;
+    if(this->comments.size() == 0){
+        cout << "" << endl;
+        return;
+    }
+
     for (auto&& i : this->comments) {
         cout << "    " << i->getCustomer()->getName() << "：" << i->getContent()
              << endl
@@ -52,7 +62,7 @@ void Shop::showComments() {
 }
 
 //暂定为展示店铺信息，与店铺交互
-void Shop::showInformation() {
+void Shop::showInformation(Customer* customer) {
     cout << "-------------------------------------------" << endl;
     cout << "欢迎光临" << this->name << "，请选择您的操作：" << endl << endl;
     cout << "1、浏览商品" << endl;

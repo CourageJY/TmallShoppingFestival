@@ -3,9 +3,9 @@
 #include"../Order/order.h"
 
 //添加商品数据
-bool CartData::add(Goods gd) {
+bool CartData::add(Goods gd, int num) {
     if (goods.count(gd)){ //判断是否已有该商品
-        goods[gd]++;
+        goods[gd] += num;
         return true;
     }
     else{
@@ -52,8 +52,8 @@ map<Goods,int>& CartData::getMap() {
     return goods;
 }
 
-void ShoppingCart::addGoods(Goods gd){
-    if(!goodsData->add(gd)) {
+void ShoppingCart::addGoods(Goods gd, int num){
+    if(!goodsData->add(gd, num)) {
         //将购物车绑定为商品的Observer
         gd.attach(this);
     }        

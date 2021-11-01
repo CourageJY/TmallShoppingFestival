@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include<map>
 #include<string>
 #include"../Shop/goods.h"
@@ -12,7 +12,7 @@ class Customer;
 class CartData {
 public:
     //添加商品数据
-    bool add(Goods);
+    bool add(Goods, int);
     //删除商品数据
     bool remove(Goods);
     //获取商品数据
@@ -28,10 +28,11 @@ private:
 class ShoppingCart{
 public:
     ShoppingCart(Customer* c){
+        goodsData = new CartData;
         this->customer = c;
         goodsData=new CartData;
     }
-    void addGoods(Goods gd);
+    void addGoods(Goods gd, int num);
     bool removeGoods(Goods gd);
     bool getGoods(string name,Goods& gd);
     bool setGoodsNum(Goods, int);

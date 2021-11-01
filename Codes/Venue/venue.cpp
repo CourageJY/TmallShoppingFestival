@@ -1,6 +1,6 @@
 #include "venue.h"
 #include "../tools.h"//需在.cpp中包含tools.h
-
+#include "../PersonalInformation/customer.h"
 void MainVenue::findShops(string name) {
 
 }
@@ -114,7 +114,7 @@ map<Goods, int> FruitsVenue::getGoods(string name) {
 }
 
 
-void MainVenue::showBasicInformation() {
+void MainVenue::showBasicInformation(Customer* customer) {
     cout << "本次天猫购物节主会场有以下分会场：" << '\n';
 
     cout << "1. 服装会场" << '\n';
@@ -123,35 +123,39 @@ void MainVenue::showBasicInformation() {
     cout << "4. 水果会场" << '\n';
 }
 
-void MainVenue::showInformation() {
+void MainVenue::showInformation(Customer* customer) {
 
     cout << "本次天猫购物节主会场有以下分会场：" << '\n';
     cout << "1. 服装会场" << '\n';
     cout << "2. 零食会场" << '\n';
     cout << "3. 电子会场" << '\n';
     cout << "4. 水果会场" << '\n';
-    string s("");
-    while (s == ""){
-        string info("请选择你想去的会场(1-4, 0退出，5进入购物车，6查看个人信息)：");
-        int no= getNum(info,6);
+    while (1){
+        string info("请选择你想去的会场(1-4, 0退出，5搜索商品，6进入购物车，7查看个人信息)：");
+        int no= getNum(info,7);
         switch (no){
         case 0:
             return;
         case 1:
-            ClothingVenue::getInstance().showBasicInformation();
+            ClothingVenue::getInstance().showBasicInformation(customer);
             return;
         case 2:
-            SnacksVenue::getInstance().showBasicInformation();
+            SnacksVenue::getInstance().showBasicInformation(customer);
             return;
         case 3:
-            ElectronicVenue::getInstance().showBasicInformation();
+            ElectronicVenue::getInstance().showBasicInformation(customer);
             return;
         case 4:
-            FruitsVenue::getInstance().showBasicInformation();
+            FruitsVenue::getInstance().showBasicInformation(customer);
             return;
-        case 5:
+        case 5:    
+            customer->getSearchEngine()->searchGoods();         
             return;
         case 6:
+            //TODO：暂时没有购物车界面
+            return;
+        case 7:
+            customer->viewBasicInformation();
             return;
         }
     }
@@ -159,7 +163,7 @@ void MainVenue::showInformation() {
 }
 
 //显示分会场的所有商品
-void ClothingVenue::showBasicInformation() {
+void ClothingVenue::showBasicInformation(Customer* customer) {
     int count=0;
     cout << "服装会场有以下店铺及商品：" << '\n';
     for(auto && i : this->shops){
@@ -168,29 +172,101 @@ void ClothingVenue::showBasicInformation() {
     }
     while (1)
     {
-        cout<<"请选择你要去的商店:(1-"<<count<<",0返回)";
-        int num;
-        cin>> num;
+        string info;
+        info="请选择你要去的商店:(1-";
+        info+=to_string(count);
+        info+="，0返回)";
+        int no = getNum(info,count);
+        if (no==0){
+            MainVenue mainvenue;
+            mainvenue.showInformation(customer);
+            return;        
+        }
+        if (no<=count){
+            vector<Shop> shops = getShops();
+            shops[count].showInformation(customer);
+            return;
+        }
     }
-    
-
-
 }
 
-void SnacksVenue::showBasicInformation() {
+void SnacksVenue::showBasicInformation(Customer* customer) {
+    int count=0;
     cout << "零食会场有以下店铺及商品：" << '\n';
-    for(auto && i : this->shops)
+    for(auto && i : this->shops){
         i.showGoods();
+        count++;
+    }
+    while (1)
+    {
+        string info;
+        info="请选择你要去的商店:(1-";
+        info+=to_string(count);
+        info+="，0返回)";
+        int no = getNum(info,count);
+        if (no==0){
+            MainVenue mainvenue;
+            mainvenue.showInformation(customer);
+            return;        
+        }
+        if (no<=count){
+            vector<Shop> shops = getShops();
+            shops[count].showInformation(customer);
+            return;
+        }
+    }
 }
 
-void ElectronicVenue::showBasicInformation() {
+void ElectronicVenue::showBasicInformation(Customer* customer) {
+    int count=0;
     cout << "电子会场有以下店铺及商品：" << '\n';
-    for(auto && i : this->shops)
+    for(auto && i : this->shops){
         i.showGoods();
+        count++;
+    }
+    while (1)
+    {
+        string info;
+        info="请选择你要去的商店:(1-";
+        info+=to_string(count);
+        info+="，0返回)";
+        int no = getNum(info,count);
+        if (no==0){
+            MainVenue mainvenue;
+            mainvenue.showInformation(customer);
+            return;        
+        }
+        if (no<=count){
+            vector<Shop> shops = getShops();
+            shops[count].showInformation(customer);
+            return;
+        }
+    }
 }
 
-void FruitsVenue::showBasicInformation() {
+void FruitsVenue::showBasicInformation(Customer* customer) {
+    int count=0;
     cout << "水果会场有以下店铺及商品：" << '\n';
-    for(auto && i : this->shops)
+    for(auto && i : this->shops){
         i.showGoods();
+        count++;
+    }
+    while (1)
+    {
+        string info;
+        info="请选择你要去的商店:(1-";
+        info+=to_string(count);
+        info+="0，返回)";
+        int no = getNum(info,count);
+        if (no==0){
+            MainVenue mainvenue;
+            mainvenue.showInformation(customer);
+            return;        
+        }
+        if (no<=count){
+            vector<Shop> shops = getShops();
+            shops[count].showInformation(customer);
+            return;
+        }
+    }
 }
