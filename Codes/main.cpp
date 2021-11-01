@@ -81,6 +81,39 @@ void testSingleton() {
     ClothingVenue& instance = ClothingVenue::getInstance();
 }
 
+//测试装饰器模式
+void testDecorator(){
+    //顾客实体
+    Customer customer("Admin","123456789","CN",male,2000.00);
+    //绑定购物车
+    ShoppingCart spct(&customer);
+
+    //商店实体
+    Shop fruit_1("hhhhhhh", "Happy");
+
+    //新建打折优惠券
+    DiscountCoupon cp1(&customer,&fruit_1,0.8);
+    //新建减免优惠券
+    FullReduceCoupon cp2(&customer,&fruit_1,10.00,1.00);
+
+    //模拟订单原始金额
+    double originSum;
+
+    //输入原始金额
+    cout<<"请输入模拟订单的原始金额（元）："<<endl;
+    cin>>originSum;
+
+    //打折后金额
+    double discountSum = cp1.saleMethod(originSum);
+    //减免后金额
+    double fullReduceSum = cp2.saleMethod(originSum);
+
+    //打印
+    cout<<"模拟订单原始金额为："<<originSum<<" 元"<<endl;
+    cout<<"使用打折优惠券后金额为："<<discountSum<<" 元"<<endl;
+    cout<<"使用减免优惠券后金额为："<<fullReduceSum<<" 元"<<endl;
+}
+
 //抽象工厂方法的测试接口，用于为服装商店添加商品
 void testAbstractFactory() {  // coded by jy
     //新建安踏服装店
