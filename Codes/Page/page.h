@@ -7,15 +7,19 @@ using namespace std;
 //命令类，所有用户使用的指令都继承于命令类
 class Command {
 public:
-    //命令的提示符
-    string prompt;  
-    
-    //命令的描述
-    string descrip; 
-
     //命令的执行过程函数
     virtual void execute() = 0; 
+    //设置命令的参数
+    void set(string, string);
+    //获取命令提示符
+    string getPrompt();
+    //获取命令描述
+    string getDescrip();
 protected:
+    //命令的提示符
+    string prompt;      
+    //命令的描述
+    string descrip; 
     Command();
 };
 
