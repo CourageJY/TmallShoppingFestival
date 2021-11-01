@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include "../Shop/shop.h"
+#include <string>
 //#include "../tools.h"
 
 using namespace std;

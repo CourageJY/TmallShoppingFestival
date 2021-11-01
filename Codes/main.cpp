@@ -30,9 +30,7 @@ void testAbstractFactory();
 void testFlyWeight();
 void testNullObject();
 void testProxy();
-void testFactory();
-void testFacade();
-void testState();
+void initial();
 
 int main() {
 //设计模式接口测试
@@ -44,10 +42,23 @@ int main() {
 //    testProxy();
 
     cout<<"中文\n";
+    initial();
 
-/*
     Customer c("cnm", "134560", "14", male, 1222.4);
 
+    
+
+   
+
+    MainVenue venue;
+    venue.showInformation();
+
+    system("pause");
+    return 0;
+}
+
+void initial()
+{
     Shop fruit_1("hhhhhhh", "Happy");
     fruit_1.addGoods(Goods("apple", 5, &fruit_1), 10);
     fruit_1.addGoods(Goods("banana", 25, &fruit_1), 10);
@@ -60,24 +71,10 @@ int main() {
     fruit_3.addGoods(Goods("mango", 15, &fruit_3), 10);
     fruit_3.addGoods(Goods("grape", 35, &fruit_3), 10);
 
-    FruitsVenue& fruitInstance = FruitsVenue::getInstance();
+     FruitsVenue& fruitInstance = FruitsVenue::getInstance();
     fruitInstance.addShop(fruit_1);
-    fruitInstance.showBasicInformation();
-
-    FruitsVenue& fruitInstance1 = FruitsVenue::getInstance();
-    fruitInstance1.addShop(fruit_3);
-    fruitInstance1.showBasicInformation();
-
-    MainVenue venue;
-    SearchEngine s;
-    s.searchGoods();
-
-
-    system("pause");
-
-*/
-    testFactory();
-    return 0;
+    fruitInstance.addShop(fruit_2);
+    fruitInstance.addShop(fruit_3);
 }
 
 //测试单例模式的接口
@@ -154,42 +151,13 @@ void testAbstractFactory() {  // coded by jy
 }
 
 //测试简单工厂模式和策略模式的接口
-void testFactory() {
-    Customer customer("cnm", "134560", "14", male, 1222.4);
-
-    Shop fruit_1("hhhhhhh", "Happy");
-    Goods g1("apple", 5, &fruit_1);
-    Goods g2("banana", 25, &fruit_1);
-    fruit_1.addGoods(g1,10);
-    fruit_1.addGoods(g2, 10);
-
-    ShoppingCart* s=customer.getShoppingCart();
-    s->addGoods(g1);s->addGoods(g2);
-
-    s->generateOrder(s->getGoodsMap());
-//    customer.payOrder();
-}
+void testFactory(Customer* c) { c->payOrder(); }
 //测试外观模式的接口
-void testFacade() {
-    Customer* customer=new Customer("cnm", "134560", "14", male, 1222.4);
-
-    Shop fruit_1("hhhhhhh", "Happy");
-    Goods g1("apple", 5, &fruit_1);
-    Goods g2("banana", 25, &fruit_1);
-    fruit_1.addGoods(g1,10);
-    fruit_1.addGoods(g2, 10);
-
-    ShoppingCart* s=customer->getShoppingCart();
-    s->setGoodsNum(g1,2);s->setGoodsNum(g2,2);
-    s->generateOrder(s->getGoodsMap());
-    AfterSale afterSale(customer);
+void testFacade(Customer* c) {
+    AfterSale afterSale(c);
     afterSale.returned();
 }
-//测试状态模式的接口
-void testState() {
-    Customer* customer=new Customer("cnm", "134560", "14", male, 1222.4);
-    customer->check();
-}
+void testState(Customer* c) { c->check(); }
 
 //测试享元模式的接口（coded by jy）
 void testFlyWeight() {

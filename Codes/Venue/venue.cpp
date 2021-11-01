@@ -130,8 +130,7 @@ void MainVenue::showInformation() {
     cout << "2. 零食会场" << '\n';
     cout << "3. 电子会场" << '\n';
     cout << "4. 水果会场" << '\n';
-    string s("");
-    while (s == ""){
+    while (1){
         string info("请选择你想去的会场(1-4, 0退出，5进入购物车，6查看个人信息)：");
         int no= getNum(info,6);
         switch (no){
@@ -149,7 +148,7 @@ void MainVenue::showInformation() {
         case 4:
             FruitsVenue::getInstance().showBasicInformation();
             return;
-        case 5:
+        case 5:             //5、6未完成
             return;
         case 6:
             return;
@@ -168,13 +167,22 @@ void ClothingVenue::showBasicInformation() {
     }
     while (1)
     {
-        cout<<"请选择你要去的商店:(1-"<<count<<",0返回)";
-        int num;
-        cin>> num;
+        string info;
+        info="请选择你要去的商店:(1-";
+        info+=to_string(count);
+        info+="，0返回)";
+        int no = getNum(info,count);
+        if (no==0){
+            MainVenue mainvenue;
+            mainvenue.showInformation();
+            return;        
+        }
+        if (no<=count){
+            vector<Shop> shops = getShops();
+            shops[count].showInformation();
+            return;
+        }
     }
-    
-
-
 }
 
 void SnacksVenue::showBasicInformation() {
@@ -190,7 +198,28 @@ void ElectronicVenue::showBasicInformation() {
 }
 
 void FruitsVenue::showBasicInformation() {
+    int count=0;
     cout << "水果会场有以下店铺及商品：" << '\n';
-    for(auto && i : this->shops)
+    for(auto && i : this->shops){
         i.showGoods();
+        count++;
+    }
+    while (1)
+    {
+        string info;
+        info="请选择你要去的商店:(1-";
+        info+=to_string(count);
+        info+="0，返回)";
+        int no = getNum(info,count);
+        if (no==0){
+            MainVenue mainvenue;
+            mainvenue.showInformation();
+            return;        
+        }
+        if (no<=count){
+            vector<Shop> shops = getShops();
+            shops[count].showInformation();
+            return;
+        }
+    }
 }
