@@ -47,22 +47,30 @@ void Shop::showGoods() {
 }
 
 void Shop::showComments() {
+    commentsListIterator* cmli=ca->getIterator();
     cout << "本店评价：" << endl << endl;
-    if(this->comments.size() == 0){
-        cout << "" << endl;
-        return;
-    }
+    // if(this->comments.size() == 0){
+    //     cout << "" << endl;
+    //     return;
+    // }
 
-    for (auto&& i : this->comments) {
-        cout << "    " << i->getCustomer()->getName() << "：" << i->getContent()
-             << endl
-             << endl;
-    }
+    // for (auto&& i : this->comments) {
+    //     cout << "    " << i->getCustomer()->getName() << "：" << i->getContent()
+    //          << endl
+    //          << endl;
+    // }
+    if(!cmli->first())
+       { 
+            cout<<"    "<<cmli->first()->getCustomer()->getName()<<":"<<cmli->first()->getContent();
+            while(cmli->hasNext()){
+                cout<<"    "<<cmli->next()->getCustomer()->getName()<<":"<<cmli->next()->getContent();
+            }
+        }
     cout << "-------------------------------------------" << endl << endl;
 }
 
 //暂定为展示店铺信息，与店铺交互
-void Shop::showInformation(Customer* customer) {
+void Shop::showInformation() {
     cout << "-------------------------------------------" << endl;
     cout << "欢迎光临" << this->name << "，请选择您的操作：" << endl << endl;
     cout << "1、浏览商品" << endl;

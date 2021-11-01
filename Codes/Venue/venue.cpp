@@ -152,10 +152,8 @@ void MainVenue::showInformation(Customer* customer) {
             customer->getSearchEngine()->searchGoods();         
             return;
         case 6:
-            //TODO：暂时没有购物车界面
             return;
         case 7:
-            customer->viewBasicInformation();
             return;
         }
     }
@@ -184,7 +182,7 @@ void ClothingVenue::showBasicInformation(Customer* customer) {
         }
         if (no<=count){
             vector<Shop> shops = getShops();
-            shops[count].showInformation(customer);
+            shops[count].showInformation();
             return;
         }
     }
@@ -211,7 +209,7 @@ void SnacksVenue::showBasicInformation(Customer* customer) {
         }
         if (no<=count){
             vector<Shop> shops = getShops();
-            shops[count].showInformation(customer);
+            shops[count].showInformation();
             return;
         }
     }
@@ -238,7 +236,7 @@ void ElectronicVenue::showBasicInformation(Customer* customer) {
         }
         if (no<=count){
             vector<Shop> shops = getShops();
-            shops[count].showInformation(customer);
+            shops[count].showInformation();
             return;
         }
     }
@@ -265,7 +263,7 @@ void FruitsVenue::showBasicInformation(Customer* customer) {
         }
         if (no<=count){
             vector<Shop> shops = getShops();
-            shops[count].showInformation(customer);
+            shops[count].showInformation();
             return;
         }
     }
