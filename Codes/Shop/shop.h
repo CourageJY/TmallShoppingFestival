@@ -57,6 +57,9 @@ public:
     //显示店铺评价
     void showComments();
 
+    //显示店铺优惠券
+    void showCoupons();
+
     //下架商品，为实现Observer模式添加的功能
     void pullOffGoods(Goods gd);
 

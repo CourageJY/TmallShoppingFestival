@@ -4,10 +4,10 @@
 #include "../Shop/brand.h"
 
 //过滤器
-class Criteria
+class Filter
 {
 public:
-	Criteria() {}
+	Filter() {}
 
 	virtual map<Goods, int> filterGoods(map<Goods, int> goods) { return map<Goods, int>(); }
 
@@ -18,21 +18,21 @@ private:
 };
 
 //&&过滤器
-class AndCriteria :public Criteria {
+class AndFilter :public Filter {
 public:
-	AndCriteria(Criteria c1, Criteria c2) :criteria(c1), otherCriteria(c2) {}
+	AndFilter(Filter c1, Filter c2) :criteria(c1), otherCriteria(c2) {}
 
 	map<Goods, int> filterGoods(map<Goods, int> goods);
 
 private:
-	Criteria criteria;
-	Criteria otherCriteria;
+	Filter criteria;
+	Filter otherCriteria;
 };
 
 //价格过滤器
-class PriceCriteria :public Criteria {
+class PriceFilter :public Filter {
 public:
-	PriceCriteria(double lp,double up):lowerPrice(lp), upperPrice(up) {}
+	PriceFilter(double lp,double up):lowerPrice(lp), upperPrice(up) {}
 
 	map<Goods, int> filterGoods(map<Goods, int> goods);
 
@@ -43,9 +43,9 @@ private:
 };
 
 //品牌过滤器
-class BrandCriteria :public Criteria {
+class BrandFilter :public Filter {
 public:
-	BrandCriteria(Brand* sb) :standardBrand(sb) {}
+	BrandFilter(Brand* sb) :standardBrand(sb) {}
 
 	map<Goods, int> filterGoods(map<Goods, int> goods);
 
