@@ -99,7 +99,7 @@ bool ShoppingCart::generateOrder(map<Goods,int> gds){
     bool sus=true;
     map<Goods,int>::iterator it;
     for(it=gds.begin();it!=gds.end();it++){
-        if(0){//店铺中已没有该商品
+        if(it->first.getShop()->getGoods()[it->first]-gds[it->first]<0){//店铺中已没有该商品
             sus=false;
             break;
         }
@@ -113,12 +113,12 @@ bool ShoppingCart::generateOrder(map<Goods,int> gds){
         goodsData->remove(it->first);
     }
     for(it=gds.begin();it!=gds.end();it++){//从店铺中减去对应商品
-           
+
     }
     //新建订单并将其加入到customer的order容器中
     Order* newOd=new Order(this->customer);
     for(it=gds.begin();it!=gds.end();it++){
-        for(int i=0;i<it->second;it++){
+        for(int i=0;i<it->second;i++){
             newOd->getGoods().push_back(it->first);
         }
     }
@@ -130,6 +130,15 @@ void ShoppingCart::update(Goods* gd){
     //当商品对象被删除时，同步清除购物车里的对应商品，并打印通知
     removeGoods(*gd);
     cout<<"Observers updated: Some goods in the shopping-cart have been pulled off by the shops！"<<endl;
+}
+
+void ShoppingCart::showAllGoods() {
+    map<Goods,int>::iterator it;
+    cout<<"当前购物车有如下商品：\n";
+    for(it=goodsData->getMap().begin();it!=goodsData->getMap().end();it++){
+        cout<<it->first.getName()<<"  价格："<<it->first.getPrice()
+            <<"  数量："<<it->second<<endl;
+    }
 }
 
 //注意！在这里实现了Goods类的通知Observer的方法

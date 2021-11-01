@@ -41,6 +41,23 @@ int main() {
 //    testProxy();
 
     cout<<"中文\n";
+    Customer c("cnm", "134560", "14", male, 1222.4);
+    Shop fruit_2("ssssss", "Sad");
+
+//    fruit_2.addGoods(Goods("pear", 10, &fruit_2), 10);
+//    fruit_2.addGoods(Goods("orange", 30, &fruit_2), 10);
+//    fruit_2.showGoods();
+    Goods gd("pear", 10, &fruit_2);
+    for(int i=0;i<3;i++){
+        //c.getShoppingCart()->addGoods(Goods("pear", 10, &fruit_2))
+        c.getShoppingCart()->addGoods(gd);
+    }
+    fruit_2.addGoods(gd,3);
+    c.getShoppingCart()->showAllGoods();
+    c.getShoppingCart()->generateOrder(c.getShoppingCart()->getGoodsMap());
+    c.check();
+    
+
 
 /*
     Customer c("cnm", "134560", "14", male, 1222.4);

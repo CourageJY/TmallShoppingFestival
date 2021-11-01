@@ -18,7 +18,7 @@ void Customer::viewBasicInformation(){
 }
 
 void Customer::check(){
-    cout<<"请输入您想查看的订单类型（1/2/3）：1为待支付，2为已支付，3为已取消\n";
+    cout<<"请输入您想查看的订单类型（1/2/3）：1为待支付，2为已支付，3为已取消:\n";
     int orderType;
     cin>>orderType;
     while(orderType<1||orderType>3){
