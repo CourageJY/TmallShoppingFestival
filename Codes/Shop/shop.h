@@ -35,9 +35,10 @@ public:
     //函数为纯虚函数，将Shop类变为抽象类，以便实现模板模式
     virtual bool getCoupons(Customer* cm){return true;};
 
-    vector<Comment*>& getComments() {return comments; };
+    // vector<Comment*>& getComments() {return comments; };
 
     //店铺收到评价
+    // void receiverComment(Comment* com){this->comments.push_back(com);};
     void receiverComment(Comment* com) { ca->add(com); };//operate
 
     //店铺添加商品
@@ -64,7 +65,7 @@ public:
     Brand* brand;//这里使用了指针，直接指向享元的内存池，减少内存消耗
     map<Goods, int> goods;  // map类型
     vector<Coupon> coupons;
-    vector<Comment*> comments;
+    // vector<Comment*> comments;
     ConcreteAggregate* ca;            //关于该店铺商品评论的集合
 
 };
