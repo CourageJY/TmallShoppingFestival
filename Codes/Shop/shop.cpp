@@ -104,7 +104,7 @@ void Shop::showInformation() {
     info+="欢迎光临";
     info+=this->name;
     info+="，\n\n";
-    info+="1、浏览商品\n2、查看店铺评价\n3、对店铺进行评价\n4、查看店铺优惠券\n5、退出商店\n请选择您的操作：";
+    info+="1、浏览商品\n2、查看店铺评价\n3、对店铺进行评价\n4、查看店铺优惠券\n0、退出商店\n请选择您的操作：";
     int order;
     while (true) {
         order = getNum_shop(info,5);
@@ -124,7 +124,7 @@ void Shop::showInformation() {
                 this->showCoupons();
                 system("pause");
                 continue;
-            case 5:
+            case 0:
                 return;
         }
     }
@@ -133,12 +133,12 @@ void Shop::showInformation() {
 void Shop::pullOffGoods(Goods gd){
     if(goods.count(gd)){
         //通知所有加入了该商品的的购物车
+        /* cout<<"pullOffGoods()方法调用Goods的notify()方法。"<<endl; */
         gd.notify();
 
-        //从上架商品map中删除该商品
-        goods.erase(gd);
+        int ct = this->goods.erase(gd);//测试通过
 
-        cout<<"商品已下架！"<<endl;
+        cout<<"pullOffGoods()方法结束，"<<ct<<"个商品已下架！"<<endl;
     }else
         cout<<"商品不存在！"<<endl;
 }

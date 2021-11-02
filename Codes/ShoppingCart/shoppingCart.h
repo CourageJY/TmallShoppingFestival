@@ -44,7 +44,7 @@ public:
     map<Goods,int>& getGoodsMap();
 
     //Observer同步更新
-    void update(Goods*);
+    void update(Goods);
 
 private:
     CartData* goodsData;//为一个map的key-value映射表，初始为空

@@ -3,13 +3,32 @@
 #include "../Order/checkOrder.h"
 
 void Customer::viewBasicInformation(){
-    cout<<"以下是您的基本信息：\n";
-    cout<<"姓名："<<name<<'\n';
-    cout<<"电话号码："<<tel<<'\n';
-    cout<<"居住地址："<<addr<<'\n';
-    cout<<"性别："<<(gender==male?"男":"女")<<'\n';
-    cout<<"您剩余的金额为："<<money<<'\n';
-    cout<<"--------------------------\n";
+    string info("请选择你的操作(0:返回,1:查看优惠券,2:查看订单)");
+    int order;
+    while (1){
+        system("cls");
+        cout<<"以下是您的基本信息：\n";
+        cout<<"姓名："<<name<<'\n';
+        cout<<"电话号码："<<tel<<'\n';
+        cout<<"居住地址："<<addr<<'\n';
+        cout<<"性别："<<(gender==male?"男":"女")<<'\n';
+        cout<<"您剩余的金额为："<<money<<'\n';
+        cout<<"--------------------------\n";
+        order=getNum(info,2);
+        if (order==0)
+            return;
+        if (order==1){
+            showCoupons();
+            continue;
+        }
+        if (order==2){
+            payOrder();
+            continue;
+        }
+         continue;
+    }
+    system("pause");
+    
 //    cout<<"It's your basic Information:\n";
 //    cout<<"name: "<<name<<'\n';
 //    cout<<"tel: "<<tel<<'\n';
