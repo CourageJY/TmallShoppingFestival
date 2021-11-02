@@ -63,12 +63,12 @@ bool Customer::payOrder(){
     else{
         if( money>=vec[x-1].getSum()&&vec[x-1].pay()){
             money-=vec[x-1].getSum();
-            orders[id[x-1]].getState()=paid;//修改订单状态
+            orders[id[x-1]].setState(paid);//修改订单状态
             return true;
         }
         else{
             cout<<"支付失败！金额不足或订单未处于待支付状态！\n";
-            orders[id[x-1]].getState()=error;//修改订单状态
+            orders[id[x-1]].setState(error);//修改订单状态
             return false;
         }
     }

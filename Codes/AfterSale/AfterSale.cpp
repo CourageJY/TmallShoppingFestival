@@ -13,13 +13,18 @@ void GoodsInformation::getGoodsInformation(Customer* c){
     vector<Goods>::iterator y;
     for (x=c->getOrders().begin();x!=c->getOrders().end();x++){
         if (x->getState()==paid){
-            for (y=x->getGoods().begin();y!=x->getGoods().end();y++){
-                if (y->getName()==goodsName){
-                    cout<<"当前商品基本信息如下:"<<endl;
-                    cout<<"名称:"<<y->getName()<<endl;
-                    cout<<"价格:"<<y->getPrice()<<endl;
-                    cout<<"所属商店:"<<y->getShop()<<endl;
+            while (1)
+            {
+                for (y=x->getGoods().begin();y!=x->getGoods().end();y++){
+                    if (y->getName()==goodsName) {
+                        cout << "当前商品基本信息如下:" << endl;
+                        cout << "名称:" << y->getName() << endl;
+                        cout << "价格:" << y->getPrice() << endl;
+                        cout << "所属商店:" << y->getShop() << endl;
+                    }
                 }
+                if (y==x->getGoods().end()) {cout<<"没有找到您要退货的商品，请重新输入您要退货的商品的名字:";cin>>goodsName;}
+                else break;
             }
         }
     }

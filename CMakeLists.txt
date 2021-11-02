@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fexec-charset=GBK")
 
 include_directories(Codes/AfterSale)
-include_directories(Codes/Criteria)
+include_directories(Codes/Filter)
 include_directories(Codes/Mediator)
 include_directories(Codes/Order)
 include_directories(Codes/Page)

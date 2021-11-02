@@ -46,10 +46,10 @@ int main() {
     //testNullObject();
     //testProxy();
     //testFactory();
-    //testFacade();
+    testFacade();
     //testFilter();
     //testObserver();
-    testState();
+    //testState();
     //初始化各分会场及其店铺信息
     //initial();
 
@@ -243,7 +243,6 @@ void testFacade() {
     s->generateOrder(s->getGoodsMap());
     customer->payOrder();
     customer->viewBasicInformation();
-    customer->check();
     AfterSale afterSale(customer);
     afterSale.returned();
 }
