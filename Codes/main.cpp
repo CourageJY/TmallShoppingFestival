@@ -44,19 +44,19 @@ int main() {
 //    testNullObject();
 //    testProxy();
 
-    cout<<"中文\n";
+//    cout<<"中文\n";
     testFactory();
-    initial();
-
-    Customer c("cnm", "134560", "14", male, 1222.4);
-
-
-
-   
-
-    MainVenue venue;
-    venue.showInformation();
-    system("pause");
+//    initial();
+//
+//    Customer* customer=new Customer("cnm", "134560", "14", male, 1222.4);
+//
+//
+//
+//
+//
+//    MainVenue venue;
+//    venue.showInformation(customer);
+//    system("pause");
     return 0;
 }
 

@@ -118,7 +118,7 @@ bool ShoppingCart::generateOrder(map<Goods,int> gds){
     //新建订单并将其加入到customer的order容器中
     Order* newOd=new Order(this->customer);
     for(it=gds.begin();it!=gds.end();it++){
-        for(int i=0;i<it->second;it++){
+        for(int i=0;i<it->second;i++){
             newOd->getGoods().push_back(it->first);
         }
     }
