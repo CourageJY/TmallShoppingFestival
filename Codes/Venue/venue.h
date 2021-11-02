@@ -44,7 +44,7 @@ class MainVenue {
 class ClothingVenue : public MainVenue {
    public:
     void showBasicInformation(Customer* customer) override;
-    void addShop(const Shop& shop) { this->shops.push_back(shop); }
+    void addShop(Shop shop) { this->shops.push_back(shop); }
     vector<Shop>& getShops() { return shops; }
 
     //获取会场所有店铺的商品
@@ -83,7 +83,7 @@ class ClothingVenue : public MainVenue {
 class SnacksVenue : public MainVenue {
    public:
     void showBasicInformation(Customer* customer) override;
-    void addShop(const Shop& shop) { this->shops.push_back(shop); }
+    void addShop(Shop shop) { this->shops.push_back(shop); }
     vector<Shop>& getShops() { return shops; }
 
     //获取会场所有店铺的商品
@@ -119,7 +119,7 @@ class SnacksVenue : public MainVenue {
 class ElectronicVenue : public MainVenue {
    public:
     void showBasicInformation(Customer* customer) override;
-    void addShop(const Shop& shop) { this->shops.push_back(shop); }
+    void addShop(Shop shop) { this->shops.push_back(shop); }
     vector<Shop>& getShops() { return shops; }
 
     //获取会场所有店铺的商品
@@ -155,7 +155,7 @@ class ElectronicVenue : public MainVenue {
 class FruitsVenue : public MainVenue {
    public:
     void showBasicInformation(Customer* customer) override;
-    void addShop(const Shop& shop) { this->shops.push_back(shop); }
+    void addShop(Shop shop) { this->shops.push_back(shop); }
     vector<Shop>& getShops() { return shops; }
 
     //获取会场所有店铺的商品

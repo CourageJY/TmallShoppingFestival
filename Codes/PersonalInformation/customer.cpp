@@ -51,7 +51,16 @@ void Customer::check(){
 }
 
 void Customer::showCoupons(){
-
+    cout<<"您目前拥有以下优惠券：\n\n";
+    //显示所有优惠券信息
+    int k=1;
+    for (auto&& i : this->coupons) {
+        cout<<k<<endl;
+        cout << "-------------------------------------------\n" << endl;
+        i->showInformation();
+        k++;
+    }
+    system("pause");
 }
 
 bool Customer::payOrder(){

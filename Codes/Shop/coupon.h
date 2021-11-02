@@ -19,21 +19,30 @@ class Shop;
 class Coupon {
 public:
     //构造函数默认优惠券使用时间是一个月（30天） 2592000秒
-    Coupon(Customer *c, Shop *s) : customer(c), shop(s), couponState(unused) {
+    Coupon(Shop *s) : customer(nullptr), shop(s), couponState(unused) {
         time_t lt = time(nullptr);
         outDate = lt + 2592000;
     }
 
     //使用折扣以后的售价，参数x为原价，返回折后价格
-    virtual double saleMethod(double x) { return 0; }
-
+    virtual double saleMethod(double x) =0;//纯虚函数
+    
+    //显示优惠券的基本信息
+    virtual void showInformation()=0;
+    
     virtual void changeStateToUsed() { couponState = used; }
 
     void checkOverdue();
 
-    Customer *getCustomer() { return customer; }
+    //得到顾客指针
+    Customer*& getCustomer() { return customer; }
 
-    Shop *getShop() { return shop; }
+    //设置顾客
+    void setCustomer(Customer* cu){
+        customer=cu;
+    }
+
+    Shop*& getShop() { return shop; }
 
     CouponState getCouponState() { return couponState; }
 
@@ -52,10 +61,13 @@ protected:
 //折扣类型的优惠
 class DiscountCoupon : public Coupon {
 public:
-    DiscountCoupon(Customer *c, Shop *s, double ds) : Coupon(c, s), discount(ds) {}
+    DiscountCoupon(Shop *s, double ds) : Coupon(s), discount(ds) {}
 
     //返回使用折扣类型使商品打折后的价格
     double saleMethod(double x) override;
+
+    //显示基本信息
+    void showInformation() override;
 
     void changeStateToUsed() override;
 
@@ -70,10 +82,13 @@ private:
 //满减类型的优惠
 class FullReduceCoupon : public Coupon {
 public:
-    FullReduceCoupon(Customer *c, Shop *s, double std, double rt) : Coupon(c, s), standard(std), reduction(rt) {}
+    FullReduceCoupon(Shop *s, double std, double rt) : Coupon(s), standard(std), reduction(rt) {}
 
     //返回使用满减类型使商品减价后的价格
     double saleMethod(double x) override;
+
+    //显示基本信息
+    void showInformation() override;
 
     void changeStateToUsed() override;
 

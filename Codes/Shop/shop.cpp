@@ -45,6 +45,7 @@ void Shop::setGoods(vector<string> names, vector<double> prices,
 }
 
 void Shop::showGoods() {
+    system("cls");//清空屏幕
     cout << this->name << "有以下商品：" << endl << endl;
     if(this->goods.size() == 0){
         cout << "" << endl;
@@ -53,7 +54,7 @@ void Shop::showGoods() {
     
     for (auto&& i : this->goods) {
         cout << "商品名字：" << i.first.getName() << endl;
-        cout << "价格: " << i.first.getPrice() << "yuan" << endl;
+        cout << "价格: " << i.first.getPrice() << " 元" << endl;
         cout << "过期时间: " << i.first.getOutDate() << endl;
         cout << "店内库存: " << i.second << endl << endl;
     }
@@ -84,21 +85,44 @@ void Shop::showComments() {
 }
 
 //显示店铺优惠券，内容待定
-void Shop::showCoupons() {
-    cout << this->name << "has: " << endl << endl;
+void Shop::showCoupons(Customer* customer) {
+    system("cls");
+    cout << this->name << "的优惠券信息如下: " << endl << endl;
     if(this->coupons.size() == 0){
-        cout << "" << endl;
+        cout << "抱歉！本店的优惠券已已被领取完毕" << endl;
         return;
     }
-    
+    //显示所有优惠券信息
+    int k=1;
     for (auto&& i : this->coupons) {
-        
+        cout<<k<<endl;
+        cout << "-------------------------------------------" << endl;
+        i->showInformation();
+        k++;
     }
+    string info;
+    info="请选择您想要领取的优惠券(1~";
+    info+=to_string(k-1);
+    info+=",0退出):";
+    int od=getNum(info,k-1);
+
+    if(od==0)return;
+
+    //在顾客容器中加上该优惠券
+    customer->getCoupons().push_back(coupons[od-1]);
+
+    //从商店中减去该优惠券
+    coupons.erase(coupons.begin()+(od-1));//?这里是指针类型，以配合多态实现
+
+    Sleep(1000);
+
+    cout<<"恭喜！ 你已经成功领取了该优惠券\n";
     cout << "-------------------------------------------" << endl << endl;
+    //system("pause");
 }
 
 //展示店铺信息，与店铺交互
-void Shop::showInformation() {
+void Shop::showInformation(Customer* customer) {
     string info;
     info+="-------------------------------------------\n";
     info+="欢迎光临";
@@ -107,6 +131,7 @@ void Shop::showInformation() {
     info+="1、浏览商品\n2、查看店铺评价\n3、对店铺进行评价\n4、查看店铺优惠券\n0、退出商店\n请选择您的操作：";
     int order;
     while (true) {
+        system("cls");
         order = getNum_shop(info,5);
         switch (order) {
             case 1:
@@ -121,7 +146,7 @@ void Shop::showInformation() {
                 //TODO:ADDComments?
                 continue;
             case 4:
-                this->showCoupons();
+                this->showCoupons(customer);
                 system("pause");
                 continue;
             case 0:

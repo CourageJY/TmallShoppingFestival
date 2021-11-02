@@ -8,20 +8,23 @@
 #include"../tools.h"
 using namespace std;
 
+class Customer;
+class Shop;
+
 //SearchEngine用于实现命令模式，将搜素功能封装成一个实体类
 //一个SearchEngine和一个用户绑定
 class SearchEngine{
 public:
     SearchEngine(){};
-    void searchGoods();            //搜索功能
-    void rollBack();               //返回到上一个搜索结果
+    void searchGoods(Customer* customer);            //搜索功能
+    void rollBack(Customer* customer);               //返回到上一个搜索结果
 
     void emptyHistory() { history.empty(); };   
     void showHistory();
 
 private:
     vector<string> history;         //搜索历史
-    void search(string name);     //实现搜索
+    void search(string name,Customer* customer);     //实现搜索
 };
 
 //SearchAdaptor类用于适配不同的搜索方法

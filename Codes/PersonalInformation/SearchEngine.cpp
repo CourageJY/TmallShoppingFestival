@@ -1,4 +1,6 @@
 #include "SearchEngine.h"
+#include "../PersonalInformation/customer.h"
+#include "../Shop/shop.h"
 
 vector<Goods> SearchAdaptor::getAllGoods(){
     vector<Goods> matchedgoods; //匹配的商品
@@ -12,14 +14,14 @@ vector<Goods> SearchAdaptor::getAllGoods(){
     return matchedgoods;
 }
 
-void SearchEngine::searchGoods(){
+void SearchEngine::searchGoods(Customer* customer){
     string productName("");
     while (1){
         system("cls");
         cout <<"请输入商品名(0:返回,1:查看上一次搜索结果,2:清空历史记录,3:显示历史记录):";
         cin >> productName;
         if (productName=="0"){
-            rollBack();
+            rollBack(customer);
             continue;
         }
         if (productName=="1"){
@@ -39,18 +41,18 @@ void SearchEngine::searchGoods(){
             cout << "至少输入两个字符" << endl;
             continue;
         }
-        search(productName);
+        search(productName,customer);
         history.push_back(productName);
         continue;
     }
     return;
 }
 
-void SearchEngine::rollBack(){
+void SearchEngine::rollBack(Customer* customer){
     if (!history.empty()){
         string s;
         history.pop_back();
-        search(s);
+        search(s,customer);
     }
 }
 
@@ -63,7 +65,7 @@ void SearchEngine::showHistory(){
     system("pause");
 }
 
-void SearchEngine::search(string name){
+void SearchEngine::search(string name,Customer* customer){
     SearchAdaptor adaptor;
     vector<Goods> allGoods = adaptor.getAllGoods();
     vector<Goods> matchedGoods;
@@ -94,7 +96,7 @@ void SearchEngine::search(string name){
         if(order==0)
             return;
         if(order<=i){
-            matchedGoods[i-1].getShop()->showInformation();
+            matchedGoods[i-1].getShop()->showInformation(customer);
             return;
         }
     }

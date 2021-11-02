@@ -83,16 +83,20 @@ public:
     void writeCommment(Mediator med, Comment com) { med.sendComment(&com); }
 
     string getName(){return name;}
+
     string getTel(){return tel;}
+
     string getAddress(){return addr;}
+
     double& getMoney(){return money;}
+    
     string getProfile(){return profile;}
 
     ShoppingCart* getShoppingCart(){return shoppingCart;}
 
     vector<Order>& getOrders(){return orders;}
 
-    vector<Coupon>& getCoupons(){return coupons;}
+    vector<Coupon*>& getCoupons(){return coupons;}
 
     SearchEngine* getSearchEngine(){return searchEngine;};
 
@@ -105,7 +109,7 @@ private:
     double money;
     ShoppingCart* shoppingCart;
     vector<Order> orders;//初始为空
-    vector<Coupon> coupons;//初始为空
+    vector<Coupon*> coupons;//初始为空
     SearchEngine* searchEngine;
 };
 

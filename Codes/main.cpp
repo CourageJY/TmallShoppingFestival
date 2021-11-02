@@ -85,57 +85,90 @@ void initial()
     snack_2->addGoods(Goods("维他奶",3.8,snack_2),10);
     snack_2->addGoods(Goods("小三明治",8,snack_2),10);
 
+    //添加优惠券
+    snack_1->addCoupons(new FullReduceCoupon(snack_1,50,5));
+    snack_1->addCoupons(new DiscountCoupon(snack_1,0.97));
+
+    snack_2->addCoupons(new FullReduceCoupon(snack_2,50,5));
+    snack_2->addCoupons(new DiscountCoupon(snack_2,0.97));
+
     sv.addShop(*snack_1);
     sv.addShop(*snack_2);
 
     //电气会场信息添加
     ElectronicVenue& ev=ElectronicVenue::getInstance();
     
-    Shop elec_1("华为手机店","华为");
-    Shop elec_2("华为专卖店","华为");
-    Shop elec_3("苹果手机专卖店","APPLE");
-    Shop elec_4("苹果电脑专卖店","APPLE");
+    Shop* elec_1=new Shop("华为手机店","华为");
+    Shop* elec_2=new Shop("华为专卖店","华为");
+    Shop* elec_3=new Shop("苹果手机专卖店","APPLE");
+    Shop* elec_4=new Shop("苹果电脑专卖店","APPLE");
 
-    elec_1.addGoods(Goods("nova8",2500,&elec_1),4);
-    elec_1.addGoods(Goods("P40",4500,&elec_2),3);
+    //添加商品
+    elec_1->addGoods(Goods("nova8",2500,elec_1),4);
+    elec_1->addGoods(Goods("P40",4500,elec_2),3);
 
-    elec_2.addGoods(Goods("MatePad",4000,&elec_2),4);
-    elec_2.addGoods(Goods("MateBook",7000,&elec_2),3);
+    elec_2->addGoods(Goods("MatePad",4000,elec_2),4);
+    elec_2->addGoods(Goods("MateBook",7000,elec_2),3);
 
-    elec_3.addGoods(Goods("iphone12",6000,&elec_3),5);
-    elec_3.addGoods(Goods("iphone13",7000,&elec_3),4);
-    elec_3.addGoods(Goods("iphone13 pro",8000,&elec_3),3);
+    elec_3->addGoods(Goods("iphone12",6000,elec_3),5);
+    elec_3->addGoods(Goods("iphone13",7000,elec_3),4);
+    elec_3->addGoods(Goods("iphone13 pro",8000,elec_3),3);
 
-    elec_4.addGoods(Goods("ipad air4",6000,&elec_4),4);
-    elec_4.addGoods(Goods("ipad pro",7000,&elec_4),3);
+    elec_4->addGoods(Goods("ipad air4",6000,elec_4),4);
+    elec_4->addGoods(Goods("ipad pro",7000,elec_4),3);
+    
+    //添加优惠券
+    elec_1->addCoupons(new FullReduceCoupon(elec_1,5000,100));
+    elec_1->addCoupons(new DiscountCoupon(elec_1,0.8));
 
-    ev.addShop(elec_1);
-    ev.addShop(elec_2);
-    ev.addShop(elec_3);
-    ev.addShop(elec_4);
+    elec_2->addCoupons(new FullReduceCoupon(elec_2,5500,300));
+    elec_2->addCoupons(new DiscountCoupon(elec_2,0.9));
+
+    elec_3->addCoupons(new FullReduceCoupon(elec_3,6000,200));
+    elec_3->addCoupons(new DiscountCoupon(elec_3,0.85));
+
+    elec_4->addCoupons(new FullReduceCoupon(elec_4,7000,150));
+    elec_4->addCoupons(new DiscountCoupon(elec_4,0.82));
+
+    ev.addShop(*elec_1);
+    ev.addShop(*elec_2);
+    ev.addShop(*elec_3);
+    ev.addShop(*elec_4);
 
     //水果会场信息添加
     FruitsVenue& fv=FruitsVenue::getInstance();
 
-    Shop fruit_1("水果杂铺店", "同济专享");
-    Shop fruit_2("西部特产水果店", "新疆经典");
-    Shop fruit_3("农家自产水果店", "农家特产");
+    Shop* fruit_1=new Shop("水果杂铺店", "同济专享");
+    Shop* fruit_2=new Shop("西部特产水果店", "新疆经典");
+    Shop* fruit_3=new Shop("农家自产水果店", "农家特产");
 
-    fruit_1.addGoods(Goods("小苹果",4,&fruit_1),20);
-    fruit_1.addGoods(Goods("雪梨",3.5,&fruit_2),15);
-    fruit_1.addGoods(Goods("大香蕉",5,&fruit_1),10);
+    fruit_1->addGoods(Goods("小苹果",4,fruit_1),20);
+    fruit_1->addGoods(Goods("雪梨",3.5,fruit_2),15);
+    fruit_1->addGoods(Goods("大香蕉",5,fruit_1),10);
 
-    fruit_2.addGoods(Goods("葡萄",4,&fruit_2),10);
-    fruit_2.addGoods(Goods("大西瓜",20,&fruit_3),10);
-    fruit_2.addGoods(Goods("哈密瓜",25,&fruit_2),10);
+    fruit_2->addGoods(Goods("葡萄",4,fruit_2),10);
+    fruit_2->addGoods(Goods("大西瓜",20,fruit_3),10);
+    fruit_2->addGoods(Goods("哈密瓜",25,fruit_2),10);
 
-    fruit_3.addGoods(Goods("小桔子",2,&fruit_3),50);
-    fruit_3.addGoods(Goods("梁山柚",8,&fruit_3),20);
-    fruit_3.addGoods(Goods("小地瓜",6,&fruit_3),25);
+    fruit_3->addGoods(Goods("小桔子",2,fruit_3),50);
+    fruit_3->addGoods(Goods("梁山柚",8,fruit_3),20);
+    fruit_3->addGoods(Goods("小地瓜",6,fruit_3),25);
 
-    fv.addShop(fruit_1);
-    fv.addShop(fruit_2);
-    fv.addShop(fruit_3);
+    //添加优惠券
+    fruit_1->addCoupons(new FullReduceCoupon(fruit_1,50,5));
+    fruit_1->addCoupons(new DiscountCoupon(fruit_1,0.97));
+
+    fruit_2->addCoupons(new FullReduceCoupon(fruit_2,60,5));
+    fruit_2->addCoupons(new DiscountCoupon(fruit_2,0.95));
+
+    fruit_3->addCoupons(new FullReduceCoupon(fruit_3,40,5));
+    fruit_3->addCoupons(new DiscountCoupon(fruit_3,0.9));
+
+    fv.addShop(*fruit_1);
+    fv.addShop(*fruit_2);
+    fv.addShop(*fruit_3);
+
+    system("pause");
     
 }
 
@@ -155,9 +188,14 @@ void testDecorator(){
     Shop fruit_1("hhhhhhh", "Happy");
 
     //新建打折优惠券
-    DiscountCoupon cp1(&customer,&fruit_1,0.8);
+    DiscountCoupon cp1(&fruit_1,0.8);
+    //cp1.getCustomer()=&customer;
+    cp1.setCustomer(&customer);
+
     //新建减免优惠券
-    FullReduceCoupon cp2(&customer,&fruit_1,10.00,1.00);
+    FullReduceCoupon cp2(&fruit_1,10.00,1.00);
+    //cp2.getCustomer()=&customer;
+    cp2.setCustomer(&customer);
 
     //模拟订单原始金额
     double originSum;
@@ -180,31 +218,41 @@ void testDecorator(){
 //抽象工厂方法的测试接口，用于为服装商店添加商品
 void testAbstractFactory() {  // coded by jy
     //新建安踏服装店
-    Shop antaShop("安踏服装店", "安踏");
+    Shop* antaShop=new Shop("安踏服装店", "安踏");
     //利用安踏工厂生产安踏商品
     ClothingGoodsFactory* antaFactory = new AntaFactory();
-    Coats antaCoats = antaFactory->getCoats("安踏外套", 500, &antaShop);
-    Pants antaPants = antaFactory->getPants("安踏休闲裤", 200, &antaShop);
+    Coats antaCoats = antaFactory->getCoats("安踏外套", 500, antaShop);
+    Pants antaPants = antaFactory->getPants("安踏休闲裤", 200, antaShop);
     //加入商店
-    antaShop.addGoods(antaCoats, 10);
-    antaShop.addGoods(antaPants, 20);
+    antaShop->addGoods(antaCoats, 10);
+    antaShop->addGoods(antaPants, 20);
 
     //新建阿迪服装店
-    Shop adidasShop("阿迪达斯服装店", "阿迪达斯");
+    Shop* adidasShop=new Shop("阿迪达斯服装店", "阿迪达斯");
     //利用阿迪工厂生产安踏商品
     ClothingGoodsFactory* adidasFactory = new AdidasFactory();
-    Coats adidasCoats = adidasFactory->getCoats("阿迪外套", 700, &antaShop);
-    Pants adidasPants = adidasFactory->getPants("阿迪休闲裤", 300, &antaShop);
+    Coats adidasCoats = adidasFactory->getCoats("阿迪外套", 700, adidasShop);
+    Pants adidasPants = adidasFactory->getPants("阿迪休闲裤", 300, adidasShop);
     //加入商店
-    adidasShop.addGoods(adidasCoats, 5);
-    adidasShop.addGoods(adidasPants, 10);
+    adidasShop->addGoods(adidasCoats, 5);
+    adidasShop->addGoods(adidasPants, 10);
 
     //获取服装会差单例
     ClothingVenue& clothingVenue = ClothingVenue::getInstance();
-    //在服装会场中添加商店
-    clothingVenue.addShop(antaShop);
-    clothingVenue.addShop(adidasShop);
 
+    //添加优惠券
+    antaShop->addCoupons(new FullReduceCoupon(antaShop,600,50));
+    antaShop->addCoupons(new FullReduceCoupon(antaShop,700,80));
+    adidasShop->addCoupons(new FullReduceCoupon(adidasShop,800,50));
+    adidasShop->addCoupons(new FullReduceCoupon(adidasShop,900,80));
+    antaShop->addCoupons(new DiscountCoupon(antaShop,0.9));
+    adidasShop->addCoupons(new DiscountCoupon(adidasShop,0.95));
+
+    //在服装会场中添加商店
+    clothingVenue.addShop(*antaShop);
+    clothingVenue.addShop(*adidasShop);
+
+    
     //test output
     //antaShop.showInformation();
     //adidasShop.showInformation();

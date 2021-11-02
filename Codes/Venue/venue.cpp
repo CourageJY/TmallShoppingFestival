@@ -125,12 +125,13 @@ void MainVenue::showBasicInformation(Customer* customer) {
 void MainVenue::showInformation(Customer* customer) {
     string info("请选择你想去的会场(1-4, 0退出，5搜索商品，6进入购物车，7查看个人信息)：");
     while (1){
-        system("cls");
-        cout << "本次天猫购物节主会场有以下分会场：" << '\n';
+        system("cls");//清空屏幕
+        cout << "本次天猫购物节主会场有以下分会场：" << '\n'<<endl;
         cout << "1. 服装会场" << '\n';
         cout << "2. 零食会场" << '\n';
         cout << "3. 电子会场" << '\n';
         cout << "4. 水果会场" << '\n';
+        cout<<endl;
         int no= getNum(info,7);
         switch (no){
         case 0:
@@ -148,7 +149,7 @@ void MainVenue::showInformation(Customer* customer) {
             FruitsVenue::getInstance().showBasicInformation(customer);
             continue;
         case 5:    
-            customer->getSearchEngine()->searchGoods();         
+            customer->getSearchEngine()->searchGoods(customer);         
             continue;
         case 6:
             customer->getShoppingCart()->showAllGoods();
@@ -167,9 +168,14 @@ void ClothingVenue::showBasicInformation(Customer* customer) {
     while (1)
     {
         system("cls");
-        cout << "服装会场有以下店铺及商品：" << '\n';
+        cout << "服装会场有以下店铺：" << '\n';
+        int k=1;
         for(auto && i : this->shops){
-            i.showGoods();
+            cout<<'\n'<<k;k++;
+            cout<<"\n-----------------\n";
+            cout<<i.getName();
+            cout<<endl;
+            cout<<"-----------------\n";
         }
         string info;
         info="请选择你要去的商店:(1-";
@@ -183,7 +189,7 @@ void ClothingVenue::showBasicInformation(Customer* customer) {
         }
         if (no<=count){
             vector<Shop> shops = getShops();
-            shops[no-1].showInformation();
+            shops[no-1].showInformation(customer);
             continue;
         }
     }
@@ -194,9 +200,14 @@ void SnacksVenue::showBasicInformation(Customer* customer) {
     while (1)
     {
         system("cls");
-        cout << "零食会场有以下店铺及商品：" << '\n';
+        cout << "零食会场有以下店铺：" << '\n';
+        int k=1;
         for(auto && i : this->shops){
-            i.showGoods();
+            cout<<'\n'<<k;k++;
+            cout<<"\n-----------------\n";
+            cout<<i.getName();
+            cout<<endl;
+            cout<<"-----------------\n";
         }
         string info;
         info="请选择你要去的商店:(1-";
@@ -210,7 +221,7 @@ void SnacksVenue::showBasicInformation(Customer* customer) {
         }
         if (no<=count){
             vector<Shop> shops = getShops();
-            shops[no-1].showInformation();
+            shops[no-1].showInformation(customer);
             continue;
         }
     }
@@ -221,9 +232,14 @@ void ElectronicVenue::showBasicInformation(Customer* customer) {
     while (1)
     {
         system("cls");
-        cout << "电器会场有以下店铺及商品：" << '\n';
+        cout << "电器会场有以下店铺：" << '\n';
+        int k=1;
         for(auto && i : this->shops){
-            i.showGoods();
+            cout<<'\n'<<k;k++;
+            cout<<"\n-----------------\n";
+            cout<<i.getName();
+            cout<<endl;
+            cout<<"-----------------\n";
         }
         string info;
         info="请选择你要去的商店:(1-";
@@ -237,7 +253,7 @@ void ElectronicVenue::showBasicInformation(Customer* customer) {
         }
         if (no<=count){
             vector<Shop> shops = getShops();
-            shops[no-1].showInformation();
+            shops[no-1].showInformation(customer);
             continue;
         }
     }
@@ -248,9 +264,14 @@ void FruitsVenue::showBasicInformation(Customer* customer) {
     while (1)
     {
         system("cls");
-        cout << "水果会场有以下店铺及商品：" << '\n';
+        cout << "水果会场有以下店铺：" << '\n';
+        int k=1;
         for(auto && i : this->shops){
-            i.showGoods();
+            cout<<'\n'<<k;k++;
+            cout<<"\n-----------------\n";
+            cout<<i.getName();
+            cout<<endl;
+            cout<<"-----------------\n";
         }
         string info;
         info="请选择你要去的商店:(1-";
@@ -264,7 +285,7 @@ void FruitsVenue::showBasicInformation(Customer* customer) {
         }
         if (no<=count){
             vector<Shop> shops = getShops();
-            shops[no-1].showInformation();
+            shops[no-1].showInformation(customer);
             continue;
         }
     }

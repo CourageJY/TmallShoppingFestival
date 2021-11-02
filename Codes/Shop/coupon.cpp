@@ -29,8 +29,16 @@ void DiscountCoupon::changeStateToUsed() {
 }
 
 DiscountCoupon* DiscountCoupon::clone(){
-    DiscountCoupon *clone = new DiscountCoupon(customer, shop, discount);
+    DiscountCoupon *clone = new DiscountCoupon(shop, discount);
     return clone;
+}
+
+void DiscountCoupon::showInformation(){
+    cout<<"本张为折扣优惠券\n";
+    cout<<"折扣量为： "<<discount<<'\n';
+    cout<<"所属店铺是："<<this->getShop()->getName()<<'\n';
+    char* dt = ctime(&outDate);
+    cout<<"该优惠券的过期时间为："<<dt<<"\n\n";
 }
 
 double FullReduceCoupon::saleMethod(double x) {
@@ -53,6 +61,14 @@ void FullReduceCoupon::changeStateToUsed() {
 }
 
 FullReduceCoupon* FullReduceCoupon::clone(){
-    FullReduceCoupon *clone = new FullReduceCoupon(customer, shop, standard, reduction);
+    FullReduceCoupon *clone = new FullReduceCoupon(shop, standard, reduction);
     return clone;
+}
+
+void FullReduceCoupon::showInformation(){
+    cout<<"本张为满减优惠券\n";
+    cout<<"消费超过"<<standard<<"元时，"<<"可以减去"<<reduction<<"元\n";
+    cout<<"所属店铺为："<<this->getShop()->getName()<<'\n';
+    char* dt = ctime(&outDate);
+    cout<<"该优惠券的过期时间为："<<dt<<"\n\n";
 }
