@@ -15,7 +15,9 @@ class Shop;
 //一个SearchEngine和一个用户绑定
 class SearchEngine{
 public:
-    SearchEngine(){};
+    SearchEngine(Customer* cu){
+        customer = cu;
+    };
     void searchGoods(Customer* customer);            //搜索功能
     void rollBack(Customer* customer);               //返回到上一个搜索结果
 
@@ -23,6 +25,7 @@ public:
     void showHistory();
 
 private:
+    Customer* customer;
     vector<string> history;         //搜索历史
     void search(string name,Customer* customer);     //实现搜索
 };
