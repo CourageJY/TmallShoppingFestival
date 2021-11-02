@@ -47,11 +47,6 @@ int main() {
     //testFilter();
     //testObserver();
 
-    cout<<"中文\n";
-    initial();
-
-    Customer* c = new Customer("cnm", "134560", "14", male, 1222.4);
-
     //初始化各分会场及其店铺信息
     initial();
 
