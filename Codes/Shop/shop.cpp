@@ -173,7 +173,6 @@ void Shop::showInformation(Customer* customer) {
                 system("pause");
                 continue;
             case 3:
-                //TODO:ADDComments?
                 this->addComment(customer);
                 continue;
             case 4:

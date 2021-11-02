@@ -152,7 +152,7 @@ void MainVenue::showInformation(Customer* customer) {
             customer->getSearchEngine()->searchGoods(customer);         
             continue;
         case 6:
-            customer->getShoppingCart()->showAllGoods();
+            customer->showShoppingCart();
             continue;
         case 7:
             customer->viewBasicInformation();

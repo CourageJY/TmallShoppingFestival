@@ -3,7 +3,7 @@
 #include "../Order/checkOrder.h"
 
 void Customer::viewBasicInformation(){
-    string info("请选择你的操作(0:返回,1:查看优惠券,2:查看订单)");
+    string info("请选择你的操作(0:返回，1:查看优惠券，2:查看购物车，3，查看订单)");
     int order;
     while (1){
         system("cls");
@@ -22,6 +22,10 @@ void Customer::viewBasicInformation(){
             continue;
         }
         if (order==2){
+            showShoppingCart();
+            continue;
+        }
+        if (order==3){
             payOrder();
             continue;
         }
@@ -104,4 +108,56 @@ bool Customer::payOrder(){
 
 void ProxyPatternCustomer::giveRealCustomer(Customer *customer) {
     cout<<"使用了父类的给予指针函数，调用错误"<<endl;
+}
+
+void Customer::showShoppingCart(){
+    ShoppingCart* cart = this->getShoppingCart();
+    map<Goods,int> goods=cart->getGoodsMap();
+    
+    int order;
+    string info ="请选择您的操作(0返回，1清空购物车，2修改一项商品的数量，3生成订单并购买)";
+    while (1){
+        system("cls");
+        cart->showAllGoods();
+        cout<<"---------------------"<<endl;
+        order = getNum(info,3);
+        if (order == 0){
+            return;
+        }
+        if (order == 1){
+            for (auto&&i:goods){
+                cart->removeGoods(i.first);
+            }
+        }
+        if (order == 2){
+            cout<<"请输入商品的序号和修改后的数量(0返回):";
+            int no,count;
+            cin>>no;
+            if (no == 0){
+                return;
+            }
+            if (count<0){
+                cout<<"数量错误!"<<endl;
+                continue;
+            }
+            int k=0;
+            for (auto&&i:goods){
+                k++;
+                if (k==no){
+                    if(cart->setGoodsNum(i.first,no)){
+                        cout<<"修改成功"<<endl;
+                    } else {
+                        cout<<"修改失败"<<endl;
+                    }
+                    break;
+                } 
+            }
+            if (k!=no)
+                cout<<"序号不存在！";
+            system("pause");
+        }
+        if (order == 3){
+            cart->generateOrder(cart->getGoodsMap());
+        }
+    }
 }
