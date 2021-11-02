@@ -116,7 +116,6 @@ map<Goods, int> FruitsVenue::getGoods(string name) {
 
 void MainVenue::showBasicInformation(Customer* customer) {
     cout << "本次天猫购物节主会场有以下分会场：" << '\n';
-
     cout << "1. 服装会场" << '\n';
     cout << "2. 零食会场" << '\n';
     cout << "3. 电子会场" << '\n';
@@ -124,33 +123,33 @@ void MainVenue::showBasicInformation(Customer* customer) {
 }
 
 void MainVenue::showInformation(Customer* customer) {
-
-    cout << "本次天猫购物节主会场有以下分会场：" << '\n';
-    cout << "1. 服装会场" << '\n';
-    cout << "2. 零食会场" << '\n';
-    cout << "3. 电子会场" << '\n';
-    cout << "4. 水果会场" << '\n';
+    
+    string info("请选择你想去的会场(1-4, 0退出，5搜索商品，6进入购物车，7查看个人信息)：");
     while (1){
-        string info("请选择你想去的会场(1-4, 0退出，5搜索商品，6进入购物车，7查看个人信息)：");
+        cout << "本次天猫购物节主会场有以下分会场：" << '\n';
+        cout << "1. 服装会场" << '\n';
+        cout << "2. 零食会场" << '\n';
+        cout << "3. 电子会场" << '\n';
+        cout << "4. 水果会场" << '\n';
         int no= getNum(info,7);
         switch (no){
         case 0:
             return;
         case 1:
             ClothingVenue::getInstance().showBasicInformation(customer);
-            return;
+            continue;
         case 2:
             SnacksVenue::getInstance().showBasicInformation(customer);
-            return;
+            continue;
         case 3:
             ElectronicVenue::getInstance().showBasicInformation(customer);
-            return;
+            continue;
         case 4:
             FruitsVenue::getInstance().showBasicInformation(customer);
-            return;
+            continue;
         case 5:    
             customer->getSearchEngine()->searchGoods();         
-            return;
+            continue;
         case 6:
             return;
         case 7:
@@ -189,14 +188,13 @@ void ClothingVenue::showBasicInformation(Customer* customer) {
 }
 
 void SnacksVenue::showBasicInformation(Customer* customer) {
-    int count=0;
-    cout << "零食会场有以下店铺及商品：" << '\n';
-    for(auto && i : this->shops){
-        i.showGoods();
-        count++;
-    }
+    int count=this->shops.size();
     while (1)
     {
+        cout << "零食会场有以下店铺及商品：" << '\n';
+        for(auto && i : this->shops){
+            i.showGoods();
+        }
         string info;
         info="请选择你要去的商店:(1-";
         info+=to_string(count);
@@ -210,7 +208,7 @@ void SnacksVenue::showBasicInformation(Customer* customer) {
         if (no<=count){
             vector<Shop> shops = getShops();
             shops[no-1].showInformation();
-            return;
+            continue;
         }
     }
 }
