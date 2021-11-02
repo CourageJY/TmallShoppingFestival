@@ -24,7 +24,7 @@ public:
     //添加商品
     void addGoods(Goods gd);
 
-    OrderState getState(){return orderState;}
+    OrderState& getState(){return orderState;}
 
     vector<Goods>& getGoods(){return goods;}
 
