@@ -55,7 +55,6 @@ map<Goods,int>& CartData::getMap() {
 void ShoppingCart::addGoods(Goods gd, int num){
     if(!goodsData->add(gd, num)) {
         //将购物车绑定为商品的Observer
-        cout<<this<<endl;
         gd.attach(this);
     }        
 }
