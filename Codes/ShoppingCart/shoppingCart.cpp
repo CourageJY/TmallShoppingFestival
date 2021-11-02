@@ -140,6 +140,7 @@ void ShoppingCart::showAllGoods() {
         cout<<it->first.getName()<<"  价格："<<it->first.getPrice()
             <<"  数量："<<it->second<<endl;
     }
+    system("pause");
 }
 
 //注意！在这里实现了Goods类的通知Observer的方法

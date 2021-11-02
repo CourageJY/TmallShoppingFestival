@@ -74,19 +74,19 @@ void initial()
     //零食会场信息添加
     SnacksVenue& sv=SnacksVenue::getInstance();
     
-    Shop snack_1("同济零食店","三只松鼠");
-    Shop snack_2("自营零食店","良品铺子");
+    Shop* snack_1 = new Shop("同济零食店","三只松鼠");
+    Shop* snack_2 = new Shop("自营零食店","良品铺子");
 
-    snack_1.addGoods(Goods("肉松饼",5,&snack_1),10);
-    snack_1.addGoods(Goods("辣味金针菇",6.9,&snack_1),5);
-    snack_1.addGoods(Goods("小泡芙",9,&snack_1),20);
+    snack_1->addGoods(Goods("肉松饼",5,snack_1),10);
+    snack_1->addGoods(Goods("辣味金针菇",6.9,snack_1),5);
+    snack_1->addGoods(Goods("小泡芙",9,snack_1),20);
 
-    snack_2.addGoods(Goods("提拉米苏",9.9,&snack_2),9);
-    snack_2.addGoods(Goods("维他奶",3.8,&snack_2),10);
-    snack_2.addGoods(Goods("小三明治",8,&snack_2),10);
+    snack_2->addGoods(Goods("提拉米苏",9.9,snack_2),9);
+    snack_2->addGoods(Goods("维他奶",3.8,snack_2),10);
+    snack_2->addGoods(Goods("小三明治",8,snack_2),10);
 
-    sv.addShop(snack_1);
-    sv.addShop(snack_2);
+    sv.addShop(*snack_1);
+    sv.addShop(*snack_2);
 
     //电气会场信息添加
     ElectronicVenue& ev=ElectronicVenue::getInstance();

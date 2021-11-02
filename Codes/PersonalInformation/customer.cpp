@@ -10,6 +10,7 @@ void Customer::viewBasicInformation(){
     cout<<"性别："<<(gender==male?"男":"女")<<'\n';
     cout<<"您剩余的金额为："<<money<<'\n';
     cout<<"--------------------------\n";
+    system("pause");
 //    cout<<"It's your basic Information:\n";
 //    cout<<"name: "<<name<<'\n';
 //    cout<<"tel: "<<tel<<'\n';

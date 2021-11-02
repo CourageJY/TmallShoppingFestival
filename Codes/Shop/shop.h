@@ -23,7 +23,7 @@ public:
     };
 
     //返回店铺名
-    string& getName() { return this->name; };
+    string getName() { return this->name; };
 
     //返回店铺品牌
     Brand* getBrand() { return this->brand; };
