@@ -1,15 +1,15 @@
 #include"payment.h"
 void WechatPayment::payMethod(){
-    cout<<"您已选择微信支付！";
-    Sleep(1000);
+    cout<<"您已选择微信支付！"<<endl;
+    Sleep(2000);
 }
 void AliPayment::payMethod(){
-    cout<<"您已选择支付宝支付！";
-    Sleep(1000);
+    cout<<"您已选择支付宝支付！"<<endl;
+    Sleep(2000);
 }
 void UnionPayment::payMethod(){
-    cout<<"您已选择银联支付！";
-    Sleep(1000);
+    cout<<"您已选择银联支付！"<<endl;
+    Sleep(2000);
 }
 PaymentContext::PaymentContext(int method){
     switch (method)

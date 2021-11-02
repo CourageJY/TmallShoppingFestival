@@ -27,6 +27,7 @@
 void testSingleton();
 void testDecorator();
 void testAbstractFactory();
+void testFacade();
 void testFlyWeight();
 void testNullObject();
 void testProxy();
@@ -34,6 +35,7 @@ void testFactory();
 void testObserver();
 void initial();
 void testFilter();
+void testState();
 
 int main() {
     //设计模式接口测试
@@ -44,20 +46,21 @@ int main() {
     //testNullObject();
     //testProxy();
     //testFactory();
+    //testFacade();
     //testFilter();
     //testObserver();
-
+    testState();
     //初始化各分会场及其店铺信息
-    initial();
+    //initial();
 
     //新建顾客
-    Customer* customer = new Customer("lky", "13456789", "上海 嘉定", male, 2000);
+    //Customer* customer = new Customer("lky", "13456789", "上海 嘉定", male, 2000);
 
     //新建主会场
-    MainVenue venue;
+    //MainVenue venue;
 
     //从主会场开始跳转
-    venue.showInformation(customer);
+    //venue.showInformation(customer);
 
     system("pause");
     return 0;
@@ -227,11 +230,36 @@ void testFactory() {
 }
 
 //测试外观模式的接口
-void testFacade(Customer* c) {
-    AfterSale afterSale(c);
+void testFacade() {
+    Customer* customer=new Customer("Admin","123456789","CN",male,2000.00);
+    Shop fruit_1("hhhhhhh", "Happy");
+    Goods g1("apple", 5, &fruit_1);
+    Goods g2("apple", 5, &fruit_1);
+    fruit_1.addGoods(g1,10);
+    fruit_1.addGoods(g2,10);
+    ShoppingCart* s=customer->getShoppingCart();
+    s->addGoods(g1,2);s->addGoods(g2,2);
+    s->showAllGoods();
+    s->generateOrder(s->getGoodsMap());
+    customer->payOrder();
+    customer->viewBasicInformation();
+    customer->check();
+    AfterSale afterSale(customer);
     afterSale.returned();
 }
-void testState(Customer* c) { c->check(); }
+void testState() { Customer* customer=new Customer("Admin","123456789","CN",male,2000.00);
+    Shop fruit_1("hhhhhhh", "Happy");
+    Goods g1("apple", 5, &fruit_1);
+    Goods g2("apple", 5, &fruit_1);
+    fruit_1.addGoods(g1,10);
+    fruit_1.addGoods(g2,10);
+    ShoppingCart* s=customer->getShoppingCart();
+    s->addGoods(g1,2);s->addGoods(g2,2);
+    s->showAllGoods();
+    s->generateOrder(s->getGoodsMap());
+    customer->payOrder();
+    customer->viewBasicInformation();
+    customer->check(); }
 
 //测试享元模式的接口（coded by jy）
 void testFlyWeight() {

@@ -1,9 +1,9 @@
 #include "AfterSale.h"
 #include<windows.h>
 void UserInformation::getUserInformation(Customer* c){
-    cout<<"您的姓名为:"<<c->getName();
-    cout<<"您的电话为:"<<c->getTel();
-    cout<<"您的地址为:"<<c->getAddress();
+    cout<<"您的姓名为:"<<c->getName()<<endl;
+    cout<<"您的电话为:"<<c->getTel()<<endl;
+    cout<<"您的地址为:"<<c->getAddress()<<endl;
 }
 void GoodsInformation::getGoodsInformation(Customer* c){
     string goodsName;
@@ -16,9 +16,9 @@ void GoodsInformation::getGoodsInformation(Customer* c){
             for (y=x->getGoods().begin();y!=x->getGoods().end();y++){
                 if (y->getName()==goodsName){
                     cout<<"当前商品基本信息如下:"<<endl;
-                    cout<<"名称:"<<y->getName();
-                    cout<<"价格:"<<y->getPrice();
-                    cout<<"所属商店:"<<y->getShop();
+                    cout<<"名称:"<<y->getName()<<endl;
+                    cout<<"价格:"<<y->getPrice()<<endl;
+                    cout<<"所属商店:"<<y->getShop()<<endl;
                 }
             }
         }
@@ -26,7 +26,7 @@ void GoodsInformation::getGoodsInformation(Customer* c){
 }
 void OutputInformation::getOutputInformation() {
     cout<<"请稍等，您的退货请求正在处理中..."<<endl;
-    Sleep(1000);
+    Sleep(2000);
     cout<<"退货成功!"<<endl;
 }
 void AfterSale::returned()
