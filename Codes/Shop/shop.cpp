@@ -1,5 +1,4 @@
 #include "shop.h"
-
 #include "../PersonalInformation/Comment.h"
 #include "../PersonalInformation/customer.h"
 using namespace std;
@@ -7,6 +6,20 @@ using namespace std;
 //添加商品
 void Shop::addGoods(Goods goods, int stock) {
     this->goods.insert(pair<Goods, int>(goods, stock));
+}
+
+int getNum_shop(string info,int range){
+    string s;
+    while(1){
+        cout<<info;
+        cin>>s;
+        if (s.length()!=1)
+            continue;
+        int no = s[0]-'0';
+        if (no>=0&&no<=range)
+            return no;
+    }
+    return -1;
 }
 
 //店铺统一设置所有商品的属性
@@ -83,28 +96,35 @@ void Shop::showCoupons() {
     cout << "-------------------------------------------" << endl << endl;
 }
 
-//暂定为展示店铺信息，与店铺交互
+//展示店铺信息，与店铺交互
 void Shop::showInformation() {
-    cout << "-------------------------------------------" << endl;
-    cout << "欢迎光临" << this->name << "，请选择您的操作：" << endl << endl;
-    cout << "1、浏览商品" << endl;
-    cout << "2、查看店铺评价" << endl;
-    cout << "3、退出商店" << endl;
+    string info;
+    info+="-------------------------------------------\n";
+    info+="欢迎光临";
+    info+=this->name;
+    info+="，\n\n";
+    info+="1、浏览商品\n2、查看店铺评价\n3、对店铺进行评价\n4、查看店铺优惠券\n5、退出商店\n请选择您的操作：";
     int order;
     while (true) {
-        cin >> order;
+        order = getNum_shop(info,4);
         switch (order) {
             case 1:
                 this->showGoods();
-                return;
+                system("pause");
+                continue;
             case 2:
                 this->showComments();
-                return;
+                system("pause");
+                continue;
             case 3:
+                //TODO:ADDComments?
+                continue;
+            case 4:
+                this->showCoupons();
+                system("pause");
+                continue;
+            case 5:
                 return;
-            default:
-                cout << "错误选项！请重新选择：";
-                break;
         }
     }
 }
