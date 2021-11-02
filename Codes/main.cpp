@@ -31,6 +31,7 @@ void testFlyWeight();
 void testNullObject();
 void testProxy();
 void testFactory();
+void testObserver();
 void initial();
 void testFilter();
 
@@ -44,6 +45,12 @@ int main() {
     //testProxy();
     //testFactory();
     //testFilter();
+    //testObserver();
+
+    cout<<"中文\n";
+    initial();
+
+    Customer* c = new Customer("cnm", "134560", "14", male, 1222.4);
 
     //初始化各分会场及其店铺信息
     initial();
@@ -276,6 +283,16 @@ void testFilter(){
     PriceFilter p(0,20);
     FruitsVenue& fruitInstance = FruitsVenue::getInstance();
     p.printGoods(p.filterGoods(fruitInstance.getGoods()));
+}
+
+//测试观察者模式
+void testObserver(){
+    Customer customer("NoMirror","456","China",male,2000);
+    Shop fruit_1("hhhhhhh", "Happy");
+    Goods apple = Goods("apple", 5 , &fruit_1);
+    fruit_1.addGoods(apple, 10);
+    customer.getShoppingCart()->addGoods(apple,5);
+    fruit_1.pullOffGoods(apple);
 }
 
 //欢迎登录界面
