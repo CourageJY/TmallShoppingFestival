@@ -144,7 +144,11 @@ void ShoppingCart::showAllGoods() {
 
 //注意！在这里实现了Goods类的通知Observer的方法
 void Goods::notify(){
-	for(auto iter:m_observer){
+    cout<<"notify()被调用！"<<endl;
+    if(m_observer.empty())
+        cout<<"m_observers为空。"<<endl;
+	for(auto iter:m_observer){//未被执行
+        cout<<"进入循环，对m_observers的所有观察者进行update()。"<<endl;
 		//头文件问题所致
 		iter->update(this);
 	}
