@@ -21,21 +21,24 @@ void SearchEngine::searchGoods(Customer* customer){
         cout <<"请输入商品名(0:返回,1:查看上一次搜索结果,2:清空历史记录,3:显示历史记录):";
         cin >> productName;
         if (productName=="0"){
-            rollBack(customer);
-            continue;
+            return;
         }
         if (productName=="1"){
+            rollBack(customer);
+            continue;
+            
+        }
+        if (productName=="2"){
             emptyHistory();
             cout<<"历史记录已清除.."<<endl;
             system("pause");
             continue;
-        }
-        if (productName=="2"){
-            showHistory();
-            continue;
+            
         }
         if (productName=="3"){
-            return;
+            showHistory();
+            continue;
+            
         }
         if (productName.length()==1){
             cout << "至少输入两个字符" << endl;
