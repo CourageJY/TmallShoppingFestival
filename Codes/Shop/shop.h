@@ -29,7 +29,7 @@ public:
     Brand* getBrand() { return this->brand; };
 
     //输出关于店铺的一些信息
-    void showInformation();
+    void showInformation(Customer* cu);
 
     //顾客通过此方法可获得优惠券
     //函数为纯虚函数，将Shop类变为抽象类，以便实现模板模式
@@ -60,8 +60,16 @@ public:
     //显示店铺优惠券
     void showCoupons();
 
+    //添加店铺评论
+    void addComment(Customer* cu);
+
     //下架商品，为实现Observer模式添加的功能
     void pullOffGoods(Goods gd);
+
+    //设置迭代器
+    void setIterator(ConcreteAggregate* cu){
+        this->ca=cu;
+    }
 
    private:
     string name;

@@ -183,7 +183,7 @@ void ClothingVenue::showBasicInformation(Customer* customer) {
         }
         if (no<=count){
             vector<Shop> shops = getShops();
-            shops[no-1].showInformation();
+            shops[no-1].showInformation(customer);
             continue;
         }
     }
@@ -210,7 +210,7 @@ void SnacksVenue::showBasicInformation(Customer* customer) {
         }
         if (no<=count){
             vector<Shop> shops = getShops();
-            shops[no-1].showInformation();
+            shops[no-1].showInformation(customer);
             continue;
         }
     }
@@ -237,7 +237,7 @@ void ElectronicVenue::showBasicInformation(Customer* customer) {
         }
         if (no<=count){
             vector<Shop> shops = getShops();
-            shops[no-1].showInformation();
+            shops[no-1].showInformation(customer);
             continue;
         }
     }
@@ -264,7 +264,7 @@ void FruitsVenue::showBasicInformation(Customer* customer) {
         }
         if (no<=count){
             vector<Shop> shops = getShops();
-            shops[no-1].showInformation();
+            shops[no-1].showInformation(customer);
             continue;
         }
     }

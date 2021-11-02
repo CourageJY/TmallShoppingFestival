@@ -61,8 +61,8 @@ void Shop::showGoods() {
 }
 
 void Shop::showComments() {
-    commentsListIterator* cmli=ca->getIterator();
     cout << "本店评价：" << endl << endl;
+    cout<<ca->getLength()<<endl;
     // if(this->comments.size() == 0){
     //     cout << "" << endl;
     //     return;
@@ -73,14 +73,17 @@ void Shop::showComments() {
     //          << endl
     //          << endl;
     // }
-    if(!cmli->first())
-       { 
-            cout<<"    "<<cmli->first()->getCustomer()->getName()<<":"<<cmli->first()->getContent();
-            while(cmli->hasNext()){
-                cout<<"    "<<cmli->next()->getCustomer()->getName()<<":"<<cmli->next()->getContent();
-            }
-        }
-    cout << "-------------------------------------------" << endl << endl;
+
+    //new
+    // commentsListIterator* cmli=ca->getIterator();
+    // if(!cmli->first())
+    //    { 
+    //         cout<<"    "<<cmli->first()->getCustomer()->getName()<<":"<<cmli->first()->getContent();
+    //         while(cmli->hasNext()){
+    //             cout<<"    "<<cmli->next()->getCustomer()->getName()<<":"<<cmli->next()->getContent();
+    //         }
+    //     }
+    // cout << "-------------------------------------------" << endl << endl;
 }
 
 //显示店铺优惠券，内容待定
@@ -98,7 +101,7 @@ void Shop::showCoupons() {
 }
 
 //展示店铺信息，与店铺交互
-void Shop::showInformation() {
+void Shop::showInformation(Customer* cu) {
     string info;
     info+="-------------------------------------------\n";
     info+="欢迎光临";
@@ -119,6 +122,7 @@ void Shop::showInformation() {
                 continue;
             case 3:
                 //TODO:ADDComments?
+                this->addComment(cu);
                 continue;
             case 4:
                 this->showCoupons();
@@ -141,4 +145,10 @@ void Shop::pullOffGoods(Goods gd){
         cout<<"pullOffGoods()方法结束，"<<ct<<"个商品已下架！"<<endl;
     }else
         cout<<"商品不存在！"<<endl;
+}
+void Shop::addComment(Customer* cu){
+    Comment* cm=new Comment(this,cu);
+    Mediator* me=new Mediator(this);
+    cu->writeCommment(*me,*cm);
+    return;
 }
