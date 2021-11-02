@@ -55,14 +55,14 @@ map<Goods,int>& CartData::getMap() {
 void ShoppingCart::addGoods(Goods gd, int num){
     if(!goodsData->add(gd, num)) {
         //将购物车绑定为商品的Observer
+        cout<<this<<endl;
         gd.attach(this);
     }        
 }
 
 bool ShoppingCart::removeGoods(Goods gd){
-    if(goodsData->remove(gd)) {        
-        //将购物车从商品的Observer列表中删除
-        gd.detach(this);
+    if(goodsData->remove(gd)) {
+        //gd.detach(this);        
         return true;
     }
     else {        
@@ -127,9 +127,9 @@ bool ShoppingCart::generateOrder(map<Goods,int> gds){
     return true;
 }
 
-void ShoppingCart::update(Goods* gd){
-    //当商品对象被删除时，同步清除购物车里的对应商品，并打印通知
-    removeGoods(*gd);
+void ShoppingCart::update(Goods gd){
+    //当商品对象被下架时，同步改变购物车里的商品信息，并打印通知
+    this->removeGoods(gd);
     cout<<"Observers updated: Some goods in the shopping-cart have been pulled off by the shops！"<<endl;
 }
 
@@ -140,17 +140,4 @@ void ShoppingCart::showAllGoods() {
         cout<<it->first.getName()<<"  价格："<<it->first.getPrice()
             <<"  数量："<<it->second<<endl;
     }
-    system("pause");
-}
-
-//注意！在这里实现了Goods类的通知Observer的方法
-void Goods::notify(){
-    cout<<"notify()被调用！"<<endl;
-    if(m_observer.empty())
-        cout<<"m_observers为空。"<<endl;
-	for(auto iter:m_observer){//未被执行
-        cout<<"进入循环，对m_observers的所有观察者进行update()。"<<endl;
-		//头文件问题所致
-		iter->update(this);
-	}
 }

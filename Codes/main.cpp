@@ -309,12 +309,41 @@ void testFilter(){
 
 //测试观察者模式
 void testObserver(){
-    Customer customer("NoMirror","456","China",male,2000);
+    Customer usera("UserA","123","China",male,2000);
+    Customer userb("UserB","456","China",female,3000);
+    Customer userc("UserC","789","China",male,4000);
     Shop fruit_1("hhhhhhh", "Happy");
+    cout<<"生产商品实体apple。"<<endl;
     Goods apple = Goods("apple", 5 , &fruit_1);
+    cout<<"向商店fruit_1添加商品apple。"<<endl;
     fruit_1.addGoods(apple, 10);
-    customer.getShoppingCart()->addGoods(apple,5);
+
+    ShoppingCart* spa = usera.getShoppingCart();
+    ShoppingCart* spb = userb.getShoppingCart();
+    ShoppingCart* spc = userc.getShoppingCart();
+
+    cout<<"向用户userA的购物车添加商品apple。"<<endl;
+    spa->addGoods(apple,5);
+    cout<<"向用户userB的购物车添加商品apple。"<<endl;
+    spb->addGoods(apple,2);
+    cout<<"向用户userC的购物车添加商品apple。"<<endl;
+    spc->addGoods(apple,1);
+    fruit_1.showGoods();
+    cout<<"UserA ";
+    spa->showAllGoods();
+    cout<<"UserB ";
+    spb->showAllGoods();
+    cout<<"UserC ";
+    spc->showAllGoods();
+
     fruit_1.pullOffGoods(apple);
+    fruit_1.showGoods();
+    cout<<"UserA ";
+    spa->showAllGoods();
+    cout<<"UserB ";
+    spb->showAllGoods();
+    cout<<"UserC ";
+    spc->showAllGoods();
 }
 
 //欢迎登录界面
