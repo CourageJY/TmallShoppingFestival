@@ -1,5 +1,5 @@
 #include "shop.h"
-
+#include "../tools.h"
 #include "../PersonalInformation/Comment.h"
 #include "../PersonalInformation/customer.h"
 using namespace std;

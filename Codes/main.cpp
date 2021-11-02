@@ -46,21 +46,21 @@ int main() {
     //testNullObject();
     //testProxy();
     //testFactory();
-    testFacade();
+    //testFacade();
     //testFilter();
     //testObserver();
     //testState();
     //初始化各分会场及其店铺信息
-    //initial();
+    initial();
 
     //新建顾客
-    //Customer* customer = new Customer("lky", "13456789", "上海 嘉定", male, 2000);
+    Customer* customer = new Customer("lky", "13456789", "上海 嘉定", male, 2000);
 
     //新建主会场
-    //MainVenue venue;
+    MainVenue venue;
 
     //从主会场开始跳转
-    //venue.showInformation(customer);
+    venue.showInformation(customer);
 
     system("pause");
     return 0;

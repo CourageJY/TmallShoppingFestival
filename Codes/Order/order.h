@@ -25,7 +25,7 @@ public:
     void addGoods(Goods gd);
 
     OrderState getState(){return orderState;}
-    OrderState setState(OrderState o){orderState=o;}
+    void setState(OrderState o){orderState=o;}
 
     vector<Goods>& getGoods(){return goods;}
 
