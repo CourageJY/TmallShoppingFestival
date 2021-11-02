@@ -65,8 +65,16 @@ public:
     //显示店铺优惠券
     void showCoupons(Customer* customer);
 
+    //添加店铺评论
+    void addComment(Customer* cu);
+
     //下架商品，为实现Observer模式添加的功能
     void pullOffGoods(Goods gd);
+
+    //设置迭代器
+    void setIterator(ConcreteAggregate* cu){
+        this->ca=cu;
+    }
 
    private:
     string name;

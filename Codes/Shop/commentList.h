@@ -49,15 +49,24 @@ public:
     virtual void add(Comment* cm) = 0;
     virtual commentsListIterator* getIterator()=0;
 };
+
+
 class ConcreteAggregate :public Aggregate {
 private:
-    vector<Comment*> commentsList;
+    vector<Comment*>* commentsList;
 public:
+    ConcreteAggregate(){
+        vector<Comment*>* cm=new vector<Comment*>();
+        commentsList=cm;
+    }
     void add(Comment* cm) {
-        commentsList.push_back(cm);
+        commentsList->push_back(cm);
+    }
+    int getLength(){
+        return commentsList->size();
     }
     commentsListIterator* getIterator() {
-        commentsListIterator* cmlt= new commentsListIterator(commentsList);
+        commentsListIterator* cmlt= new commentsListIterator(*commentsList);
         return cmlt;
     }
 };
