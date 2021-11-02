@@ -147,7 +147,7 @@ void Shop::showInformation(Customer* customer) {
                 continue;
             case 3:
                 //TODO:ADDComments?
-                this->addComment(cu);
+                this->addComment(customer);
                 continue;
             case 4:
                 this->showCoupons(customer);

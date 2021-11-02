@@ -36,6 +36,7 @@ public:
         if (hasNext()) {
             return commentsList[++index];
         }
+        else return nullptr;
     }
     bool hasNext() {
         return index < commentsList.size() - 1;
