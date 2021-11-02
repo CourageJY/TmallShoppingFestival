@@ -107,7 +107,7 @@ void Shop::showInformation() {
     info+="1、浏览商品\n2、查看店铺评价\n3、对店铺进行评价\n4、查看店铺优惠券\n5、退出商店\n请选择您的操作：";
     int order;
     while (true) {
-        order = getNum_shop(info,4);
+        order = getNum_shop(info,5);
         switch (order) {
             case 1:
                 this->showGoods();
