@@ -24910,7 +24910,7 @@
 											"_parent": {
 												"$ref": "AAAAAAF81W/pZS3KNlI="
 											},
-											"font": "Arial;13;3",
+											"font": "Arial;13;1",
 											"left": 1069,
 											"top": 311,
 											"width": 113.41357421875,
@@ -24987,7 +24987,7 @@
 											"top": 334,
 											"width": 113.41357421875,
 											"height": 13,
-											"text": "-state: enum",
+											"text": "#state: enum",
 											"horizontalAlignment": 0
 										}
 									],
@@ -25006,6 +25006,25 @@
 									"model": {
 										"$ref": "AAAAAAF81W/pZS3HMgw="
 									},
+									"subViews": [
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAF81ZC9d0JSLOc=",
+											"_parent": {
+												"$ref": "AAAAAAF81W/pZi3QB3Y="
+											},
+											"model": {
+												"$ref": "AAAAAAF81ZC9cUJPGQQ="
+											},
+											"font": "Arial;13;0",
+											"left": 1069,
+											"top": 357,
+											"width": 113.41357421875,
+											"height": 13,
+											"text": "+isNull(): bool",
+											"horizontalAlignment": 0
+										}
+									],
 									"font": "Arial;13;0",
 									"left": 1064,
 									"top": 352,
@@ -25452,19 +25471,19 @@
 									"subViews": [
 										{
 											"_type": "UMLOperationView",
-											"_id": "AAAAAAF81YXSFkJIBcE=",
+											"_id": "AAAAAAF81ZER7EJjkzo=",
 											"_parent": {
 												"$ref": "AAAAAAF81XDb6i4mLzc="
 											},
 											"model": {
-												"$ref": "AAAAAAF81YXSEEJF9L4="
+												"$ref": "AAAAAAF81ZER50JgX9Y="
 											},
 											"font": "Arial;13;0",
 											"left": 1229,
 											"top": 525,
 											"width": 85.22998046875,
 											"height": 13,
-											"text": "+isNull(): bool",
+											"text": "+viewBasicInformation()",
 											"horizontalAlignment": 0
 										}
 									],
@@ -25610,7 +25629,7 @@
 							"tail": {
 								"$ref": "AAAAAAF81XC+ii31QW8="
 							},
-							"points": "978:472;978:424;1128:424;1128:368",
+							"points": "978:472;978:424;1128:424;1128:374",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF81XRW4S5PqX0="
@@ -25703,7 +25722,7 @@
 							"tail": {
 								"$ref": "AAAAAAF81XDb6i4fJ48="
 							},
-							"points": "1256:472;1256:424;1128:424;1128:368",
+							"points": "1256:472;1256:424;1128:424;1128:374",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF81XRbyi5g8Sw="
@@ -25732,11 +25751,31 @@
 								"$ref": "AAAAAAF81W/pZS3HMgw="
 							},
 							"name": "state",
-							"visibility": "private",
+							"visibility": "protected",
 							"type": "enum"
 						}
 					],
-					"isAbstract": true
+					"operations": [
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAF81ZC9cUJPGQQ=",
+							"_parent": {
+								"$ref": "AAAAAAF81W/pZS3HMgw="
+							},
+							"name": "isNull",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAF81ZDphkJWm8s=",
+									"_parent": {
+										"$ref": "AAAAAAF81ZC9cUJPGQQ="
+									},
+									"type": "bool",
+									"direction": "return"
+								}
+							]
+						}
+					]
 				},
 				{
 					"_type": "UMLClass",
@@ -25790,25 +25829,6 @@
 								"$ref": "AAAAAAF81XC+ii3zTsY="
 							},
 							"name": "viewBasicInformation"
-						},
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAF81YWSdUI8isM=",
-							"_parent": {
-								"$ref": "AAAAAAF81XC+ii3zTsY="
-							},
-							"name": "isNull",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAF81YXBx0JDfW8=",
-									"_parent": {
-										"$ref": "AAAAAAF81YWSdUI8isM="
-									},
-									"type": "bool",
-									"direction": "return"
-								}
-							]
 						}
 					]
 				},
@@ -25849,22 +25869,11 @@
 					"operations": [
 						{
 							"_type": "UMLOperation",
-							"_id": "AAAAAAF81YXSEEJF9L4=",
+							"_id": "AAAAAAF81ZER50JgX9Y=",
 							"_parent": {
 								"$ref": "AAAAAAF81XDb6i4dSF8="
 							},
-							"name": "isNull",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAF81YXsDkJMsho=",
-									"_parent": {
-										"$ref": "AAAAAAF81YXSEEJF9L4="
-									},
-									"type": "bool",
-									"direction": "return"
-								}
-							]
+							"name": "viewBasicInformation"
 						}
 					]
 				}

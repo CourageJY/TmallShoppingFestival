@@ -9,7 +9,7 @@ bool CartData::add(Goods gd, int num) {
         return true;
     }
     else{
-        goods.insert(map<Goods, int>::value_type(gd, 1));
+        goods.insert(map<Goods, int>::value_type(gd, num));
         return false;
     }
 }
@@ -99,7 +99,7 @@ bool ShoppingCart::generateOrder(map<Goods,int> gds){
     bool sus=true;
     map<Goods,int>::iterator it;
     for(it=gds.begin();it!=gds.end();it++){
-        if(0){//店铺中已没有该商品
+        if(it->first.getShop()->getGoods()[it->first]-gds[it->first]<0){//店铺中已没有该商品
             sus=false;
             break;
         }
@@ -113,13 +113,14 @@ bool ShoppingCart::generateOrder(map<Goods,int> gds){
         goodsData->remove(it->first);
     }
     for(it=gds.begin();it!=gds.end();it++){//从店铺中减去对应商品
-           
+        it->first.getShop()->getGoods()[it->first]-=gds[it->first];
     }
     //新建订单并将其加入到customer的order容器中
     Order* newOd=new Order(this->customer);
     for(it=gds.begin();it!=gds.end();it++){
         for(int i=0;i<it->second;i++){
             newOd->getGoods().push_back(it->first);
+            newOd->getSum()+=it->first.getPrice();
         }
     }
     this->customer->getOrders().push_back(*newOd);
@@ -132,9 +133,22 @@ void ShoppingCart::update(Goods* gd){
     cout<<"Observers updated: Some goods in the shopping-cart have been pulled off by the shops！"<<endl;
 }
 
+void ShoppingCart::showAllGoods() {
+    map<Goods,int>::iterator it;
+    cout<<"当前购物车有如下商品：\n";
+    for(it=goodsData->getMap().begin();it!=goodsData->getMap().end();it++){
+        cout<<it->first.getName()<<"  价格："<<it->first.getPrice()
+            <<"  数量："<<it->second<<endl;
+    }
+}
+
 //注意！在这里实现了Goods类的通知Observer的方法
 void Goods::notify(){
-	for(auto iter:m_observer){
+    cout<<"notify()被调用！"<<endl;
+    if(m_observer.empty())
+        cout<<"m_observers为空。"<<endl;
+	for(auto iter:m_observer){//未被执行
+        cout<<"进入循环，对m_observers的所有观察者进行update()。"<<endl;
 		//头文件问题所致
 		iter->update(this);
 	}

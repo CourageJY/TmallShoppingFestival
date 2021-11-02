@@ -182,7 +182,7 @@ void ClothingVenue::showBasicInformation(Customer* customer) {
         }
         if (no<=count){
             vector<Shop> shops = getShops();
-            shops[count].showInformation();
+            shops[no-1].showInformation();
             return;
         }
     }
@@ -209,7 +209,7 @@ void SnacksVenue::showBasicInformation(Customer* customer) {
         }
         if (no<=count){
             vector<Shop> shops = getShops();
-            shops[count].showInformation();
+            shops[no-1].showInformation();
             return;
         }
     }
@@ -236,7 +236,7 @@ void ElectronicVenue::showBasicInformation(Customer* customer) {
         }
         if (no<=count){
             vector<Shop> shops = getShops();
-            shops[count].showInformation();
+            shops[no-1].showInformation();
             return;
         }
     }
@@ -254,7 +254,7 @@ void FruitsVenue::showBasicInformation(Customer* customer) {
         string info;
         info="请选择你要去的商店:(1-";
         info+=to_string(count);
-        info+="0，返回)";
+        info+="，0返回)";
         int no = getNum(info,count);
         if (no==0){
             MainVenue mainvenue;
@@ -263,7 +263,7 @@ void FruitsVenue::showBasicInformation(Customer* customer) {
         }
         if (no<=count){
             vector<Shop> shops = getShops();
-            shops[count].showInformation();
+            shops[no-1].showInformation();
             return;
         }
     }

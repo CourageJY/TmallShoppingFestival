@@ -31,17 +31,17 @@ void Shop::setGoods(vector<string> names, vector<double> prices,
 }
 
 void Shop::showGoods() {
-    cout << this->name << "has: " << endl << endl;
+    cout << this->name << "有以下商品：" << endl << endl;
     if(this->goods.size() == 0){
         cout << "" << endl;
         return;
     }
     
     for (auto&& i : this->goods) {
-        cout << "name: " << i.first.getName() << endl;
-        cout << "price: " << i.first.getPrice() << "yuan" << endl;
-        cout << "time: " << i.first.getOutDate() << endl;
-        cout << "storage: " << i.second << endl << endl;
+        cout << "商品名字：" << i.first.getName() << endl;
+        cout << "价格: " << i.first.getPrice() << "yuan" << endl;
+        cout << "过期时间: " << i.first.getOutDate() << endl;
+        cout << "店内库存: " << i.second << endl << endl;
     }
     cout << "-------------------------------------------" << endl << endl;
 }
@@ -66,6 +66,20 @@ void Shop::showComments() {
                 cout<<"    "<<cmli->next()->getCustomer()->getName()<<":"<<cmli->next()->getContent();
             }
         }
+    cout << "-------------------------------------------" << endl << endl;
+}
+
+//显示店铺优惠券，内容待定
+void Shop::showCoupons() {
+    cout << this->name << "has: " << endl << endl;
+    if(this->coupons.size() == 0){
+        cout << "" << endl;
+        return;
+    }
+    
+    for (auto&& i : this->coupons) {
+        
+    }
     cout << "-------------------------------------------" << endl << endl;
 }
 

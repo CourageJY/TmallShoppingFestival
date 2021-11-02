@@ -20,8 +20,8 @@ add_executable(TmallShoppingFestival
         Codes/AfterSale/AfterSale.cpp
         Codes/AfterSale/AfterSale.h
         Codes/AfterSale/makeComment.h
-        Codes/Criteria/criteria.cpp
-        Codes/Criteria/criteria.h
+        Codes/Filter/filter.cpp
+        Codes/Filter/filter.h
         Codes/Mediator/mediator.cpp
         Codes/Mediator/mediator.h
         Codes/Order/balance.cpp

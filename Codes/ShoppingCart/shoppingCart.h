@@ -28,13 +28,15 @@ private:
 class ShoppingCart{
 public:
     ShoppingCart(Customer* c){
-        this->customer = c;
         goodsData = new CartData;
+        this->customer = c;
+        goodsData=new CartData;
     }
     void addGoods(Goods gd, int num);
     bool removeGoods(Goods gd);
     bool getGoods(string name,Goods& gd);
     bool setGoodsNum(Goods, int);
+    void showAllGoods();
 
     //输入为一个Goods的数组指针
     //若商品售罄则返回false

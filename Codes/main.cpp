@@ -3,15 +3,15 @@
 #include <map>
 
 #include "AfterSale/AfterSale.h"
-#include"AfterSale//makeComment.h"
-#include"Criteria//criteria.h"
-#include"Mediator/mediator.h"
+#include "AfterSale//makeComment.h"
+#include "Filter/filter.h"
+#include "Mediator/mediator.h"
 #include "Order/balance.h"
-#include"Order/checkOrder.h"
+#include "Order/checkOrder.h"
 #include "Order/order.h"
-#include"Order/orderState.h"
-#include"Order/payment.h"
-#include"Page/page.h"
+#include "Order/orderState.h"
+#include "Order/payment.h"
+#include "Page/page.h"
 #include "PersonalInformation/Comment.h"
 #include "PersonalInformation/SearchEngine.h"
 #include "PersonalInformation/customer.h"
@@ -31,53 +31,109 @@ void testFlyWeight();
 void testNullObject();
 void testProxy();
 void testFactory();
-void testState();
-void testFacade();
+void testObserver();
 void initial();
+void testFilter();
 
 int main() {
-//设计模式接口测试
-//    testSingleton();
-//    testDecorator();
-//    testAbstractFactory();
-//    testFlyWeight();
-//    testNullObject();
-//    testProxy();
+    //设计模式接口测试
+    //testSingleton();
+    //testDecorator();
+    //testAbstractFactory();
+    //testFlyWeight();
+    //testNullObject();
+    //testProxy();
+    //testFactory();
+    //testFilter();
+    //testObserver();
 
-//    cout<<"中文\n";
-    testFactory();
-//    initial();
-//
-//    Customer* customer=new Customer("cnm", "134560", "14", male, 1222.4);
-//
-//
-//
-//
-//
-//    MainVenue venue;
-//    venue.showInformation(customer);
-//    system("pause");
+    //初始化各分会场及其店铺信息
+    initial();
+
+    //新建顾客
+    Customer* customer = new Customer("lky", "13456789", "上海 嘉定", male, 2000);
+
+    //新建主会场
+    MainVenue venue;
+
+    //从主会场开始跳转
+    venue.showInformation(customer);
+
+    system("pause");
     return 0;
 }
 
 void initial()
 {
-    Shop fruit_1("hhhhhhh", "Happy");
-    fruit_1.addGoods(Goods("apple", 5, &fruit_1), 10);
-    fruit_1.addGoods(Goods("banana", 25, &fruit_1), 10);
+    //服装会场信息添加（这里用了抽象工厂模式创建）
+    testAbstractFactory();
 
-    Shop fruit_2("ssssss", "Sad");
-    fruit_2.addGoods(Goods("pear", 10, &fruit_2), 10);
-    fruit_2.addGoods(Goods("orange", 30, &fruit_2), 10);
+    //零食会场信息添加
+    SnacksVenue& sv=SnacksVenue::getInstance();
+    
+    Shop snack_1("同济零食店","三只松鼠");
+    Shop snack_2("自营零食店","良品铺子");
 
-    Shop fruit_3("bbbbbb", "Boring");
-    fruit_3.addGoods(Goods("mango", 15, &fruit_3), 10);
-    fruit_3.addGoods(Goods("grape", 35, &fruit_3), 10);
+    snack_1.addGoods(Goods("肉松饼",5,&snack_1),10);
+    snack_1.addGoods(Goods("辣味金针菇",6.9,&snack_1),5);
+    snack_1.addGoods(Goods("小泡芙",9,&snack_1),20);
 
-     FruitsVenue& fruitInstance = FruitsVenue::getInstance();
-    fruitInstance.addShop(fruit_1);
-    fruitInstance.addShop(fruit_2);
-    fruitInstance.addShop(fruit_3);
+    snack_2.addGoods(Goods("提拉米苏",9.9,&snack_2),9);
+    snack_2.addGoods(Goods("维他奶",3.8,&snack_2),10);
+    snack_2.addGoods(Goods("小三明治",8,&snack_2),10);
+
+    sv.addShop(snack_1);
+    sv.addShop(snack_2);
+
+    //电气会场信息添加
+    ElectronicVenue& ev=ElectronicVenue::getInstance();
+    
+    Shop elec_1("华为手机店","华为");
+    Shop elec_2("华为专卖店","华为");
+    Shop elec_3("苹果手机专卖店","APPLE");
+    Shop elec_4("苹果电脑专卖店","APPLE");
+
+    elec_1.addGoods(Goods("nova8",2500,&elec_1),4);
+    elec_1.addGoods(Goods("P40",4500,&elec_2),3);
+
+    elec_2.addGoods(Goods("MatePad",4000,&elec_2),4);
+    elec_2.addGoods(Goods("MateBook",7000,&elec_2),3);
+
+    elec_3.addGoods(Goods("iphone12",6000,&elec_3),5);
+    elec_3.addGoods(Goods("iphone13",7000,&elec_3),4);
+    elec_3.addGoods(Goods("iphone13 pro",8000,&elec_3),3);
+
+    elec_4.addGoods(Goods("ipad air4",6000,&elec_4),4);
+    elec_4.addGoods(Goods("ipad pro",7000,&elec_4),3);
+
+    ev.addShop(elec_1);
+    ev.addShop(elec_2);
+    ev.addShop(elec_3);
+    ev.addShop(elec_4);
+
+    //水果会场信息添加
+    FruitsVenue& fv=FruitsVenue::getInstance();
+
+    Shop fruit_1("水果杂铺店", "同济专享");
+    Shop fruit_2("西部特产水果店", "新疆经典");
+    Shop fruit_3("农家自产水果店", "农家特产");
+
+    fruit_1.addGoods(Goods("小苹果",4,&fruit_1),20);
+    fruit_1.addGoods(Goods("雪梨",3.5,&fruit_2),15);
+    fruit_1.addGoods(Goods("大香蕉",5,&fruit_1),10);
+
+    fruit_2.addGoods(Goods("葡萄",4,&fruit_2),10);
+    fruit_2.addGoods(Goods("大西瓜",20,&fruit_3),10);
+    fruit_2.addGoods(Goods("哈密瓜",25,&fruit_2),10);
+
+    fruit_3.addGoods(Goods("小桔子",2,&fruit_3),50);
+    fruit_3.addGoods(Goods("梁山柚",8,&fruit_3),20);
+    fruit_3.addGoods(Goods("小地瓜",6,&fruit_3),25);
+
+    fv.addShop(fruit_1);
+    fv.addShop(fruit_2);
+    fv.addShop(fruit_3);
+    
 }
 
 //测试单例模式的接口
@@ -137,8 +193,8 @@ void testAbstractFactory() {  // coded by jy
     Coats adidasCoats = adidasFactory->getCoats("阿迪外套", 700, &antaShop);
     Pants adidasPants = adidasFactory->getPants("阿迪休闲裤", 300, &antaShop);
     //加入商店
-    adidasShop.addGoods(antaCoats, 5);
-    adidasShop.addGoods(antaPants, 10);
+    adidasShop.addGoods(adidasCoats, 5);
+    adidasShop.addGoods(adidasPants, 10);
 
     //获取服装会差单例
     ClothingVenue& clothingVenue = ClothingVenue::getInstance();
@@ -146,12 +202,13 @@ void testAbstractFactory() {  // coded by jy
     clothingVenue.addShop(antaShop);
     clothingVenue.addShop(adidasShop);
 
-    // test output
-    //    antaShop.showInformation();
-    //    adidasShop.showInformation();
-    antaCoats.showInfo();
-    adidasCoats.showInfo();
+    //test output
+    //antaShop.showInformation();
+    //adidasShop.showInformation();
+    //antaCoats.showInfo();
+    //adidasCoats.showInfo();
 }
+
 
 //测试简单工厂模式和策略模式的接口
 void testFactory() {
@@ -163,16 +220,18 @@ void testFactory() {
     fruit_1.addGoods(g2,10);
     ShoppingCart* s=customer->getShoppingCart();
     s->addGoods(g1,2);s->addGoods(g2,2);
+    s->showAllGoods();
     s->generateOrder(s->getGoodsMap());
     customer->payOrder();
+    customer->viewBasicInformation();
 }
+
 //测试外观模式的接口
-void testFacade() {
-    //AfterSale afterSale(c);
-    //afterSale.returned();
+void testFacade(Customer* c) {
+    AfterSale afterSale(c);
+    afterSale.returned();
 }
-void testState() { //->check();
-}
+void testState(Customer* c) { c->check(); }
 
 //测试享元模式的接口（coded by jy）
 void testFlyWeight() {
@@ -212,6 +271,23 @@ void testProxy(){
     cout << "\n";
     cout << "The profile has initialized ,does not need to be loaded from disk" << endl;
     proxyPatternCustomer->viewBasicInformation();
+}
+
+//测试过滤器模式的接口（coded by ry）
+void testFilter(){
+    PriceFilter p(0,20);
+    FruitsVenue& fruitInstance = FruitsVenue::getInstance();
+    p.printGoods(p.filterGoods(fruitInstance.getGoods()));
+}
+
+//测试观察者模式
+void testObserver(){
+    Customer customer("NoMirror","456","China",male,2000);
+    Shop fruit_1("hhhhhhh", "Happy");
+    Goods apple = Goods("apple", 5 , &fruit_1);
+    fruit_1.addGoods(apple, 10);
+    customer.getShoppingCart()->addGoods(apple,5);
+    fruit_1.pullOffGoods(apple);
 }
 
 //欢迎登录界面
