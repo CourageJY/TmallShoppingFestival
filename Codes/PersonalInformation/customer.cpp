@@ -37,10 +37,14 @@ void Customer::showCoupons(){
 
 bool Customer::payOrder(){
     vector<Order>vec;
+    vector<int> id;//记录未支付订单的id
+    int j=0;
     for(auto od:orders){
         if(od.getState()==unpaid){
             vec.push_back(od);
+            id.push_back(j);
         }
+        j++;
     }
     cout<<"当前您未支付的订单共"<<vec.size()<<"个，分别为：\n";
     int i=1;
@@ -59,10 +63,12 @@ bool Customer::payOrder(){
     else{
         if( money>=vec[x-1].getSum()&&vec[x-1].pay()){
             money-=vec[x-1].getSum();
+            orders[id[x-1]].getState()=paid;//修改订单状态
             return true;
         }
         else{
             cout<<"支付失败！金额不足或订单未处于待支付状态！\n";
+            orders[id[x-1]].getState()=error;//修改订单状态
             return false;
         }
     }
