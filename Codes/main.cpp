@@ -75,6 +75,7 @@ void initial()
     snack_1.addGoods(Goods("肉松饼",5,&snack_1),10);
     snack_1.addGoods(Goods("辣味金针菇",6.9,&snack_1),5);
     snack_1.addGoods(Goods("小泡芙",9,&snack_1),20);
+
     snack_2.addGoods(Goods("提拉米苏",9.9,&snack_2),9);
     snack_2.addGoods(Goods("维他奶",3.8,&snack_2),10);
     snack_2.addGoods(Goods("小三明治",8,&snack_2),10);
@@ -84,29 +85,52 @@ void initial()
 
     //电气会场信息添加
     ElectronicVenue& ev=ElectronicVenue::getInstance();
+    
+    Shop elec_1("华为手机店","华为");
+    Shop elec_2("华为专卖店","华为");
+    Shop elec_3("苹果手机专卖店","APPLE");
+    Shop elec_4("苹果电脑专卖店","APPLE");
+
+    elec_1.addGoods(Goods("nova8",2500,&elec_1),4);
+    elec_1.addGoods(Goods("P40",4500,&elec_2),3);
+
+    elec_2.addGoods(Goods("MatePad",4000,&elec_2),4);
+    elec_2.addGoods(Goods("MateBook",7000,&elec_2),3);
+
+    elec_3.addGoods(Goods("iphone12",6000,&elec_3),5);
+    elec_3.addGoods(Goods("iphone13",7000,&elec_3),4);
+    elec_3.addGoods(Goods("iphone13 pro",8000,&elec_3),3);
+
+    elec_4.addGoods(Goods("ipad air4",6000,&elec_4),4);
+    elec_4.addGoods(Goods("ipad pro",7000,&elec_4),3);
+
+    ev.addShop(elec_1);
+    ev.addShop(elec_2);
+    ev.addShop(elec_3);
+    ev.addShop(elec_4);
 
     //水果会场信息添加
     FruitsVenue& fv=FruitsVenue::getInstance();
 
+    Shop fruit_1("水果杂铺店", "同济专享");
+    Shop fruit_2("西部特产水果店", "新疆经典");
+    Shop fruit_3("农家自产水果店", "农家特产");
 
+    fruit_1.addGoods(Goods("小苹果",4,&fruit_1),20);
+    fruit_1.addGoods(Goods("雪梨",3.5,&fruit_2),15);
+    fruit_1.addGoods(Goods("大香蕉",5,&fruit_1),10);
 
-    
-//    Shop fruit_1("hhhhhhh", "Happy");
-//    fruit_1.addGoods(Goods("apple", 5, &fruit_1), 10);
-//    fruit_1.addGoods(Goods("banana", 25, &fruit_1), 10);
+    fruit_2.addGoods(Goods("葡萄",4,&fruit_2),10);
+    fruit_2.addGoods(Goods("大西瓜",20,&fruit_3),10);
+    fruit_2.addGoods(Goods("哈密瓜",25,&fruit_2),10);
 
-//    Shop fruit_2("ssssss", "Sad");
-//    fruit_2.addGoods(Goods("pear", 10, &fruit_2), 10);
-//    fruit_2.addGoods(Goods("orange", 30, &fruit_2), 10);
+    fruit_3.addGoods(Goods("小桔子",2,&fruit_3),50);
+    fruit_3.addGoods(Goods("梁山柚",8,&fruit_3),20);
+    fruit_3.addGoods(Goods("小地瓜",6,&fruit_3),25);
 
-//    Shop fruit_3("bbbbbb", "Boring");
-//    fruit_3.addGoods(Goods("mango", 15, &fruit_3), 10);
-//    fruit_3.addGoods(Goods("grape", 35, &fruit_3), 10);
-
-//    FruitsVenue& fruitInstance = FruitsVenue::getInstance();
-//    fruitInstance.addShop(fruit_1);
-//    fruitInstance.addShop(fruit_2);
-//    fruitInstance.addShop(fruit_3);
+    fv.addShop(fruit_1);
+    fv.addShop(fruit_2);
+    fv.addShop(fruit_3);
     
 }
 
