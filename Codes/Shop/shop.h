@@ -57,7 +57,7 @@ public:
     map<Goods, int> getGoods() { return goods; };
 
     //显示所有商品
-    void showGoods();
+    void showGoods(Customer* customer);
 
     //显示店铺评价
     void showComments();

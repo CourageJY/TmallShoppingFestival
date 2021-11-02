@@ -79,7 +79,7 @@ void initial()
     Shop* snack_2 = new Shop("自营零食店","良品铺子");
 
     snack_1->addGoods(Goods("肉松饼",5,snack_1),10);
-    snack_1->addGoods(Goods("辣味金针菇",6.9,snack_1),5);
+    snack_1->addGoods(Goods("辣味金针菇",6.9,snack_1),5); 
     snack_1->addGoods(Goods("小泡芙",9,snack_1),20);
     snack_1->setIterator(ca);
 
@@ -378,7 +378,7 @@ void testObserver(){
     spb->addGoods(apple,2);
     cout<<"向用户userC的购物车添加商品apple。"<<endl;
     spc->addGoods(apple,1);
-    fruit_1.showGoods();
+    fruit_1.showGoods(&usera);
     cout<<"UserA ";
     spa->showAllGoods();
     cout<<"UserB ";
@@ -387,7 +387,7 @@ void testObserver(){
     spc->showAllGoods();
 
     fruit_1.pullOffGoods(apple);
-    fruit_1.showGoods();
+    fruit_1.showGoods(&usera);
     cout<<"UserA ";
     spa->showAllGoods();
     cout<<"UserB ";
