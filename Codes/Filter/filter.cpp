@@ -2,8 +2,8 @@
 
 //&&过滤器：返回满足所有条件的商品
 map<Goods, int> AndFilter::filterGoods(map<Goods, int> goods){
-	map<Goods, int> selectedGoods = criteria.filterGoods(goods);
-	return otherCriteria.filterGoods(selectedGoods);
+	map<Goods, int> selectedGoods = filter.filterGoods(goods);
+	return otherFilter.filterGoods(selectedGoods);
 }
 
 //价格过滤器：返回指定价格区间的商品

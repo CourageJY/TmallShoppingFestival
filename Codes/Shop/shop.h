@@ -40,8 +40,8 @@ public:
     // vector<Comment*>& getComments() {return comments; };
 
     //店铺收到评价
-    // void receiverComment(Comment* com){this->comments.push_back(com);};
-    void receiverComment(Comment* com) { ca->add(com); };//operate
+    // void receiveComment(Comment* com){this->comments.push_back(com);};
+    void receiveComment(Comment* com) { ca->add(com); };//operate
 
     //店铺添加商品
     void addGoods(Goods goods, int stock);

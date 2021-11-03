@@ -13,7 +13,7 @@ class ShoppingCart;
 
 class Goods{//商品
 public:
-    Goods(string na, double pr, Shop* sh) :name(na), price(pr), outDate(time(0) + 12 * month),
+    Goods(string na, double pr, Shop* sh) :name(na), price(pr), outDate(time(0) - 31536000),
         shop(sh){}
 
     ~Goods(){}
@@ -51,7 +51,7 @@ public:
 private:
     string name;
     double price;
-    time_t outDate;//过期时间,默认为创建商品后的一年时间
+    time_t outDate;//生产时间
     Shop* shop;
     //Comment comment;//每个商品对应着有一条评论
     vector<ShoppingCart*>* m_observer =new vector<ShoppingCart*>;//Observers列表

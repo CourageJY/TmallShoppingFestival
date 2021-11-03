@@ -18,13 +18,13 @@ private:
 //&&过滤器
 class AndFilter :public Filter {
 public:
-	AndFilter(Filter c1, Filter c2) :criteria(c1), otherCriteria(c2) {}
+	AndFilter(Filter f1, Filter f2) :filter(f1), otherFilter(f2) {}
 
 	map<Goods, int> filterGoods(map<Goods, int> goods);
 
 private:
-	Filter criteria;
-	Filter otherCriteria;
+	Filter filter;
+	Filter otherFilter;
 };
 
 //价格过滤器
