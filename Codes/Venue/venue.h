@@ -6,7 +6,6 @@
 
 #include "../Shop/shop.h"
 
-
 using namespace std;
 
 class ProxyPatternCustomer;
@@ -35,8 +34,8 @@ class MainVenue {
    public:
     MainVenue(){};
     virtual void showBasicInformation(Customer* customer);
-    void showInformation(Customer* customer,ProxyPatternCustomer *proxyPatternCustomer);
-
+    void showInformation(Customer* customer,
+                         ProxyPatternCustomer* proxyPatternCustomer);
     void addShop(Shop* shop) { this->shops.push_back(shop); }
     vector<Shop*>& getShops() { return shops; }
     vector<MainVenue>& getVenues() { return venues; }
@@ -45,19 +44,19 @@ class MainVenue {
     void setGoods(string name, vector<string> names, vector<double> prices,
                   vector<int> months);  //设置指定店铺的所有商品属性
     void setName(string name) { this->name = name; }
-    
+
     //责任链模式
     void listfind(string name, int t);
     void setNext(MainVenue* next) { this->next = next; }
     MainVenue* getNext() { return this->next; }
-
 
    protected:
     vector<MainVenue> venues;
     vector<Shop*> shops;
     MainVenue* next;
     string name;
-    virtual void accept(Visitor* visitor){};//实现访问者模式，四大分会场都通过accept函数访问主会场，但执行不同的操作
+    //实现访问者模式，四大分会场都通过accept函数访问主会场，但执行不同的操作
+    virtual void accept(Visitor* visitor){};
 };
 
 //各个分会场只会存在一个且不会被继承 设计为单例模式

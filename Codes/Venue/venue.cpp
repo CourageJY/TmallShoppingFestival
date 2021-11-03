@@ -39,10 +39,13 @@ void MainVenue::showBasicInformation(Customer* customer) {
     cout << "4. 水果会场" << '\n';
 }
 
-void MainVenue::showInformation(Customer *customer, ProxyPatternCustomer *proxyPatternCustomer) {
-    string info("请选择你想去的会场(1-4, 0退出，5搜索商品，6进入购物车，7查看个人信息)：");
+void MainVenue::showInformation(Customer* customer,
+                                ProxyPatternCustomer* proxyPatternCustomer) {
+    string info(
+        "请选择你想去的会场(1-4, "
+        "0退出，5搜索商品，6进入购物车，7查看个人信息)：");
     while (1) {
-        system("cls");//清空屏幕
+        system("cls");  //清空屏幕
         cout << "本次天猫购物节主会场有以下分会场：" << '\n' << endl;
         cout << "1. 服装会场" << '\n';
         cout << "2. 零食会场" << '\n';
@@ -76,7 +79,9 @@ void MainVenue::showInformation(Customer *customer, ProxyPatternCustomer *proxyP
                 // The profile will be loaded from disk
                 proxyPatternCustomer->viewBasicInformation();
                 cout << "\n";
-                cout << "The profile has initialized ,does not need to be loaded from disk" << endl;
+                cout << "The profile has initialized ,does not need to be "
+                        "loaded from disk"
+                     << endl;
                 proxyPatternCustomer->viewBasicInformation();
                 continue;
         }
@@ -232,11 +237,14 @@ void FruitsVenue::showBasicInformation(Customer* customer) {
         info += "，0返回，*进行店铺搜索)";
         string ss;
         while (ss == "") cin >> ss;
+        int no = 0;
         if (ss == "*") {
             cout << "搜索店铺" << endl;
             // 这里还没写完
         }
-        int no = getNum(info, count);
+        else if (isdigit(ss[0])){
+            no = ss[0] - '0';
+        }
         if (no == 0) {
             // MainVenue mainvenue;
             // mainvenue.showInformation(customer);
