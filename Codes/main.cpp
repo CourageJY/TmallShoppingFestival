@@ -61,8 +61,9 @@ int main() {
     MainVenue venue;
 
     //从主会场开始跳转
-    venue.showInformation(customer);
 
+    ProxyPatternCustomer *proxyPatternCustomer = new ProxyCustomer("lkyProfile.jpg");
+    venue.showInformation(customer,proxyPatternCustomer);
     system("pause");
     return 0;
 }
