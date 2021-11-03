@@ -10,7 +10,7 @@ class Mediator
 public:
 	Mediator(Shop* sh) :shop(sh) {}
 
-	void sendComment(Comment* comment) { shop->receiverComment(comment); }
+	void sendComment(Comment* comment) { shop->receiveComment(comment); }
 
 private:
 	Shop* shop;
