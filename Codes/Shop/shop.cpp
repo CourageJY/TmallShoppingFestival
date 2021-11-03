@@ -44,21 +44,59 @@ void Shop::setGoods(vector<string> names, vector<double> prices,
     }
 }
 
-void Shop::showGoods() {
+void Shop::showGoods(Customer *customer) {
     system("cls");//清空屏幕
     cout << this->name << "有以下商品：" << endl << endl;
     if(this->goods.size() == 0){
         cout << "" << endl;
         return;
     }
-    
+    int k=0;
     for (auto&& i : this->goods) {
-        cout << "商品名字：" << i.first.getName() << endl;
+        k++;
+        cout << k<<"：" << i.first.getName() << endl;
         cout << "价格: " << i.first.getPrice() << " 元" << endl;
         cout << "过期时间: " << i.first.getOutDate() << endl;
         cout << "店内库存: " << i.second << endl << endl;
     }
     cout << "-------------------------------------------" << endl << endl;
+    
+    int no,count;
+    while (1)
+    {
+        cout<<"请选择你要添加的商品序号(1~"<<k<<",0返回)及其数量:";
+        cin >> no;
+        if (no==0)
+            return;
+        cin>>count;
+        if (no<0||no>k){
+            cout<<"序号错误!"<<endl;
+            continue;
+        }
+        if (count<=0){
+            cout<<"数量错误!"<<endl;
+            continue;
+        }
+        int iter =0;
+        bool sus=true;
+        for (auto&& i : this->goods){
+            if (++iter == no){
+                if(count>i.second){
+                    cout<<"\n抱歉！添加的商品数量超过了库存需求\n";
+                    sus=false;
+                    break;
+                }
+                const Goods good = i.first;
+                customer->getShoppingCart()->addGoods(good,count);
+                Sleep(1000);
+                cout<<"\n-------------\n";
+                cout<<"添加成功"<<endl;
+                //system("pause");
+                break;
+            }
+        }
+        if(sus)break;
+    }
 }
 
 //显示店铺评论
@@ -129,7 +167,7 @@ void Shop::showInformation(Customer* customer) {
         order = getNum_shop(info,5);
         switch (order) {
             case 1:
-                this->showGoods();
+                this->showGoods(customer);
                 system("pause");
                 continue;
             case 2:
@@ -137,7 +175,6 @@ void Shop::showInformation(Customer* customer) {
                 system("pause");
                 continue;
             case 3:
-                //TODO:ADDComments?
                 this->addComment(customer);
                 continue;
             case 4:

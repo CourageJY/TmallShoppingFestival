@@ -5,7 +5,7 @@
 vector<Goods> SearchAdaptor::getAllGoods(){
     vector<Goods> matchedgoods; //匹配的商品
     for(auto && i : shops){
-        auto goods = i.getGoods();
+        auto goods = i->getGoods();
         for(auto && j : goods){//遍历每个商店的商品，并加入到总商品中
             matchedgoods.push_back(j.first);
         }
@@ -21,24 +21,27 @@ void SearchEngine::searchGoods(Customer* customer){
         cout <<"请输入商品名(0:返回,1:查看上一次搜索结果,2:清空历史记录,3:显示历史记录):";
         cin >> productName;
         if (productName=="0"){
+            return;
+        }
+        if (productName=="1"){
             rollBack(customer);
             continue;
         }
-        if (productName=="1"){
+        if (productName=="2"){
             emptyHistory();
             cout<<"历史记录已清除.."<<endl;
             system("pause");
             continue;
-        }
-        if (productName=="2"){
-            showHistory();
-            continue;
+            
         }
         if (productName=="3"){
-            return;
+            showHistory();
+            continue;
+            
         }
         if (productName.length()==1){
             cout << "至少输入两个字符" << endl;
+            system("pause");
             continue;
         }
         search(productName,customer);
@@ -50,7 +53,7 @@ void SearchEngine::searchGoods(Customer* customer){
 
 void SearchEngine::rollBack(Customer* customer){
     if (!history.empty()){
-        string s;
+        string s = *(history.end()-1);
         history.pop_back();
         search(s,customer);
     }
@@ -58,8 +61,10 @@ void SearchEngine::rollBack(Customer* customer){
 
 void SearchEngine::showHistory(){
     cout << "搜索历史：" << endl;
+    int count =0;
     for(auto iter = history.begin();iter != history.end();iter++){
-        cout << "1." << *iter << endl;
+        count++;
+        cout << count<<"." << *iter << endl;
     }
     cout<<"-------------------------"<<endl;
     system("pause");
@@ -82,9 +87,10 @@ void SearchEngine::search(string name,Customer* customer){
         system("pause");
         return;
     }
-    int i=matchedGoods.size();
+    int i=0;
     cout<<"no name\tprice\tshop"<<endl;
     for(auto && j : matchedGoods){
+        i++;
         cout<<i<<" :"<<j.getName()<<"\t"<<j.getPrice()<<"\t"<<j.getShop()->getName()<<endl;
     }
     string info("请选择你要进行的操作(0返回，1~");

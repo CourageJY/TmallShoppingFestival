@@ -60,4 +60,5 @@ add_executable(TmallShoppingFestival
         Codes/Venue/venue.cpp
         Codes/Venue/venue.h
         Codes/tools.h
+        Codes/tools.cpp
         Codes/main.cpp)

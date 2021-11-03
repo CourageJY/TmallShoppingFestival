@@ -3,7 +3,7 @@
 #include "../Order/checkOrder.h"
 
 void Customer::viewBasicInformation(){
-    string info("请选择你的操作(0:返回,1:查看优惠券,2:查看订单)");
+    string info("请选择你的操作(0:返回，1:查看优惠券，2:查看购物车，3：查看未支付订单订单，4：查看所有订单)");
     int order;
     while (1){
         system("cls");
@@ -13,8 +13,8 @@ void Customer::viewBasicInformation(){
         cout<<"居住地址："<<addr<<'\n';
         cout<<"性别："<<(gender==male?"男":"女")<<'\n';
         cout<<"您剩余的金额为："<<money<<'\n';
-        cout<<"--------------------------\n";
-        order=getNum(info,2);
+        cout<<"--------------------------\n\n";
+        order=getNum(info,4);
         if (order==0)
             return;
         if (order==1){
@@ -22,7 +22,17 @@ void Customer::viewBasicInformation(){
             continue;
         }
         if (order==2){
+            showShoppingCart();
+            continue;
+        }
+        if (order==3){
             payOrder();
+            system("pause");
+            continue;
+        }
+        if (order==4){
+            check();
+            system("pause");
             continue;
         }
          continue;
@@ -74,6 +84,10 @@ bool Customer::payOrder(){
         }
         j++;
     }
+    if(vec.size()==0){
+        cout<<"\n您当前还没有待支付订单，快去购物车生成订单吧\n";
+        return false;
+    }
     cout<<"当前您未支付的订单共"<<vec.size()<<"个，分别为：\n";
     int i=1;
     for(auto v:vec){
@@ -104,4 +118,66 @@ bool Customer::payOrder(){
 
 void ProxyPatternCustomer::giveRealCustomer(Customer *customer) {
     cout<<"使用了父类的给予指针函数，调用错误"<<endl;
+}
+
+void Customer::showShoppingCart(){
+    ShoppingCart* cart = this->getShoppingCart();
+    map<Goods,int> goods=cart->getGoodsMap();
+    
+    int order;
+    string info ="请选择您的操作(0返回，1清空购物车，2修改一项商品的数量，3生成订单并购买)";
+    while (1){
+        system("cls");
+        cart->showAllGoods();
+        cout<<"---------------------"<<endl;
+        order = getNum(info,3);
+        if (order == 0){
+            return;
+        }
+        if (order == 1){
+            for (auto&&i:goods){
+                cart->removeGoods(i.first);
+                cout<<"\n---------------------------------\n";
+                cout<<"\n购物车清除成功，快去重新采购商品吧！\n";
+                system("pause");
+            }
+        }
+        if (order == 2){
+            cout<<"请输入商品的序号和修改后的数量(0返回):";
+            int no,count;
+            cin>>no>>count;
+            if (no == 0){
+                return;
+            }
+            if (count<0){
+                cout<<"数量错误!"<<endl;
+                continue;
+            }
+            int k=0;
+            for (auto&&i:goods){
+                k++;
+                if (k==no){
+                    if(cart->setGoodsNum(i.first,count)){
+                        cout<<"\n修改成功"<<endl;
+                    } else {
+                        cout<<"\n修改失败"<<endl;
+                    }
+                    break;
+                } 
+            }
+            if (k!=no)
+                cout<<"序号不存在！\n";
+            system("pause");
+        }
+        if (order == 3){
+            if(cart->getGoodsMap().empty()){
+                cout<<"\n抱歉！目前购物车已没有商品了呢\n\n请重新在商铺里面添加商品吧\n\n";
+                return;
+            }
+            if(cart->generateOrder(cart->getGoodsMap())){//订单生成成功则直接返回
+                system("pause");
+                return; 
+            }
+        }
+    }
 }

@@ -28,6 +28,7 @@ void Order::showOrder(){
     for(auto gd:goods){
         cout<<gd.getName()<<' ';
     }
+    cout<<"\n该订单总金额为："<<sum<<" 元";
     cout<<'\n';
 }
 

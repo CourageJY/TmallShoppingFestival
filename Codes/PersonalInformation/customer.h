@@ -79,6 +79,8 @@ public:
     //若金额不足则返回false
     bool payOrder();
 
+    void showShoppingCart();
+
     //用户调用中介者类来发送评价，不需要调用店铺
     void writeCommment(Mediator* med, Comment* com) { med->sendComment(com); }
 
@@ -95,6 +97,8 @@ public:
     ShoppingCart* getShoppingCart(){return shoppingCart;}
 
     vector<Order>& getOrders(){return orders;}
+
+    void setOrders(Order* newOd){orders.push_back(*newOd);}
 
     vector<Coupon*>& getCoupons(){return coupons;}
 

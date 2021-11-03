@@ -35,7 +35,7 @@ public:
         if (hasNext()) {
             return commentsList->at(++index);
         }
-        return nullptr;
+        else return nullptr;
     }
     bool hasNext() {
         return index < commentsList->size() - 1;
