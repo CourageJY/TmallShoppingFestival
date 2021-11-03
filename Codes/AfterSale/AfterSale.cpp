@@ -27,7 +27,7 @@ void GoodsInformation::getGoodsInformation(Customer* c,double& price) {
                         map<Goods, int>::iterator it;
                         for (it = currentMap.begin(); it != currentMap.end(); it++) {
                             if (it->first.getName() == goodsName) {
-                                it->second++;0
+                                it->second++;
                             }
                         }
                     }
