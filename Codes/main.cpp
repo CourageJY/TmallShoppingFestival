@@ -353,7 +353,7 @@ void testProxy(){
 void testFilter(){
     PriceFilter p(0,20);
     FruitsVenue& fruitInstance = FruitsVenue::getInstance();
-    p.printGoods(p.filterGoods(fruitInstance.getGoods()));
+    p.filterGoods(fruitInstance.getGoods());
 }
 
 //测试观察者模式

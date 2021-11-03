@@ -1,7 +1,7 @@
 #pragma once
 #include <map>
-#include "../Shop/shop.h"
-#include "../Shop/brand.h"
+#include "../Shop/goods.h"
+// #include "../Shop/brand.h"
 
 //过滤器
 class Filter
@@ -10,8 +10,6 @@ public:
 	Filter() {}
 
 	virtual map<Goods, int> filterGoods(map<Goods, int> goods) { return map<Goods, int>(); }
-
-	void printGoods(map<Goods, int> goods);
 
 private:
 
@@ -42,14 +40,14 @@ private:
 
 };
 
-//品牌过滤器
-class BrandFilter :public Filter {
-public:
-	BrandFilter(Brand* sb) :standardBrand(sb) {}
+// //品牌过滤器
+// class BrandFilter :public Filter {
+// public:
+// 	BrandFilter(Brand* sb) :standardBrand(sb) {}
 
-	map<Goods, int> filterGoods(map<Goods, int> goods);
+// 	map<Goods, int> filterGoods(map<Goods, int> goods);
 
-private:
-	Brand* standardBrand;
+// private:
+// 	Brand* standardBrand;
 
-};
+// };

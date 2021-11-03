@@ -2,6 +2,7 @@
 #include "../tools.h"
 #include "../PersonalInformation/Comment.h"
 #include "../PersonalInformation/customer.h"
+#include "../Filter/filter.h"
 using namespace std;
 
 //添加商品
@@ -153,6 +154,69 @@ void Shop::showCoupons(Customer* customer) {
     //system("pause");
 }
 
+void Shop::showFilterGoods(Customer* customer){
+    system("cls");
+    double low,up;
+    cout << "请输入筛选最低价：";
+    cin >> low;
+    cout << "请输入筛选最高价：";
+    cin >> up;
+    PriceFilter filter(low,up);
+    map<Goods, int> filterGoods = filter.filterGoods(this->goods);
+    
+    cout <<  "价格位于 [" << low << "," << up <<"] 的有以下商品：" << endl << endl;
+    if(this->goods.size() == 0){
+        cout << "" << endl;
+        return;
+    }
+    int k=0;
+    for (auto&& i : filterGoods) {
+        k++;
+        cout << k<<"：" << i.first.getName() << endl;
+        cout << "价格: " << i.first.getPrice() << " 元" << endl;
+        cout << "过期时间: " << i.first.getOutDate() << endl;
+        cout << "店内库存: " << i.second << endl << endl;
+    }
+    cout << "-------------------------------------------" << endl << endl;
+
+    int no,count;
+    while (1)
+    {
+        cout<<"请选择你要添加的商品序号(1~"<<k<<",0返回)及其数量:";
+        cin >> no;
+        if (no==0)
+            return;
+        cin>>count;
+        if (no<0||no>k){
+            cout<<"序号错误!"<<endl;
+            continue;
+        }
+        if (count<=0){
+            cout<<"数量错误!"<<endl;
+            continue;
+        }
+        int iter =0;
+        bool sus=true;
+        for (auto&& i : filterGoods){
+            if (++iter == no){
+                if(count>i.second){
+                    cout<<"\n抱歉！添加的商品数量超过了库存需求\n";
+                    sus=false;
+                    break;
+                }
+                const Goods good = i.first;
+                customer->getShoppingCart()->addGoods(good,count);
+                Sleep(1000);
+                cout<<"\n-------------\n";
+                cout<<"添加成功"<<endl;
+                //system("pause");
+                break;
+            }
+        }
+        if(sus)break;
+    }
+}
+
 //展示店铺信息，与店铺交互
 void Shop::showInformation(Customer* customer) {
     string info;
@@ -160,7 +224,7 @@ void Shop::showInformation(Customer* customer) {
     info+="欢迎光临";
     info+=this->name;
     info+="，\n\n";
-    info+="1、浏览商品\n2、查看店铺评价\n3、对店铺进行评价\n4、查看店铺优惠券\n0、退出商店\n请选择您的操作：";
+    info+="1、浏览商品\n2、查看店铺评价\n3、对店铺进行评价\n4、查看店铺优惠券\n5、筛选商品\n0、退出商店\n请选择您的操作：";
     int order;
     while (true) {
         system("cls");
@@ -179,6 +243,10 @@ void Shop::showInformation(Customer* customer) {
                 continue;
             case 4:
                 this->showCoupons(customer);
+                system("pause");
+                continue;
+            case 5:
+                this->showFilterGoods(customer);
                 system("pause");
                 continue;
             case 0:
