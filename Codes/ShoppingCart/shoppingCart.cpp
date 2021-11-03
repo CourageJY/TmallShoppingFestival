@@ -80,7 +80,7 @@ bool ShoppingCart::getGoods(string name,Goods& gd){
 
 bool ShoppingCart::setGoodsNum(Goods gd, int n){
     if(n < 1) {
-        cout<<"error! 不设置的商品数量不能小于1\n";
+        cout<<"error! 设置的商品数量不能小于1\n";
         return false;
     }
     if(!goodsData->setNum(gd, n)) {
@@ -136,9 +136,12 @@ void ShoppingCart::update(Goods gd){
 
 void ShoppingCart::showAllGoods() {
     map<Goods,int>::iterator it;
-    cout<<"当前购物车有如下商品：\n";
+    cout<<"当前购物车有如下商品：\n\n";
+    int k=1;
     for(it=goodsData->getMap().begin();it!=goodsData->getMap().end();it++){
-        cout<<it->first.getName()<<"  价格："<<it->first.getPrice()
-            <<"  数量："<<it->second<<endl;
+        cout<<k<<endl;
+        cout<<"----------------\n";
+        cout<<it->first.getName()<<"\n价格："<<it->first.getPrice()<<" 元"
+            <<"\n数量："<<it->second<<endl<<endl;
     }
 }

@@ -42,8 +42,8 @@ class MainVenue {
 class ClothingVenue : public MainVenue {
    public:
     void showBasicInformation(Customer* customer) override;
-    void addShop(Shop shop) { this->shops.push_back(shop); }
-    vector<Shop>& getShops() { return shops; }
+    void addShop(Shop* shop) { this->shops.push_back(shop); }
+    vector<Shop*>& getShops() { return shops; }
 
     //获取会场所有店铺的商品
     map<Goods, int> getGoods();
@@ -74,15 +74,15 @@ class ClothingVenue : public MainVenue {
         cout << "constructor called!" << endl;
     }  //单例模式要将构造函数私有
 
-    vector<Shop> shops;  //分会场中应该有一些商家
+    vector<Shop*> shops;  //分会场中应该有一些商家
     SnacksVenue* next;
 };
 
 class SnacksVenue : public MainVenue {
    public:
     void showBasicInformation(Customer* customer) override;
-    void addShop(Shop shop) { this->shops.push_back(shop); }
-    vector<Shop>& getShops() { return shops; }
+    void addShop(Shop* shop) { this->shops.push_back(shop); }
+    vector<Shop*>& getShops() { return shops; }
 
     //获取会场所有店铺的商品
     map<Goods, int> getGoods();
@@ -110,15 +110,15 @@ class SnacksVenue : public MainVenue {
 
    private:
     SnacksVenue() = default;
-    vector<Shop> shops;
+    vector<Shop*> shops;
     ElectronicVenue* next;
 };
 
 class ElectronicVenue : public MainVenue {
    public:
     void showBasicInformation(Customer* customer) override;
-    void addShop(Shop shop) { this->shops.push_back(shop); }
-    vector<Shop>& getShops() { return shops; }
+    void addShop(Shop* shop) { this->shops.push_back(shop); }
+    vector<Shop*>& getShops() { return shops; }
 
     //获取会场所有店铺的商品
     map<Goods, int> getGoods();
@@ -146,15 +146,15 @@ class ElectronicVenue : public MainVenue {
 
    private:
     ElectronicVenue() = default;
-    vector<Shop> shops;
+    vector<Shop*> shops;
     FruitsVenue* next;
 };
 
 class FruitsVenue : public MainVenue {
    public:
     void showBasicInformation(Customer* customer) override;
-    void addShop(Shop shop) { this->shops.push_back(shop); }
-    vector<Shop>& getShops() { return shops; }
+    void addShop(Shop* shop) { this->shops.push_back(shop); }
+    vector<Shop*>& getShops() { return shops; }
 
     //获取会场所有店铺的商品
     map<Goods, int> getGoods();
@@ -182,7 +182,7 @@ class FruitsVenue : public MainVenue {
 
    private:
     FruitsVenue() = default;
-    vector<Shop> shops;
+    vector<Shop*> shops;
     ClothingVenue* next;
 };
 

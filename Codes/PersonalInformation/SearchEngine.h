@@ -45,5 +45,5 @@ public:
     };
     vector<Goods>  getAllGoods();   //将已有的搜索函数转变成所需要的函数
 private:
-    vector<Shop> shops;  //所有的商店
+    vector<Shop*> shops;  //所有的商店
 };

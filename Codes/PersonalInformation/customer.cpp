@@ -84,6 +84,10 @@ bool Customer::payOrder(){
         }
         j++;
     }
+    if(vec.size()==0){
+        cout<<"\n您当前还没有待支付订单，快去购物车生成订单吧\n";
+        return false;
+    }
     cout<<"当前您未支付的订单共"<<vec.size()<<"个，分别为：\n";
     int i=1;
     for(auto v:vec){
@@ -133,12 +137,15 @@ void Customer::showShoppingCart(){
         if (order == 1){
             for (auto&&i:goods){
                 cart->removeGoods(i.first);
+                cout<<"\n---------------------------------\n";
+                cout<<"\n购物车清除成功，快去重新采购商品吧！\n";
+                system("pause");
             }
         }
         if (order == 2){
             cout<<"请输入商品的序号和修改后的数量(0返回):";
             int no,count;
-            cin>>no;
+            cin>>no>>count;
             if (no == 0){
                 return;
             }
@@ -150,17 +157,17 @@ void Customer::showShoppingCart(){
             for (auto&&i:goods){
                 k++;
                 if (k==no){
-                    if(cart->setGoodsNum(i.first,no)){
-                        cout<<"修改成功"<<endl;
+                    if(cart->setGoodsNum(i.first,count)){
+                        cout<<"\n修改成功"<<endl;
                     } else {
-                        cout<<"修改失败"<<endl;
+                        cout<<"\n修改失败"<<endl;
                     }
                     break;
                 } 
             }
             if (k!=no)
                 cout<<"序号不存在！\n";
-            //system("pause");
+            system("pause");
         }
         if (order == 3){
             if(cart->getGoodsMap().empty()){

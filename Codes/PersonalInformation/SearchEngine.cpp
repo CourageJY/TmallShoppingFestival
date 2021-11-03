@@ -5,7 +5,7 @@
 vector<Goods> SearchAdaptor::getAllGoods(){
     vector<Goods> matchedgoods; //匹配的商品
     for(auto && i : shops){
-        auto goods = i.getGoods();
+        auto goods = i->getGoods();
         for(auto && j : goods){//遍历每个商店的商品，并加入到总商品中
             matchedgoods.push_back(j.first);
         }

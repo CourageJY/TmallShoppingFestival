@@ -7,17 +7,23 @@ void MainVenue::findShops(string name) {
 
 //设置分会场中指定店铺的所有商品属性
 void ClothingVenue::setGoods(string name, vector<string> names, vector<double> prices, vector<int> months) {
-    for (vector<Shop>::iterator iter = shops.begin(); iter != shops.end(); iter++)
-        if (iter->getName() == name) {
-            iter->setGoods(names, prices, months);
+    // for (vector<Shop*>::iterator iter = shops.begin(); iter != shops.end(); iter++)
+    //     if ((*iter)->getName() == name) {
+    //         iter->setGoods(names, prices, months);
+    //         return;
+    //     }
+    for(auto&& i:shops){
+        if(i->getName()==name){
+            i->setGoods(names, prices, months);
             return;
         }
+    }
 }
 
 //返回分会场的所有商品
 map<Goods, int> ClothingVenue::getGoods() {
     map<Goods, int> goods;
-    for (vector<Shop>::iterator iter = shops.begin(); iter != shops.end(); iter++) {
+    for (auto&& iter:shops) {
         map<Goods, int> temp = iter->getGoods();
         goods.insert(temp.begin(), temp.end());
     }
@@ -26,7 +32,7 @@ map<Goods, int> ClothingVenue::getGoods() {
 
 //返回分会场指定店铺的所有商品
 map<Goods, int> ClothingVenue::getGoods(string name) {
-    for (vector<Shop>::iterator iter = shops.begin(); iter != shops.end(); iter++)
+    for (auto&& iter:shops)
         if (iter->getName() == name)
             return iter->getGoods();
     return map<Goods,int>();
@@ -34,7 +40,7 @@ map<Goods, int> ClothingVenue::getGoods(string name) {
 
 //设置分会场中指定店铺的所有商品属性
 void SnacksVenue::setGoods(string name, vector<string> names, vector<double> prices, vector<int> months) {
-    for (vector<Shop>::iterator iter = shops.begin(); iter != shops.end(); iter++)
+    for (auto&& iter:shops)
         if (iter->getName() == name) {
             iter->setGoods(names, prices, months);
             return;
@@ -44,7 +50,7 @@ void SnacksVenue::setGoods(string name, vector<string> names, vector<double> pri
 //返回分会场的所有商品
 map<Goods, int> SnacksVenue::getGoods() {
     map<Goods, int> goods;
-    for (vector<Shop>::iterator iter = shops.begin(); iter != shops.end(); iter++) {
+    for (auto&& iter:shops) {
         map<Goods, int> temp = iter->getGoods();
         goods.insert(temp.begin(), temp.end());
     }
@@ -53,7 +59,7 @@ map<Goods, int> SnacksVenue::getGoods() {
 
 //返回分会场指定店铺的所有商品
 map<Goods, int> SnacksVenue::getGoods(string name) {
-    for (vector<Shop>::iterator iter = shops.begin(); iter != shops.end(); iter++)
+    for (auto&& iter:shops)
         if (iter->getName() == name)
             return iter->getGoods();
     return map<Goods,int>();
@@ -61,7 +67,7 @@ map<Goods, int> SnacksVenue::getGoods(string name) {
 
 //设置分会场中指定店铺的所有商品属性
 void ElectronicVenue::setGoods(string name, vector<string> names, vector<double> prices, vector<int> months) {
-    for (vector<Shop>::iterator iter = shops.begin(); iter != shops.end(); iter++)
+    for (auto&& iter:shops)
         if (iter->getName() == name) {
             iter->setGoods(names, prices, months);
             return;
@@ -71,7 +77,7 @@ void ElectronicVenue::setGoods(string name, vector<string> names, vector<double>
 //返回分会场的所有商品
 map<Goods, int> ElectronicVenue::getGoods() {
     map<Goods, int> goods;
-    for (vector<Shop>::iterator iter = shops.begin(); iter != shops.end(); iter++) {
+    for (auto&& iter:shops) {
         map<Goods, int> temp = iter->getGoods();
         goods.insert(temp.begin(), temp.end());
     }
@@ -80,7 +86,7 @@ map<Goods, int> ElectronicVenue::getGoods() {
 
 //返回分会场指定店铺的所有商品
 map<Goods, int> ElectronicVenue::getGoods(string name) {
-    for (vector<Shop>::iterator iter = shops.begin(); iter != shops.end(); iter++)
+    for (auto&& iter:shops)
         if (iter->getName() == name)
             return iter->getGoods();
     return map<Goods,int>();
@@ -88,7 +94,7 @@ map<Goods, int> ElectronicVenue::getGoods(string name) {
 
 //设置分会场中指定店铺的所有商品属性
 void FruitsVenue::setGoods(string name, vector<string> names, vector<double> prices, vector<int> months) {
-    for (vector<Shop>::iterator iter = shops.begin(); iter != shops.end(); iter++)
+    for (auto&& iter:shops)
         if (iter->getName() == name) {
             iter->setGoods(names, prices, months);
             return;
@@ -98,7 +104,7 @@ void FruitsVenue::setGoods(string name, vector<string> names, vector<double> pri
 //返回分会场的所有商品
 map<Goods, int> FruitsVenue::getGoods() {
     map<Goods, int> goods;
-    for (vector<Shop>::iterator iter = shops.begin(); iter != shops.end(); iter++) {
+    for (auto&& iter:shops) {
         map<Goods, int> temp = iter->getGoods();
         goods.insert(temp.begin(), temp.end());
     }
@@ -107,7 +113,7 @@ map<Goods, int> FruitsVenue::getGoods() {
 
 //返回分会场指定店铺的所有商品
 map<Goods, int> FruitsVenue::getGoods(string name) {
-    for (vector<Shop>::iterator iter = shops.begin(); iter != shops.end(); iter++)
+    for (auto&& iter:shops)
         if (iter->getName() == name)
             return iter->getGoods();
     return map<Goods,int>();
@@ -173,7 +179,7 @@ void ClothingVenue::showBasicInformation(Customer* customer) {
         for(auto && i : this->shops){
             cout<<'\n'<<k;k++;
             cout<<"\n-----------------\n";
-            cout<<i.getName();
+            cout<<i->getName();
             cout<<endl;
             cout<<"-----------------\n";
         }
@@ -183,13 +189,13 @@ void ClothingVenue::showBasicInformation(Customer* customer) {
         info+="，0返回)";
         int no = getNum(info,count);
         if (no==0){
-            MainVenue mainvenue;
-            mainvenue.showInformation(customer);
+            // MainVenue mainvenue;
+            // mainvenue.showInformation(customer);
             return;        
         }
         if (no<=count){
-            vector<Shop> shops = getShops();
-            shops[no-1].showInformation(customer);
+            vector<Shop*> shops = getShops();
+            shops[no-1]->showInformation(customer);
             continue;
         }
     }
@@ -205,7 +211,7 @@ void SnacksVenue::showBasicInformation(Customer* customer) {
         for(auto && i : this->shops){
             cout<<'\n'<<k;k++;
             cout<<"\n-----------------\n";
-            cout<<i.getName();
+            cout<<i->getName();
             cout<<endl;
             cout<<"-----------------\n";
         }
@@ -215,13 +221,13 @@ void SnacksVenue::showBasicInformation(Customer* customer) {
         info+="，0返回)";
         int no = getNum(info,count);
         if (no==0){
-            MainVenue mainvenue;
-            mainvenue.showInformation(customer);
+            // MainVenue mainvenue;
+            // mainvenue.showInformation(customer);
             return;        
         }
         if (no<=count){
-            vector<Shop> shops = getShops();
-            shops[no-1].showInformation(customer);
+            vector<Shop*> shops = getShops();
+            shops[no-1]->showInformation(customer);
             continue;
         }
     }
@@ -237,7 +243,7 @@ void ElectronicVenue::showBasicInformation(Customer* customer) {
         for(auto && i : this->shops){
             cout<<'\n'<<k;k++;
             cout<<"\n-----------------\n";
-            cout<<i.getName();
+            cout<<i->getName();
             cout<<endl;
             cout<<"-----------------\n";
         }
@@ -247,13 +253,13 @@ void ElectronicVenue::showBasicInformation(Customer* customer) {
         info+="，0返回)";
         int no = getNum(info,count);
         if (no==0){
-            MainVenue mainvenue;
-            mainvenue.showInformation(customer);
+            // MainVenue mainvenue;
+            // mainvenue.showInformation(customer);
             return;        
         }
         if (no<=count){
-            vector<Shop> shops = getShops();
-            shops[no-1].showInformation(customer);
+            vector<Shop*> shops = getShops();
+            shops[no-1]->showInformation(customer);
             continue;
         }
     }
@@ -269,7 +275,7 @@ void FruitsVenue::showBasicInformation(Customer* customer) {
         for(auto && i : this->shops){
             cout<<'\n'<<k;k++;
             cout<<"\n-----------------\n";
-            cout<<i.getName();
+            cout<<i->getName();
             cout<<endl;
             cout<<"-----------------\n";
         }
@@ -279,13 +285,13 @@ void FruitsVenue::showBasicInformation(Customer* customer) {
         info+="，0返回)";
         int no = getNum(info,count);
         if (no==0){
-            MainVenue mainvenue;
-            mainvenue.showInformation(customer);
+            // MainVenue mainvenue;
+            // mainvenue.showInformation(customer);
             return;        
         }
         if (no<=count){
-            vector<Shop> shops = getShops();
-            shops[no-1].showInformation(customer);
+            vector<Shop*> shops = getShops();
+            shops[no-1]->showInformation(customer);
             continue;
         }
     }

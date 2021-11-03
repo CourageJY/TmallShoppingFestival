@@ -94,8 +94,8 @@ void initial()
     snack_2->addCoupons(new FullReduceCoupon(snack_2,50,5));
     snack_2->addCoupons(new DiscountCoupon(snack_2,0.97));
 
-    sv.addShop(*snack_1);
-    sv.addShop(*snack_2);
+    sv.addShop(snack_1);
+    sv.addShop(snack_2);
 
     //电气会场信息添加
     ElectronicVenue& ev=ElectronicVenue::getInstance();
@@ -132,10 +132,10 @@ void initial()
     elec_4->addCoupons(new FullReduceCoupon(elec_4,7000,150));
     elec_4->addCoupons(new DiscountCoupon(elec_4,0.82));
 
-    ev.addShop(*elec_1);
-    ev.addShop(*elec_2);
-    ev.addShop(*elec_3);
-    ev.addShop(*elec_4);
+    ev.addShop(elec_1);
+    ev.addShop(elec_2);
+    ev.addShop(elec_3);
+    ev.addShop(elec_4);
 
     //水果会场信息添加
     FruitsVenue& fv=FruitsVenue::getInstance();
@@ -166,9 +166,9 @@ void initial()
     fruit_3->addCoupons(new FullReduceCoupon(fruit_3,40,5));
     fruit_3->addCoupons(new DiscountCoupon(fruit_3,0.9));
 
-    fv.addShop(*fruit_1);
-    fv.addShop(*fruit_2);
-    fv.addShop(*fruit_3);
+    fv.addShop(fruit_1);
+    fv.addShop(fruit_2);
+    fv.addShop(fruit_3);
 
     system("pause");
     
@@ -251,8 +251,8 @@ void testAbstractFactory() {  // coded by jy
     adidasShop->addCoupons(new DiscountCoupon(adidasShop,0.95));
 
     //在服装会场中添加商店
-    clothingVenue.addShop(*antaShop);
-    clothingVenue.addShop(*adidasShop);
+    clothingVenue.addShop(antaShop);
+    clothingVenue.addShop(adidasShop);
 
     
     //test output
