@@ -33,7 +33,6 @@ public:
 class goodOrBad{
 public:
     virtual string makeTotalComment()=0;
-
 };
 class goodComment:public goodOrBad{
 public:
@@ -62,9 +61,6 @@ private:
     diffAspect* _diff;
 };
 
-class test{
-
-};
 
 
 

@@ -40,10 +40,6 @@ public:
     bool hasNext() {
         return index < commentsList->size() - 1;
     }
-    vector<Comment*>* getVector(){
-        return commentsList;
-    }
-
 };
 
 //抽象类存储容器
@@ -64,9 +60,6 @@ public:
     }
     void add(Comment* cm) {
         commentsList->push_back(cm);
-    }
-    int getLength(){
-        return commentsList->size();
     }
     commentsListIterator* getIterator() {
         commentsListIterator* cmlt= new commentsListIterator(commentsList);
