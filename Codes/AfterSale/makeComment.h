@@ -12,21 +12,21 @@ public:
 class price:public diffAspect{
 public:
     string selectAspect(){
-        return "price";
+        return "价格";
     }
 };
 
 class logistics:public diffAspect{
 public:
     string selectAspect(){
-        return "logistics";
+        return "物流";
     }
 };
 
 class service:public diffAspect{
 public:
     string selectAspect(){
-        return "service";
+        return "服务";
     }
 };
 
@@ -41,7 +41,7 @@ public:
         _diff=diff;
     }
     string makeTotalComment(){
-        string s=" is good";
+        string s="满意";
         return _diff->selectAspect().c_str()+s;
     }
 private:
@@ -54,7 +54,7 @@ public:
         _diff=diff;
     }
     string makeTotalComment(){
-        string s=" is bad";
+        string s="不满意";
         return _diff->selectAspect().c_str()+s;
     }
 

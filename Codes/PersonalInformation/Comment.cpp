@@ -1,12 +1,13 @@
 ﻿#include"Comment.h"
 #include"iostream"
 
+//评论价格的实现
 string Comment::priceComment(){
         string result="";
         int choice=-1;
         diffAspect* pri=new price();
-        cout<<"is price good or bad?"<<endl;
-        cout<<"0.good"<<"\t"<<"1.bad"<<endl;
+        cout<<"价格是否令您满意？"<<endl;
+        cout<<"0.满意"<<"\t"<<"1.不满意"<<endl;
         cin>>choice;
         switch (choice)
         {
@@ -27,13 +28,13 @@ string Comment::priceComment(){
         }
         return result;
 }
-
+//评论物流的实现
 string Comment::logisticsComment(){
         string result="";
         int choice=-1;
         diffAspect* logis=new logistics();
-        cout<<"is logistics good or bad?"<<endl;
-        cout<<"0.good"<<"\t"<<"1.bad"<<endl;
+        cout<<"物流是否令您满意？"<<endl;
+        cout<<"0.满意"<<"\t"<<"1.不满意"<<endl;
         cin>>choice;
         switch (choice)
         {
@@ -54,13 +55,13 @@ string Comment::logisticsComment(){
         }
         return result;
 }
-
+//评论服务的实现
 string Comment::serviceComment(){
     string result="";
     int choice=-1;
     diffAspect* ser=new service();
-    cout<<"is service good or bad?"<<endl;
-    cout<<"0.good"<<"\t"<<"1.bad"<<endl;
+    cout<<"服务是否令您满意?"<<endl;
+    cout<<"0.满意"<<"\t"<<"1.不满意"<<endl;
     cin>>choice;
     switch (choice)
     {

@@ -49,4 +49,6 @@ public:
 private:
     CartData* goodsData;//为一个map的key-value映射表，初始为空
     Customer *customer;
+    bool isUpdate = false;//标记该购物车中是否有商品被商店下架
+    vector<Goods> offShelfGoods;//存储已被商店下架的商品，每次打印更新信息后清空
 };

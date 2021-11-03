@@ -26,7 +26,6 @@ void SearchEngine::searchGoods(Customer* customer){
         if (productName=="1"){
             rollBack(customer);
             continue;
-            
         }
         if (productName=="2"){
             emptyHistory();
@@ -42,6 +41,7 @@ void SearchEngine::searchGoods(Customer* customer){
         }
         if (productName.length()==1){
             cout << "至少输入两个字符" << endl;
+            system("pause");
             continue;
         }
         search(productName,customer);
@@ -53,7 +53,7 @@ void SearchEngine::searchGoods(Customer* customer){
 
 void SearchEngine::rollBack(Customer* customer){
     if (!history.empty()){
-        string s;
+        string s = *(history.end()-1);
         history.pop_back();
         search(s,customer);
     }
@@ -61,8 +61,10 @@ void SearchEngine::rollBack(Customer* customer){
 
 void SearchEngine::showHistory(){
     cout << "搜索历史：" << endl;
+    int count =0;
     for(auto iter = history.begin();iter != history.end();iter++){
-        cout << "1." << *iter << endl;
+        count++;
+        cout << count<<"." << *iter << endl;
     }
     cout<<"-------------------------"<<endl;
     system("pause");
@@ -85,9 +87,10 @@ void SearchEngine::search(string name,Customer* customer){
         system("pause");
         return;
     }
-    int i=matchedGoods.size();
+    int i=0;
     cout<<"no name\tprice\tshop"<<endl;
     for(auto && j : matchedGoods){
+        i++;
         cout<<i<<" :"<<j.getName()<<"\t"<<j.getPrice()<<"\t"<<j.getShop()->getName()<<endl;
     }
     string info("请选择你要进行的操作(0返回，1~");
