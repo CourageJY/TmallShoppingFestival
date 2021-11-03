@@ -68,6 +68,9 @@ public:
     //添加店铺评论
     void addComment(Customer* cu);
 
+    //显示筛选商品
+    void showFilterGoods(Customer* customer);
+
     //下架商品，为实现Observer模式添加的功能
     void pullOffGoods(Goods gd);
 
