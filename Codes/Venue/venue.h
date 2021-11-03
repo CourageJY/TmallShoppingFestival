@@ -6,10 +6,16 @@
 
 #include "../Shop/shop.h"
 
+
+<<<<<<< Updated upstream
+=======
 //#include "../tools.h"
 
+>>>>>>> Stashed changes
 using namespace std;
 
+class ProxyPatternCustomer;
+class ProxyCustomer;
 class ClothingVenue;
 class SnacksVenue;
 class ElectronicVenue;
@@ -34,10 +40,15 @@ class MainVenue {
    public:
     MainVenue(){};
     virtual void showBasicInformation(Customer* customer);
+<<<<<<< Updated upstream
     static void showInformation(Customer* customer);
 
     void addShop(Shop* shop) { this->shops.push_back(shop); }
     vector<Shop*>& getShops() { return shops; }
+=======
+    void showInformation(Customer* customer,ProxyPatternCustomer *proxyPatternCustomer);
+    void findShops(string name);
+>>>>>>> Stashed changes
     vector<MainVenue>& getVenues() { return venues; }
     map<Goods, int> getGoods();             //获取会场所有店铺的商品
     map<Goods, int> getGoods(string name);  //获取会场指定店铺的商品
@@ -53,10 +64,15 @@ class MainVenue {
 
    protected:
     vector<MainVenue> venues;
+<<<<<<< Updated upstream
     vector<Shop*> shops;
     MainVenue* next;
     string name;
     virtual void accept(Visitor* visitor){};//实现访问者模式，四大分会场都通过accept函数访问主会场，但执行不同的操作
+=======
+
+    virtual void accept( Visitor* visitor ) {};
+>>>>>>> Stashed changes
 };
 
 //各个分会场只会存在一个且不会被继承 设计为单例模式
