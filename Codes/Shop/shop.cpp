@@ -57,7 +57,7 @@ void Shop::showGoods(Customer *customer) {
         k++;
         cout << k<<"：" << i.first.getName() << endl;
         cout << "价格: " << i.first.getPrice() << " 元" << endl;
-        cout << "过期时间: " << i.first.getOutDate() << endl;
+        cout << "生产时间: " << i.first.getOutDate() << endl;
         cout << "店内库存: " << i.second << endl << endl;
     }
     cout << "-------------------------------------------" << endl << endl;
