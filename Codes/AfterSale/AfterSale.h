@@ -15,7 +15,7 @@ public:
 //退货子操作二，输入商品名字，获取商品基本信息
 class GoodsInformation {
 public:
-    void getGoodsInformation(Customer* c);
+    void getGoodsInformation(Customer* c,double& price);
 };
 
 //退货子操作三，退货信息展示

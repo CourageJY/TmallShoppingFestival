@@ -20,6 +20,8 @@ public:
     Shop(string na, const string& bd) : name(std::move(na)) {//shop里的品牌使用了享元模式构建
         BrandFactory& bf=BrandFactory::getInstance();
         brand=bf.getBrand(bd);
+        ConcreteAggregate* _ca=new ConcreteAggregate();
+        ca=_ca;
     };
 
     //返回店铺名

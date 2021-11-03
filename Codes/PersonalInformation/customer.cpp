@@ -1,6 +1,7 @@
 #include"customer.h"
 #include"../Order/orderState.h"
 #include "../Order/checkOrder.h"
+#include "../AfterSale/AfterSale.h"
 
 void Customer::viewBasicInformation(){
     string info("请选择你的操作(0:返回，1:查看优惠券，2:查看购物车，3：查看未支付订单订单，4：查看所有订单)");
@@ -125,12 +126,12 @@ void Customer::showShoppingCart(){
     map<Goods,int> goods=cart->getGoodsMap();
     
     int order;
-    string info ="请选择您的操作(0返回，1清空购物车，2修改一项商品的数量，3生成订单并购买)";
+    string info ="请选择您的操作(0返回，1清空购物车，2修改一项商品的数量，3生成订单并购买，4退货)";
     while (1){
         system("cls");
         cart->showAllGoods();
         cout<<"---------------------"<<endl;
-        order = getNum(info,3);
+        order = getNum(info,4);
         if (order == 0){
             return;
         }
@@ -178,6 +179,11 @@ void Customer::showShoppingCart(){
                 system("pause");
                 return; 
             }
+        }
+        if (order == 4){
+            AfterSale* afterSale=new AfterSale(this);
+            afterSale->returned();
+            break;
         }
     }
 }

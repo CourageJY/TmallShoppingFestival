@@ -129,12 +129,25 @@ bool ShoppingCart::generateOrder(map<Goods,int> gds){
 }
 
 void ShoppingCart::update(Goods gd){
-    //当商品对象被下架时，同步改变购物车里的商品信息，并打印通知
+    //当商品对象被下架时，同步改变购物车里的商品信息，向下架列表中加入该商品
+    this->offShelfGoods.push_back(gd);
     this->removeGoods(gd);
-    cout<<"Observers updated: Some goods in the shopping-cart have been pulled off by the shops！"<<endl;
+    this->isUpdate = true;
+    //cout<<"Observers updated: Some goods in the shopping-cart have been pulled off by the shops！"<<endl;
 }
 
 void ShoppingCart::showAllGoods() {
+    if(this->isUpdate){
+        cout<<"您有新的通知："<<endl;
+        vector<Goods>::iterator iter = offShelfGoods.begin();
+        for(int cnt=1;iter!=offShelfGoods.end();++iter){
+            cout<<"    "<<cnt++<<". 商品 "<<iter->getName()<<" 已被店家下架！"<<endl;
+        }
+        //通知后改变更新标记，清空下架商品列表
+        isUpdate = false;
+        offShelfGoods.clear();
+    }
+
     map<Goods,int>::iterator it;
     cout<<"当前购物车有如下商品：\n\n";
     int k=1;
