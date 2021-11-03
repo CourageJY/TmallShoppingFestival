@@ -122,7 +122,7 @@ bool ShoppingCart::generateOrder(map<Goods,int> gds){
             newOd->getSum()+=it->first.getPrice();
         }
     }
-    this->customer->getOrders().push_back(*newOd);
+    this->customer->setOrders(newOd);
     return true;
 }
 

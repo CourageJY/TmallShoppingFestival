@@ -69,7 +69,7 @@ void Shop::showGoods(Customer *customer) {
         if (no==0)
             return;
         cin>>count;
-        if (no<=0||no>k){
+        if (no<0||no>k){
             cout<<"序号错误!"<<endl;
             continue;
         }

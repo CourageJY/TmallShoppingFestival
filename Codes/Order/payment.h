@@ -23,7 +23,7 @@ class UnionPayment:public Payment{
     public:
     void payMethod();
 };
-//
+//支付工作类
 class PaymentContext{
     private:
     Payment* py;
