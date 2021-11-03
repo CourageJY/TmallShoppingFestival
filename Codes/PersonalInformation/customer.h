@@ -98,6 +98,8 @@ public:
 
     vector<Order>& getOrders(){return orders;}
 
+    void setOrders(Order* newOd){orders.push_back(*newOd);}
+
     vector<Coupon*>& getCoupons(){return coupons;}
 
     SearchEngine* getSearchEngine(){return searchEngine;};
