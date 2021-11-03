@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include<string>
+#include <ctime>
 #include"../AfterSale/makeComment.h"
 using namespace std;
 
@@ -11,6 +12,7 @@ class Comment{
 public:
     //桥接模式的使用，对店铺进行评论
     Comment(Shop* sp,Customer* cm):shop(sp),customer(cm){
+        _time=time(0);
         string s = "";
         s += priceComment();
         s += "\n";
@@ -38,9 +40,12 @@ public:
     //获得做评论的顾客
     Customer* getCustomer() { return customer; }
 
+    //获取评论时间
+    time_t* getTime(){return &_time;}
+
 private:
     Shop* shop;
     string content;//初始为空，需用成员函数写入
     Customer* customer;
-
+    time_t _time;
 };

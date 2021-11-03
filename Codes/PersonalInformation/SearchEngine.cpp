@@ -88,7 +88,7 @@ void SearchEngine::search(string name,Customer* customer){
         return;
     }
     int i=0;
-    cout<<"no "<<left<<setw(15)<<"name"<<setw(10)<<"price"<<setw(10)<<"shop"<<endl;
+    cout<<"   "<<left<<setw(15)<<"name"<<setw(10)<<"price"<<setw(10)<<"shop"<<endl;
     for(auto && j : matchedGoods){
         i++;
         cout<<i<<" :"<<setw(15)<<j.getName()<<setw(10)<<j.getPrice()<<setw(10)<<j.getShop()->getName()<<endl;

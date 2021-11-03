@@ -105,11 +105,11 @@ void Shop::showComments() {
     commentsListIterator* cmli=ca->getIterator();
     if(cmli->first())
        { 
-            cout<<"-"<<cmli->first()->getCustomer()->getName()<<":"<<endl<<cmli->first()->getContent()<<endl<<endl;
+            cout<<"-"<<cmli->first()->getCustomer()->getName()<<":\t"<<ctime(cmli->first()->getTime())<<endl<<cmli->first()->getContent()<<endl<<endl;
 
             while(cmli->hasNext()){
                 auto temp=cmli->next();
-                cout<<"-"<<temp->getCustomer()->getName()<<":"<<endl<<temp->getContent()<<endl<<endl;
+                cout<<"-"<<temp->getCustomer()->getName()<<":\t"<<ctime(temp->getTime())<<endl<<temp->getContent()<<endl<<endl;
 
             }
         }
@@ -121,7 +121,7 @@ void Shop::showCoupons(Customer* customer) {
     system("cls");
     cout << this->name << "的优惠券信息如下: " << endl << endl;
     if(this->coupons.size() == 0){
-        cout << "抱歉！本店的优惠券已已被领取完毕" << endl;
+        cout << "抱歉！本店的优惠券已被领取完毕" << endl;
         return;
     }
     //显示所有优惠券信息
