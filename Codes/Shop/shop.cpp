@@ -61,30 +61,21 @@ void Shop::showGoods() {
     cout << "-------------------------------------------" << endl << endl;
 }
 
+//显示店铺评论
 void Shop::showComments() {
-    cout << "本店评价：" << endl << endl;
-    cout<<ca->getLength()<<endl;
-    // if(this->comments.size() == 0){
-    //     cout << "" << endl;
-    //     return;
-    // }
+    cout << "本店评价：" << endl;
+    commentsListIterator* cmli=ca->getIterator();
+    if(cmli->first())
+       { 
+            cout<<"-"<<cmli->first()->getCustomer()->getName()<<":"<<endl<<cmli->first()->getContent()<<endl<<endl;
 
-    // for (auto&& i : this->comments) {
-    //     cout << "    " << i->getCustomer()->getName() << "：" << i->getContent()
-    //          << endl
-    //          << endl;
-    // }
+            while(cmli->hasNext()){
+                auto temp=cmli->next();
+                cout<<"-"<<temp->getCustomer()->getName()<<":"<<endl<<temp->getContent()<<endl<<endl;
 
-    //new
-    // commentsListIterator* cmli=ca->getIterator();
-    // if(!cmli->first())
-    //    { 
-    //         cout<<"    "<<cmli->first()->getCustomer()->getName()<<":"<<cmli->first()->getContent();
-    //         while(cmli->hasNext()){
-    //             cout<<"    "<<cmli->next()->getCustomer()->getName()<<":"<<cmli->next()->getContent();
-    //         }
-    //     }
-    // cout << "-------------------------------------------" << endl << endl;
+            }
+        }
+    cout << "-------------------------------------------" << endl << endl;
 }
 
 //显示店铺优惠券，内容待定
@@ -174,6 +165,6 @@ void Shop::pullOffGoods(Goods gd){
 void Shop::addComment(Customer* cu){
     Comment* cm=new Comment(this,cu);
     Mediator* me=new Mediator(this);
-    cu->writeCommment(*me,*cm);
+    cu->writeCommment(me,cm);
     return;
 }
