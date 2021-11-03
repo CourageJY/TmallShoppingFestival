@@ -80,7 +80,7 @@ public:
     bool payOrder();
 
     //用户调用中介者类来发送评价，不需要调用店铺
-    void writeCommment(Mediator med, Comment com) { med.sendComment(&com); }
+    void writeCommment(Mediator* med, Comment* com) { med->sendComment(com); }
 
     string getName(){return name;}
 

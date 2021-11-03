@@ -9,8 +9,8 @@ class Customer;
 
 class Comment{
 public:
+    //桥接模式的使用，对店铺进行评论
     Comment(Shop* sp,Customer* cm):shop(sp),customer(cm){
-        
         string s = "";
         s += priceComment();
         s += "\n";
@@ -23,15 +23,19 @@ public:
     //默认会覆盖之前的内容
     void writeContent(string str){content=str;}
 
+    //评论价格
     string priceComment();
 
+    //评论物流
     string logisticsComment();
 
+    // 评论服务
     string serviceComment();
 
     //获得评论内容
     string getContent(){return content;}
 
+    //获得做评论的顾客
     Customer* getCustomer() { return customer; }
 
 private:
