@@ -88,10 +88,10 @@ void SearchEngine::search(string name,Customer* customer){
         return;
     }
     int i=0;
-    cout<<"no name\tprice\tshop"<<endl;
+    cout<<"No"<<"\t\t"<<"name"<<"\t\t"<<" price"<<"\t\t"<<"shop"<<endl;
     for(auto && j : matchedGoods){
         i++;
-        cout<<i<<" :"<<j.getName()<<"\t"<<j.getPrice()<<"\t"<<j.getShop()->getName()<<endl;
+        cout<<i<<"\t\t"<<j.getName()<<"\t\t"<<j.getPrice()<<"\t\t"<<j.getShop()->getName()<<endl;
     }
     string info("请选择你要进行的操作(0返回，1~");
     info+=to_string(i);
