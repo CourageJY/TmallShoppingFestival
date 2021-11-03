@@ -263,7 +263,7 @@ void Shop::pullOffGoods(Goods gd){
 
         int ct = this->goods.erase(gd);//测试通过
 
-        cout<<"pullOffGoods()方法结束，"<<ct<<"个商品已下架！"<<endl;
+        /* cout<<"pullOffGoods()方法结束，"<<ct<<"个商品已下架！"<<endl; */
     }else
         cout<<"商品不存在！"<<endl;
 }
