@@ -1,7 +1,7 @@
 #include "balance.h"
 
 double ConcreteBalance::cost(){
-    //测试用，后面需要与订单类对接
+    //需要与订单类对接
     return this->sum;
 }
 

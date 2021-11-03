@@ -91,6 +91,8 @@ public:
     string getAddress(){return addr;}
 
     double& getMoney(){return money;}
+
+    void returnMoney(double m){ money+=m;}
     
     string getProfile(){return profile;}
 

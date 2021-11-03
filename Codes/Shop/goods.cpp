@@ -37,4 +37,5 @@ void Goods::notify(){
         Goods gd = *this;
         (*iter)->update(gd);
     }
+    m_observer->clear();
 }

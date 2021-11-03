@@ -1,7 +1,7 @@
 #include "SearchEngine.h"
 #include "../PersonalInformation/customer.h"
 #include "../Shop/shop.h"
-
+#include<iomanip>
 vector<Goods> SearchAdaptor::getAllGoods(){
     vector<Goods> matchedgoods; //匹配的商品
     for(auto && i : shops){
@@ -88,10 +88,10 @@ void SearchEngine::search(string name,Customer* customer){
         return;
     }
     int i=0;
-    cout<<"No"<<"\t\t"<<"name"<<"\t\t"<<" price"<<"\t\t"<<"shop"<<endl;
+    cout<<"no "<<left<<setw(15)<<"name"<<setw(10)<<"price"<<setw(10)<<"shop"<<endl;
     for(auto && j : matchedGoods){
         i++;
-        cout<<i<<"\t\t"<<j.getName()<<"\t\t"<<j.getPrice()<<"\t\t"<<j.getShop()->getName()<<endl;
+        cout<<i<<" :"<<setw(15)<<j.getName()<<setw(10)<<j.getPrice()<<setw(10)<<j.getShop()->getName()<<endl;
     }
     string info("请选择你要进行的操作(0返回，1~");
     info+=to_string(i);
