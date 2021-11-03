@@ -30,9 +30,7 @@ class MainVenue {
     virtual void showBasicInformation(Customer* customer);
     static void showInformation(Customer* customer);
     void findShops(string name);
-    ~MainVenue() { cout << "destructor called!" << endl; }
     vector<MainVenue>& getVenues() { return venues; }
-
     //实现访问者模式，四大分会场都通过accept函数访问主会场，但执行不同的操作
 //   virtual void accept(ParallelVenue parallelVenue);
 
