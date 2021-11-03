@@ -78,15 +78,24 @@ void Shop::showGoods(Customer *customer) {
             continue;
         }
         int iter =0;
+        bool sus=true;
         for (auto&& i : this->goods){
             if (++iter == no){
+                if(count>i.second){
+                    cout<<"\n抱歉！添加的商品数量超过了库存需求\n";
+                    sus=false;
+                    break;
+                }
                 const Goods good = i.first;
-                customer->getShoppingCart()->addGoods(good,i.second);
+                customer->getShoppingCart()->addGoods(good,count);
+                Sleep(1000);
+                cout<<"\n-------------\n";
                 cout<<"添加成功"<<endl;
-                system("pause");
+                //system("pause");
                 break;
             }
         }
+        if(sus)break;
     }
 }
 

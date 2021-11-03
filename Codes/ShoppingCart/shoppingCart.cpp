@@ -108,11 +108,11 @@ bool ShoppingCart::generateOrder(map<Goods,int> gds){
             <<"商品已售罄，请重新核对订单\n";
         return false;
     }
-    for(it=gds.begin();it!=gds.end();it++){//购物车中减去对应商品
-        goodsData->remove(it->first);
-    }
     for(it=gds.begin();it!=gds.end();it++){//从店铺中减去对应商品
         it->first.getShop()->getGoods()[it->first]-=gds[it->first];
+    }
+    for(it=gds.begin();it!=gds.end();it++){//购物车中减去对应商品
+        goodsData->remove(it->first);
     }
     //新建订单并将其加入到customer的order容器中
     Order* newOd=new Order(this->customer);
@@ -123,6 +123,8 @@ bool ShoppingCart::generateOrder(map<Goods,int> gds){
         }
     }
     this->customer->getOrders().push_back(*newOd);
+
+    cout<<"\nOK, 您已成功生成了订单，请及时在个人信息界面完成支付吧\n";
     return true;
 }
 

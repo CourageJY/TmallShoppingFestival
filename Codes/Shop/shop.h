@@ -54,7 +54,7 @@ public:
                   vector<int> months);
 
     //返回店铺所有商品
-    map<Goods, int> getGoods() { return goods; };
+    map<Goods, int>& getGoods() { return goods; };
 
     //显示所有商品
     void showGoods(Customer* customer);
