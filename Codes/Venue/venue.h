@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 
-#include "../Shop/shop.h"
 #include "../Page/page.h"
+#include "../Shop/shop.h"
 
 using namespace std;
 
@@ -26,31 +26,33 @@ class Customer;
 // };
 
 class Visitor {
-    virtual void visitMain(){};
-
    private:
+    virtual void visitMain(){};
 };
 
 class MainVenue {
    public:
     MainVenue(){};
-    virtual void showBasicInformation(Customer* customer);
     void showInformation(Customer* customer,
                          ProxyPatternCustomer* proxyPatternCustomer,
                          Page* page);
-    void addShop(Shop* shop) { this->shops.push_back(shop); }
-    vector<Shop*>& getShops() { return shops; }
-    vector<MainVenue>& getVenues() { return venues; }
-    map<Goods, int> getGoods();             //获取会场所有店铺的商品
-    map<Goods, int> getGoods(string name);  //获取会场指定店铺的商品
-    void setGoods(string name, vector<string> names, vector<double> prices,
-                  vector<int> months);  //设置指定店铺的所有商品属性
-    void setName(string name) { this->name = name; }
+    void showBasicInformation();
+
+    virtual void showBasicInformation(Customer* customer);
+    virtual void addShop(Shop* shop) { this->shops.push_back(shop); }
+    virtual void setGoods(string name, vector<string> names,
+                          vector<double> prices,
+                          vector<int> months);  //设置指定店铺的所有商品属性
+    virtual void setName(string name) { this->name = name; }
+    virtual vector<Shop*>& getShops() { return shops; }
+    virtual vector<MainVenue>& getVenues() { return venues; }
+    virtual map<Goods, int> getGoods();  //获取会场所有店铺的商品
+    virtual map<Goods, int> getGoods(string name);  //获取会场指定店铺的商品
 
     //责任链模式
-    void listfind(string name, int t);
-    void setNext(MainVenue* next) { this->next = next; }
-    MainVenue* getNext() { return this->next; }
+    virtual vector<Shop*> listfind(string name, int t);
+    virtual void setNext(MainVenue* next) { this->next = next; }
+    virtual MainVenue* getNext() { return this->next; }
 
    protected:
     vector<MainVenue> venues;
@@ -64,7 +66,6 @@ class MainVenue {
 //各个分会场只会存在一个且不会被继承 设计为单例模式
 class ClothingVenue : public MainVenue, Visitor {
    public:
-    void showBasicInformation(Customer* customer) override;
     static ClothingVenue& getInstance() {
         static ClothingVenue instance;
         return instance;
@@ -81,12 +82,10 @@ class ClothingVenue : public MainVenue, Visitor {
 
 class SnacksVenue : public MainVenue, Visitor {
    public:
-    void showBasicInformation(Customer* customer) override;
     static SnacksVenue& getInstance() {
         static SnacksVenue instance;
         return instance;
     }
-
     void accept(Visitor visitor) {
         cout << "It's SnacksVenue visiting MainVenue";
     }
@@ -97,12 +96,10 @@ class SnacksVenue : public MainVenue, Visitor {
 
 class ElectronicVenue : public MainVenue, Visitor {
    public:
-    void showBasicInformation(Customer* customer) override;
     static ElectronicVenue& getInstance() {
         static ElectronicVenue instance;
         return instance;
     }
-
     void accept(Visitor visitor) {
         cout << "It's Electronic visiting MainVenue";
     }
@@ -113,12 +110,10 @@ class ElectronicVenue : public MainVenue, Visitor {
 
 class FruitsVenue : public MainVenue, Visitor {
    public:
-    void showBasicInformation(Customer* customer) override;
     static FruitsVenue& getInstance() {
         static FruitsVenue instance;
         return instance;
     }
-
     void accept(Visitor visitor) {
         cout << "It's FruitsVenue visiting MainVenue";
     }
@@ -129,26 +124,22 @@ class FruitsVenue : public MainVenue, Visitor {
 
 //零食会场命令
 class SnacksCmd {
-private:
+   private:
     Customer* customer;
-public:
-    SnacksCmd(Customer* cr) {
-        customer = cr;
-    }
-    void Action() {
-        SnacksVenue::getInstance().showBasicInformation(customer);
-    }
+
+   public:
+    SnacksCmd(Customer* cr) { customer = cr; }
+    void Action() { SnacksVenue::getInstance().showBasicInformation(customer); }
 };
 
 //组合模式
 //服装会场命令
 class ClothingCmd {
-private:
+   private:
     Customer* customer;
-public:
-    ClothingCmd(Customer* cr) {
-        customer = cr;
-    }
+
+   public:
+    ClothingCmd(Customer* cr) { customer = cr; }
     void Action() {
         ClothingVenue::getInstance().showBasicInformation(customer);
     }
@@ -156,12 +147,11 @@ public:
 
 //电子会场命令
 class ElectronicCmd {
-private:
+   private:
     Customer* customer;
-public:
-    ElectronicCmd(Customer* cr) {
-        customer = cr;
-    }
+
+   public:
+    ElectronicCmd(Customer* cr) { customer = cr; }
     void Action() {
         ElectronicVenue::getInstance().showBasicInformation(customer);
     }
@@ -169,45 +159,41 @@ public:
 
 //水果会场命令
 class FruitsCmd {
-private:
+   private:
     Customer* customer;
-public:
-    FruitsCmd(Customer* cr) {
-        customer = cr;
-    }
-    void Action() {
-        FruitsVenue::getInstance().showBasicInformation(customer);
-    }
+
+   public:
+    FruitsCmd(Customer* cr) { customer = cr; }
+    void Action() { FruitsVenue::getInstance().showBasicInformation(customer); }
 };
 
 //搜索命令
 class SearchCmd {
-private:
+   private:
     Customer* customer;
-public:
-    SearchCmd(Customer* cr) {
-        customer = cr;
-    }
+
+   public:
+    SearchCmd(Customer* cr) { customer = cr; }
     void Action();
 };
 
 //购物车命令
 class CartCmd {
-private:
+   private:
     Customer* customer;
-public:
-    CartCmd(Customer* cr) {
-        customer = cr;
-    }
+
+   public:
+    CartCmd(Customer* cr) { customer = cr; }
     void Action();
 };
 
 //个人信息命令
 class InfoCmd {
-private:
+   private:
     Customer* customer;
     ProxyPatternCustomer* proxyPatternCustomer;
-public:
+
+   public:
     InfoCmd(Customer* cr, ProxyPatternCustomer* pr) {
         customer = cr;
         proxyPatternCustomer = pr;
