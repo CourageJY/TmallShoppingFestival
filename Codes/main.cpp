@@ -36,6 +36,7 @@ void testObserver();
 void initial();
 void testFilter();
 void testState();
+void initPage(Page*, Customer*,ProxyPatternCustomer*);
 
 int main() {
     //设计模式接口测试
@@ -61,9 +62,13 @@ int main() {
     MainVenue venue;
 
     //从主会场开始跳转
-
     ProxyPatternCustomer *proxyPatternCustomer = new ProxyCustomer("lkyProfile.jpg");
-    venue.showInformation(customer,proxyPatternCustomer);
+
+    //新建主会场的Page类
+    Page* mainPage = new Page("主会场");
+    initPage(mainPage, customer, proxyPatternCustomer);
+    
+    venue.showInformation(customer, proxyPatternCustomer, mainPage);
     system("pause");
     return 0;
 }
@@ -184,6 +189,27 @@ void initial() {
     system("pause");
 
     // cv.listfind("苹果", 1);
+}
+
+//初始化主会场的Page类
+void initPage(Page* mainP, Customer* cust,ProxyPatternCustomer* pr) {
+    //准备命令
+    ClothingCmd* cl = new ClothingCmd(cust);
+    SnacksCmd* sn = new SnacksCmd(cust);
+    ElectronicCmd* el = new ElectronicCmd(cust);
+    FruitsCmd* fr = new FruitsCmd(cust);
+    SearchCmd* se = new SearchCmd(cust);
+    CartCmd* ca = new CartCmd(cust);
+    InfoCmd* in = new InfoCmd(cust, pr);
+
+    //命令组添加到页面命令集
+    mainP->addCmd(new SimpleCommand<ClothingCmd>(cl, &ClothingCmd::Action));
+    mainP->addCmd(new SimpleCommand<SnacksCmd>(sn, &SnacksCmd::Action));
+    mainP->addCmd(new SimpleCommand<ElectronicCmd>(el, &ElectronicCmd::Action));
+    mainP->addCmd(new SimpleCommand<FruitsCmd>(fr, &FruitsCmd::Action));
+    mainP->addCmd(new SimpleCommand<SearchCmd>(se, &SearchCmd::Action));
+    mainP->addCmd(new SimpleCommand<CartCmd>(ca, &CartCmd::Action));
+    mainP->addCmd(new SimpleCommand<InfoCmd>(in, &InfoCmd::Action));
 }
 
 //测试单例模式的接口

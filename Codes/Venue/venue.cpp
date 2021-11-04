@@ -40,7 +40,8 @@ void MainVenue::showBasicInformation(Customer* customer) {
 }
 
 void MainVenue::showInformation(Customer* customer,
-                                ProxyPatternCustomer* proxyPatternCustomer) {
+                                ProxyPatternCustomer* proxyPatternCustomer,
+                                Page* page) {
     string info(
         "请选择你想去的会场(1-4, "
         "0退出，5搜索商品，6进入购物车，7查看个人信息)：");
@@ -53,7 +54,10 @@ void MainVenue::showInformation(Customer* customer,
         cout << "4. 水果会场" << '\n';
         cout << endl;
         int no = getNum(info, 7);
-        switch (no) {
+        if(!page->execute(no)) {
+            return;
+        }
+        /* switch (no) {
             case 0:
                 return;
             case 1:
@@ -84,7 +88,7 @@ void MainVenue::showInformation(Customer* customer,
                      << endl;
                 proxyPatternCustomer->viewBasicInformation();
                 continue;
-        }
+        } */
     }
     return;
 }
@@ -256,4 +260,22 @@ void FruitsVenue::showBasicInformation(Customer* customer) {
             continue;
         }
     }
+}
+
+void SearchCmd::Action() {
+    customer->getSearchEngine()->searchGoods(customer);   
+}
+
+void CartCmd::Action() {
+    customer->showShoppingCart();
+}
+void InfoCmd::Action() {
+    proxyPatternCustomer->giveRealCustomer(customer);
+    // The profile will be loaded from disk
+    proxyPatternCustomer->viewBasicInformation();
+    cout << "\n";
+    cout << "The profile has initialized ,does not need to be "
+            "loaded from disk"
+         << endl;
+    proxyPatternCustomer->viewBasicInformation();
 }

@@ -10,14 +10,10 @@ public:
     //命令的执行过程函数
     virtual void execute() = 0; 
     //设置命令的参数
-    void set(string, string);
-    //获取命令提示符
-    string getPrompt();
+    void set(string);
     //获取命令描述
     string getDescrip();
-protected:
-    //命令的提示符
-    string prompt;      
+protected:    
     //命令的描述
     string descrip; 
     Command();
@@ -64,20 +60,19 @@ public:
 //用户在一个页面中可以使用多个不同的指令,即页面是命令的一个“复合物”
 class Page :public Command {
 public:
-    //本页面的命令列表
-    vector<Command* > cmds;
+    //构造函数
+    Page(const char*); 
 
-    //没有上一页面时的构造函数
-    Page(const char*, const char*);
-
-    //显示页面内容
-    void show();  
+    //添加命令
+    void addCmd(Command*);
 
     //命令的执行过程函数
     virtual void execute();
+    virtual bool execute(int);
 private:
-    //页面是否结束
-    bool end;
+    //本页面的命令列表
+    vector<Command* > cmds;
+    int executeCmd;
 };
 
 //页面备忘录类
