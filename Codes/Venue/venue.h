@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "../Shop/shop.h"
+#include "../Page/page.h"
 
 using namespace std;
 
@@ -35,7 +36,8 @@ class MainVenue {
     MainVenue(){};
     virtual void showBasicInformation(Customer* customer);
     void showInformation(Customer* customer,
-                         ProxyPatternCustomer* proxyPatternCustomer);
+                         ProxyPatternCustomer* proxyPatternCustomer,
+                         Page* page);
     void addShop(Shop* shop) { this->shops.push_back(shop); }
     vector<Shop*>& getShops() { return shops; }
     vector<MainVenue>& getVenues() { return venues; }
@@ -123,6 +125,94 @@ class FruitsVenue : public MainVenue, Visitor {
 
    private:
     FruitsVenue() = default;
+};
+
+//零食会场命令
+class SnacksCmd {
+private:
+    Customer* customer;
+public:
+    SnacksCmd(Customer* cr) {
+        customer = cr;
+    }
+    void Action() {
+        SnacksVenue::getInstance().showBasicInformation(customer);
+    }
+};
+
+//组合模式
+//服装会场命令
+class ClothingCmd {
+private:
+    Customer* customer;
+public:
+    ClothingCmd(Customer* cr) {
+        customer = cr;
+    }
+    void Action() {
+        ClothingVenue::getInstance().showBasicInformation(customer);
+    }
+};
+
+//电子会场命令
+class ElectronicCmd {
+private:
+    Customer* customer;
+public:
+    ElectronicCmd(Customer* cr) {
+        customer = cr;
+    }
+    void Action() {
+        ElectronicVenue::getInstance().showBasicInformation(customer);
+    }
+};
+
+//水果会场命令
+class FruitsCmd {
+private:
+    Customer* customer;
+public:
+    FruitsCmd(Customer* cr) {
+        customer = cr;
+    }
+    void Action() {
+        FruitsVenue::getInstance().showBasicInformation(customer);
+    }
+};
+
+//搜索命令
+class SearchCmd {
+private:
+    Customer* customer;
+public:
+    SearchCmd(Customer* cr) {
+        customer = cr;
+    }
+    void Action();
+};
+
+//购物车命令
+class CartCmd {
+private:
+    Customer* customer;
+public:
+    CartCmd(Customer* cr) {
+        customer = cr;
+    }
+    void Action();
+};
+
+//个人信息命令
+class InfoCmd {
+private:
+    Customer* customer;
+    ProxyPatternCustomer* proxyPatternCustomer;
+public:
+    InfoCmd(Customer* cr, ProxyPatternCustomer* pr) {
+        customer = cr;
+        proxyPatternCustomer = pr;
+    }
+    void Action();
 };
 
 //创建实现了上述类的实体访问者
