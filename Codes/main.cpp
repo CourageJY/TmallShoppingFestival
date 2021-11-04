@@ -19,24 +19,26 @@
 #include "Shop/clothingGoodsFactory.h"
 #include "Shop/coupon.h"
 #include "Shop/goods.h"
+#include "Shop/phoneBuilder.h"
 #include "Shop/shop.h"
 #include "ShoppingCart/shoppingCart.h"
 #include "User/user.h"
 #include "Venue/venue.h"
 
-void testSingleton();
-void testDecorator();
 void testAbstractFactory();
+void testBuilder(Shop*);
+void testDecorator();
 void testFacade();
+void testFactory();
+void testFilter();
 void testFlyWeight();
 void testNullObject();
-void testProxy();
-void testFactory();
 void testObserver();
-void initial();
-void testFilter();
+void testProxy();
+void testSingleton();
 void testState();
-void initPage(Page*, Customer*,ProxyPatternCustomer*);
+void initial();
+void initPage(Page*, Customer*, ProxyPatternCustomer*);
 
 int main() {
     //设计模式接口测试
@@ -62,12 +64,13 @@ int main() {
     MainVenue venue;
 
     //从主会场开始跳转
-    ProxyPatternCustomer *proxyPatternCustomer = new ProxyCustomer("lkyProfile.jpg");
+    ProxyPatternCustomer* proxyPatternCustomer =
+        new ProxyCustomer("lkyProfile.jpg");
 
     //新建主会场的Page类
     Page* mainPage = new Page("主会场");
     initPage(mainPage, customer, proxyPatternCustomer);
-    
+
     venue.showInformation(customer, proxyPatternCustomer, mainPage);
     system("pause");
     return 0;
@@ -174,6 +177,9 @@ void initial() {
     fv.addShop(fruit_2);
     fv.addShop(fruit_3);
 
+    // 使用建造者模式建造手机
+    testBuilder(elec_1);
+
     // 构建责任链
     ClothingVenue& cv = ClothingVenue::getInstance();
     cv.setNext(&sv);
@@ -190,7 +196,7 @@ void initial() {
 }
 
 //初始化主会场的Page类
-void initPage(Page* mainP, Customer* cust,ProxyPatternCustomer* pr) {
+void initPage(Page* mainP, Customer* cust, ProxyPatternCustomer* pr) {
     //准备命令
     ClothingCmd* cl = new ClothingCmd(cust);
     SnacksCmd* sn = new SnacksCmd(cust);
@@ -293,6 +299,43 @@ void testAbstractFactory() {  // coded by jy
     // adidasShop.showInformation();
     // antaCoats.showInfo();
     // adidasCoats.showInfo();
+}
+
+//建造者模式的测试接口，用于为电子商店添加商品
+void testBuilder(Shop* shop) {  // coded by lsl
+    cout << "建造者运行中。。。" << endl;
+
+    // 创建指挥者
+    Director director;
+
+    // 创建豪华版建造者
+    Builder* lbuilder = new LuxuryBuilder("HUAWEI P50 Pro", 8488, shop);
+
+    // 创建豪华版手机
+    director.Construct(lbuilder);
+
+    // 获得产品
+    cout << "This is HUAWEI P50 Pro." << endl;
+    Phone* luxuryPhone = lbuilder->GetResult();
+    luxuryPhone->ShowDetails();
+
+    cout << "----------------------" << endl;
+
+    // 创建简单版建造者
+    Builder* sbuilder = new SimpleBuilder("华为畅享 20e", 999, shop);
+
+    // 创建豪华版手机
+    director.Construct(sbuilder);
+
+    // 获得产品
+    cout << "This is 华为畅享 20e." << endl;
+    Phone* simplePhone = sbuilder->GetResult();
+    simplePhone->ShowDetails();
+
+    shop->addGoods(*luxuryPhone, 10);
+    shop->addGoods(*simplePhone, 10);
+
+    cout << "建造完成" << endl;
 }
 
 //测试简单工厂模式和策略模式的接口

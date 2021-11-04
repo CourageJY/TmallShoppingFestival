@@ -26,9 +26,8 @@ class Customer;
 // };
 
 class Visitor {
-    virtual void visitMain(){};
-
    private:
+    virtual void visitMain(){};
 };
 
 class MainVenue {
@@ -87,7 +86,6 @@ class SnacksVenue : public MainVenue, Visitor {
         static SnacksVenue instance;
         return instance;
     }
-
     void accept(Visitor visitor) {
         cout << "It's SnacksVenue visiting MainVenue";
     }
@@ -102,7 +100,6 @@ class ElectronicVenue : public MainVenue, Visitor {
         static ElectronicVenue instance;
         return instance;
     }
-
     void accept(Visitor visitor) {
         cout << "It's Electronic visiting MainVenue";
     }
@@ -117,7 +114,6 @@ class FruitsVenue : public MainVenue, Visitor {
         static FruitsVenue instance;
         return instance;
     }
-
     void accept(Visitor visitor) {
         cout << "It's FruitsVenue visiting MainVenue";
     }
