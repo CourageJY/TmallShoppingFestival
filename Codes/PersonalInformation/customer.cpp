@@ -4,7 +4,7 @@
 #include "../AfterSale/AfterSale.h"
 
 void Customer::viewBasicInformation() {
-    string info("请选择你的操作(0:返回，1:查看优惠券，2:查看购物车，3：查看未支付订单订单，4：查看所有订单)");
+    string info("请选择你的操作(0:返回，1:查看优惠券，2:查看购物车，3：查看未支付订单，4：查看所有订单)");
     int order;
     static bool first = true;
     while (1) {
