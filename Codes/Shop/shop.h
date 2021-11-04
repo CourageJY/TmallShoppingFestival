@@ -38,7 +38,7 @@ class Shop {
     void receiveComment(Comment* com) {
         ca->add(com);
     };                                         // operate//店铺收到评价
-    void showComments();                       //显示店铺评价
+    void showComments(Customer* customer);                       //显示店铺评价
     void showCoupons(Customer* customer);      //显示店铺优惠券
     void showFilterGoods(Customer* customer);  //显示筛选商品
     void showGoods(Customer* customer);        //显示所有商品

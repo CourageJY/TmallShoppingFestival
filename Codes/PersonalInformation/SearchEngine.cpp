@@ -15,12 +15,17 @@ vector<Goods> SearchAdaptor::getAllGoods(){
 }
 
 void SearchEngine::searchGoods(Customer* customer){
+    //记录备忘录
+    customer->originpage->setPage("商品搜索");
     string productName("");
     while (1){
         system("cls");
+        cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
         cout <<"请输入商品名(0:返回,1:查看上一次搜索结果,2:清空历史记录,3:显示历史记录):";
         cin >> productName;
         if (productName=="0"){
+            //弹出一条备忘录
+            customer->originpage->care->popMeme();
             return;
         }
         if (productName=="1"){

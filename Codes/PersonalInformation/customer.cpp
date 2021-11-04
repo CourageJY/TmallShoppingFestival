@@ -4,11 +4,14 @@
 #include "../AfterSale/AfterSale.h"
 
 void Customer::viewBasicInformation() {
+    //记录备忘录
+    originpage->setPage("个人中心");
     string info("请选择你的操作(0:返回，1:查看优惠券，2:查看购物车，3：查看未支付订单，4：查看所有订单)");
     int order;
     static bool first = true;
     while (1) {
         system("cls");
+        cout << "你当前所在的位置是:" << originpage->care->getDescrip() << endl;
         cout << "以下是您的基本信息：\n";
         cout << "姓名：" << name << '\n';
         cout << "电话号码：" << tel << '\n';
@@ -23,8 +26,11 @@ void Customer::viewBasicInformation() {
             order = 0;
             first = false;
         }
-        if (order == 0)
+        if (order == 0) {            
+            //弹出一条备忘录
+            originpage->care->popMeme();
             return;
+        }
         if (order == 1) {
             showCoupons();
             continue;
@@ -127,6 +133,8 @@ void ProxyPatternCustomer::giveRealCustomer(Customer *customer) {
 }
 
 void Customer::showShoppingCart() {
+    //记录备忘录
+    originpage->setPage("购物车");
     ShoppingCart *cart = this->getShoppingCart();
     map<Goods, int> goods = cart->getGoodsMap();
 
@@ -134,10 +142,13 @@ void Customer::showShoppingCart() {
     string info = "请选择您的操作(0返回，1清空购物车，2修改一项商品的数量，3生成订单并购买，4退货)";
     while (1) {
         system("cls");
+        cout << "你当前所在的位置是:" << originpage->care->getDescrip() << endl;
         cart->showAllGoods();
         cout << "---------------------" << endl;
         order = getNum(info, 4);
         if (order == 0) {
+            //弹出一条备忘录
+            originpage->care->popMeme();
             return;
         }
         if (order == 1) {

@@ -69,6 +69,8 @@ int main() {
 
     //新建主会场的Page类
     Page* mainPage = new Page("主会场");
+    //备忘录
+    customer->originpage->setPage("主会场");
     initPage(mainPage, customer, proxyPatternCustomer);
 
     venue.showInformation(customer, proxyPatternCustomer, mainPage);

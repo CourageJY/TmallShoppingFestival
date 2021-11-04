@@ -1,4 +1,5 @@
 #pragma once
+#include <stack>
 #include <vector>
 #include <string>
 #include <iostream>
@@ -79,44 +80,46 @@ private:
 class Memento {
 public:
     //构造函数
-    Memento(Page*);
+    Memento(string);
 
     //获取备忘录中存储的页面
-    Page* getPage();
+    string getPage();
 private:
     //备忘录存储的页面
-    Page* page;
+    string page;
 };
 
 //维护类
 class CareTaker {
 public:
-    //加一条备忘录
-    void addMeme(Memento);
-    
-    //获取第i条备忘录
-    Memento getMeme(int);
+    CareTaker();
+    ~CareTaker();
+    //增添一条备忘录
+    void pushMeme(Memento*);    
+    //弹出备忘录
+    void popMeme();
+    //获取描述
+    string getDescrip();
 private:
+    //描述
+    string descrip;
     //备忘录列表
-    vector<Memento> mementos;
+    stack<Memento*> mementos;
 };
 
 //页面备忘录创建类
 class OriginPage {
 public:
+    OriginPage();
     //设置页面
-    void setPage(Page*);
-
+    void setPage(string);
     //读取页面
-    Page* getPage(Page*);
-
+    string getPage(string);
     //存储到备忘录
-    Memento* savePage();
-
-    //从备忘录获取页面
-    void getPageMemento(Memento);
+    void savePage();
+    CareTaker* care;
 private:
     //页面
-    Page* page;
+    string page;
 };
 
