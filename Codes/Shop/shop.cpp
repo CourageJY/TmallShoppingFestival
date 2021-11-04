@@ -157,6 +157,7 @@ void Shop::showCoupons(Customer* customer) {
 void Shop::showFilterGoods(Customer* customer){
     system("cls");
     double low,up;
+    cout << "本店仅支持从商品价格上筛选，输出所有位于价格区间内的商品。"<<endl<<endl;
     cout << "请输入筛选最低价：";
     cin >> low;
     cout << "请输入筛选最高价：";
@@ -164,7 +165,7 @@ void Shop::showFilterGoods(Customer* customer){
     PriceFilter filter(low,up);
     map<Goods, int> filterGoods = filter.filterGoods(this->goods);
     
-    cout <<  "价格位于 [" << low << "," << up <<"] 的有以下商品：" << endl << endl;
+    cout <<endl<<  "价格位于 [" << low << "," << up <<"] 的有以下商品：" << endl << endl;
     if(this->goods.size() == 0){
         cout << "" << endl;
         return;
