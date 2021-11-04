@@ -31,12 +31,13 @@ map<Goods, int> MainVenue::getGoods(string name) {
     return map<Goods, int>();
 }
 
-void MainVenue::showBasicInformation(Customer* customer) {
-    cout << "本次天猫购物节主会场有以下分会场：" << '\n';
-    cout << "1. 服装会场" << '\n';
-    cout << "2. 零食会场" << '\n';
-    cout << "3. 电子会场" << '\n';
-    cout << "4. 水果会场" << '\n';
+void MainVenue::showBasicInformation() {
+    cout << "本次天猫购物节主会场有以下分会场：" << '\n'
+         << "1. 服装会场" << '\n'
+         << "2. 零食会场" << '\n'
+         << "3. 电子会场" << '\n'
+         << "4. 水果会场" << '\n'
+         << endl;
 }
 
 void MainVenue::showInformation(Customer* customer,
@@ -47,14 +48,9 @@ void MainVenue::showInformation(Customer* customer,
         "0退出，5搜索商品，6进入购物车，7查看个人信息)：");
     while (1) {
         system("cls");  //清空屏幕
-        cout << "本次天猫购物节主会场有以下分会场：" << '\n' << endl;
-        cout << "1. 服装会场" << '\n';
-        cout << "2. 零食会场" << '\n';
-        cout << "3. 电子会场" << '\n';
-        cout << "4. 水果会场" << '\n';
-        cout << endl;
+        this->showBasicInformation();
         int no = getNum(info, 7);
-        if(!page->execute(no)) {
+        if (!page->execute(no)) {
             return;
         }
         /* switch (no) {
@@ -93,160 +89,59 @@ void MainVenue::showInformation(Customer* customer,
     return;
 }
 
-void MainVenue::listfind(string name, int t) {
-    vector<Shop*> matchedShops;
-
-    for (auto&& i : shops) {
-        string sname = i->getName();
-        if (sname.find(name) != sname.npos) {
-            matchedShops.push_back(i);
-        }
-    }
-    if (matchedShops.size() == 0) {
-        cout << "在" << this->name << "中没有搜索到该店铺，进入下一会场搜索。"
-             << endl;
-        system("pause");
-        if (t == 4)
-            cout << "在所有会场中没有搜索到该店铺。" << endl;
-        else
-            this->getNext()->listfind(name, t + 1);
-        return;
-    } else {
-        int k = 1;
-        for (auto&& i : matchedShops) {
-            cout << '\n' << k;
-            k++;
-            cout << "\n-----------------\n";
-            cout << i->getName();
-            cout << endl;
-            cout << "-----------------\n";
-        }
-    }
-}
-
-//显示分会场的所有商品
-void ClothingVenue::showBasicInformation(Customer* customer) {
+void MainVenue::showBasicInformation(Customer* customer) {
     int count = this->shops.size();
     while (1) {
         system("cls");
-        cout << "服装会场有以下店铺：" << '\n';
+        cout << this->name << "有以下店铺：" << '\n';
         int k = 1;
         for (auto&& i : this->shops) {
-            cout << '\n' << k;
+            cout << '\n'
+                 << k << "\n-----------------\n"
+                 << i->getName() << endl
+                 << "-----------------\n";
             k++;
-            cout << "\n-----------------\n";
-            cout << i->getName();
-            cout << endl;
-            cout << "-----------------\n";
-        }
-        string info;
-        info = "请选择你要去的商店:(1-";
-        info += to_string(count);
-        info += "，0返回)";
-        int no = getNum(info, count);
-        if (no == 0) {
-            // MainVenue mainvenue;
-            // mainvenue.showInformation(customer);
-            return;
-        }
-        if (no <= count) {
-            vector<Shop*> shops = getShops();
-            shops[no - 1]->showInformation(customer);
-            continue;
-        }
-    }
-}
-
-void SnacksVenue::showBasicInformation(Customer* customer) {
-    int count = this->shops.size();
-    while (1) {
-        system("cls");
-        cout << "零食会场有以下店铺：" << '\n';
-        int k = 1;
-        for (auto&& i : this->shops) {
-            cout << '\n' << k;
-            k++;
-            cout << "\n-----------------\n";
-            cout << i->getName();
-            cout << endl;
-            cout << "-----------------\n";
-        }
-        string info;
-        info = "请选择你要去的商店:(1-";
-        info += to_string(count);
-        info += "，0返回)";
-        int no = getNum(info, count);
-        if (no == 0) {
-            // MainVenue mainvenue;
-            // mainvenue.showInformation(customer);
-            return;
-        }
-        if (no <= count) {
-            vector<Shop*> shops = getShops();
-            shops[no - 1]->showInformation(customer);
-            continue;
-        }
-    }
-}
-
-void ElectronicVenue::showBasicInformation(Customer* customer) {
-    int count = this->shops.size();
-    while (1) {
-        system("cls");
-        cout << "电器会场有以下店铺：" << '\n';
-        int k = 1;
-        for (auto&& i : this->shops) {
-            cout << '\n' << k;
-            k++;
-            cout << "\n-----------------\n";
-            cout << i->getName();
-            cout << endl;
-            cout << "-----------------\n";
-        }
-        string info;
-        info = "请选择你要去的商店:(1-";
-        info += to_string(count);
-        info += "，0返回)";
-        int no = getNum(info, count);
-        if (no == 0) {
-            // MainVenue mainvenue;
-            // mainvenue.showInformation(customer);
-            return;
-        }
-        if (no <= count) {
-            vector<Shop*> shops = getShops();
-            shops[no - 1]->showInformation(customer);
-            continue;
-        }
-    }
-}
-
-void FruitsVenue::showBasicInformation(Customer* customer) {
-    int count = this->shops.size();
-    while (1) {
-        system("cls");
-        cout << "水果会场有以下店铺：" << '\n';
-        int k = 1;
-        for (auto&& i : this->shops) {
-            cout << '\n' << k;
-            k++;
-            cout << "\n-----------------\n";
-            cout << i->getName();
-            cout << endl;
-            cout << "-----------------\n";
         }
         string info;
         info = "请选择你要去的商店:(1-";
         info += to_string(count);
         info += "，0返回，*进行店铺搜索)";
         string ss;
+        cout << info;
         while (ss == "") cin >> ss;
         int no = 0;
         if (ss == "*") {
             cout << "搜索店铺" << endl;
-            // 这里还没写完
-        }
-        else if (isdigit(ss[0])){
+            cout << "请输入需要搜索的店铺的名字：";
+            string s;
+            while (s == "") cin >> s;
+            auto rs = this->listfind(s, 1);
+            if (!rs.empty()) {
+                k = 1;
+                for (auto&& i : rs) {
+                    cout << '\n'
+                         << k << "\n-----------------\n"
+                         << i->getName() << endl
+                         << "-----------------\n";
+                    k++;
+                }
+                info = "请选择你要去的商店:(1-";
+                info += to_string(rs.size());
+                info += "，0返回)";
+                while (1) {
+                    int no = getNum(info, rs.size());
+                    if (no == 0) break;
+                    if (no <= rs.size()) {
+                        rs[no - 1]->showInformation(customer);
+                        break;
+                    }
+                    if (no > rs.size())
+                        cout << "检测到无效输入，请重试" << endl;
+                }
+                continue;
+            }
+            continue;
+        } else if (isdigit(ss[0])) {
             no = ss[0] - '0';
         }
         if (no == 0) {
@@ -262,13 +157,34 @@ void FruitsVenue::showBasicInformation(Customer* customer) {
     }
 }
 
-void SearchCmd::Action() {
-    customer->getSearchEngine()->searchGoods(customer);   
+vector<Shop*> MainVenue::listfind(string name, int t) {
+    vector<Shop*> matchedShops;
+    for (auto&& i : shops) {
+        string sname = i->getName();
+        if (sname.find(name) != sname.npos) {
+            matchedShops.push_back(i);
+        }
+    }
+    if (matchedShops.size() == 0) {
+        cout << "在" << this->name << "中没有搜索到该店铺，进入下一会场搜索。"
+             << endl;
+        system("pause");
+        if (t == 4) {
+            cout << "在所有会场中没有搜索到该店铺，即将返回到原来的分会场。"
+                 << endl;
+            system("pause");
+            return {};
+        } else {
+            cout << "在" << this->getNext()->name << "中搜索店铺。" << endl;
+            return this->getNext()->listfind(name, t + 1);
+        }
+    }
+    return matchedShops;
 }
 
-void CartCmd::Action() {
-    customer->showShoppingCart();
-}
+void SearchCmd::Action() { customer->getSearchEngine()->searchGoods(customer); }
+
+void CartCmd::Action() { customer->showShoppingCart(); }
 void InfoCmd::Action() {
     proxyPatternCustomer->giveRealCustomer(customer);
     // The profile will be loaded from disk

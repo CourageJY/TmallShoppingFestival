@@ -183,12 +183,10 @@ void initial() {
 
     cv.setName("服装会场");
     sv.setName("零食会场");
-    ev.setName("电器会场");
+    ev.setName("电子会场");
     fv.setName("水果会场");
 
     system("pause");
-
-    // cv.listfind("苹果", 1);
 }
 
 //初始化主会场的Page类
