@@ -103,12 +103,15 @@ bool Customer::payOrder() {
         return false;
     }
     cout << "当前您未支付的订单共" << vec.size() << "个，分别为：\n";
+    cout << "-------------------";
     int i = 1;
     for (auto v: vec) {
         cout << i << '\n';
         v.showOrder();
+        cout<<endl;
         i++;
     }
+    cout << "-------------------";
     cout << "请选择您想要操作的订单id(1~" << vec.size() << ")\n";
     int x;
     cin >> x;
