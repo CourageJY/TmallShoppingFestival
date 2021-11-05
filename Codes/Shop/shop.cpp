@@ -48,9 +48,6 @@ void Shop::showGoods(Customer* customer) {
     system("cls");  //清空屏幕
     //记录备忘录
     customer->originpage->setPage("商品列表");
-    cout<<"=============================="<<endl;
-    cout<<"过滤器模式   类名：Filter  "<<endl;
-    cout<<"=============================="<<endl;
     cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
     cout << this->name << "有以下商品：" << endl << endl;
     if (this->goods.size() == 0) {
@@ -116,6 +113,9 @@ void Shop::showComments(Customer* customer) {
     system("cls");
     //记录备忘录
     customer->originpage->setPage("店铺评价");
+    cout<<"=============================="<<endl;
+    cout<<"迭代器模式   类名：Iterator  "<<endl;
+    cout<<"=============================="<<endl;
     cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
     cout << "本店评价：" << endl;
     commentsListIterator* cmli = ca->getIterator();
@@ -266,6 +266,10 @@ void Shop::showGoods_pullOff(Customer* customer){
     system("cls");  //清空屏幕
     //记录备忘录
     customer->originpage->setPage("下架商品");
+    cout<<"=============================="<<endl;
+    cout<<"过滤器模式   类名：Filter    "<<endl;
+    cout<<"原型模式     类型：Coupon    "<<endl;
+    cout<<"=============================="<<endl;
     cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
     cout << this->name << "有以下商品：" << endl << endl;
     if (this->goods.size() == 0) {
@@ -381,6 +385,10 @@ void Shop::pullOffGoods(Goods gd) {
 void Shop::addComment(Customer* cu) {
     system("cls");
     //记录备忘录
+    cout<<"=============================="<<endl;
+    cout<<"桥接模式     类名：Comment、diffAspect  "<<endl;
+    cout<<"中介者模式   类名：Mediator  "<<endl;
+    cout<<"=============================="<<endl;
     cu->originpage->setPage("添加评论");
     cout << "你当前所在的位置是:" << cu->originpage->care->getDescrip() << endl;
     Comment* cm = new Comment(this, cu);
