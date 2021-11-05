@@ -138,14 +138,15 @@ void ShoppingCart::update(Goods gd){
 
 void ShoppingCart::showAllGoods() {
     if(this->isUpdate){
-        cout<<"您有新的通知："<<endl;
+        cout<<"\n您有新的通知：\n\n";
         vector<Goods>::iterator iter = offShelfGoods.begin();
         for(int cnt=1;iter!=offShelfGoods.end();++iter){
-            cout<<"    "<<cnt++<<". 商品 "<<iter->getName()<<" 已被店家下架！"<<endl;
+            cout<<"    "<<cnt++<<". 商品 "<<iter->getName()<<" 已被店家下架！\n";
         }
         //通知后改变更新标记，清空下架商品列表
         isUpdate = false;
         offShelfGoods.clear();
+        cout<<endl;
     }
 
     map<Goods,int>::iterator it;
