@@ -20,10 +20,6 @@ void SearchEngine::searchGoods(Customer* customer,AbstractCustomer* absc){
     string productName("");
     while (1){
         system("cls");
-        cout<<"=============================="<<endl;
-        cout<<"命令模式     类名：SearchEngine  "<<endl;
-        cout<<"适配器模式   类名：SearchAdaptor "<<endl;
-        cout<<"=============================="<<endl;
         cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
         cout <<"请输入商品名(0:返回,1:查看上一次搜索结果,2:清空历史记录,3:显示历史记录):";
         cin >> productName;
@@ -69,16 +65,13 @@ void SearchEngine::rollBack(Customer* customer,AbstractCustomer* absc){
 }
 
 void SearchEngine::showHistory(){
-    cout<<"-------------------------------------"<<endl;
     cout << "搜索历史：" << endl;
     int count =0;
     for(auto iter = history.begin();iter != history.end();iter++){
         count++;
         cout << count<<"." << *iter << endl;
     }
-    if (count==0)
-        cout<<"无"<<endl;
-    cout<<"-------------------------------------"<<endl;
+    cout<<"-------------------------"<<endl;
     system("pause");
 }
 
@@ -86,7 +79,6 @@ void SearchEngine::search(string name,Customer* customer,AbstractCustomer* absc)
     SearchAdaptor adaptor;
     vector<Goods> allGoods = adaptor.getAllGoods();
     vector<Goods> matchedGoods;
-    cout<<"-------------------------------"<<endl;
     for (auto iter = allGoods.begin();iter!= allGoods.end();iter++){
         string goodsName = iter->getName();
         if (goodsName.find(name)!=goodsName.npos)
@@ -97,7 +89,6 @@ void SearchEngine::search(string name,Customer* customer,AbstractCustomer* absc)
 
     if (matchedGoods.size()==0){
         cout<<"抱歉，没有搜索到商品"<<endl;
-        cout<<"-------------------------------"<<endl;
         system("pause");
         return;
     }

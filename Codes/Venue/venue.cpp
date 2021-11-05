@@ -32,14 +32,11 @@ map<Goods, int> MainVenue::getGoods(string name) {
 }
 
 void MainVenue::showBasicInformation() {
-    cout << "本次天猫购物节主会场有以下分会场：" << '\n';
-    cout <<"==================================" << '\n'
-         << "|           0. 退出会场           |" << '\n'
-         << "|           1. 服装会场           |" << '\n'
-         << "|           2. 零食会场           |" << '\n'
-         << "|           3. 电子会场           |" << '\n'
-         << "|           4. 水果会场           |" << '\n'
-         << "================================="
+    cout << "本次天猫购物节主会场有以下分会场：" << '\n'
+         << "1. 服装会场" << '\n'
+         << "2. 零食会场" << '\n'
+         << "3. 电子会场" << '\n'
+         << "4. 水果会场" << '\n'
          << endl;
 }
 
@@ -60,36 +57,6 @@ void MainVenue::showInformation(Customer* customer,
             continue;
         }
         if (!page->execute(no)) {
-        cout<<"================================================="<<endl;
-        cout<<"备忘录模式   类名：Page  "<<endl;
-        cout<<"组合模式     类名：FruitsCmd 、SearchCmd、InfoCmd"<<endl;
-        cout<<"组合实体模式 类名：MainVenue"<<endl;
-        cout<<"访问者模式   类名：Visitor "<<endl;
-        cout<<"================================================="<<endl;
-        cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
-        cout<<"你上次进入的分会场是："<<lastVisit<<endl;
-        this->showBasicInformation();
-        int no = getNum(info, 7);
-        switch (no)
-        {
-        case 1:
-            lastVisit = "服装会场";
-            break;
-        case 2:
-            lastVisit = "零食会场";
-            break;
-        case 3:
-            lastVisit = "电器会场";
-            break;
-        case 4:
-            lastVisit = "水果会场";
-            break;
-        default:
-            break;
-        }
-        if(no) {    //非返回操作时
-            page->execute(no);
-        } else {
             return;
         }
         /* switch (no) {
@@ -129,28 +96,18 @@ void MainVenue::showInformation(Customer* customer,
 }
 
 void MainVenue::showBasicInformation(Customer* customer,AbstractCustomer* absc) {
-    //记录备忘录
-    customer->originpage->setPage(this->name);
-    accept();
     int count = this->shops.size();
     while (1) {
         system("cls");
-        cout<<"========================================================================"<<endl;
-        cout<<"责任链模式   类名：MainVenue  "<<endl;
-        cout<<"单例模式     类名：ClothingVenue,SnacksVenue,ElectronicVenue,FruitsVenue"<<endl;
-        cout<<"========================================================================"<<endl;
-        cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
         cout << this->name << "有以下店铺：" << '\n';
         int k = 1;
-        cout<< "\n---------------------\n";
         for (auto&& i : this->shops) {
             cout << '\n'
-                 << k
+                 << k << "\n-----------------\n"
                  << i->getName() << endl
-                 << '\n';
+                 << "-----------------\n";
             k++;
         }
-        cout<< "\n---------------------\n";
         string info;
         info = "请选择你要去的商店:(1-";
         info += to_string(count);

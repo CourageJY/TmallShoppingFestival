@@ -8,7 +8,7 @@ bool Order::pay(){
         cout<<"error! 此订单不为待支付状态\n";
         return false;
     }
-    cout<<"请选择支付方式，1为微信支付，2为支付宝支付，3为银联支付，0为退出：";
+    cout<<"请选择支付方式，1为微信支付，2为支付宝支付，3为银联支付：";
     cin>>payMethod;
     PaymentContext* p=new PaymentContext(payMethod);
     p->outPutInformation();
