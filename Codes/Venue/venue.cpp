@@ -32,14 +32,11 @@ map<Goods, int> MainVenue::getGoods(string name) {
 }
 
 void MainVenue::showBasicInformation() {
-    cout << "本次天猫购物节主会场有以下分会场：" << '\n';
-    cout <<"==================================" << '\n'
-         << "|           0. 退出会场           |" << '\n'
-         << "|           1. 服装会场           |" << '\n'
-         << "|           2. 零食会场           |" << '\n'
-         << "|           3. 电子会场           |" << '\n'
-         << "|           4. 水果会场           |" << '\n'
-         << "================================="
+    cout << "本次天猫购物节主会场有以下分会场：" << '\n'
+         << "1. 服装会场" << '\n'
+         << "2. 零食会场" << '\n'
+         << "3. 电子会场" << '\n'
+         << "4. 水果会场" << '\n'
          << endl;
 }
 
@@ -104,15 +101,13 @@ void MainVenue::showBasicInformation(Customer* customer,AbstractCustomer* absc) 
         system("cls");
         cout << this->name << "有以下店铺：" << '\n';
         int k = 1;
-        cout<< "\n---------------------\n";
         for (auto&& i : this->shops) {
             cout << '\n'
-                 << k
+                 << k << "\n-----------------\n"
                  << i->getName() << endl
-                 << '\n';
+                 << "-----------------\n";
             k++;
         }
-        cout<< "\n---------------------\n";
         string info;
         info = "请选择你要去的商店:(1-";
         info += to_string(count);

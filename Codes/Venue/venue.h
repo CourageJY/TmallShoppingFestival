@@ -27,16 +27,13 @@ class Customer;
 // };
 
 class Visitor {
-    public:
-        string getVisitorName(){return name;};
-        void setVisitorName(string s){name = s;};
-    private:
-        string name;
+   private:
+    virtual void visitMain(){};
 };
 
-class MainVenue: public Visitor {
+class MainVenue {
    public:
-    MainVenue(){lastVisit = "无";};
+    MainVenue(){};
     void showInformation(Customer* customer,
                          ProxyPatternCustomer* proxyPatternCustomer,
                          Page* page,
@@ -64,69 +61,67 @@ class MainVenue: public Visitor {
     vector<Shop*> shops;
     MainVenue* next;
     string name;
-    string lastVisit;
     //实现访问者模式，四大分会场都通过accept函数访问主会场，但执行不同的操作
-    virtual void accept(){};
+    virtual void accept(Visitor* visitor){};
 };
 
 //各个分会场只会存在一个且不会被继承 设计为单例模式
-class ClothingVenue : public MainVenue{
+class ClothingVenue : public MainVenue, Visitor {
    public:
     static ClothingVenue& getInstance() {
         static ClothingVenue instance;
         return instance;
     }
-    void accept() {
-        lastVisit = getVisitorName();
+    void accept(Visitor visitor) {
+        cout << "It's ClothingVenue visiting MainVenue";
     }
 
    private:
     ClothingVenue() {
         cout << "constructor called!" << endl;
-        setVisitorName("服装会场");
     }  //单例模式要将构造函数私有
 };
 
-class SnacksVenue : public MainVenue{
+class SnacksVenue : public MainVenue, Visitor {
    public:
     static SnacksVenue& getInstance() {
         static SnacksVenue instance;
         return instance;
     }
-    void accept() {
-        lastVisit = getVisitorName();
+    void accept(Visitor visitor) {
+        cout << "It's SnacksVenue visiting MainVenue";
     }
 
    private:
-    SnacksVenue(){setVisitorName("零食会场");};
+    SnacksVenue() = default;
 };
 
-class ElectronicVenue : public MainVenue {
+class ElectronicVenue : public MainVenue, Visitor {
    public:
     static ElectronicVenue& getInstance() {
         static ElectronicVenue instance;
         return instance;
     }
-    void accept() {
-        lastVisit = getVisitorName();
+    void accept(Visitor visitor) {
+        cout << "It's Electronic visiting MainVenue";
     }
 
    private:
-    ElectronicVenue(){setVisitorName("电器会场");};
+    ElectronicVenue() = default;
 };
 
-class FruitsVenue : public MainVenue {
+class FruitsVenue : public MainVenue, Visitor {
    public:
     static FruitsVenue& getInstance() {
         static FruitsVenue instance;
         return instance;
     }
-    void accept() {
-        lastVisit = getVisitorName();
+    void accept(Visitor visitor) {
+        cout << "It's FruitsVenue visiting MainVenue";
     }
 
    private:
-    FruitsVenue(){setVisitorName("水果会场");};
+    FruitsVenue() = default;
 };
 
 //零食会场命令
@@ -215,3 +210,23 @@ class InfoCmd {
     }
     void Action();
 };
+
+//创建实现了上述类的实体访问者
+// class ParallelVenueDisplay : ParallelVenue {
+//   public:
+//    void visit(ClothingVenue clothingVenue){
+//        cout << "你现在所在的位置是————服装会场" << endl;
+//    }
+//
+//    void visit(SnacksVenue snackVenue){
+//        cout << "你现在所在的位置是————小吃会场" << endl;
+//    }
+//
+//    void visit(ElectronicVenue electronicVenue) {
+//        cout << "你现在所在的位置是————电器会场" << endl;
+//    }
+//
+//    void visit(FruitsVenue fruitsVenue){
+//        cout << "你现在所在的位置是————蔬果会场" << endl;
+//    }
+//};
