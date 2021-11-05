@@ -38,7 +38,7 @@ public:
     string getContent(){return content;}
 
     //获得做评论的顾客
-    Customer* getCustomer() { return customer; }
+    Customer* getCustomer() { return customer;}
 
     //获取评论时间
     time_t* getTime(){return &_time;}
