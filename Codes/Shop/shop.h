@@ -43,6 +43,7 @@ class Shop {
     void showFilterGoods(Customer* customer);  //显示筛选商品
     void showGoods(Customer* customer);        //显示所有商品
     void showInformation(Customer* customer);  //输出关于店铺的一些信息
+    void showGoods_pullOff(Customer* customer);//显示所有商品并供商家下架商品
 
     void setIterator(ConcreteAggregate* cu) { this->ca = cu; }  //设置迭代器
 
