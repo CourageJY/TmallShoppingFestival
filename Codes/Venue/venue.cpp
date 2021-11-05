@@ -48,9 +48,12 @@ void MainVenue::showInformation(Customer* customer,
         "0退出，5搜索商品，6进入购物车，7查看个人信息)：");
     while (1) {
         system("cls");  //清空屏幕
+        cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
         this->showBasicInformation();
         int no = getNum(info, 7);
-        if (!page->execute(no)) {
+        if(no) {    //非返回操作时
+            page->execute(no);
+        } else {
             return;
         }
         /* switch (no) {
@@ -90,9 +93,12 @@ void MainVenue::showInformation(Customer* customer,
 }
 
 void MainVenue::showBasicInformation(Customer* customer) {
+    //记录备忘录
+    customer->originpage->setPage(this->name);
     int count = this->shops.size();
     while (1) {
         system("cls");
+        cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
         cout << this->name << "有以下店铺：" << '\n';
         int k = 1;
         for (auto&& i : this->shops) {
@@ -147,6 +153,8 @@ void MainVenue::showBasicInformation(Customer* customer) {
         if (no == 0) {
             // MainVenue mainvenue;
             // mainvenue.showInformation(customer);
+            //弹出一条备忘录
+            customer->originpage->care->popMeme();
             return;
         }
         if (no <= count) {

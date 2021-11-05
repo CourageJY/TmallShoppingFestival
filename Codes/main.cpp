@@ -55,20 +55,20 @@ int main() {
     // testState();
     //初始化各分会场及其店铺信息
     initial();
-
     //新建顾客
     Customer* customer =
         new Customer("lky", "13456789", "上海 嘉定", male, 2000);
 
     //新建主会场
     MainVenue venue;
-
     //从主会场开始跳转
     ProxyPatternCustomer* proxyPatternCustomer =
         new ProxyCustomer("lkyProfile.jpg");
 
     //新建主会场的Page类
     Page* mainPage = new Page("主会场");
+    //备忘录
+    customer->originpage->setPage("主会场");
     initPage(mainPage, customer, proxyPatternCustomer);
 
     venue.showInformation(customer, proxyPatternCustomer, mainPage);

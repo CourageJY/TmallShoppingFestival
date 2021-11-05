@@ -7,6 +7,7 @@
 #include"../Order/order.h"
 #include"../Shop/coupon.h"
 #include"../Mediator/mediator.h"
+#include"../Page/page.h"
 #include"SearchEngine.h"
 using namespace std;
 
@@ -61,6 +62,7 @@ public:
                  cout<<"You create a new customer successfully!\n";
                  shoppingCart = new ShoppingCart(this);
                  searchEngine = new SearchEngine(this);
+                 originpage = new OriginPage;
              }
 
     void profileLoading(string &profileName){
@@ -106,6 +108,7 @@ public:
 
     SearchEngine* getSearchEngine(){return searchEngine;};
 
+    OriginPage* originpage;
 private:
     string profile;//头像（为了使用代理模式）
     string name;

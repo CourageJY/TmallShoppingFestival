@@ -47,42 +47,61 @@ void Page::addCmd(Command* cmd) {
     cmds.push_back(cmd);
 }
 
+//构造OriginPage
+OriginPage::OriginPage() {
+    care = new CareTaker;
+}
+
+CareTaker::CareTaker() {
+    descrip = "/";
+}
+
+CareTaker::~CareTaker() {
+    for(int i = 0;i <= mementos.size();i++) {
+        delete mementos.top();
+        mementos.pop();
+    }
+}
+
 //设置页面
-void OriginPage::setPage(Page* pageN) {
-    this->page = pageN;
+void OriginPage::setPage(string pageN) {
+    page = pageN;
+    savePage();
 }
 
 //读取页面
-Page* OriginPage::getPage(Page* pageN) {
+string OriginPage::getPage(string pageN) {
     return page;
 }
 
 //存储到备忘录
-Memento* OriginPage::savePage() {
-    return new Memento(page);
-}
-
-//从备忘录获取页面
-void OriginPage::getPageMemento(Memento memento) {
-    this->page = memento.getPage();
+void OriginPage::savePage() {
+    care->pushMeme(new Memento(page));
 }
 
 //构造函数
-Memento::Memento(Page* pageN) {
-    this->page = pageN;
+Memento::Memento(string pageN) {
+    page = pageN;
 }
 
 //获取备忘录中存储的页面
-Page* Memento::getPage() {
+string Memento::getPage() {
     return this->page;
 }
 
-//加一条备忘录
-void CareTaker::addMeme(Memento memento) {
-    mementos.push_back(memento);
+//增添一条备忘录
+void CareTaker::pushMeme(Memento* memento) {
+    mementos.push(memento);
+    descrip += "/" + memento->getPage();
 }
 
-//获取第i条备忘录
-Memento CareTaker::getMeme(int i) {
-    return mementos[i];
+//弹出一条备忘录
+void CareTaker::popMeme() {
+    mementos.pop();
+    descrip = descrip.substr(0,descrip.find_last_of('/'));
+}
+
+//获取描述
+string CareTaker::getDescrip() {
+    return descrip;
 }
