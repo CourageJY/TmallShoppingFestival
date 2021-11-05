@@ -302,7 +302,7 @@ void Shop::showGoods_pullOff(Customer* customer){
                 this->pullOffGoods(good);
                 Sleep(1000);
                 cout << "\n-------------\n";
-                cout << "下架成功（使用观察者模式）" << endl;
+                cout << "商品下架成功" << endl;
                 // system("pause");
                 break;
             }
