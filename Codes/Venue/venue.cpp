@@ -52,8 +52,26 @@ void MainVenue::showInformation(Customer* customer,
     while (1) {
         system("cls");  //清空屏幕
         cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
+        cout<<"你上次进入的分会场是："<<lastVisit<<endl;
         this->showBasicInformation();
         int no = getNum(info, 7);
+        switch (no)
+        {
+        case 1:
+            lastVisit = "服装会场";
+            break;
+        case 2:
+            lastVisit = "零食会场";
+            break;
+        case 3:
+            lastVisit = "电器会场";
+            break;
+        case 4:
+            lastVisit = "水果会场";
+            break;
+        default:
+            break;
+        }
         if(no) {    //非返回操作时
             page->execute(no);
         } else {
@@ -98,6 +116,7 @@ void MainVenue::showInformation(Customer* customer,
 void MainVenue::showBasicInformation(Customer* customer) {
     //记录备忘录
     customer->originpage->setPage(this->name);
+    accept();
     int count = this->shops.size();
     while (1) {
         system("cls");

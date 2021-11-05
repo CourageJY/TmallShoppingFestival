@@ -14,7 +14,7 @@ double Decorator::cost(){
 }
 
 double ConcreteDecoratorA::cost(){
-    return discount(Decorator::cost());
+    return discount(Decorator::cost()); 
 }
 
 double ConcreteDecoratorA::discount(double db){
