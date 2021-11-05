@@ -25,6 +25,9 @@
 #include "User/user.h"
 #include "Venue/venue.h"
 
+bool chooseExit();
+string welcome();
+
 void testAbstractFactory();
 void testBuilder(Shop*);
 void testDecorator();
@@ -56,9 +59,8 @@ int main() {
     //初始化各分会场及其店铺信息
     initial();
     //新建顾客
-    Customer* customer =
-        new Customer("lky", "13456789", "上海 嘉定", male, 2000);
-
+    vector<Customer*> customers;  //登录过的用户
+    Customer* customer;
     //新建主会场
     MainVenue venue;
     //从主会场开始跳转
@@ -67,12 +69,48 @@ int main() {
 
     //新建主会场的Page类
     Page* mainPage = new Page("主会场");
-    //备忘录
-    customer->originpage->setPage("主会场");
-    initPage(mainPage, customer, proxyPatternCustomer);
+    while (1) {
+        string userName = welcome();  //欢迎界面，返回用户名
+        int registeredNum = customers.size();
+        if (registeredNum >
+            0) {  //如果该用户是已经登陆过的用户，则直接登录，否则创建并保存。
+            for (int i = 0; i < registeredNum; i++) {
+                if (customers[i]->getName() == userName) {
+                    customer = customers[i];
+                    break;
+                }
+                if (i == registeredNum - 1) {
+                    customer = new Customer(userName, "13456789", "上海 嘉定",
+                                            male, 2000);
+                    customers.push_back(customer);
+                }
+            }
+        } else {
+            customer =
+                new Customer(userName, "13456789", "上海 嘉定", male, 2000);
+            customers.push_back(customer);
+        }
+        // Customer* customer =
+        //    new Customer("lky", "13456789", "上海 嘉定", male, 2000);
 
-    venue.showInformation(customer, proxyPatternCustomer, mainPage);
-    system("pause");
+        //新建主会场
+        // MainVenue venue;
+        //从主会场开始跳转
+        // ProxyPatternCustomer* proxyPatternCustomer =
+        //   new ProxyCustomer("lkyProfile.jpg");
+
+        //新建主会场的Page类
+        // Page* mainPage = new Page("主会场");
+        //备忘录
+        customer->originpage->setPage("主会场");
+        initPage(mainPage, customer, proxyPatternCustomer);
+
+        venue.showInformation(customer, proxyPatternCustomer, mainPage);
+        system("pause");
+        if (chooseExit()) {  //是否选择退出
+            break;
+        }
+    }
     return 0;
 }
 
@@ -482,10 +520,9 @@ void testObserver() {
 }
 
 //欢迎登录界面
-void welcome() {
+string welcome() {
     string userName;  //输入的用户名
-    cout << "欢迎来到天猫购物节！" << endl;
-    cout << "请先登录，输入用户名：";
+    cout << "欢迎来到天猫购物节！" << endl << "请先登录，输入用户名：";
     cin >> userName;
     while (!(setUsers()->interpret(
         userName))) {  //如果输入的用户名不合法，则重新输入
@@ -493,4 +530,26 @@ void welcome() {
         cin >> userName;
     }
     cout << "登录成功！" << endl;
+    return userName;
+}
+
+//是否选择退出，按0选择退出，按1继续登录
+bool chooseExit() {
+    while (1) {
+        int choice;
+        cout << "是否选择退出程序？" << endl
+             << "输入0退出程序，输入1继续登录！" << endl;
+        cin >> choice;
+        switch (choice) {
+            case 0: {
+                return true;
+            } break;
+            case 1: {
+                return false;
+            } break;
+            default: {
+                cout << "输入非法，请重新输入！" << endl;
+            }
+        }
+    }
 }
