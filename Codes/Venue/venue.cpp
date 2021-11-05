@@ -51,6 +51,12 @@ void MainVenue::showInformation(Customer* customer,
         "0退出，5搜索商品，6进入购物车，7查看个人信息)：");
     while (1) {
         system("cls");  //清空屏幕
+        cout<<"=============================="<<endl;
+        cout<<"备忘录模式   类名：Page  "<<endl;
+        cout<<"组合模式     类名：FruitsCmd 、SearchCmd、InfoCmd"<<endl;
+        cout<<"组合实体模式 类名：MainVenue"<<endl;
+        cout<<"访问者模式   类名：Visitor "<<endl;
+        cout<<"=============================="<<endl;
         cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
         cout<<"你上次进入的分会场是："<<lastVisit<<endl;
         this->showBasicInformation();
@@ -120,6 +126,10 @@ void MainVenue::showBasicInformation(Customer* customer) {
     int count = this->shops.size();
     while (1) {
         system("cls");
+        cout<<"=============================="<<endl;
+        cout<<"责任链模式   类名：MainVenue  "<<endl;
+        cout<<"单例模式     类名：ClothingVenue,SnacksVenue,ElectronicVenue,FruitsVenue"<<endl;
+        cout<<"=============================="<<endl;
         cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
         cout << this->name << "有以下店铺：" << '\n';
         int k = 1;

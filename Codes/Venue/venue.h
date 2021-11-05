@@ -205,23 +205,3 @@ class InfoCmd {
     }
     void Action();
 };
-
-//创建实现了上述类的实体访问者
-// class ParallelVenueDisplay : ParallelVenue {
-//   public:
-//    void visit(ClothingVenue clothingVenue){
-//        cout << "你现在所在的位置是————服装会场" << endl;
-//    }
-//
-//    void visit(SnacksVenue snackVenue){
-//        cout << "你现在所在的位置是————小吃会场" << endl;
-//    }
-//
-//    void visit(ElectronicVenue electronicVenue) {
-//        cout << "你现在所在的位置是————电器会场" << endl;
-//    }
-//
-//    void visit(FruitsVenue fruitsVenue){
-//        cout << "你现在所在的位置是————蔬果会场" << endl;
-//    }
-//};

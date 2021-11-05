@@ -48,6 +48,9 @@ void Shop::showGoods(Customer* customer) {
     system("cls");  //清空屏幕
     //记录备忘录
     customer->originpage->setPage("商品列表");
+    cout<<"=============================="<<endl;
+    cout<<"过滤器模式   类名：Filter  "<<endl;
+    cout<<"=============================="<<endl;
     cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
     cout << this->name << "有以下商品：" << endl << endl;
     if (this->goods.size() == 0) {
@@ -317,6 +320,7 @@ void Shop::showInformation(Customer* customer) {
     //记录备忘录
     customer->originpage->setPage(this->name);
     string info;
+
     info += "-------------------------------------------\n";
     info += "欢迎光临";
     info += this->name;
