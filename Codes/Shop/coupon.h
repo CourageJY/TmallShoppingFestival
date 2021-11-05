@@ -50,6 +50,7 @@ public:
 
     time_t getOutDate() const { return outDate; }
 
+    virtual Coupon *clone(){};
 protected:
     Customer *customer;
     Shop *shop;
@@ -73,7 +74,7 @@ public:
 
     double getDiscount() const { return discount; }
 
-    DiscountCoupon *clone();    //实现原型模式的克隆
+    Coupon *clone();    //实现原型模式的克隆
 
 private:
     double discount;
@@ -96,7 +97,7 @@ public:
 
     double getReduction() const { return reduction; }
 
-    FullReduceCoupon *clone();  //实现原型模式的克隆
+    Coupon *clone();  //实现原型模式的克隆
 
 private:
     double standard;

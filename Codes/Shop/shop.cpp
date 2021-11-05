@@ -1,9 +1,9 @@
 #include "shop.h"
-
 #include "../Filter/filter.h"
 #include "../PersonalInformation/Comment.h"
 #include "../PersonalInformation/customer.h"
 #include "../tools.h"
+#include "../Shop/coupon.h"
 using namespace std;
 
 //添加商品
@@ -166,11 +166,12 @@ void Shop::showCoupons(Customer* customer) {
     }
 
     //在顾客容器中加上该优惠券
-    customer->getCoupons().push_back(coupons[od - 1]);
+    customer->getCoupons().push_back(coupons[od - 1]->clone());
 
-    //从商店中减去该优惠券
-    coupons.erase(coupons.begin() +
-                  (od - 1));  //?这里是指针类型，以配合多态实现
+
+    // //从商店中减去该优惠券
+    // coupons.erase(coupons.begin() +
+    //               (od - 1));  //?这里是指针类型，以配合多态实现
 
     Sleep(1000);
 

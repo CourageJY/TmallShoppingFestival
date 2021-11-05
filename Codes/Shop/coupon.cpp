@@ -28,7 +28,7 @@ void DiscountCoupon::changeStateToUsed() {
     cout << "期待您的下次使用" << '\n';
 }
 
-DiscountCoupon* DiscountCoupon::clone(){
+Coupon* DiscountCoupon::clone(){ 
     DiscountCoupon *clone = new DiscountCoupon(shop, discount);
     return clone;
 }
@@ -60,7 +60,7 @@ void FullReduceCoupon::changeStateToUsed() {
     cout << "期待您的下次使用" << '\n';
 }
 
-FullReduceCoupon* FullReduceCoupon::clone(){
+Coupon* FullReduceCoupon::clone(){
     FullReduceCoupon *clone = new FullReduceCoupon(shop, standard, reduction);
     return clone;
 }
