@@ -57,6 +57,7 @@ void Shop::showGoods(Customer* customer) {
         return;
     }
     int k = 0;
+    cout << "-------------------------------------------" << endl << endl;
     for (auto&& i : this->goods) {
         k++;
         cout << k << "：" << i.first.getName() << endl
