@@ -9,6 +9,7 @@
 
 using namespace std;
 
+class AbstractCustomer;
 class ProxyPatternCustomer;
 class ProxyCustomer;
 class ClothingVenue;
@@ -35,10 +36,11 @@ class MainVenue {
     MainVenue(){};
     void showInformation(Customer* customer,
                          ProxyPatternCustomer* proxyPatternCustomer,
-                         Page* page);
+                         Page* page,
+                         AbstractCustomer*);
     void showBasicInformation();
 
-    virtual void showBasicInformation(Customer* customer);
+    virtual void showBasicInformation(Customer* customer,AbstractCustomer*);
     virtual void addShop(Shop* shop) { this->shops.push_back(shop); }
     virtual void setGoods(string name, vector<string> names,
                           vector<double> prices,
@@ -126,10 +128,11 @@ class FruitsVenue : public MainVenue, Visitor {
 class SnacksCmd {
    private:
     Customer* customer;
+    AbstractCustomer* absc;
 
    public:
-    SnacksCmd(Customer* cr) { customer = cr; }
-    void Action() { SnacksVenue::getInstance().showBasicInformation(customer); }
+    SnacksCmd(Customer* cr,AbstractCustomer* ac) { customer = cr,absc=ac; }
+    void Action() { SnacksVenue::getInstance().showBasicInformation(customer,absc); }
 };
 
 //组合模式
@@ -137,11 +140,12 @@ class SnacksCmd {
 class ClothingCmd {
    private:
     Customer* customer;
+    AbstractCustomer* absc;
 
    public:
-    ClothingCmd(Customer* cr) { customer = cr; }
+    ClothingCmd(Customer* cr,AbstractCustomer* ac) { customer = cr,absc=ac; }
     void Action() {
-        ClothingVenue::getInstance().showBasicInformation(customer);
+        ClothingVenue::getInstance().showBasicInformation(customer,absc);
     }
 };
 
@@ -149,11 +153,12 @@ class ClothingCmd {
 class ElectronicCmd {
    private:
     Customer* customer;
+    AbstractCustomer* absc;
 
    public:
-    ElectronicCmd(Customer* cr) { customer = cr; }
+    ElectronicCmd(Customer* cr,AbstractCustomer* ac) { customer = cr,absc=ac; }
     void Action() {
-        ElectronicVenue::getInstance().showBasicInformation(customer);
+        ElectronicVenue::getInstance().showBasicInformation(customer,absc);
     }
 };
 
@@ -161,19 +166,21 @@ class ElectronicCmd {
 class FruitsCmd {
    private:
     Customer* customer;
+    AbstractCustomer* absc;
 
    public:
-    FruitsCmd(Customer* cr) { customer = cr; }
-    void Action() { FruitsVenue::getInstance().showBasicInformation(customer); }
+    FruitsCmd(Customer* cr,AbstractCustomer* ac) { customer = cr,absc=ac; }
+    void Action() { FruitsVenue::getInstance().showBasicInformation(customer,absc); }
 };
 
 //搜索命令
 class SearchCmd {
    private:
     Customer* customer;
+    AbstractCustomer* absc;
 
    public:
-    SearchCmd(Customer* cr) { customer = cr; }
+    SearchCmd(Customer* cr,AbstractCustomer* ac) { customer = cr,absc=ac; }
     void Action();
 };
 
@@ -181,9 +188,10 @@ class SearchCmd {
 class CartCmd {
    private:
     Customer* customer;
+    AbstractCustomer* absc;
 
    public:
-    CartCmd(Customer* cr) { customer = cr; }
+    CartCmd(Customer* cr,AbstractCustomer* ac) { customer = cr,absc=ac; }
     void Action();
 };
 
@@ -192,11 +200,13 @@ class InfoCmd {
    private:
     Customer* customer;
     ProxyPatternCustomer* proxyPatternCustomer;
+    AbstractCustomer* absc;
 
    public:
-    InfoCmd(Customer* cr, ProxyPatternCustomer* pr) {
+    InfoCmd(Customer* cr, ProxyPatternCustomer* pr,AbstractCustomer* ac) {
         customer = cr;
         proxyPatternCustomer = pr;
+        absc=ac;
     }
     void Action();
 };

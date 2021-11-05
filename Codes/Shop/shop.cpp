@@ -44,7 +44,7 @@ void Shop::setGoods(vector<string> names, vector<double> prices,
     }
 }
 
-void Shop::showGoods(Customer* customer) {
+void Shop::showGoods(Customer* customer,AbstractCustomer* absc) {
     system("cls");  //清空屏幕
     //记录备忘录
     customer->originpage->setPage("商品列表");
@@ -67,6 +67,12 @@ void Shop::showGoods(Customer* customer) {
     }
     cout << "-------------------------------------------" << endl << endl;
 
+    if(absc->isNull()){
+        //为游客
+        cout<<"\n您目前为游客状态，只能浏览商品哟！\n";
+        //system("pause");
+        return;
+    }
     int no, count;
     while (1) {
         cout << "请选择你要添加的商品序号(1~" << k << ",0返回)及其数量:";
@@ -108,7 +114,7 @@ void Shop::showGoods(Customer* customer) {
 }
 
 //显示店铺评论
-void Shop::showComments(Customer* customer) {
+void Shop::showComments(Customer* customer,AbstractCustomer* absc) {
     system("cls");
     //记录备忘录
     customer->originpage->setPage("店铺评价");
@@ -135,7 +141,7 @@ void Shop::showComments(Customer* customer) {
 }
 
 //显示店铺优惠券，内容待定
-void Shop::showCoupons(Customer* customer) {
+void Shop::showCoupons(Customer* customer,AbstractCustomer* absc) {
     system("cls");
     //记录备忘录
     customer->originpage->setPage("优惠券");
@@ -153,6 +159,12 @@ void Shop::showCoupons(Customer* customer) {
         i->showInformation();
         k++;
     }
+    if(absc->isNull()){
+        cout<<"\n您目前为游客状态，只能查看优惠券哟！";
+        system("pause");
+        return;
+    }
+
     string info;
     info = "请选择您想要领取的优惠券(1~";
     info += to_string(k - 1);
@@ -183,7 +195,7 @@ void Shop::showCoupons(Customer* customer) {
     customer->originpage->care->popMeme();
 }
 
-void Shop::showFilterGoods(Customer* customer) {
+void Shop::showFilterGoods(Customer* customer,AbstractCustomer* absc) {
     system("cls");
     //记录备忘录
     customer->originpage->setPage("筛选商品");
@@ -218,6 +230,11 @@ void Shop::showFilterGoods(Customer* customer) {
     }
     cout << "-------------------------------------------" << endl << endl;
 
+    if(absc->isNull()){
+        cout<<"\n您目前为游客状态，只能查看商品哟！";
+        system("pause");
+        return;
+    }
     int no, count;
     while (1) {
         cout << "请选择你要添加的商品序号(1~" << k << ",0返回)及其数量:";
@@ -259,7 +276,7 @@ void Shop::showFilterGoods(Customer* customer) {
 }
 
 //展示店铺信息，与店铺交互
-void Shop::showInformation(Customer* customer) {
+void Shop::showInformation(Customer* customer,AbstractCustomer* absc) {
     //记录备忘录
     customer->originpage->setPage(this->name);
     string info;
@@ -275,24 +292,30 @@ void Shop::showInformation(Customer* customer) {
         system("cls");
         cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
         order = getNum_shop(info, 5);
+        if(absc->isNull()&&order==3){
+            //为游客登录
+            cout<<"\n抱歉，您为游客，无法对店铺做出评价\n";
+            system("pause");
+            continue;
+        }
         switch (order) {
             case 1:
-                this->showGoods(customer);
+                this->showGoods(customer,absc);
                 system("pause");
                 continue;
             case 2:
-                this->showComments(customer);
+                this->showComments(customer,absc);
                 system("pause");
                 continue;
             case 3:
                 this->addComment(customer);
                 continue;
             case 4:
-                this->showCoupons(customer);
+                this->showCoupons(customer,absc);
                 system("pause");
                 continue;
             case 5:
-                this->showFilterGoods(customer);
+                this->showFilterGoods(customer,absc);
                 system("pause");
                 continue;
             case 0:
@@ -315,6 +338,7 @@ void Shop::pullOffGoods(Goods gd) {
     } else
         cout << "商品不存在！" << endl;
 }
+
 void Shop::addComment(Customer* cu) {
     system("cls");
     //记录备忘录

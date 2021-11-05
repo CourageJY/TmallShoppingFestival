@@ -42,18 +42,21 @@ void MainVenue::showBasicInformation() {
 
 void MainVenue::showInformation(Customer* customer,
                                 ProxyPatternCustomer* proxyPatternCustomer,
-                                Page* page) {
+                                Page* page,
+                                AbstractCustomer* absc) {
     string info(
         "请选择你想去的会场(1-4, "
         "0退出，5搜索商品，6进入购物车，7查看个人信息)：");
     while (1) {
         system("cls");  //清空屏幕
-        cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
         this->showBasicInformation();
         int no = getNum(info, 7);
-        if(no) {    //非返回操作时
-            page->execute(no);
-        } else {
+        if(absc->isNull()&&no>=6){//判断出是游客空对象
+            cout<<"\n抱歉，您当前状态为游客，无法进入购物车或查看个人信息\n";
+            system("pause");
+            continue;
+        }
+        if (!page->execute(no)) {
             return;
         }
         /* switch (no) {
@@ -92,13 +95,10 @@ void MainVenue::showInformation(Customer* customer,
     return;
 }
 
-void MainVenue::showBasicInformation(Customer* customer) {
-    //记录备忘录
-    customer->originpage->setPage(this->name);
+void MainVenue::showBasicInformation(Customer* customer,AbstractCustomer* absc) {
     int count = this->shops.size();
     while (1) {
         system("cls");
-        cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
         cout << this->name << "有以下店铺：" << '\n';
         int k = 1;
         for (auto&& i : this->shops) {
@@ -116,7 +116,7 @@ void MainVenue::showBasicInformation(Customer* customer) {
         cout << info;
         while (ss == "") cin >> ss;
         int no = 0;
-        if (ss == "*") {
+        if (ss == "*") {//责任链模式
             cout << "搜索店铺" << endl;
             cout << "请输入需要搜索的店铺的名字：";
             string s;
@@ -138,7 +138,7 @@ void MainVenue::showBasicInformation(Customer* customer) {
                     int no = getNum(info, rs.size());
                     if (no == 0) break;
                     if (no <= rs.size()) {
-                        rs[no - 1]->showInformation(customer);
+                        rs[no - 1]->showInformation(customer,absc);
                         break;
                     }
                     if (no > rs.size())
@@ -153,13 +153,11 @@ void MainVenue::showBasicInformation(Customer* customer) {
         if (no == 0) {
             // MainVenue mainvenue;
             // mainvenue.showInformation(customer);
-            //弹出一条备忘录
-            customer->originpage->care->popMeme();
             return;
         }
         if (no <= count) {
             vector<Shop*> shops = getShops();
-            shops[no - 1]->showInformation(customer);
+            shops[no - 1]->showInformation(customer,absc);
             continue;
         }
     }
@@ -190,7 +188,7 @@ vector<Shop*> MainVenue::listfind(string name, int t) {
     return matchedShops;
 }
 
-void SearchCmd::Action() { customer->getSearchEngine()->searchGoods(customer); }
+void SearchCmd::Action() { customer->getSearchEngine()->searchGoods(customer,absc); }
 
 void CartCmd::Action() { customer->showShoppingCart(); }
 void InfoCmd::Action() {

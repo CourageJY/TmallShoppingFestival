@@ -14,7 +14,7 @@ vector<Goods> SearchAdaptor::getAllGoods(){
     return matchedgoods;
 }
 
-void SearchEngine::searchGoods(Customer* customer){
+void SearchEngine::searchGoods(Customer* customer,AbstractCustomer* absc){
     //记录备忘录
     customer->originpage->setPage("商品搜索");
     string productName("");
@@ -29,7 +29,7 @@ void SearchEngine::searchGoods(Customer* customer){
             return;
         }
         if (productName=="1"){
-            rollBack(customer);
+            rollBack(customer,absc);
             continue;
         }
         if (productName=="2"){
@@ -49,18 +49,18 @@ void SearchEngine::searchGoods(Customer* customer){
             system("pause");
             continue;
         }
-        search(productName,customer);
+        search(productName,customer,absc);
         history.push_back(productName);
         continue;
     }
     return;
 }
 
-void SearchEngine::rollBack(Customer* customer){
+void SearchEngine::rollBack(Customer* customer,AbstractCustomer* absc){
     if (!history.empty()){
         string s = *(history.end()-1);
         history.pop_back();
-        search(s,customer);
+        search(s,customer,absc);
     }
 }
 
@@ -75,7 +75,7 @@ void SearchEngine::showHistory(){
     system("pause");
 }
 
-void SearchEngine::search(string name,Customer* customer){
+void SearchEngine::search(string name,Customer* customer,AbstractCustomer* absc){
     SearchAdaptor adaptor;
     vector<Goods> allGoods = adaptor.getAllGoods();
     vector<Goods> matchedGoods;
@@ -107,7 +107,7 @@ void SearchEngine::search(string name,Customer* customer){
         if(order==0)
             return;
         if(order<=i){
-            matchedGoods[i-1].getShop()->showInformation(customer);
+            matchedGoods[i-1].getShop()->showInformation(customer,absc);
             return;
         }
     }

@@ -66,6 +66,9 @@ public:
 
     //添加命令
     void addCmd(Command*);
+    void clearCmd(){
+        cmds.clear();
+    };//清空命令
 
     //命令的执行过程函数
     virtual void execute();

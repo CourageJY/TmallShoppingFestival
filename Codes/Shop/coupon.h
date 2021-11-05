@@ -50,7 +50,7 @@ public:
 
     time_t getOutDate() const { return outDate; }
 
-    virtual Coupon *clone(){};
+    virtual Coupon *clone(){return NULL;};
 protected:
     Customer *customer;
     Shop *shop;

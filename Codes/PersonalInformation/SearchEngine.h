@@ -8,6 +8,7 @@
 #include"../tools.h"
 using namespace std;
 
+class AbstractCustomer;
 class Customer;
 class Shop;
 
@@ -18,8 +19,8 @@ public:
     SearchEngine(Customer* cu){
         customer = cu;
     };
-    void searchGoods(Customer* customer);            //搜索功能
-    void rollBack(Customer* customer);               //返回到上一个搜索结果
+    void searchGoods(Customer* ,AbstractCustomer*);            //搜索功能
+    void rollBack(Customer* ,AbstractCustomer*);               //返回到上一个搜索结果
 
     void emptyHistory() { history.empty(); };   
     void showHistory();
@@ -27,7 +28,7 @@ public:
 private:
     Customer* customer;
     vector<string> history;         //搜索历史
-    void search(string name,Customer* customer);     //实现搜索
+    void search(string ,Customer* ,AbstractCustomer*);     //实现搜索
 };
 
 //SearchAdaptor类用于适配不同的搜索方法

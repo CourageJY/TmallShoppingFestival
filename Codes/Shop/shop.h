@@ -11,6 +11,7 @@
 using namespace std;
 
 //预声明
+class AbstractCustomer;
 class Customer;
 class Comment;
 
@@ -38,11 +39,11 @@ class Shop {
     void receiveComment(Comment* com) {
         ca->add(com);
     };                                         // operate//店铺收到评价
-    void showComments(Customer* customer);                       //显示店铺评价
-    void showCoupons(Customer* customer);      //显示店铺优惠券
-    void showFilterGoods(Customer* customer);  //显示筛选商品
-    void showGoods(Customer* customer);        //显示所有商品
-    void showInformation(Customer* customer);  //输出关于店铺的一些信息
+    void showComments(Customer*,AbstractCustomer*);                       //显示店铺评价
+    void showCoupons(Customer* ,AbstractCustomer*);      //显示店铺优惠券
+    void showFilterGoods(Customer* ,AbstractCustomer*);  //显示筛选商品
+    void showGoods(Customer* ,AbstractCustomer*);        //显示所有商品
+    void showInformation(Customer* ,AbstractCustomer*);  //输出关于店铺的一些信息
 
     void setIterator(ConcreteAggregate* cu) { this->ca = cu; }  //设置迭代器
 
