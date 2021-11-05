@@ -7,11 +7,13 @@
 #include <iostream>
 #include <string>
 
+#include "goods.h"
+
 using namespace std;
 
-class Phone {
+class Phone : public Goods{
    public:
-    Phone() {
+    Phone(string na, double pr, Shop* sh):Goods(na,pr,sh) {
         mStrMemory = "4GB";
         mStrStorage = "64GB";
     }
@@ -47,10 +49,10 @@ class Director {
 //豪华版建造者
 class LuxuryBuilder : public Builder {
    public:
-    LuxuryBuilder() { product = new Phone(); }
+    LuxuryBuilder(string na, double pr, Shop* sh) { product = new Phone(na, pr, sh); }
     Phone* GetResult() { return product; }
     void buildStorage() { product->setStorage("512GB"); }
-    void buildMemory() { product->setMemory("16GB"); }
+    void buildMemory() { product->setMemory("12GB"); }
 
    private:
     Phone* product;
@@ -59,15 +61,16 @@ class LuxuryBuilder : public Builder {
 //简易版建造者
 class SimpleBuilder : public Builder {
    public:
-    SimpleBuilder() { product = new Phone(); }
+    SimpleBuilder(string na, double pr, Shop* sh) { product = new Phone(na, pr, sh); }
     Phone* GetResult() { return product; }
-    void buildStorage() { product->setStorage("32GB"); }
-    void buildMemory() { product->setMemory("512MB"); }
+    void buildStorage() { product->setStorage("64GB"); }
+    void buildMemory() { product->setMemory("4GB"); }
 
    private:
     Phone* product;
 };
 
+/*
 void builder_test_main() {
     // 创建指挥者
     Director director;
@@ -96,5 +99,5 @@ void builder_test_main() {
     Phone* simplePhone = sbuilder->GetResult();
     simplePhone->ShowDetails();
 }
-
+*/
 #endif  //__PHONEBUILDER_H__

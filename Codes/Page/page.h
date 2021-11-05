@@ -1,4 +1,5 @@
 #pragma once
+#include <stack>
 #include <vector>
 #include <string>
 #include <iostream>
@@ -10,14 +11,10 @@ public:
     //命令的执行过程函数
     virtual void execute() = 0; 
     //设置命令的参数
-    void set(string, string);
-    //获取命令提示符
-    string getPrompt();
+    void set(string);
     //获取命令描述
     string getDescrip();
-protected:
-    //命令的提示符
-    string prompt;      
+protected:    
     //命令的描述
     string descrip; 
     Command();
@@ -64,64 +61,65 @@ public:
 //用户在一个页面中可以使用多个不同的指令,即页面是命令的一个“复合物”
 class Page :public Command {
 public:
-    //本页面的命令列表
-    vector<Command* > cmds;
+    //构造函数
+    Page(const char*); 
 
-    //没有上一页面时的构造函数
-    Page(const char*, const char*);
-
-    //显示页面内容
-    void show();  
+    //添加命令
+    void addCmd(Command*);
 
     //命令的执行过程函数
     virtual void execute();
+    virtual bool execute(int);
 private:
-    //页面是否结束
-    bool end;
+    //本页面的命令列表
+    vector<Command* > cmds;
+    int executeCmd;
 };
 
 //页面备忘录类
 class Memento {
 public:
     //构造函数
-    Memento(Page*);
+    Memento(string);
 
     //获取备忘录中存储的页面
-    Page* getPage();
+    string getPage();
 private:
     //备忘录存储的页面
-    Page* page;
+    string page;
 };
 
 //维护类
 class CareTaker {
 public:
-    //加一条备忘录
-    void addMeme(Memento);
-    
-    //获取第i条备忘录
-    Memento getMeme(int);
+    CareTaker();
+    ~CareTaker();
+    //增添一条备忘录
+    void pushMeme(Memento*);    
+    //弹出备忘录
+    void popMeme();
+    //获取描述
+    string getDescrip();
 private:
+    //描述
+    string descrip;
     //备忘录列表
-    vector<Memento> mementos;
+    stack<Memento*> mementos;
 };
 
 //页面备忘录创建类
 class OriginPage {
 public:
+    OriginPage();
     //设置页面
-    void setPage(Page*);
-
+    void setPage(string);
     //读取页面
-    Page* getPage(Page*);
-
+    string getPage(string);
     //存储到备忘录
-    Memento* savePage();
-
-    //从备忘录获取页面
-    void getPageMemento(Memento);
+    void savePage();
+    CareTaker* care;
 private:
     //页面
-    Page* page;
+    string page;
 };
 
