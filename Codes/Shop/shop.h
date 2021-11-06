@@ -45,6 +45,8 @@ class Shop {
     void showGoods(Customer* ,AbstractCustomer*);        //显示所有商品
     void showInformation(Customer* ,AbstractCustomer*);  //输出关于店铺的一些信息
 
+    void showGoods_pullOff(Customer* customer);//显示所有商品并供商家下架商品
+
     void setIterator(ConcreteAggregate* cu) { this->ca = cu; }  //设置迭代器
 
     void pullOffGoods(Goods gd);  //下架商品，为实现Observer模式添加的功能

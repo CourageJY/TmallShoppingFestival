@@ -32,11 +32,14 @@ map<Goods, int> MainVenue::getGoods(string name) {
 }
 
 void MainVenue::showBasicInformation() {
-    cout << "本次天猫购物节主会场有以下分会场：" << '\n'
-         << "1. 服装会场" << '\n'
-         << "2. 零食会场" << '\n'
-         << "3. 电子会场" << '\n'
-         << "4. 水果会场" << '\n'
+     cout << "本次天猫购物节主会场有以下分会场：" << '\n';
+     cout <<"==================================" << '\n'
+         << "|           0. 退出会场           |" << '\n'
+         << "|           1. 服装会场           |" << '\n'
+         << "|           2. 零食会场           |" << '\n'
+         << "|           3. 电子会场           |" << '\n'
+         << "|           4. 水果会场           |" << '\n'
+         << "=================================="
          << endl;
 }
 
@@ -49,6 +52,12 @@ void MainVenue::showInformation(Customer* customer,
         "0退出，5搜索商品，6进入购物车，7查看个人信息)：");
     while (1) {
         system("cls");  //清空屏幕
+        cout<<"================================================="<<endl;
+        cout<<"备忘录模式   类名：Page  "<<endl;
+        cout<<"组合模式     类名：FruitsCmd 、SearchCmd、InfoCmd"<<endl;
+        cout<<"组合实体模式 类名：MainVenue"<<endl;
+        cout<<"访问者模式   类名：Visitor "<<endl;
+        cout<<"================================================="<<endl;
         this->showBasicInformation();
         int no = getNum(info, 7);
         if(absc->isNull()&&no>=6){//判断出是游客空对象
@@ -99,15 +108,21 @@ void MainVenue::showBasicInformation(Customer* customer,AbstractCustomer* absc) 
     int count = this->shops.size();
     while (1) {
         system("cls");
+        cout<<"========================================================================"<<endl;
+        cout<<"责任链模式   类名：MainVenue  "<<endl;
+        cout<<"单例模式     类名：ClothingVenue,SnacksVenue,ElectronicVenue,FruitsVenue"<<endl;
+        cout<<"========================================================================"<<endl;
         cout << this->name << "有以下店铺：" << '\n';
         int k = 1;
+        cout<< "\n---------------------\n";
         for (auto&& i : this->shops) {
             cout << '\n'
-                 << k << "\n-----------------\n"
+                 << k 
                  << i->getName() << endl
-                 << "-----------------\n";
+                 << '\n';
             k++;
         }
+        cout<< "\n---------------------\n";
         string info;
         info = "请选择你要去的商店:(1-";
         info += to_string(count);

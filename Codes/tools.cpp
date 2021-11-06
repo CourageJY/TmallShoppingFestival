@@ -54,6 +54,12 @@ double str2num(string s) {
 }
 
 void initial() {
+    cout<<"==============================================="<<endl;
+    cout<<"抽象工厂模式 类名：ClothingGoodsFactory  "<<endl;
+    cout<<"享元模式     类名：BrandFactory "<<endl;
+    cout<<"建造者模式   类名：LuxuryBuilder、SimpleBuilder "<<endl;
+    cout<<"模板模式     类名：Builder "<<endl;
+    cout<<"==============================================="<<endl;
     //服装会场信息添加（这里用了抽象工厂模式创建）
     testAbstractFactory();
 

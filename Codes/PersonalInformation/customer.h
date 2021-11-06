@@ -123,20 +123,15 @@ private:
 };
 
 //以下为顾客的代理类,针对顾客的头像属性profile进行了代理
-class ProxyCustomer : public ProxyPatternCustomer
-{
-
+class ProxyCustomer : public ProxyPatternCustomer{
 public:
-    ProxyCustomer(string profileName)
-    {
+    ProxyCustomer(string profileName){
         this->profile = profileName;
     }
-
     void giveRealCustomer(Customer *customer) override{
         realImage = customer;
     }
-    void viewBasicInformation() override
-    {
+    void viewBasicInformation() override{
         if (realImage->getProfile().empty()) {
             realImage->profileLoading(profile);
             realImage->viewBasicInformation();
@@ -150,7 +145,8 @@ public:
             Sleep(1000);
             cout << endl;
         }
-        else cout << "The image does not need to be loaded from disk!";
+        else cout << "The image does not need"
+                  << " to be loaded from disk!";
         realImage->viewBasicInformation();
     }
 

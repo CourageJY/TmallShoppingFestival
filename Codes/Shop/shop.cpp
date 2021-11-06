@@ -47,6 +47,9 @@ void Shop::setGoods(vector<string> names, vector<double> prices,
 void Shop::showGoods(Customer* customer,AbstractCustomer* absc) {
     system("cls");  //清空屏幕
     //记录备忘录
+    cout<<"=============================="<<endl;
+    cout<<"过滤器模式   类名：Filter  "<<endl;
+    cout<<"=============================="<<endl;
     customer->originpage->setPage("商品列表");
     cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
     cout << this->name << "有以下商品：" << endl << endl;
@@ -57,6 +60,7 @@ void Shop::showGoods(Customer* customer,AbstractCustomer* absc) {
         return;
     }
     int k = 0;
+    cout << "-------------------------------------------" << endl << endl;
     for (auto&& i : this->goods) {
         k++;
         cout << k << "：" << i.first.getName() << endl
@@ -118,6 +122,9 @@ void Shop::showComments(Customer* customer,AbstractCustomer* absc) {
     system("cls");
     //记录备忘录
     customer->originpage->setPage("店铺评价");
+    cout<<"=============================="<<endl;
+    cout<<"迭代器模式   类名：Iterator  "<<endl;
+    cout<<"=============================="<<endl;
     cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
     cout << "本店评价：" << endl;
     commentsListIterator* cmli = ca->getIterator();
@@ -275,6 +282,63 @@ void Shop::showFilterGoods(Customer* customer,AbstractCustomer* absc) {
     }
 }
 
+void Shop::showGoods_pullOff(Customer* customer){
+    system("cls");  //清空屏幕
+    //记录备忘录
+    customer->originpage->setPage("下架商品");
+    cout<<"=============================="<<endl;
+    cout<<"过滤器模式   类名：Filter    "<<endl;
+    cout<<"原型模式     类型：Coupon    "<<endl;
+    cout<<"=============================="<<endl;
+    cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
+    cout << this->name << "有以下商品：" << endl << endl;
+    if (this->goods.size() == 0) {
+        cout << "" << endl;
+        //弹出一条备忘录
+        customer->originpage->care->popMeme();
+        return;
+    }
+    int k = 0;
+    for (auto&& i : this->goods) {
+        k++;
+        cout << k << "：" << i.first.getName() << endl
+             << "价格: " << i.first.getPrice() << " 元" << endl
+             << "生产时间: " << i.first.getOutDate() << endl
+             << "店内库存: " << i.second << endl
+             << endl;
+    }
+    cout << "-------------------------------------------" << endl << endl;
+
+    int no;
+    while (1) {
+        cout << "请选择要下架的商品序号(1~" << k << ",0返回):";
+        cin >> no;
+        if (no == 0) {
+            //弹出一条备忘录
+            customer->originpage->care->popMeme();
+            return;
+        }
+        if (no < 0 || no > k) {
+            cout << "序号错误!" << endl;
+            continue;
+        }
+        int iter = 0;
+        bool sus = true;
+        for (auto&& i : this->goods) {
+            if (++iter == no) {
+                const Goods good = i.first;
+                this->pullOffGoods(good);
+                Sleep(1000);
+                cout << "\n-------------\n";
+                cout << "商品下架成功" << endl;
+                // system("pause");
+                break;
+            }
+        }
+        if (sus) break;
+    }
+}
+
 //展示店铺信息，与店铺交互
 void Shop::showInformation(Customer* customer,AbstractCustomer* absc) {
     //记录备忘录
@@ -286,12 +350,12 @@ void Shop::showInformation(Customer* customer,AbstractCustomer* absc) {
     info += "，\n\n";
     info +=
         "1、浏览商品\n2、查看店铺评价\n3、对店铺进行评价\n4、查看店铺优惠券\n"
-        "5、筛选商品\n0、退出商店\n请选择您的操作：";
+        "5、筛选商品\n6、下架商品\n0、退出商店\n请选择您的操作：";
     int order;
     while (true) {
         system("cls");
         cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
-        order = getNum_shop(info, 5);
+        order = getNum_shop(info, 6);
         if(absc->isNull()&&order==3){
             //为游客登录
             cout<<"\n抱歉，您为游客，无法对店铺做出评价\n";
@@ -318,6 +382,10 @@ void Shop::showInformation(Customer* customer,AbstractCustomer* absc) {
                 this->showFilterGoods(customer,absc);
                 system("pause");
                 continue;
+            case 6:
+                this->showGoods_pullOff(customer);
+                system("pause");
+                continue;
             case 0:
                 //弹出一条备忘录
                 customer->originpage->care->popMeme();
@@ -342,6 +410,10 @@ void Shop::pullOffGoods(Goods gd) {
 void Shop::addComment(Customer* cu) {
     system("cls");
     //记录备忘录
+    cout<<"=============================="<<endl;
+    cout<<"桥接模式     类名：Comment、diffAspect  "<<endl;
+    cout<<"中介者模式   类名：Mediator  "<<endl;
+    cout<<"=============================="<<endl;
     cu->originpage->setPage("添加评论");
     cout << "你当前所在的位置是:" << cu->originpage->care->getDescrip() << endl;
     Comment* cm = new Comment(this, cu);
