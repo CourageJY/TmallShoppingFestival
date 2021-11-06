@@ -47,7 +47,6 @@ void Shop::setGoods(vector<string> names, vector<double> prices,
 void Shop::showGoods(Customer* customer,AbstractCustomer* absc) {
     system("cls");  //清空屏幕
     //记录备忘录
-
     customer->originpage->setPage("商品列表");
     cout << "你当前所在的位置是:" << customer->originpage->care->getDescrip() << endl;
     cout << this->name << "有以下商品：" << endl << endl;

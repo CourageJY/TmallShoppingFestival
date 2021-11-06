@@ -30,7 +30,7 @@
 using namespace std;
 
 int main() {
-    system("pause");
+    system("cls");
     //初始化各分会场及其店铺信息
     initial();
     //新建顾客
