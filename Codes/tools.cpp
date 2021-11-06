@@ -472,6 +472,10 @@ void testObserver() {
 string welcome(bool& isTourist) {
     system("cls");
     string userName;  //输入的用户名
+    cout<<"=============================="<<endl;
+    cout<<"空对象模式   类名：NullCustomer"<<endl;
+    cout<<"解释器模式   类名：Expression  "<<endl;
+    cout<<"=============================="<<endl;
     cout << "欢迎来到天猫购物节！" << endl << "请先登录，输入用户名：";
     cin >> userName;
     while (!(setUsers()->interpret(userName))) {  //如果输入的用户名不合法，则重新输入

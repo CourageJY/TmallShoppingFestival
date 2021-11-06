@@ -11,6 +11,12 @@ void Customer::viewBasicInformation() {
     static bool first = true;
     while (1) {
         system("cls");
+        cout<<"======================================="<<endl;
+        cout<<"代理者模式   类名：ProxyPatternCustomer  "<<endl;
+        cout<<"状态模式   类名：orderState  "<<endl;
+        cout<<"工厂模式   类名：Payment  "<<endl;
+        cout<<"策略模式   类名：Payment  "<<endl;
+        cout<<"======================================="<<endl;
         cout << "你当前所在的位置是:" << originpage->care->getDescrip() << endl;
         cout << "以下是您的基本信息：\n";
         cout << "姓名：" << name << '\n';
@@ -145,6 +151,10 @@ void Customer::showShoppingCart() {
     string info = "请选择您的操作(0返回，1清空购物车，2修改一项商品的数量，3生成订单并购买，4退货)";
     while (1) {
         system("cls");
+        cout<<"================================="<<endl;
+        cout<<"数据访问对象模式   类名：CartData  "<<endl;
+        cout<<"外观模式          类名：AfterSale  "<<endl;
+        cout<<"================================="<<endl;
         cout << "你当前所在的位置是:" << originpage->care->getDescrip() << endl;
         cart->showAllGoods();
         cout << "---------------------" << endl;

@@ -22,7 +22,7 @@ public:
     void searchGoods(Customer* ,AbstractCustomer*);            //搜索功能
     void rollBack(Customer* ,AbstractCustomer*);               //返回到上一个搜索结果
 
-    void emptyHistory() { history.empty(); };   
+    void emptyHistory() { history.clear(); };   
     void showHistory();
 
 private:
